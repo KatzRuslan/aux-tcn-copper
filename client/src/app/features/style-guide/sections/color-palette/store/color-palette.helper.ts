@@ -59,9 +59,9 @@ const lightnessSteps: Record<string, number> = {
 };
 const chromaScales: Record<string, number> = {
     '50': 0.25, '100': 0.35, '200': 0.55,
-    '300': 0.75, '400': 0.90, '500': 1.0,
+    '300': 0.75, '400': 0.9, '500': 1,
     '600': 1.05, '700': 1.1, '800': 1.1,
-    '900': 1.05, '950': 1.0
+    '900': 1.05, '950': 1
 };
 const white = chroma('#ffffff');
 const black = chroma('#000000');
@@ -113,6 +113,12 @@ function generateLchPalette(hex: string): Record<string, string> {
     const sorted: Record<string, string> = {};
     Object.keys(lightnessSteps).forEach(k=>sorted[k]=out[k]);
     return sorted;
+}
+export function getColorsRef() {
+    return ctx.palettes().map(({ name, colors }) => ({
+        label: name,
+        items: colors.map(({ step }) => ({ label: `${name}.${step}`, value: `{${name}.${step}}` }))
+    }));
 }
 export function getCustomPalette(hex: string): IPalette {
     const norm = hex.startsWith('#') ? hex : `#${hex}`;

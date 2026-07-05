@@ -2,7 +2,7 @@ import { Signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '@environments';
 import Aura from '@primeuix/themes/aura';
-import { definePreset } from '@primeuix/themes';
+import { definePreset, $dt } from '@primeuix/themes';
 import { IPalette } from '@interfaces';
 
 /**
@@ -41,5 +41,6 @@ export function createPreset() {
     const preset = {
         primitive: createPrimitive(),
     };
+    console.log($dt('typography.lineHeight'))
     console.log(preset.primitive)
 }

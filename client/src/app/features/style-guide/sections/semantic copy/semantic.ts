@@ -1,16 +1,16 @@
 import { Component, signal } from '@angular/core';
 import { SharedModule } from '@shared-module';
-import { SEMANTIC_SCHEMA, FieldMeta, FieldType } from './theme-editor.schema';
-import { CustomPreset, extractModel, applyFieldChange, refCandidates, resolvePreview, RefGroup } from './theme-editor.helper';
+import { SEMANTIC_SCHEMA, FieldMeta, FieldType } from './semantic.schema';
+import { CustomPreset, extractModel, applyFieldChange, refCandidates, resolvePreview, RefGroup } from './semantic.helper';
 
 @Component({
-    selector: 'theme-editor',
+    selector: 'semantic',
     imports: [SharedModule],
-    templateUrl: './theme-editor.html',
-    styleUrl: './theme-editor.scss',
+    templateUrl: './semantic.html',
+    styleUrl: './semantic.scss',
     host: { class: 'flex flex-column w-full h-full overflow-auto p-3 gap-4' },
 })
-export default class ThemeEditor {
+export default class Semantic {
     readonly groups = SEMANTIC_SCHEMA;
 
     /** накопленные оверрайды кастом-пресета (то, что «вставляем» и применяем) */
@@ -36,5 +36,15 @@ export default class ThemeEditor {
     onChange(field: FieldMeta, value: string) {
         this.model.update(m => ({ ...m, [field.path]: value }));
         this.custom.update(c => applyFieldChange(c, field.path, value));
+    }
+    constructor() {
+        setTimeout(() => {
+            console.log('************')
+            console.log(SEMANTIC_SCHEMA)
+            console.log(this.groups)
+            console.log(this.custom())
+            console.log(this.model())
+            console.log(this.refsCache)
+        }, 840);
     }
 }

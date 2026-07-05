@@ -16,5 +16,887 @@
     "colorPalette": {
         "steps": [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950],
         "names": ["emerald", "green", "lime", "red", "orange", "amber", "yellow", "teal", "cyan", "sky", "blue", "indigo", "violet", "purple", "fuchsia", "pink", "rose", "slate", "gray", "zinc", "neutral", "stone"]
-    }
+    },
+    "semantic": [
+        {
+            "key": "typography",
+            "label": "Typography",
+            "fields": [
+                {
+                    "path": "typography.lineHeight",
+                    "label": "Line Height",
+                    "type": "number"
+                },
+                {
+                    "path": "typography.fontWeight",
+                    "label": "Font Weight",
+                    "type": "select"
+                },
+                {
+                    "path": "typography.fontSize",
+                    "label": "Font Size",
+                    "type": "size"
+                }
+            ]
+        },
+        {
+            "key": "focusRing",
+            "label": "Focus Ring",
+            "fields": [
+                {
+                    "path": "focusRing.width",
+                    "label": "Width",
+                    "type": "size"
+                },
+                {
+                    "path": "focusRing.style",
+                    "label": "Style",
+                    "type": "string"
+                },
+                {
+                    "path": "focusRing.color",
+                    "label": "Color",
+                    "type": "color"
+                },
+                {
+                    "path": "focusRing.offset",
+                    "label": "Offset",
+                    "type": "size"
+                },
+                {
+                    "path": "focusRing.shadow",
+                    "label": "Shadow",
+                    "type": "shadow"
+                }
+            ]
+        },
+        {
+            "key": "primary",
+            "label": "Primary",
+            "fields": [
+                {
+                    "path": "primary.50",
+                    "label": "50",
+                    "type": "string"
+                },
+                {
+                    "path": "primary.100",
+                    "label": "100",
+                    "type": "string"
+                },
+                {
+                    "path": "primary.200",
+                    "label": "200",
+                    "type": "string"
+                },
+                {
+                    "path": "primary.300",
+                    "label": "300",
+                    "type": "string"
+                },
+                {
+                    "path": "primary.400",
+                    "label": "400",
+                    "type": "string"
+                },
+                {
+                    "path": "primary.500",
+                    "label": "500",
+                    "type": "string"
+                },
+                {
+                    "path": "primary.600",
+                    "label": "600",
+                    "type": "string"
+                },
+                {
+                    "path": "primary.700",
+                    "label": "700",
+                    "type": "string"
+                },
+                {
+                    "path": "primary.800",
+                    "label": "800",
+                    "type": "string"
+                },
+                {
+                    "path": "primary.900",
+                    "label": "900",
+                    "type": "string"
+                },
+                {
+                    "path": "primary.950",
+                    "label": "950",
+                    "type": "string"
+                },
+                {
+                    "path": "primary.color",
+                    "label": "Color",
+                    "type": "color"
+                },
+                {
+                    "path": "primary.contrastColor",
+                    "label": "Contrast Color",
+                    "type": "color"
+                },
+                {
+                    "path": "primary.hoverColor",
+                    "label": "Hover Color",
+                    "type": "color"
+                },
+                {
+                    "path": "primary.activeColor",
+                    "label": "Active Color",
+                    "type": "color"
+                }
+            ]
+        },
+        {
+            "key": "formField",
+            "label": "Form Field",
+            "fields": [
+                {
+                    "path": "formField.fontWeight",
+                    "label": "Font Weight",
+                    "type": "select",
+                    "options": [
+                        "normal",
+                        "500",
+                        "600",
+                        "700",
+                        "bold"
+                    ]
+                },
+                {
+                    "path": "formField.fontSize",
+                    "label": "Font Size",
+                    "type": "size"
+                },
+                {
+                    "path": "formField.paddingX",
+                    "label": "Padding X",
+                    "type": "size"
+                },
+                {
+                    "path": "formField.paddingY",
+                    "label": "Padding Y",
+                    "type": "size"
+                },
+                {
+                    "path": "formField.sm.fontSize",
+                    "label": "Font Size (Small)",
+                    "type": "size"
+                },
+                {
+                    "path": "formField.sm.paddingX",
+                    "label": "Padding X (Small)",
+                    "type": "size"
+                },
+                {
+                    "path": "formField.sm.paddingY",
+                    "label": "Padding Y (Small)",
+                    "type": "size"
+                },
+                {
+                    "path": "formField.lg.fontSize",
+                    "label": "Font Size (Large)",
+                    "type": "size"
+                },
+                {
+                    "path": "formField.lg.paddingX",
+                    "label": "Padding X (Large)",
+                    "type": "size"
+                },
+                {
+                    "path": "formField.lg.paddingY",
+                    "label": "Padding Y (Large)",
+                    "type": "size"
+                },
+                {
+                    "path": "formField.borderRadius",
+                    "label": "Border Radius",
+                    "type": "size"
+                },
+                {
+                    "path": "formField.focusRing.width",
+                    "label": "Width",
+                    "type": "size"
+                },
+                {
+                    "path": "formField.focusRing.style",
+                    "label": "Style",
+                    "type": "string"
+                },
+                {
+                    "path": "formField.focusRing.color",
+                    "label": "Color",
+                    "type": "color"
+                },
+                {
+                    "path": "formField.focusRing.offset",
+                    "label": "Offset",
+                    "type": "size"
+                },
+                {
+                    "path": "formField.focusRing.shadow",
+                    "label": "Shadow",
+                    "type": "shadow"
+                },
+                {
+                    "path": "formField.transitionDuration",
+                    "label": "Transition Duration",
+                    "type": "string"
+                },
+                {
+                    "path": "formField.background",
+                    "label": "Background",
+                    "type": "color"
+                },
+                {
+                    "path": "formField.disabledBackground",
+                    "label": "Disabled Background",
+                    "type": "color"
+                },
+                {
+                    "path": "formField.filledBackground",
+                    "label": "Filled Background",
+                    "type": "color"
+                },
+                {
+                    "path": "formField.filledHoverBackground",
+                    "label": "Filled Hover Background",
+                    "type": "color"
+                },
+                {
+                    "path": "formField.filledFocusBackground",
+                    "label": "Filled Focus Background",
+                    "type": "color"
+                },
+                {
+                    "path": "formField.borderColor",
+                    "label": "Border Color",
+                    "type": "color"
+                },
+                {
+                    "path": "formField.hoverBorderColor",
+                    "label": "Hover Border Color",
+                    "type": "color"
+                },
+                {
+                    "path": "formField.focusBorderColor",
+                    "label": "Focus Border Color",
+                    "type": "color"
+                },
+                {
+                    "path": "formField.invalidBorderColor",
+                    "label": "Invalid Border Color",
+                    "type": "color"
+                },
+                {
+                    "path": "formField.color",
+                    "label": "Color",
+                    "type": "color"
+                },
+                {
+                    "path": "formField.disabledColor",
+                    "label": "Disabled Color",
+                    "type": "color"
+                },
+                {
+                    "path": "formField.placeholderColor",
+                    "label": "Placeholder Color",
+                    "type": "color"
+                },
+                {
+                    "path": "formField.invalidPlaceholderColor",
+                    "label": "Invalid Placeholder Color",
+                    "type": "color"
+                },
+                {
+                    "path": "formField.floatLabelColor",
+                    "label": "Float Label Color",
+                    "type": "color"
+                },
+                {
+                    "path": "formField.floatLabelFocusColor",
+                    "label": "Float Label Focus Color",
+                    "type": "color"
+                },
+                {
+                    "path": "formField.floatLabelActiveColor",
+                    "label": "Float Label Active Color",
+                    "type": "color"
+                },
+                {
+                    "path": "formField.floatLabelInvalidColor",
+                    "label": "Float Label Invalid Color",
+                    "type": "color"
+                },
+                {
+                    "path": "formField.iconColor",
+                    "label": "Icon Color",
+                    "type": "color"
+                },
+                {
+                    "path": "formField.shadow",
+                    "label": "Shadow",
+                    "type": "shadow"
+                }
+            ]
+        },
+        {
+            "key": "list",
+            "label": "List",
+            "fields": [
+                {
+                    "path": "list.padding",
+                    "label": "Padding",
+                    "type": "size"
+                },
+                {
+                    "path": "list.gap",
+                    "label": "Gap",
+                    "type": "size"
+                },
+                {
+                    "path": "list.header.padding",
+                    "label": "Padding",
+                    "type": "size"
+                },
+                {
+                    "path": "list.option.padding",
+                    "label": "Padding",
+                    "type": "size"
+                },
+                {
+                    "path": "list.option.borderRadius",
+                    "label": "Border Radius",
+                    "type": "size"
+                },
+                {
+                    "path": "list.option.fontWeight",
+                    "label": "Font Weight",
+                    "type": "select"
+                },
+                {
+                    "path": "list.option.fontSize",
+                    "label": "Font Size",
+                    "type": "size"
+                },
+                {
+                    "path": "list.option.transitionDuration",
+                    "label": "Transition Duration",
+                    "type": "size"
+                },
+                {
+                    "path": "list.option.focusBackground",
+                    "label": "Focus Background",
+                    "type": "color"
+                },
+                {
+                    "path": "list.option.selectedBackground",
+                    "label": "Selected Background",
+                    "type": "color"
+                },
+                {
+                    "path": "list.option.selectedFocusBackground",
+                    "label": "Selected Focus Background",
+                    "type": "color"
+                },
+                {
+                    "path": "list.option.color",
+                    "label": "Color",
+                    "type": "color"
+                },
+                {
+                    "path": "list.option.focusColor",
+                    "label": "Focus Color",
+                    "type": "color"
+                },
+                {
+                    "path": "list.option.selectedColor",
+                    "label": "Selected Color",
+                    "type": "color"
+                },
+                {
+                    "path": "list.option.selectedFocusColor",
+                    "label": "Selected Focus Color",
+                    "type": "color"
+                },
+                {
+                    "path": "list.option.selectedFontWeight",
+                    "label": "Selected Font Weight",
+                    "type": "string"
+                },
+                {
+                    "path": "list.option.icon.color",
+                    "label": "Color",
+                    "type": "color"
+                },
+                {
+                    "path": "list.option.icon.focusColor",
+                    "label": "Focus Color",
+                    "type": "color"
+                },
+                {
+                    "path": "list.optionGroup.padding",
+                    "label": "Padding",
+                    "type": "size"
+                },
+                {
+                    "path": "list.optionGroup.fontWeight",
+                    "label": "Font Weight",
+                    "type": "select"
+                },
+                {
+                    "path": "list.optionGroup.fontSize",
+                    "label": "Font Size",
+                    "type": "size"
+                },
+                {
+                    "path": "list.optionGroup.background",
+                    "label": "Background",
+                    "type": "color"
+                },
+                {
+                    "path": "list.optionGroup.color",
+                    "label": "Color",
+                    "type": "color"
+                }
+            ]
+        },
+        {
+            "key": "content",
+            "label": "Content",
+            "fields": [
+                {
+                    "path": "content.borderRadius",
+                    "label": "Border Radius",
+                    "type": "size"
+                },
+                {
+                    "path": "content.background",
+                    "label": "Background",
+                    "type": "color"
+                },
+                {
+                    "path": "content.hoverBackground",
+                    "label": "Hover Background",
+                    "type": "color"
+                },
+                {
+                    "path": "content.borderColor",
+                    "label": "Border Color",
+                    "type": "color"
+                },
+                {
+                    "path": "content.color",
+                    "label": "Color",
+                    "type": "color"
+                },
+                {
+                    "path": "content.hoverColor",
+                    "label": "Hover Color",
+                    "type": "color"
+                }
+            ]
+        },
+        {
+            "key": "mask",
+            "label": "Mask",
+            "fields": [
+                {
+                    "path": "mask.transitionDuration",
+                    "label": "Transition Duration",
+                    "type": "size"
+                },
+                {
+                    "path": "mask.background",
+                    "label": "Background",
+                    "type": "color"
+                },
+                {
+                    "path": "mask.color",
+                    "label": "Color",
+                    "type": "color"
+                }
+            ]
+        },
+        {
+            "key": "navigation",
+            "label": "Navigation",
+            "fields": [
+                {
+                    "path": "navigation.list.padding",
+                    "label": "Padding",
+                    "type": "size"
+                },
+                {
+                    "path": "navigation.list.gap",
+                    "label": "Gap",
+                    "type": "size"
+                },
+                {
+                    "path": "navigation.item.padding",
+                    "label": "Padding",
+                    "type": "size"
+                },
+                {
+                    "path": "navigation.item.borderRadius",
+                    "label": "Border Radius",
+                    "type": "size"
+                },
+                {
+                    "path": "navigation.item.gap",
+                    "label": "Gap",
+                    "type": "size"
+                },
+                {
+                    "path": "navigation.item.focusBackground",
+                    "label": "Focus Background",
+                    "type": "color"
+                },
+                {
+                    "path": "navigation.item.activeBackground",
+                    "label": "Active Background",
+                    "type": "color"
+                },
+                {
+                    "path": "navigation.item.color",
+                    "label": "Color",
+                    "type": "color"
+                },
+                {
+                    "path": "navigation.item.focusColor",
+                    "label": "Focus Color",
+                    "type": "color"
+                },
+                {
+                    "path": "navigation.item.activeColor",
+                    "label": "Active Color",
+                    "type": "color"
+                },
+                {
+                    "path": "navigation.item.icon.size",
+                    "label": "Size",
+                    "type": "size"
+                },
+                {
+                    "path": "navigation.item.icon.color",
+                    "label": "Color",
+                    "type": "color"
+                },
+                {
+                    "path": "navigation.item.icon.focusColor",
+                    "label": "Focus Color",
+                    "type": "color"
+                },
+                {
+                    "path": "navigation.item.icon.activeColor",
+                    "label": "Active Color",
+                    "type": "color"
+                },
+                {
+                    "path": "navigation.item.label.fontWeight",
+                    "label": "Font Weight",
+                    "type": "select"
+                },
+                {
+                    "path": "navigation.item.label.fontSize",
+                    "label": "Font Size",
+                    "type": "size"
+                },
+                {
+                    "path": "navigation.item.transitionDuration",
+                    "label": "Transition Duration",
+                    "type": "size"
+                },
+                {
+                    "path": "navigation.submenuLabel.padding",
+                    "label": "Padding",
+                    "type": "size"
+                },
+                {
+                    "path": "navigation.submenuLabel.fontWeight",
+                    "label": "Font Weight",
+                    "type": "select"
+                },
+                {
+                    "path": "navigation.submenuLabel.fontSize",
+                    "label": "Font Size",
+                    "type": "size"
+                },
+                {
+                    "path": "navigation.submenuLabel.background",
+                    "label": "Background",
+                    "type": "color"
+                },
+                {
+                    "path": "navigation.submenuLabel.color",
+                    "label": "Color",
+                    "type": "color"
+                },
+                {
+                    "path": "navigation.submenuIcon.size",
+                    "label": "Size",
+                    "type": "size"
+                },
+                {
+                    "path": "navigation.submenuIcon.color",
+                    "label": "Color",
+                    "type": "color"
+                },
+                {
+                    "path": "navigation.submenuIcon.focusColor",
+                    "label": "Focus Color",
+                    "type": "color"
+                },
+                {
+                    "path": "navigation.submenuIcon.activeColor",
+                    "label": "Active Color",
+                    "type": "color"
+                }
+            ]
+        },
+        {
+            "key": "overlay",
+            "label": "Overlay",
+            "fields": [
+                {
+                    "path": "overlay.select.borderRadius",
+                    "label": "Border Radius",
+                    "type": "size"
+                },
+                {
+                    "path": "overlay.select.shadow",
+                    "label": "Shadow",
+                    "type": "shadow"
+                },
+                {
+                    "path": "overlay.select.background",
+                    "label": "Background",
+                    "type": "color"
+                },
+                {
+                    "path": "overlay.select.borderColor",
+                    "label": "Border Color",
+                    "type": "color"
+                },
+                {
+                    "path": "overlay.select.color",
+                    "label": "Color",
+                    "type": "color"
+                },
+                {
+                    "path": "overlay.popover.borderRadius",
+                    "label": "Border Radius",
+                    "type": "size"
+                },
+                {
+                    "path": "overlay.popover.padding",
+                    "label": "Padding",
+                    "type": "size"
+                },
+                {
+                    "path": "overlay.popover.shadow",
+                    "label": "Shadow",
+                    "type": "shadow"
+                },
+                {
+                    "path": "overlay.popover.background",
+                    "label": "Background",
+                    "type": "color"
+                },
+                {
+                    "path": "overlay.popover.borderColor",
+                    "label": "Border Color",
+                    "type": "color"
+                },
+                {
+                    "path": "overlay.popover.color",
+                    "label": "Color",
+                    "type": "color"
+                },
+                {
+                    "path": "overlay.modal.borderRadius",
+                    "label": "Border Radius",
+                    "type": "size"
+                },
+                {
+                    "path": "overlay.modal.padding",
+                    "label": "Padding",
+                    "type": "size"
+                },
+                {
+                    "path": "overlay.modal.shadow",
+                    "label": "Shadow",
+                    "type": "shadow"
+                },
+                {
+                    "path": "overlay.modal.background",
+                    "label": "Background",
+                    "type": "color"
+                },
+                {
+                    "path": "overlay.modal.borderColor",
+                    "label": "Border Color",
+                    "type": "color"
+                },
+                {
+                    "path": "overlay.modal.color",
+                    "label": "Color",
+                    "type": "color"
+                },
+                {
+                    "path": "overlay.navigation.shadow",
+                    "label": "Shadow",
+                    "type": "shadow"
+                }
+            ]
+        },
+        {
+            "key": "surface",
+            "label": "Surface",
+            "fields": [
+                {
+                    "path": "surface.0",
+                    "label": "0",
+                    "type": "color"
+                },
+                {
+                    "path": "surface.50",
+                    "label": "50",
+                    "type": "color"
+                },
+                {
+                    "path": "surface.100",
+                    "label": "100",
+                    "type": "color"
+                },
+                {
+                    "path": "surface.200",
+                    "label": "200",
+                    "type": "color"
+                },
+                {
+                    "path": "surface.300",
+                    "label": "300",
+                    "type": "color"
+                },
+                {
+                    "path": "surface.400",
+                    "label": "400",
+                    "type": "color"
+                },
+                {
+                    "path": "surface.500",
+                    "label": "500",
+                    "type": "color"
+                },
+                {
+                    "path": "surface.600",
+                    "label": "600",
+                    "type": "color"
+                },
+                {
+                    "path": "surface.700",
+                    "label": "700",
+                    "type": "color"
+                },
+                {
+                    "path": "surface.800",
+                    "label": "800",
+                    "type": "color"
+                },
+                {
+                    "path": "surface.900",
+                    "label": "900",
+                    "type": "color"
+                },
+                {
+                    "path": "surface.950",
+                    "label": "950",
+                    "type": "color"
+                }
+            ]
+        },
+        {
+            "key": "highlight",
+            "label": "Highlight",
+            "fields": [
+                {
+                    "path": "highlight.background",
+                    "label": "Background",
+                    "type": "color"
+                },
+                {
+                    "path": "highlight.focusBackground",
+                    "label": "Focus Background",
+                    "type": "color"
+                },
+                {
+                    "path": "highlight.color",
+                    "label": "Color",
+                    "type": "color"
+                },
+                {
+                    "path": "highlight.focusColor",
+                    "label": "Focus Color",
+                    "type": "color"
+                }
+            ]
+        },
+        {
+            "key": "text",
+            "label": "Text",
+            "fields": [
+                {
+                    "path": "text.color",
+                    "label": "Color",
+                    "type": "color"
+                },
+                {
+                    "path": "text.hoverColor",
+                    "label": "Hover Color",
+                    "type": "color"
+                },
+                {
+                    "path": "text.mutedColor",
+                    "label": "Muted Color",
+                    "type": "color"
+                },
+                {
+                    "path": "text.hoverMutedColor",
+                    "label": "Hover Muted Color",
+                    "type": "color"
+                }
+            ]
+        },
+        {
+            "key": "general",
+            "label": "General",
+            "fields": [
+                {
+                    "path": "transitionDuration",
+                    "label": "Transition Duration",
+                    "type": "size"
+                },
+                {
+                    "path": "disabledOpacity",
+                    "label": "Disabled Opacity",
+                    "type": "number"
+                },
+                {
+                    "path": "iconSize",
+                    "label": "Icon Size",
+                    "type": "size"
+                },
+                {
+                    "path": "anchorGutter",
+                    "label": "Anchor Gutter",
+                    "type": "size"
+                }
+            ]
+        }
+    ]
 }

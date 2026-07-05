@@ -5,13 +5,13 @@
             @for (field of group.fields; track field.path) {
                 <div class="col-12 md:col-6 flex align-items-center gap-2">
                     <label class="w-8rem text-500 text-sm white-space-nowrap overflow-hidden text-overflow-ellipsis"
-                        [pTooltip]="field.path">{{ field.label }}</label>
+                        [attr.for]="field.path" [pTooltip]="field.path">{{ field.label }}</label>
 
                     @switch (field.type) {
                         @case ('color') {
                             <span class="border-1 border-round w-2rem h-2rem flex-shrink-0"
                                 [style.background]="preview(field)"></span>
-                            <select class="flex-1 p-inputtext"
+                            <select class="flex-1 p-inputtext" [id]="field.path"
                                 [ngModel]="model()[field.path]"
                                 (ngModelChange)="onChange(field, $event)">
                                 <option [value]="model()[field.path]">{{ model()[field.path] || '—' }}</option>
@@ -25,12 +25,12 @@
                             </select>
                         }
                         @case ('number') {
-                            <input pInputText type="number" class="flex-1"
+                            <input pInputText type="number" class="flex-1" [id]="field.path"
                                 [ngModel]="model()[field.path]"
                                 (ngModelChange)="onChange(field, $event)" />
                         }
                         @case ('select') {
-                            <select class="flex-1 p-inputtext"
+                            <select class="flex-1 p-inputtext" [id]="field.path"
                                 [ngModel]="model()[field.path]"
                                 (ngModelChange)="onChange(field, $event)">
                                 @for (opt of field.options ?? []; track opt) {
@@ -40,7 +40,7 @@
                         }
                         @default {
                             <!-- size / string / shadow: свободный ввод (значение или ссылка {token}) -->
-                            <input pInputText type="text" class="flex-1"
+                            <input pInputText type="text" class="flex-1" [id]="field.path"
                                 [ngModel]="model()[field.path]"
                                 (ngModelChange)="onChange(field, $event)"
                                 [placeholder]="field.type" />
