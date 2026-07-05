@@ -51,53 +51,100 @@
     ],
     "semantic": [
         {
-            "key": "typography",
-            "label": "Typography",
+            "key": "general",
+            "label": "General",
+            "styleClass": "w-6",
             "fields": [
                 {
-                    "path": "typography.lineHeight",
-                    "label": "Line Height",
+                    "path": "transitionDuration",
+                    "label": "Transition Duration",
+                    "visible": true,
+                    "type": "size"
+                },
+                {
+                    "path": "disabledOpacity",
+                    "label": "Disabled Opacity",
+                    "visible": true,
                     "type": "number"
                 },
                 {
-                    "path": "typography.fontWeight",
-                    "label": "Font Weight",
-                    "type": "select"
+                    "path": "iconSize",
+                    "label": "Icon Size",
+                    "visible": true,
+                    "type": "size"
                 },
                 {
-                    "path": "typography.fontSize",
-                    "label": "Font Size",
+                    "path": "anchorGutter",
+                    "label": "Anchor Gutter",
+                    "visible": true,
                     "type": "size"
+                }
+            ]
+        },
+        {
+            "key": "text",
+            "label": "Text",
+            "styleClass": "w-6",
+            "fields": [
+                {
+                    "path": "text.color",
+                    "label": "Color",
+                    "visible": true,
+                    "type": "color"
+                },
+                {
+                    "path": "text.hoverColor",
+                    "label": "Hover Color",
+                    "visible": true,
+                    "type": "color"
+                },
+                {
+                    "path": "text.mutedColor",
+                    "label": "Muted Color",
+                    "visible": true,
+                    "type": "color"
+                },
+                {
+                    "path": "text.hoverMutedColor",
+                    "label": "Hover Muted Color",
+                    "visible": true,
+                    "type": "color"
                 }
             ]
         },
         {
             "key": "focusRing",
             "label": "Focus Ring",
+            "styleClass": "w-6",
             "fields": [
                 {
                     "path": "focusRing.width",
                     "label": "Width",
+                    "visible": true,
                     "type": "size"
                 },
                 {
                     "path": "focusRing.style",
                     "label": "Style",
+                    "visible": true,
                     "type": "string"
                 },
                 {
                     "path": "focusRing.color",
                     "label": "Color",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "focusRing.offset",
                     "label": "Offset",
+                    "visible": true,
                     "type": "size"
                 },
                 {
                     "path": "focusRing.shadow",
                     "label": "Shadow",
+                    "visible": true,
                     "type": "shadow"
                 }
             ]
@@ -105,80 +152,224 @@
         {
             "key": "primary",
             "label": "Primary",
+            "styleClass": "w-6",
             "fields": [
                 {
                     "path": "primary.50",
                     "label": "50",
+                    "visible": false,
                     "type": "string"
                 },
                 {
                     "path": "primary.100",
                     "label": "100",
+                    "visible": false,
                     "type": "string"
                 },
                 {
                     "path": "primary.200",
                     "label": "200",
+                    "visible": false,
                     "type": "string"
                 },
                 {
                     "path": "primary.300",
                     "label": "300",
+                    "visible": false,
                     "type": "string"
                 },
                 {
                     "path": "primary.400",
                     "label": "400",
+                    "visible": false,
                     "type": "string"
                 },
                 {
                     "path": "primary.500",
                     "label": "500",
+                    "visible": false,
                     "type": "string"
                 },
                 {
                     "path": "primary.600",
                     "label": "600",
+                    "visible": false,
                     "type": "string"
                 },
                 {
                     "path": "primary.700",
                     "label": "700",
+                    "visible": false,
                     "type": "string"
                 },
                 {
                     "path": "primary.800",
                     "label": "800",
+                    "visible": false,
                     "type": "string"
                 },
                 {
                     "path": "primary.900",
                     "label": "900",
+                    "visible": false,
                     "type": "string"
                 },
                 {
                     "path": "primary.950",
                     "label": "950",
+                    "visible": false,
                     "type": "string"
                 },
                 {
                     "path": "primary.color",
-                    "label": "Color",
+                    "label": "Primary Color",
+                    "visible": true,
+                    "type": "primary"
+                },
+                {
+                    "path": "surface.0",
+                    "label": "0",
+                    "visible": false,
                     "type": "color"
+                },
+                {
+                    "path": "surface.50",
+                    "label": "50",
+                    "visible": false,
+                    "type": "color"
+                },
+                {
+                    "path": "surface.100",
+                    "label": "100",
+                    "visible": false,
+                    "type": "color"
+                },
+                {
+                    "path": "surface.200",
+                    "label": "200",
+                    "visible": false,
+                    "type": "color"
+                },
+                {
+                    "path": "surface.300",
+                    "label": "300",
+                    "visible": false,
+                    "type": "color"
+                },
+                {
+                    "path": "surface.400",
+                    "label": "400",
+                    "visible": false,
+                    "type": "color"
+                },
+                {
+                    "path": "surface.500",
+                    "label": "500",
+                    "visible": false,
+                    "type": "color"
+                },
+                {
+                    "path": "surface.600",
+                    "label": "600",
+                    "visible": false,
+                    "type": "color"
+                },
+                {
+                    "path": "surface.700",
+                    "label": "700",
+                    "visible": false,
+                    "type": "color"
+                },
+                {
+                    "path": "surface.800",
+                    "label": "800",
+                    "visible": false,
+                    "type": "color"
+                },
+                {
+                    "path": "surface.900",
+                    "label": "900",
+                    "visible": false,
+                    "type": "color"
+                },
+                {
+                    "path": "surface.950",
+                    "label": "950",
+                    "visible": false,
+                    "type": "color"
+                },
+                {
+                    "path": "surface",
+                    "label": "Surface Color",
+                    "visible": true,
+                    "type": "surface"
                 },
                 {
                     "path": "primary.contrastColor",
                     "label": "Contrast Color",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "primary.hoverColor",
                     "label": "Hover Color",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "primary.activeColor",
                     "label": "Active Color",
+                    "visible": true,
+                    "type": "color"
+                }
+            ]
+        },
+        {
+            "key": "typography",
+            "label": "Typography",
+            "styleClass": "w-6",
+            "fields": [
+                {
+                    "path": "typography.lineHeight",
+                    "label": "Line Height",
+                    "visible": true,
+                    "type": "number"
+                },
+                {
+                    "path": "typography.fontWeight",
+                    "label": "Font Weight",
+                    "visible": true,
+                    "type": "select"
+                },
+                {
+                    "path": "typography.fontSize",
+                    "label": "Font Size",
+                    "visible": true,
+                    "type": "size"
+                }
+            ]
+        },
+        {
+            "key": "mask",
+            "label": "Mask",
+            "styleClass": "w-6",
+            "fields": [
+                {
+                    "path": "mask.transitionDuration",
+                    "label": "Transition Duration",
+                    "visible": true,
+                    "type": "size"
+                },
+                {
+                    "path": "mask.background",
+                    "label": "Background",
+                    "visible": true,
+                    "type": "color"
+                },
+                {
+                    "path": "mask.color",
+                    "label": "Color",
+                    "visible": true,
                     "type": "color"
                 }
             ]
@@ -186,10 +377,12 @@
         {
             "key": "formField",
             "label": "Form Field",
+            "styleClass": "w-full",
             "fields": [
                 {
                     "path": "formField.fontWeight",
                     "label": "Font Weight",
+                    "visible": true,
                     "type": "select",
                     "options": [
                         "normal",
@@ -202,176 +395,211 @@
                 {
                     "path": "formField.fontSize",
                     "label": "Font Size",
+                    "visible": true,
                     "type": "size"
                 },
                 {
                     "path": "formField.paddingX",
                     "label": "Padding X",
+                    "visible": true,
                     "type": "size"
                 },
                 {
                     "path": "formField.paddingY",
                     "label": "Padding Y",
+                    "visible": true,
                     "type": "size"
                 },
                 {
                     "path": "formField.sm.fontSize",
                     "label": "Font Size (Small)",
+                    "visible": true,
                     "type": "size"
                 },
                 {
                     "path": "formField.sm.paddingX",
                     "label": "Padding X (Small)",
+                    "visible": true,
                     "type": "size"
                 },
                 {
                     "path": "formField.sm.paddingY",
                     "label": "Padding Y (Small)",
+                    "visible": true,
                     "type": "size"
                 },
                 {
                     "path": "formField.lg.fontSize",
                     "label": "Font Size (Large)",
+                    "visible": true,
                     "type": "size"
                 },
                 {
                     "path": "formField.lg.paddingX",
                     "label": "Padding X (Large)",
+                    "visible": true,
                     "type": "size"
                 },
                 {
                     "path": "formField.lg.paddingY",
                     "label": "Padding Y (Large)",
+                    "visible": true,
                     "type": "size"
                 },
                 {
                     "path": "formField.borderRadius",
                     "label": "Border Radius",
+                    "visible": true,
                     "type": "size"
                 },
                 {
                     "path": "formField.focusRing.width",
                     "label": "Width",
+                    "visible": true,
                     "type": "size"
                 },
                 {
                     "path": "formField.focusRing.style",
                     "label": "Style",
+                    "visible": true,
                     "type": "string"
                 },
                 {
                     "path": "formField.focusRing.color",
                     "label": "Color",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "formField.focusRing.offset",
                     "label": "Offset",
+                    "visible": true,
                     "type": "size"
                 },
                 {
                     "path": "formField.focusRing.shadow",
                     "label": "Shadow",
+                    "visible": true,
                     "type": "shadow"
                 },
                 {
                     "path": "formField.transitionDuration",
                     "label": "Transition Duration",
+                    "visible": true,
                     "type": "string"
                 },
                 {
                     "path": "formField.background",
                     "label": "Background",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "formField.disabledBackground",
                     "label": "Disabled Background",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "formField.filledBackground",
                     "label": "Filled Background",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "formField.filledHoverBackground",
                     "label": "Filled Hover Background",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "formField.filledFocusBackground",
                     "label": "Filled Focus Background",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "formField.borderColor",
                     "label": "Border Color",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "formField.hoverBorderColor",
                     "label": "Hover Border Color",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "formField.focusBorderColor",
                     "label": "Focus Border Color",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "formField.invalidBorderColor",
                     "label": "Invalid Border Color",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "formField.color",
                     "label": "Color",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "formField.disabledColor",
                     "label": "Disabled Color",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "formField.placeholderColor",
                     "label": "Placeholder Color",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "formField.invalidPlaceholderColor",
                     "label": "Invalid Placeholder Color",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "formField.floatLabelColor",
                     "label": "Float Label Color",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "formField.floatLabelFocusColor",
                     "label": "Float Label Focus Color",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "formField.floatLabelActiveColor",
                     "label": "Float Label Active Color",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "formField.floatLabelInvalidColor",
                     "label": "Float Label Invalid Color",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "formField.iconColor",
                     "label": "Icon Color",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "formField.shadow",
                     "label": "Shadow",
+                    "visible": true,
                     "type": "shadow"
                 }
             ]
@@ -379,177 +607,144 @@
         {
             "key": "list",
             "label": "List",
+            "styleClass": "w-full",
             "fields": [
                 {
                     "path": "list.padding",
                     "label": "Padding",
+                    "visible": true,
                     "type": "size"
                 },
                 {
                     "path": "list.gap",
                     "label": "Gap",
+                    "visible": true,
                     "type": "size"
                 },
                 {
                     "path": "list.header.padding",
                     "label": "Padding",
+                    "visible": true,
                     "type": "size"
                 },
                 {
                     "path": "list.option.padding",
                     "label": "Padding",
+                    "visible": true,
                     "type": "size"
                 },
                 {
                     "path": "list.option.borderRadius",
                     "label": "Border Radius",
+                    "visible": true,
                     "type": "size"
                 },
                 {
                     "path": "list.option.fontWeight",
                     "label": "Font Weight",
+                    "visible": true,
                     "type": "select"
                 },
                 {
                     "path": "list.option.fontSize",
                     "label": "Font Size",
+                    "visible": true,
                     "type": "size"
                 },
                 {
                     "path": "list.option.transitionDuration",
                     "label": "Transition Duration",
+                    "visible": true,
                     "type": "size"
                 },
                 {
                     "path": "list.option.focusBackground",
                     "label": "Focus Background",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "list.option.selectedBackground",
                     "label": "Selected Background",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "list.option.selectedFocusBackground",
                     "label": "Selected Focus Background",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "list.option.color",
                     "label": "Color",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "list.option.focusColor",
                     "label": "Focus Color",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "list.option.selectedColor",
                     "label": "Selected Color",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "list.option.selectedFocusColor",
                     "label": "Selected Focus Color",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "list.option.selectedFontWeight",
                     "label": "Selected Font Weight",
+                    "visible": true,
                     "type": "string"
                 },
                 {
                     "path": "list.option.icon.color",
                     "label": "Color",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "list.option.icon.focusColor",
                     "label": "Focus Color",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "list.optionGroup.padding",
                     "label": "Padding",
+                    "visible": true,
                     "type": "size"
                 },
                 {
                     "path": "list.optionGroup.fontWeight",
                     "label": "Font Weight",
+                    "visible": true,
                     "type": "select"
                 },
                 {
                     "path": "list.optionGroup.fontSize",
                     "label": "Font Size",
+                    "visible": true,
                     "type": "size"
                 },
                 {
                     "path": "list.optionGroup.background",
                     "label": "Background",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "list.optionGroup.color",
                     "label": "Color",
-                    "type": "color"
-                }
-            ]
-        },
-        {
-            "key": "content",
-            "label": "Content",
-            "fields": [
-                {
-                    "path": "content.borderRadius",
-                    "label": "Border Radius",
-                    "type": "size"
-                },
-                {
-                    "path": "content.background",
-                    "label": "Background",
-                    "type": "color"
-                },
-                {
-                    "path": "content.hoverBackground",
-                    "label": "Hover Background",
-                    "type": "color"
-                },
-                {
-                    "path": "content.borderColor",
-                    "label": "Border Color",
-                    "type": "color"
-                },
-                {
-                    "path": "content.color",
-                    "label": "Color",
-                    "type": "color"
-                },
-                {
-                    "path": "content.hoverColor",
-                    "label": "Hover Color",
-                    "type": "color"
-                }
-            ]
-        },
-        {
-            "key": "mask",
-            "label": "Mask",
-            "fields": [
-                {
-                    "path": "mask.transitionDuration",
-                    "label": "Transition Duration",
-                    "type": "size"
-                },
-                {
-                    "path": "mask.background",
-                    "label": "Background",
-                    "type": "color"
-                },
-                {
-                    "path": "mask.color",
-                    "label": "Color",
+                    "visible": true,
                     "type": "color"
                 }
             ]
@@ -557,135 +752,162 @@
         {
             "key": "navigation",
             "label": "Navigation",
+            "styleClass": "w-full",
             "fields": [
                 {
                     "path": "navigation.list.padding",
                     "label": "Padding",
+                    "visible": true,
                     "type": "size"
                 },
                 {
                     "path": "navigation.list.gap",
                     "label": "Gap",
+                    "visible": true,
                     "type": "size"
                 },
                 {
                     "path": "navigation.item.padding",
                     "label": "Padding",
+                    "visible": true,
                     "type": "size"
                 },
                 {
                     "path": "navigation.item.borderRadius",
                     "label": "Border Radius",
+                    "visible": true,
                     "type": "size"
                 },
                 {
                     "path": "navigation.item.gap",
                     "label": "Gap",
+                    "visible": true,
                     "type": "size"
                 },
                 {
                     "path": "navigation.item.focusBackground",
                     "label": "Focus Background",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "navigation.item.activeBackground",
                     "label": "Active Background",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "navigation.item.color",
                     "label": "Color",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "navigation.item.focusColor",
                     "label": "Focus Color",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "navigation.item.activeColor",
                     "label": "Active Color",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "navigation.item.icon.size",
                     "label": "Size",
+                    "visible": true,
                     "type": "size"
                 },
                 {
                     "path": "navigation.item.icon.color",
                     "label": "Color",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "navigation.item.icon.focusColor",
                     "label": "Focus Color",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "navigation.item.icon.activeColor",
                     "label": "Active Color",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "navigation.item.label.fontWeight",
                     "label": "Font Weight",
+                    "visible": true,
                     "type": "select"
                 },
                 {
                     "path": "navigation.item.label.fontSize",
                     "label": "Font Size",
+                    "visible": true,
                     "type": "size"
                 },
                 {
                     "path": "navigation.item.transitionDuration",
                     "label": "Transition Duration",
+                    "visible": true,
                     "type": "size"
                 },
                 {
                     "path": "navigation.submenuLabel.padding",
                     "label": "Padding",
+                    "visible": true,
                     "type": "size"
                 },
                 {
                     "path": "navigation.submenuLabel.fontWeight",
                     "label": "Font Weight",
+                    "visible": true,
                     "type": "select"
                 },
                 {
                     "path": "navigation.submenuLabel.fontSize",
                     "label": "Font Size",
+                    "visible": true,
                     "type": "size"
                 },
                 {
                     "path": "navigation.submenuLabel.background",
                     "label": "Background",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "navigation.submenuLabel.color",
                     "label": "Color",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "navigation.submenuIcon.size",
                     "label": "Size",
+                    "visible": true,
                     "type": "size"
                 },
                 {
                     "path": "navigation.submenuIcon.color",
                     "label": "Color",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "navigation.submenuIcon.focusColor",
                     "label": "Focus Color",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "navigation.submenuIcon.activeColor",
                     "label": "Active Color",
+                    "visible": true,
                     "type": "color"
                 }
             ]
@@ -693,161 +915,157 @@
         {
             "key": "overlay",
             "label": "Overlay",
+            "styleClass": "w-full",
             "fields": [
                 {
                     "path": "overlay.select.borderRadius",
                     "label": "Border Radius",
+                    "visible": true,
                     "type": "size"
                 },
                 {
                     "path": "overlay.select.shadow",
                     "label": "Shadow",
+                    "visible": true,
                     "type": "shadow"
                 },
                 {
                     "path": "overlay.select.background",
                     "label": "Background",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "overlay.select.borderColor",
                     "label": "Border Color",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "overlay.select.color",
                     "label": "Color",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "overlay.popover.borderRadius",
                     "label": "Border Radius",
+                    "visible": true,
                     "type": "size"
                 },
                 {
                     "path": "overlay.popover.padding",
                     "label": "Padding",
+                    "visible": true,
                     "type": "size"
                 },
                 {
                     "path": "overlay.popover.shadow",
                     "label": "Shadow",
+                    "visible": true,
                     "type": "shadow"
                 },
                 {
                     "path": "overlay.popover.background",
                     "label": "Background",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "overlay.popover.borderColor",
                     "label": "Border Color",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "overlay.popover.color",
                     "label": "Color",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "overlay.modal.borderRadius",
                     "label": "Border Radius",
+                    "visible": true,
                     "type": "size"
                 },
                 {
                     "path": "overlay.modal.padding",
                     "label": "Padding",
+                    "visible": true,
                     "type": "size"
                 },
                 {
                     "path": "overlay.modal.shadow",
                     "label": "Shadow",
+                    "visible": true,
                     "type": "shadow"
                 },
                 {
                     "path": "overlay.modal.background",
                     "label": "Background",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "overlay.modal.borderColor",
                     "label": "Border Color",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "overlay.modal.color",
                     "label": "Color",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "overlay.navigation.shadow",
                     "label": "Shadow",
+                    "visible": true,
                     "type": "shadow"
                 }
             ]
         },
         {
-            "key": "surface",
-            "label": "Surface",
+            "key": "content",
+            "label": "Content",
+            "styleClass": "w-full",
             "fields": [
                 {
-                    "path": "surface.0",
-                    "label": "0",
+                    "path": "content.borderRadius",
+                    "label": "Border Radius",
+                    "visible": true,
+                    "type": "size"
+                },
+                {
+                    "path": "content.background",
+                    "label": "Background",
+                    "visible": true,
                     "type": "color"
                 },
                 {
-                    "path": "surface.50",
-                    "label": "50",
+                    "path": "content.hoverBackground",
+                    "label": "Hover Background",
+                    "visible": true,
                     "type": "color"
                 },
                 {
-                    "path": "surface.100",
-                    "label": "100",
+                    "path": "content.borderColor",
+                    "label": "Border Color",
+                    "visible": true,
                     "type": "color"
                 },
                 {
-                    "path": "surface.200",
-                    "label": "200",
+                    "path": "content.color",
+                    "label": "Color",
+                    "visible": true,
                     "type": "color"
                 },
                 {
-                    "path": "surface.300",
-                    "label": "300",
-                    "type": "color"
-                },
-                {
-                    "path": "surface.400",
-                    "label": "400",
-                    "type": "color"
-                },
-                {
-                    "path": "surface.500",
-                    "label": "500",
-                    "type": "color"
-                },
-                {
-                    "path": "surface.600",
-                    "label": "600",
-                    "type": "color"
-                },
-                {
-                    "path": "surface.700",
-                    "label": "700",
-                    "type": "color"
-                },
-                {
-                    "path": "surface.800",
-                    "label": "800",
-                    "type": "color"
-                },
-                {
-                    "path": "surface.900",
-                    "label": "900",
-                    "type": "color"
-                },
-                {
-                    "path": "surface.950",
-                    "label": "950",
+                    "path": "content.hoverColor",
+                    "label": "Hover Color",
+                    "visible": true,
                     "type": "color"
                 }
             ]
@@ -855,78 +1073,31 @@
         {
             "key": "highlight",
             "label": "Highlight",
+            "styleClass": "w-full",
             "fields": [
                 {
                     "path": "highlight.background",
                     "label": "Background",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "highlight.focusBackground",
                     "label": "Focus Background",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "highlight.color",
                     "label": "Color",
+                    "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "highlight.focusColor",
                     "label": "Focus Color",
+                    "visible": true,
                     "type": "color"
-                }
-            ]
-        },
-        {
-            "key": "text",
-            "label": "Text",
-            "fields": [
-                {
-                    "path": "text.color",
-                    "label": "Color",
-                    "type": "color"
-                },
-                {
-                    "path": "text.hoverColor",
-                    "label": "Hover Color",
-                    "type": "color"
-                },
-                {
-                    "path": "text.mutedColor",
-                    "label": "Muted Color",
-                    "type": "color"
-                },
-                {
-                    "path": "text.hoverMutedColor",
-                    "label": "Hover Muted Color",
-                    "type": "color"
-                }
-            ]
-        },
-        {
-            "key": "general",
-            "label": "General",
-            "fields": [
-                {
-                    "path": "transitionDuration",
-                    "label": "Transition Duration",
-                    "type": "size"
-                },
-                {
-                    "path": "disabledOpacity",
-                    "label": "Disabled Opacity",
-                    "type": "number"
-                },
-                {
-                    "path": "iconSize",
-                    "label": "Icon Size",
-                    "type": "size"
-                },
-                {
-                    "path": "anchorGutter",
-                    "label": "Anchor Gutter",
-                    "type": "size"
                 }
             ]
         }

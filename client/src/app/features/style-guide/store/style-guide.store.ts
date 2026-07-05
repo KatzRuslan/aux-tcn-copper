@@ -2,6 +2,7 @@ import { Injector, computed, runInInjectionContext, inject } from '@angular/core
 import { HttpClient } from '@angular/common/http';
 import { Store as ColorPaletteStore} from '../sections/color-palette/store/color-palette.store';
 import { Store as BorderRadiusStore} from '../sections/border-radius/store/border-radius.store';
+import { Store as SemanticStore} from '../sections/semantic/store/semantic.store';
 import { signalStore, withState, withProps, withMethods, withComputed, withHooks } from '@ngrx/signals';
 import { updateState, withDevtools, withDevToolsStub } from '@angular-architects/ngrx-toolkit';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
@@ -20,6 +21,7 @@ export const Store = signalStore(
         const injector = inject(Injector);
         let colorPaletteStore: InstanceType<typeof ColorPaletteStore> | null = null;
         let borderRadiusStore: InstanceType<typeof BorderRadiusStore> | null = null;
+        let semanticStore: InstanceType<typeof SemanticStore> | null = null;
 		return {
 			_injector: injector,
             _colorPaletteStore: (): InstanceType<typeof ColorPaletteStore> => {
@@ -30,6 +32,10 @@ export const Store = signalStore(
                 borderRadiusStore ??= runInInjectionContext(injector, () => inject(BorderRadiusStore));
                 return borderRadiusStore;
             },
+            _semanticStore: (): InstanceType<typeof SemanticStore> => {
+                semanticStore ??= runInInjectionContext(injector, () => inject(SemanticStore));
+                return semanticStore;
+            },
 		}
 	}),
 	withMethods(store => {
@@ -38,6 +44,7 @@ export const Store = signalStore(
             initStore: ({ colorPalette, borderRadius, semantic }: IConfigurations) => {
                 store._colorPaletteStore().initStore(colorPalette);
                 store._borderRadiusStore().initStore(borderRadius);
+                store._semanticStore().initStore(semantic);
             },
             createPreset,
         }

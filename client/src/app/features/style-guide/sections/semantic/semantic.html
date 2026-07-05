@@ -1,1 +1,21 @@
+<div class="flex flex-wrap gap-3 w-full h-full overflow-auto">
+    @for (fieldset of store.schema(); track $index) {
+        <p-fieldset [legend]="fieldset.label" class="gap-2" [class]="fieldset.styleClass" styleClass="">
+            <div class="flex gap-3 w-full"
+                [class.flex-column]="fieldset.styleClass=='w-6'"
+                [class.column-gap-8]="fieldset.styleClass=='w-full'"
+                [class.flex-wrap]="fieldset.styleClass=='w-full'">
+                @for (field of fieldset.fields; track $index) {
+                    @if (field.visible) {
+                        <div class="flex align-items-center gap-2">
+                            <label for="field.path" class="w-12rem"><span class="">{{ field.label }}</span></label>
+                            <input pInputText class="w-18rem" />
+                        </div>
+                    }
+                }
+            </div>
+        </p-fieldset>
+    }
+</div>
+
 <p>semantic works!</p>

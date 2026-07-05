@@ -31,17 +31,19 @@ export interface INavigationItem {
     items?: INavigationItem[];
     styleClass?: string;
 }
-export type FieldType = 'color' | 'size' | 'rem' | 'number' | 'string' | 'select' | 'shadow';
+export type FieldType = 'color' | 'primary' | 'surface' | 'size' | 'rem' | 'number' | 'string' | 'select' | 'shadow';
 
 export interface IFieldMeta {
     path: string;
     label: string;
     type: FieldType;
+    visible?: boolean;
     options?: string[];
 }
 export interface IGroupMeta {
     key: string;
     label: string;
+    styleClass: string;
     fields: IFieldMeta[];
 }
 export interface IConfigurations {
