@@ -10,6 +10,13 @@ export const routes: Routes = [
         resolve: [navigationResolver],
     },
     {
+        path: 'border-radius',
+        loadComponent: () => import('./sections/border-radius/border-radius'),
+        title: 'Aux TCN - Border Radius',
+        data: { state: 'border-radius', header: 'Border Radius', parent: 'style-guide' },
+        resolve: [navigationResolver],
+    },
+    {
         path: 'define-semantic',
         loadComponent: () => import('./sections/semantic/semantic'),
         title: 'Aux TCN - Define Semantic',

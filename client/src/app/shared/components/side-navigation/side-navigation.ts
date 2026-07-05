@@ -27,12 +27,14 @@ export class SideNavigation implements OnInit {
             styleClass: 'flex flex-column flex-1 min-h-0',
             items: [
                 { title: 'Color Palette', name: 'color-palette', isActive: false, route: 'style-guide/color-palette' },
+                { title: 'Border Radius', name: 'border-radius', isActive: false, route: 'style-guide/border-radius' },
                 { title: 'Define Semantic', name: 'define-semantic', isActive: false, route: 'style-guide/define-semantic' },
                 {
                     title: 'Components', name: 'component-settings', isActive: false,
-                    items: Object.entries(COMPONENT_ITEMS.reduce<Record<string, IComponentItem[]>>((acc, item) => {
-                            (acc[item.category] ??= []).push(item);
-                            return acc;
+                    items: Object.entries(COMPONENT_ITEMS.reduce<Record<string, IComponentItem[]>>((accumulator, item) => {
+                            accumulator[item.category] ??= [];
+                            accumulator[item.category].push(item);
+                            return accumulator;
                         }, {})
                     ).map(([category, items]) => ({ label: category, items: items.map(item => ({ ...item, isActive: false })) }))
                 },
