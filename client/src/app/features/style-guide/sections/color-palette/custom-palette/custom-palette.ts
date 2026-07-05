@@ -3,7 +3,6 @@ import { form, FormField, required, readonly, validate } from '@angular/forms/si
 import { SharedModule } from '@shared-module';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { IPalette } from '@interfaces';
-import { ColorPickerChangeEvent } from 'primeng/colorpicker';
 import { isEqual } from 'lodash';
 
 @Component({

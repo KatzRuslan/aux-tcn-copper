@@ -17,6 +17,38 @@
         "steps": [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950],
         "names": ["emerald", "green", "lime", "red", "orange", "amber", "yellow", "teal", "cyan", "sky", "blue", "indigo", "violet", "purple", "fuchsia", "pink", "rose", "slate", "gray", "zinc", "neutral", "stone"]
     },
+    "borderRadius": [
+        {
+            "path": "none",
+            "label": "None",
+            "type": "rem"
+        },
+        {
+            "path": "xs",
+            "label": "Radius XS",
+            "type": "rem"
+        },
+        {
+            "path": "sm",
+            "label": "Radius SM",
+            "type": "rem"
+        },
+        {
+            "path": "md",
+            "label": "Radius MD",
+            "type": "rem"
+        },
+        {
+            "path": "lg",
+            "label": "Radius LG",
+            "type": "rem"
+        },
+        {
+            "path": "xl",
+            "label": "Radius XL",
+            "type": "rem"
+        }
+    ],
     "semantic": [
         {
             "key": "typography",

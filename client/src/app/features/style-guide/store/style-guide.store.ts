@@ -1,6 +1,7 @@
 import { Injector, computed, runInInjectionContext, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Store as ColorPaletteStore} from '../sections/color-palette/store/color-palette.store';
+import { Store as BorderRadiusStore} from '../sections/border-radius/store/border-radius.store';
 import { signalStore, withState, withProps, withMethods, withComputed, withHooks } from '@ngrx/signals';
 import { updateState, withDevtools, withDevToolsStub } from '@angular-architects/ngrx-toolkit';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
@@ -18,19 +19,25 @@ export const Store = signalStore(
 	withProps(_ => {
         const injector = inject(Injector);
         let colorPaletteStore: InstanceType<typeof ColorPaletteStore> | null = null;
+        let borderRadiusStore: InstanceType<typeof BorderRadiusStore> | null = null;
 		return {
 			_injector: injector,
             _colorPaletteStore: (): InstanceType<typeof ColorPaletteStore> => {
                 colorPaletteStore ??= runInInjectionContext(injector, () => inject(ColorPaletteStore));
                 return colorPaletteStore;
             },
+            _borderRadiusStore: (): InstanceType<typeof BorderRadiusStore> => {
+                borderRadiusStore ??= runInInjectionContext(injector, () => inject(BorderRadiusStore));
+                return borderRadiusStore;
+            },
 		}
 	}),
 	withMethods(store => {
-		// const _test = () => updateState(store, '[StyleGuideStore] Action', );
+		//- const _test = () => updateState(store, '[StyleGuideStore] Action', );
         return {
-            initStore: ({ colorPalette }: IConfigurations) => {
+            initStore: ({ colorPalette, borderRadius, semantic }: IConfigurations) => {
                 store._colorPaletteStore().initStore(colorPalette);
+                store._borderRadiusStore().initStore(borderRadius);
             },
             createPreset,
         }
@@ -43,6 +50,7 @@ export const Store = signalStore(
 			initStyleGuideHelperContext({
 				httpClient: inject(HttpClient),
                 palettes: computed(() => store._colorPaletteStore().palettes().filter(({ custom }) => custom)),
+                borderRadius: computed(() => store._borderRadiusStore().custom()),
 			});
             setTimeout(() => {
                 store.createPreset();

@@ -22,7 +22,9 @@ import { ToastModule } from 'primeng/toast';
 //
 import { PIcon } from '@primeicons/angular/p-icon';
 import { EllipsisV } from '@primeicons/angular/ellipsis-v';
+import { ExclamationCircle } from '@primeicons/angular/exclamation-circle';
 import { EyeDropper } from '@primeicons/angular/eye-dropper';
+import { Check } from '@primeicons/angular/check';
 import { ChevronDown } from '@primeicons/angular/chevron-down';
 import { Copy } from '@primeicons/angular/copy';
 import { Pencil } from '@primeicons/angular/pencil';
@@ -48,7 +50,9 @@ const modules = [
     //
     PIcon,
     EllipsisV,
+    ExclamationCircle,
     EyeDropper,
+    Check,
     ChevronDown,
     Copy,
     Pencil,

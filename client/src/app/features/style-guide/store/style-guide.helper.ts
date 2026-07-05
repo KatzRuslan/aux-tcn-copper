@@ -18,6 +18,7 @@ import { IPalette } from '@interfaces';
 interface IContext {
     readonly httpClient: HttpClient;
     readonly palettes: Signal<IPalette[]>;
+    readonly borderRadius: Signal<Record<string, string>>;
 }
 let ctx!: IContext;
 export function initStyleGuideHelperContext(context: IContext) {
@@ -29,18 +30,20 @@ function createPrimitive() {
         ...ctx.palettes()
             .map(({ name, colors }) => ({ name, colors: colors.reduce((total, { step, color }) => ({ ...total, [step]: color }), {}) }))
             .reduce((total, { name, colors }) => ({ ...total, [name]: colors }), {}),
+        borderRadius: ctx.borderRadius()
     };
 }
 export function createPreset() {
     // console.log(ctx.palettes())
     // console.log(Aura)
-    const aura = definePreset(Aura) as any;
-    console.log(aura)
-    console.log(aura.primitive.borderRadius)
+    // const aura = definePreset(Aura) as any;
+    // console.log(aura)
+    // console.log(JSON.stringify(aura.primitive.borderRadius, null, 4))
+    // console.log($dt('typography.lineHeight'))
+    // console.log(aura.primitive)
     console.log('------------------')
     const preset = {
         primitive: createPrimitive(),
     };
-    console.log($dt('typography.lineHeight'))
     console.log(preset.primitive)
 }

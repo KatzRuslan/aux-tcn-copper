@@ -31,6 +31,19 @@ export interface INavigationItem {
     items?: INavigationItem[];
     styleClass?: string;
 }
+export type FieldType = 'color' | 'size' | 'rem' | 'number' | 'string' | 'select' | 'shadow';
+
+export interface IFieldMeta {
+    path: string;
+    label: string;
+    type: FieldType;
+    options?: string[];
+}
+export interface IGroupMeta {
+    key: string;
+    label: string;
+    fields: IFieldMeta[];
+}
 export interface IConfigurations {
     readonly settings: {
         readonly colorIdenifier: {
@@ -50,4 +63,6 @@ export interface IConfigurations {
         readonly steps: number[];
         readonly names: string[];
     }
+    readonly borderRadius: IFieldMeta[];
+    readonly semantic: IGroupMeta[];
 }

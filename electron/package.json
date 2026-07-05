@@ -27,6 +27,9 @@
             "target": "portable"
         },
         "extraResources": [
+            { "from": "../public/border-radius.json", "to": "border-radius.json" },
+            { "from": "../public/color-palette.json", "to": "color-palette.json" },
+            { "from": "../public/semantic.json", "to": "semantic.json" },
             { "from": "../public/configurations.json", "to": "configurations.json" }
         ]
     },

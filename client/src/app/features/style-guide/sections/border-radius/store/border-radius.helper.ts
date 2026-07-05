@@ -1,6 +1,5 @@
 import { Signal } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '@environments';
+import { from } from 'rxjs';
 // import {  } from '@interfaces';
 
 /**
@@ -14,10 +13,16 @@ import { environment } from '@environments';
  */
 
 interface IContext {
-    readonly httpClient: HttpClient;
+    readonly borderRadius: Signal<{ custom: Record<string, string>; original: Record<string, string>; }>;
 }
 let ctx!: IContext;
 export function initBorderRadiusHelperContext(context: IContext) {
     ctx = context;
 }
 //
+export function getBorderRadius() {
+    return from(globalThis.runElectronCommand<any>('read-data', { target: 'border-radius' })).pipe();
+}
+export function electronWriteBorderRadius() {
+    runElectronCommand('write-data', { target: 'border-radius', data: ctx.borderRadius(), reload: false });
+}
