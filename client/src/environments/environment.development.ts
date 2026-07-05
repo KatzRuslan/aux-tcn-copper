@@ -1,0 +1,4 @@
+export const environment = {
+    primeNgLicenseKey: 'eyJpZCI6ImI2YTg4ODA4LWU4Y2QtNDBjMC1iNjkyLWRjNTViMmU4NTY4NSIsInByb2R1Y3QiOiJwcmltZXVpIiwidGllciI6ImNvbW11bml0eSIsInR5cGUiOiJkZXYiLCJpYXQiOjE3ODI3MTQ4NTQsImV4cCI6MTgxNDI1MDg1NH0.d_D4tgsA7BSDw9WTkw7xleva8NIdW-5kcAXHY2xP-Pln0-w6E0s01qM70voWK36on9WMoe9WgFfb-asxGrw1Aw',
+    production: false,
+};

@@ -1,0 +1,50 @@
+$title-width: 14rem;
+$node-width: calc((83.3333vw - 14rem - 2rem) / 10);
+$node-min-width: 3.5rem;
+$node-max-width: 6.2rem;
+
+th, td {
+    &.col-title {
+        min-width: $title-width;
+        max-width: $title-width;
+        width: $title-width;
+    }
+    &.col-node {
+        min-width: $node-min-width;
+        max-width: $node-max-width;
+        width: $node-width;
+        .glow {
+            animation: borderColors 5s linear infinite;
+            position: relative;
+            &::after {
+                content: "";
+                position: absolute;
+                top: -.06rem;
+                left: -.06rem;
+                left: -.1rem;
+                right: -.06rem;
+                right: -.1rem;
+                bottom: -.06rem;
+                border: .4rem solid red;
+                border-radius: inherit;
+                animation: glowBorderColors 2s linear infinite;
+                pointer-events: none;
+            }
+        }
+    }
+}
+
+// .min-w-0 {
+//     min-width: 0;
+// }
+
+@keyframes glowBorderColors {
+    0%   { border-color: red; }
+    14%  { border-color: orange; }
+    28%  { border-color: yellow; }
+    42%  { border-color: lime; }
+    57%  { border-color: cyan; }
+    71%  { border-color: blue; }
+    85%  { border-color: violet; }
+    100% { border-color: red; }
+}

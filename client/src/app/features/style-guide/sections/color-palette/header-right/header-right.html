@@ -1,0 +1,23 @@
+@let vm = store.vmRightHeader();
+
+<div class="flex align-items-center gap-2">
+    <p-iconfield class="w-14rem" iconPosition="right">
+        <input id="search-color"
+            #searchInput type="text" pInputText
+            [value]="vm.search"
+            placeholder="Search a color" aria-label="Search a color"
+            class="w-full" (input)="store.updateSearchColor(searchInput.value)"
+        />
+        @if (searchInput.value) {
+            <p-inputicon (click)="store.updateSearchColor('')" (keypress)="null" class="cursor-pointer"><svg data-p-icon="times"></svg></p-inputicon>
+        } @else {
+            <p-inputicon><svg data-p-icon="search"></svg></p-inputicon>
+        }
+    </p-iconfield>
+    <div class="flex align-items-center gap-2 cursor-pointer" (click)="store.toogleCustomPalettesOnly()" (keypress)="null">
+        <p-toggleswitch [ngModel]="vm.customPalettesOnly" class="pointer-events-none" />
+        <div class=""><span class="">Custom Palette</span></div>
+    </div>
+</div>
+<button pButton iconOnly rounded aria-label="Add CustomPalette" [disabled]="vm.addColorDisabled" (click)="addCustomPalette(vm.search)" size="small"><svg data-p-icon="plus"></svg></button>
+

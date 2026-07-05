@@ -1,0 +1,71 @@
+<p-sidebar-layout class="h-full min-h-0 overflow-hidden">
+    <p-sidebar-panel class="overflow-hidden">
+        <p-sidebar-header>
+            <p-sidebar-menu>
+                <p-sidebar-menu-item>header-sidebar-menu-item</p-sidebar-menu-item>
+            </p-sidebar-menu>
+        </p-sidebar-header>
+        <p-sidebar-content class="">
+            @for (navigationItem of navigations(); track $index) {
+                <p-sidebar-menu-item [class]="navigationItem.styleClass" [collapsible]="!!navigationItem.items" [open]="!!navigationItem.isActive">
+                    <button pSidebarMenuButton [isActive]="navigationItem.isActive" (click)="onItemClick(navigationItem)">
+                        <svg [pIcon]="navigationItem.icon!" color="var(--p-sidebar-menu-button-color)"></svg>
+                        <span>{{navigationItem.title}}</span>
+                        @if (navigationItem.items) {
+                            <svg data-p-icon="chevron-down" class="ml-auto" color="var(--p-sidebar-menu-button-color)"></svg>
+                        }
+                    </button>
+                    @if (navigationItem.items) {
+                        <p-sidebar-menu-sub class="flex-1 min-h-0 border-0">
+                            @for (navigationSubItem of navigationItem.items; track $index) {
+                                @if (navigationSubItem.items) {
+                                    <p-sidebar-layout class="flex flex-1 min-h-0">
+                                        <p-sidebar-content class="overflow-hidden">
+                                            <p-sidebar-menu-item class="flex-column flex-1 min-h-0" [class.flex]="navigationSubItem.isActive" [collapsible]="!!navigationSubItem.items" [open]="!!navigationSubItem.isActive">
+                                                <button pSidebarMenuButton [isActive]="navigationSubItem.isActive" (click)="onItemClick(navigationSubItem)">
+                                                    <span>{{navigationSubItem.title}}</span>
+                                                    <svg data-p-icon="chevron-down" class="ml-auto"></svg>
+                                                </button>
+                                                <p-sidebar-menu-sub class="flex2 flex-1 m-0 p-0 min-h-0 border-0 overflow-y-auto" [class.flex]="navigationSubItem.isActive">
+                                                    <p-sidebar-group class="gap-3">
+                                                        @for (group of navigationSubItem.items; track $index) {
+                                                            <div class="">
+                                                                <p-sidebar-group-label>{{ group.label }}</p-sidebar-group-label>
+                                                                <p-sidebar-group-content>
+                                                                    <p-sidebar-menu>
+                                                                        @for (item of group.items; track $index) {
+                                                                            <p-sidebar-menu-sub-item>
+                                                                                <button pSidebarMenuSubButton [isActive]="item.isActive" (click)="onItemClick(item)">
+                                                                                    <span>{{item.title}}</span>
+                                                                                </button>
+                                                                            </p-sidebar-menu-sub-item>
+                                                                        }
+                                                                    </p-sidebar-menu>
+                                                                </p-sidebar-group-content>
+                                                            </div>
+                                                        }
+                                                    </p-sidebar-group>
+                                                </p-sidebar-menu-sub>
+                                            </p-sidebar-menu-item>
+                                        </p-sidebar-content>
+                                    </p-sidebar-layout>
+                                } @else {
+                                    <p-sidebar-menu-sub-item>
+                                        <button pSidebarMenuSubButton [isActive]="navigationSubItem.isActive" (click)="onItemClick(navigationSubItem)">
+                                            <span>{{navigationSubItem.title}}</span>
+                                        </button>
+                                    </p-sidebar-menu-sub-item>
+                                }
+                            }
+                        </p-sidebar-menu-sub>
+                    }
+                </p-sidebar-menu-item>
+            }
+        </p-sidebar-content>
+        <p-sidebar-footer>
+            <p-sidebar-menu>
+                <p-sidebar-menu-item>footer-sidebar-menu-item</p-sidebar-menu-item>
+            </p-sidebar-menu>
+        </p-sidebar-footer>
+    </p-sidebar-panel>
+</p-sidebar-layout>

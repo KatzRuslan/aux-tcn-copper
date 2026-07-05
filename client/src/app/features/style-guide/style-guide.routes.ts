@@ -1,0 +1,28 @@
+import { Routes } from '@angular/router';
+import { navigationResolver } from '@helpers/initializer.helper';
+
+export const routes: Routes = [
+    {
+        path: 'color-palette',
+        loadComponent: () => import('./sections/color-palette/color-palette'),
+        title: 'Aux TCN - Color Palette',
+        data: { state: 'color-palette', header: 'Color Palette', parent: 'style-guide' },
+        resolve: [navigationResolver],
+    },
+    {
+        path: 'define-semantic',
+        loadComponent: () => import('./sections/semantic/semantic'),
+        title: 'Aux TCN - Define Semantic',
+        data: { state: 'define-semantic', header: 'Define Semantic', parent: 'style-guide' },
+        resolve: [navigationResolver],
+    },
+    {
+        path: 'component-settings/:name',
+        loadComponent: () => import('./sections/ui-component/ui-component'),
+        title: 'Aux TCN - Component Settings Page',
+        data: { state: 'component-settings', header: 'COMPONENT_SEARCH', parent: 'style-guide' },
+        resolve: [navigationResolver],
+        canDeactivate: [],
+    },
+    // { path: '', pathMatch: 'full', redirectTo: 'azure' },
+];

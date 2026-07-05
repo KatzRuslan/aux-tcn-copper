@@ -1,0 +1,50 @@
+@let vm = store.vmColorPalettes();
+
+<p-table [value]="vm.palettes" [filters]="filters()" [scrollable]="true" scrollHeight="flex">
+    <ng-template #header>
+        <tr>
+            <th class="col-title" id="empty-header"><div class="w-full"></div></th>
+            @for (step of vm.steps; track $index) {
+                <th class="col-node p-1" [attr.id]="'header-step-'+step"><div class="w-full text-center"><span class="">{{step}}</span></div></th>
+            }
+        </tr>
+    </ng-template>
+    <ng-template #body let-palette>
+        <tr class="">
+            <td class="col-title">
+                <div class="flex justify-content-between align-items-center gap-3 min-w-0 overflow-hidden">
+                    <div class="flex align-items-center gap-2 min-w-0 overflow-hidden">
+                        <div class="cursor-pointer" (click)="toggleCheck(palette.name)" (keypress)="null">
+                            <p-checkbox [ngModel]="checks().includes(palette.name)" [binary]="true" class="pointer-events-none" />
+                        </div>
+                        <h3 class="m-0 overflow-hidden white-space-nowrap text-overflow-ellipsis"><span class="">{{palette.label}}</span></h3>
+                    </div>
+                    @if (palette.custom) {
+                        <div class="flex align-items-center">
+                            <button pButton iconOnly rounded variant="text" aria-label="Edit Custom Palette" size="small" (click)="openCustomPaletteDialog(palette)"><svg data-p-icon="pencil"></svg></button>
+                            <button pButton iconOnly rounded variant="text" aria-label="Remove Custom Palette" size="small" (click)="store.deletePalette(palette.name)"><svg data-p-icon="trash"></svg></button>
+                        </div>
+                    }
+                </div>
+            </td>
+            @for (node of palette.colors; track $index) {
+                <td class="col-node p-1">
+                    <div class="w-full h-3rem flex2 border-round-md border-1 cursor-pointer"
+                        [class.border-100]="$index<4"
+                        [class.border-800]="$index>=4"
+                        [class.glow]="node.active"
+                        [style.background]="node.color"
+                        [pTooltip]="tooltipContent" tooltipPosition="right"
+                        (click)="copyToClipboard(node)" (keypress)="null">
+                    </div>
+                    <ng-template #tooltipContent>
+                        <div class="">
+                            <div class="flex flex-nowrap align-items-center gap-2"><span class="white-space-nowrap">Color:</span><span class="font-semibold white-space-nowrap">{{node.color}}</span></div>
+                            <div class="flex flex-nowrap align-items-center gap-2"><span class="white-space-nowrap">Token:</span><span class="font-semibold white-space-nowrap">{{node.token}}</span></div>
+                        </div>
+                    </ng-template>
+                </td>
+            }
+        </tr>
+    </ng-template>
+</p-table>

@@ -1,0 +1,90 @@
+<div class="">
+    <div class="flex justify-content-between align-items-start">
+        <div class="flex flex-column gap-1">
+            <input pInputText id="" type="text" [formField]="formGroup.label" placeholder="Palette label" (input)="onLabelChange($event)" class="w-14rem" />
+            <div class="px-3 h-3rem--">
+                @let name = formModel().name;
+                @if (name?.length) {
+                    <span class="text-500">{{formModel().name}}</span>
+                } @else {
+                    <span class="text-500">&lt;Palette name&gt;</span>
+                }
+            </div>
+        </div>
+        <div class="flex align-items-center gap-2">
+            <p-inputcolor [ngModel]="checkColor()" (onValueChange)="this.checkColor.set($event.color.toHex())" format="rgba">
+                <div class="flex align-items-center gap-3" (dragover)="$event.preventDefault()" (drop)="onCheckColorDrop($event)">
+                    <input
+                        pInputText type="text" [value]="checkColor()"
+                        id="" class="w-7rem"
+                        pInputMask="#aaaaaa" characterPattern="[0-9a-fA-F]" slotChar="" placeholder="Check Color"
+                        (input)="onCheckColorChange($event)"
+                    />
+                    <p-inputcolor-swatch style="cursor: pointer"
+                        (click)="op.toggle($event)" (keypress)="null"
+                        (dragstart)="onDragStart($event, checkColor())" draggable="true">
+                        <p-inputcolor-transparency-grid />
+                        <p-inputcolor-swatch-background />
+                    </p-inputcolor-swatch>
+                </div>
+                <p-popover #op>
+                    <div class="flex flex-column gap-2 w-14rem">
+                        <p-inputcolor-area>
+                            <p-inputcolor-area-background />
+                            <p-inputcolor-area-handle />
+                        </p-inputcolor-area>
+                        <p-inputcolor-slider>
+                            <p-inputcolor-slider-track />
+                            <p-inputcolor-slider-handle />
+                        </p-inputcolor-slider>
+                    </div>
+                </p-popover>
+            </p-inputcolor>
+        </div>
+    </div>
+</div>
+<div class="flex justify-content-between w-full">
+    @for (node of formModel().colors; track $index) {
+        <div class="border-1 border-round-md w-2rem h-2rem"
+            (dragover)="$event.preventDefault()"
+            (drop)="onPaletteDrop($event, $index)"
+            [style.background]="node.color"
+            [pTooltip]="node.color" tooltipPosition="top">
+        </div>
+    }
+</div>
+@if (checks().length) {
+    <div class="">
+        @for (palette of checks(); track $index) {
+            <div class="" [class.mt-2]="$index">
+                <h3 class="mt-0 mb-1"><span class="text-sm">{{palette.label}}</span></h3>
+                <div class="flex justify-content-between w-full">
+                    @for (node of palette.colors; track $index) {
+                        <div class="border-1 border-round-md w-2rem h-2rem"
+                            (dragstart)="onDragStart($event, node.color)" draggable="true"
+                            [style.background]="node.color"
+                            [pTooltip]="node.color" tooltipPosition="top">
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+}
+<div class="flex justify-content-center gap-3 mt-6">
+    @let disabled = formGroup().invalid();
+    <div class="">
+        <button pButton variant="text" [text]="true" (click)="onCancel()">Cancel</button>
+    </div>
+    <div class="" [pTooltip]="errors().length ? tooltipContent: ''" tooltipPosition="bottom">
+        <button pButton raised (click)="onSubmit()" [disabled]="disabled">Submit</button>
+    </div>
+    <ng-template #tooltipContent>
+        @if (errors().length) {
+            @for (message of errors(); track $index) {
+                <div class=""><span class="">{{message}}</span></div>
+            }
+        }
+    </ng-template>
+</div>
+

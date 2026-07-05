@@ -1,0 +1,43 @@
+{
+    "name": "aux-tcn-electron",
+    "version": "1.0.0",
+    "main": "dist/main.js",
+    "scripts": {
+        "build": "tsc",
+        "start": "electron .",
+        "dev": "cross-env NODE_ENV=development electron .",
+        "package": "electron-builder --win --publish never"
+    },
+    "dependencies": {
+        "axios": "^1.12.2",
+        "exceljs": "^4.4.0"
+    },
+    "build": {
+        "appId": "com.aux.tcn.copper",
+        "productName": "Aux TCN Electron",
+        "directories": {
+            "output": ".."
+        },
+        "files": [
+            "dist/**/*",
+            "node_modules/**/*",
+            "package.json"
+        ],
+        "win": {
+            "target": "portable"
+        },
+        "extraResources": [
+            { "from": "../public/configurations.json", "to": "configurations.json" }
+        ]
+    },
+    "devDependencies": {
+        "@types/axios": "^0.14.4",
+        "@types/node": "^20.12.12",
+        "cross-env": "^7.0.3",
+        "electron": "^30.0.0",
+        "electron-builder": "^26.8.1",
+        "electron-devtools-installer": "^4.0.0",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.6.0"
+    }
+}

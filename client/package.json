@@ -1,0 +1,45 @@
+{
+    "name": "aux-tcn-client",
+    "version": "1.0.0",
+    "scripts": {
+        "ng": "ng",
+        "start": "ng serve",
+        "build": "ng build",
+        "watch": "ng build --watch --configuration development",
+        "test": "ng test"
+    },
+    "private": true,
+    "packageManager": "npm@10.9.8",
+    "dependencies": {
+        "@angular-architects/ngrx-toolkit": "^21.0.1",
+        "@angular/cdk": "^22.0.0",
+        "@angular/common": "^22.0.0",
+        "@angular/compiler": "^22.0.0",
+        "@angular/core": "^22.0.0",
+        "@angular/forms": "^22.0.0",
+        "@angular/platform-browser": "^22.0.0",
+        "@angular/router": "^22.0.0",
+        "@ngrx/operators": "^21.1.1",
+        "@ngrx/signals": "^21.1.1",
+        "chroma-js": "^3.2.0",
+        "dayjs": "^1.11.20",
+        "lodash": "^4.17.21",
+        "primeflex": "^4.0.0",
+        "primeicons": "^7.0.0",
+        "primeng": "^22.0.0-rc.1",
+        "rxjs": "~7.8.0",
+        "tslib": "^2.3.0"
+    },
+    "devDependencies": {
+        "@angular/build": "^22.0.4",
+        "@angular/cli": "^22.0.4",
+        "@angular/compiler-cli": "^22.0.0",
+        "@primeuix/themes": "^3.0.0-rc.1",
+        "@types/lodash": "^4.17.24",
+        "@types/chroma-js": "^3.1.2",
+        "jsdom": "^28.0.0",
+        "prettier": "^3.8.1",
+        "typescript": "~6.0.2",
+        "vitest": "^4.0.8"
+    }
+}

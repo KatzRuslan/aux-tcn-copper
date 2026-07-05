@@ -1,0 +1,53 @@
+@for (group of groups; track group.key) {
+    <section class="flex flex-column gap-2">
+        <h3 class="m-0 text-lg">{{ group.label }}</h3>
+        <div class="grid">
+            @for (field of group.fields; track field.path) {
+                <div class="col-12 md:col-6 flex align-items-center gap-2">
+                    <label class="w-8rem text-500 text-sm white-space-nowrap overflow-hidden text-overflow-ellipsis"
+                        [pTooltip]="field.path">{{ field.label }}</label>
+
+                    @switch (field.type) {
+                        @case ('color') {
+                            <span class="border-1 border-round w-2rem h-2rem flex-shrink-0"
+                                [style.background]="preview(field)"></span>
+                            <select class="flex-1 p-inputtext"
+                                [ngModel]="model()[field.path]"
+                                (ngModelChange)="onChange(field, $event)">
+                                <option [value]="model()[field.path]">{{ model()[field.path] || '—' }}</option>
+                                @for (g of candidatesFor('color'); track g.label) {
+                                    <optgroup [label]="g.label">
+                                        @for (opt of g.items; track opt.value) {
+                                            <option [value]="opt.value">{{ opt.label }}</option>
+                                        }
+                                    </optgroup>
+                                }
+                            </select>
+                        }
+                        @case ('number') {
+                            <input pInputText type="number" class="flex-1"
+                                [ngModel]="model()[field.path]"
+                                (ngModelChange)="onChange(field, $event)" />
+                        }
+                        @case ('select') {
+                            <select class="flex-1 p-inputtext"
+                                [ngModel]="model()[field.path]"
+                                (ngModelChange)="onChange(field, $event)">
+                                @for (opt of field.options ?? []; track opt) {
+                                    <option [value]="opt">{{ opt }}</option>
+                                }
+                            </select>
+                        }
+                        @default {
+                            <!-- size / string / shadow: свободный ввод (значение или ссылка {token}) -->
+                            <input pInputText type="text" class="flex-1"
+                                [ngModel]="model()[field.path]"
+                                (ngModelChange)="onChange(field, $event)"
+                                [placeholder]="field.type" />
+                        }
+                    }
+                </div>
+            }
+        </div>
+    </section>
+}

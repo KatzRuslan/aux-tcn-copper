@@ -1,0 +1,137 @@
+[
+  {
+    "name": "test2",
+    "label": "Test2",
+    "colors": [
+      {
+        "step": "50",
+        "color": "#fff7ca",
+        "token": "--p-test2-50",
+        "active": false
+      },
+      {
+        "step": "100",
+        "color": "#fff000",
+        "token": "--p-test2-100",
+        "active": false
+      },
+      {
+        "step": "200",
+        "color": "#e5d673",
+        "token": "--p-test2-200",
+        "active": false
+      },
+      {
+        "step": "300",
+        "color": "#bfb320",
+        "token": "--p-test2-300",
+        "active": false
+      },
+      {
+        "step": "400",
+        "color": "#958f00",
+        "token": "--p-test2-400",
+        "active": false
+      },
+      {
+        "step": "500",
+        "color": "#6f6f00",
+        "token": "--p-test2-500",
+        "active": false
+      },
+      {
+        "step": "600",
+        "color": "#585900",
+        "token": "--p-test2-600",
+        "active": false
+      },
+      {
+        "step": "700",
+        "color": "#444200",
+        "token": "--p-test2-700",
+        "active": false
+      },
+      {
+        "step": "800",
+        "color": "#392f00",
+        "token": "--p-test2-800",
+        "active": false
+      },
+      {
+        "step": "900",
+        "color": "#331f00",
+        "token": "--p-test2-900",
+        "active": false
+      },
+      {
+        "step": "950",
+        "color": "#2d1200",
+        "token": "--p-test2-950",
+        "active": false
+      }
+    ],
+    "custom": true
+  },
+  {
+    "name": "test3",
+    "label": "Test3",
+    "colors": [
+      {
+        "step": "50",
+        "color": "#fff3f7",
+        "token": "--p-test3-50"
+      },
+      {
+        "step": "100",
+        "color": "#f7e7eb",
+        "token": "--p-test3-100"
+      },
+      {
+        "step": "200",
+        "color": "#e0d1d4",
+        "token": "--p-test3-200"
+      },
+      {
+        "step": "300",
+        "color": "#bcadb1",
+        "token": "--p-test3-300"
+      },
+      {
+        "step": "400",
+        "color": "#96888c",
+        "token": "--p-test3-400"
+      },
+      {
+        "step": "500",
+        "color": "#75676b",
+        "token": "--p-test3-500"
+      },
+      {
+        "step": "600",
+        "color": "#5e5155",
+        "token": "--p-test3-600"
+      },
+      {
+        "step": "700",
+        "color": "#473a3e",
+        "token": "--p-test3-700"
+      },
+      {
+        "step": "800",
+        "color": "#35292c",
+        "token": "--p-test3-800"
+      },
+      {
+        "step": "900",
+        "color": "#222222",
+        "token": "--p-test3-900"
+      },
+      {
+        "step": "950",
+        "color": "#1a0d11",
+        "token": "--p-test3-950"
+      }
+    ],
+    "custom": true
+  }
+]

@@ -1,0 +1,38 @@
+@use "sass:math";
+@use "sass:map";
+@use "./lib/variables" as variables;
+@use "./lib/mixins" as mixins;
+
+html {
+    font-family: "Brainlab Now", sans-serif;
+    $min_width: map.get(variables.$configs, 'min_width');
+    $max_width: map.get(variables.$configs, 'max_width');
+    $min_font: map.get(variables.$configs, 'min_font');
+    $max_font: map.get(variables.$configs, 'max_font');
+    @include mixins.fluid-type($min_width, $max_width, $min_font, $max_font);
+}
+body {
+    color: var(--p-content-color);
+    --p-tieredmenu-background: var(--p-breeze-400);
+    --p-tieredmenu-item-focus-background: var(--p-breeze-500);
+    --p-tieredmenu-item-icon-color: var(--p-tieredmenu-item-color);
+    --p-tieredmenu-item-icon-focus-color: var(--p-tieredmenu-item-focus-color);
+}
+
+
+
+.fix-w-20rem {
+    width: 20rem;
+    min-width: 20rem;
+    max-width: 20rem;
+}
+.fix-w-30rem {
+    width: 30rem;
+    min-width: 30rem;
+    max-width: 30rem;
+}
+.fix-w-40rem {
+    width: 40rem;
+    min-width: 40rem;
+    max-width: 40rem;
+}

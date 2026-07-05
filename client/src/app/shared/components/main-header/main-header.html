@@ -1,0 +1,15 @@
+@let header = store.aciveHeader();
+@let state = store.aciveState();
+
+<div class="fix-w-20rem"></div>
+<h1 class="flex align-items-center w-full m-0"><span class="text-xl">{{ header }}</span></h1>
+<div class="flex justify-content-end align-items-center fix-w-30rem">
+    @switch (state) {
+        @case ('color-palette') {
+            <color-palette-header-right />
+        }
+        @default {
+            {{state}}
+        }
+    }
+</div>
