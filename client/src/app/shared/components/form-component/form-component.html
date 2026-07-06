@@ -1,0 +1,15 @@
+<label [for]="field().path" class="w-12rem"><span class="">{{ field().label }}</span></label>
+<div class="flex w-18rem">
+    @switch (field().type) {
+        @case ('rem') {
+            <rem-field [value]="value()" [inputId]="field().path" (changeHandler)="changeValueHandler($event)" />
+        }
+        @default {
+            <input #defaultInput pInputText
+                [id]="field().path" class="w-full bg-pink-100"
+                [value]="value()" [title]="field().type"
+                (input)="changeValueHandler(defaultInput.value)" />
+        }
+    }
+</div>
+

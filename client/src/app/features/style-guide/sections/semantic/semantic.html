@@ -7,15 +7,23 @@
                 [class.flex-wrap]="fieldset.styleClass=='w-full'">
                 @for (field of fieldset.fields; track $index) {
                     @if (field.visible) {
-                        <div class="flex align-items-center gap-2">
-                            <label for="field.path" class="w-12rem"><span class="">{{ field.label }}</span></label>
-                            <input pInputText class="w-18rem" />
-                        </div>
+                        <form-component [formField]="formGroup[field.path]" [field]="field" />
                     }
                 }
             </div>
         </p-fieldset>
     }
 </div>
+<div class="">
+    <div class="">
+        <p [pTooltip]="errors().length ? tooltipContent: ''" tooltipPosition="top">semantic works! Form valid: {{formGroup().valid()}}</p>
+        <ng-template #tooltipContent>
+            @if (errors().length) {
+                @for (message of errors(); track $index) {
+                    <div class=""><span class="">{{message}}</span></div>
+                }
+            }
+        </ng-template>
+    </div>
+</div>
 
-<p>semantic works!</p>

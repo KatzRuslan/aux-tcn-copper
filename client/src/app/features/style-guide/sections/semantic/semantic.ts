@@ -1,13 +1,14 @@
-import { Component, linkedSignal, computed, inject } from '@angular/core';
+import { Component, linkedSignal, computed, inject, effect } from '@angular/core';
 import { form, FormField, required, FieldTree, validate } from '@angular/forms/signals';
 import { SharedModule } from '@shared-module';
+import { FormComponent } from '@shared-components/form-component/form-component';
 import { Store } from './store/semantic.store';
 import { convertToRem as ConvertToRem, fieldValidator } from '@helpers/utils.helpers';
 import { isEqual } from 'lodash';
 
 @Component({
     selector: 'semantic',
-    imports: [SharedModule, FormField],
+    imports: [SharedModule, FormField, FormComponent],
     templateUrl: './semantic.html',
     styleUrl: './semantic.scss',
     host: { class: 'flex flex-column gap-4 p-3 w-full h-full overflow-hidden' },
@@ -32,9 +33,10 @@ export default class Semantic {
         ConvertToRem(field);
     }
     constructor() {
-        setTimeout(() => {
-            console.log(this.formGroup().value())
-            console.log(this.store.schema())
-        }, 860);
+        // setTimeout(() => {
+        //     console.log(this.formGroup().value())
+        //     console.log(this.store.schema())
+        // }, 860);
+        effect(() => console.log(this.formGroup().value()))
     }
 }

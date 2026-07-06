@@ -1,0 +1,8 @@
+<p-iconfield class="w-full">
+    <input #remInput pInputText class="w-full" [value]="value()" [attr.id]="inputId()" (input)="changeHandler.emit(remInput.value)" />
+    @if (remInvalid()) {
+        <p-inputicon (click)="convert()" (keypress)="null" class="cursor-pointer">
+            <svg data-p-icon="exclamation-circle" color="var(--p-red-500)" ></svg>
+        </p-inputicon>
+    }
+</p-iconfield>

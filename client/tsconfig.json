@@ -20,6 +20,7 @@
             "@helpers/*": ["./src/app/shared/helpers/*"],
             "@enums": ["./src/app/shared/enums/index.ts"],
             "@shared-components/*": ["./src/app/shared/components/*"],
+            "@form-component": ["./src/app/shared/components/form-component/form-component.ts"],
             "@interfaces": ["./src/app/shared/interfaces/index.ts"],
             "@seed": ["./src/app/shared/seed-data/index.ts"],
             "@app-store": ["./src/app/store/app.store.ts"],

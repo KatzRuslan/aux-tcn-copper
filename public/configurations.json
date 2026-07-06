@@ -71,13 +71,13 @@
                     "path": "iconSize",
                     "label": "Icon Size",
                     "visible": true,
-                    "type": "size"
+                    "type": "rem"
                 },
                 {
                     "path": "anchorGutter",
                     "label": "Anchor Gutter",
                     "visible": true,
-                    "type": "size"
+                    "type": "rem"
                 }
             ]
         },
@@ -121,7 +121,7 @@
                     "path": "focusRing.width",
                     "label": "Width",
                     "visible": true,
-                    "type": "size"
+                    "type": "rem"
                 },
                 {
                     "path": "focusRing.style",
@@ -139,7 +139,7 @@
                     "path": "focusRing.offset",
                     "label": "Offset",
                     "visible": true,
-                    "type": "size"
+                    "type": "rem"
                 },
                 {
                     "path": "focusRing.shadow",
@@ -301,7 +301,7 @@
                 {
                     "path": "surface",
                     "label": "Surface Color",
-                    "visible": true,
+                    "visible": false,
                     "type": "surface"
                 },
                 {
@@ -345,7 +345,7 @@
                     "path": "typography.fontSize",
                     "label": "Font Size",
                     "visible": true,
-                    "type": "size"
+                    "type": "rem"
                 }
             ]
         },
@@ -402,49 +402,49 @@
                     "path": "formField.paddingX",
                     "label": "Padding X",
                     "visible": true,
-                    "type": "size"
+                    "type": "rem"
                 },
                 {
                     "path": "formField.paddingY",
                     "label": "Padding Y",
                     "visible": true,
-                    "type": "size"
+                    "type": "rem"
                 },
                 {
                     "path": "formField.sm.fontSize",
                     "label": "Font Size (Small)",
                     "visible": true,
-                    "type": "size"
+                    "type": "rem"
                 },
                 {
                     "path": "formField.sm.paddingX",
                     "label": "Padding X (Small)",
                     "visible": true,
-                    "type": "size"
+                    "type": "rem"
                 },
                 {
                     "path": "formField.sm.paddingY",
                     "label": "Padding Y (Small)",
                     "visible": true,
-                    "type": "size"
+                    "type": "rem"
                 },
                 {
                     "path": "formField.lg.fontSize",
                     "label": "Font Size (Large)",
                     "visible": true,
-                    "type": "size"
+                    "type": "rem"
                 },
                 {
                     "path": "formField.lg.paddingX",
                     "label": "Padding X (Large)",
                     "visible": true,
-                    "type": "size"
+                    "type": "rem"
                 },
                 {
                     "path": "formField.lg.paddingY",
                     "label": "Padding Y (Large)",
                     "visible": true,
-                    "type": "size"
+                    "type": "rem"
                 },
                 {
                     "path": "formField.borderRadius",
@@ -454,31 +454,31 @@
                 },
                 {
                     "path": "formField.focusRing.width",
-                    "label": "Width",
+                    "label": "Focus Ring Width",
                     "visible": true,
-                    "type": "size"
+                    "type": "rem"
                 },
                 {
                     "path": "formField.focusRing.style",
-                    "label": "Style",
+                    "label": "Focus Ring Style",
                     "visible": true,
                     "type": "string"
                 },
                 {
                     "path": "formField.focusRing.color",
-                    "label": "Color",
+                    "label": "Focus Ring Color",
                     "visible": true,
                     "type": "color"
                 },
                 {
                     "path": "formField.focusRing.offset",
-                    "label": "Offset",
+                    "label": "Focus Ring Offset",
                     "visible": true,
-                    "type": "size"
+                    "type": "rem"
                 },
                 {
                     "path": "formField.focusRing.shadow",
-                    "label": "Shadow",
+                    "label": "Focus Ring Shadow",
                     "visible": true,
                     "type": "shadow"
                 },
@@ -613,13 +613,13 @@
                     "path": "list.padding",
                     "label": "Padding",
                     "visible": true,
-                    "type": "size"
+                    "type": "rem"
                 },
                 {
                     "path": "list.gap",
                     "label": "Gap",
                     "visible": true,
-                    "type": "size"
+                    "type": "rem"
                 },
                 {
                     "path": "list.header.padding",
