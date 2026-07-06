@@ -1,5 +1,5 @@
 import { Component, linkedSignal, computed, inject, effect } from '@angular/core';
-import { form, FormField, required, FieldTree, validate } from '@angular/forms/signals';
+import { form, FormField, required, FieldTree, validate, readonly } from '@angular/forms/signals';
 import { SharedModule } from '@shared-module';
 import { FormComponent } from '@shared-components/form-component/form-component';
 import { Store } from './store/semantic.store';
@@ -17,9 +17,13 @@ export default class Semantic {
     readonly store = inject(Store);
     readonly formModel = linkedSignal<Record<string, string>>(() => this.store.custom());
     readonly formGroup = form<Record<string, string>>(this.formModel, (schema) => {
-        this.store.schema().flatMap(({ fields }) => fields).forEach(({ path, label, type }) => {
+        this.store.schema().flatMap(({ fields }) => fields).forEach(({ path, label, type, isReadonly }) => {
             required(schema[path], { message: `Border ${label} is required` });
             fieldValidator(schema[path], label, type);
+            if (isReadonly) {
+                readonly(schema[path]);
+            }
+            // readonly(schema[path], { when: () => this.someSignal() });
         });
         validate(schema, ({ value }) => {
             return isEqual(value(), this.store.custom()) ? { kind: 'unchanged', message: 'Unchanged' } : null;
@@ -37,6 +41,6 @@ export default class Semantic {
         //     console.log(this.formGroup().value())
         //     console.log(this.store.schema())
         // }, 860);
-        effect(() => console.log(this.formGroup().value()))
+        // effect(() => console.log(this.formGroup().value()))
     }
 }

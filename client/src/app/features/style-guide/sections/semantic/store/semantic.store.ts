@@ -5,7 +5,7 @@ import { updateState, withDevtools, withDevToolsStub } from '@angular-architects
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { tapResponse } from '@ngrx/operators';
 import { initialSemanticSlice } from './semantic.slice';
-import { initSemanticHelperContext, getSemantic } from './semantic.helper';
+import { initSemanticHelperContext, getSemantic, createSemantic } from './semantic.helper';
 import { initSemanticStore } from './semantic.updates';
 import { vmodel } from './semantic.vm-builder';
 import { environment } from '@environments';
@@ -45,11 +45,16 @@ export const Store = signalStore(
         }
     }),
 	withComputed(store => {
-        return {}
+        return {
+            semantic: computed(() => createSemantic())
+        }
     }),
 	withHooks({
 		onInit(store) {
 			initSemanticHelperContext({
+                custom: computed(() => store.custom()),
+                original: computed(() => store.original()),
+                colorSteps: computed(() => store._styleGuidStore().colorSteps())
 				// httpClient: inject(HttpClient),
 			})
 		},

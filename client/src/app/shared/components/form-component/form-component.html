@@ -1,13 +1,16 @@
-<label [for]="field().path" class="w-12rem"><span class="">{{ field().label }}</span></label>
-<div class="flex w-18rem">
+<label [for]="field().path" class="w-16rem"><span class="">{{ field().label }}</span></label>
+<div class="flex w-20rem">
     @switch (field().type) {
         @case ('rem') {
-            <rem-field [value]="value()" [inputId]="field().path" (changeHandler)="changeValueHandler($event)" />
+            <rem-field [value]="value()" [inputId]="field().path" [isReadonly]="field().isReadonly" (changeHandler)="changeValueHandler($event)" />
+        }
+        @case ('color') {
+            <color-field [value]="value()" [options]="field().options ?? ['light-dark']" [inputId]="field().path" [isReadonly]="field().isReadonly" (changeHandler)="changeValueHandler($event)" />
         }
         @default {
             <input #defaultInput pInputText
                 [id]="field().path" class="w-full bg-pink-100"
-                [value]="value()" [title]="field().type"
+                [value]="value()" [title]="field().type" [readonly]="field().isReadonly"
                 (input)="changeValueHandler(defaultInput.value)" />
         }
     }

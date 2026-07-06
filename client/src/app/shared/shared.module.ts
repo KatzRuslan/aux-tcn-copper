@@ -27,6 +27,7 @@ import { ExclamationCircle } from '@primeicons/angular/exclamation-circle';
 import { EyeDropper } from '@primeicons/angular/eye-dropper';
 import { Check } from '@primeicons/angular/check';
 import { ChevronDown } from '@primeicons/angular/chevron-down';
+import { CircleFill } from '@primeicons/angular/circle-fill';
 import { Copy } from '@primeicons/angular/copy';
 import { Pencil } from '@primeicons/angular/pencil';
 import { Plus } from '@primeicons/angular/plus';
@@ -56,6 +57,7 @@ const modules = [
     EyeDropper,
     Check,
     ChevronDown,
+    CircleFill,
     Copy,
     Pencil,
     Plus,

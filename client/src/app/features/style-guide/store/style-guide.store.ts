@@ -13,6 +13,7 @@ import { initStyleGuideStore } from './style-guide.updates';
 import { vmodel } from './style-guide.vm-builder';
 import { environment } from '@environments';
 import { IConfigurations } from '@interfaces';
+import { palette } from '@primeuix/themes';
 
 export const Store = signalStore(
 	{ providedIn: 'root' },
@@ -50,7 +51,10 @@ export const Store = signalStore(
         }
     }),
 	withComputed(store => {
-        return {}
+        return {
+            colorSteps: computed(() => store._colorPaletteStore().steps()),
+            palettes: computed(() => store._colorPaletteStore().palettes())
+        }
     }),
 	withHooks({
 		onInit(store) {
@@ -58,6 +62,7 @@ export const Store = signalStore(
 				httpClient: inject(HttpClient),
                 palettes: computed(() => store._colorPaletteStore().palettes().filter(({ custom }) => custom)),
                 borderRadius: computed(() => store._borderRadiusStore().custom()),
+                semantic: computed(() => store._semanticStore().semantic()),
 			});
             setTimeout(() => {
                 store.createPreset();

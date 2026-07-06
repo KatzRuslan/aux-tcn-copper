@@ -13,16 +13,23 @@ const REM_BASE = 16;
 export class RemField {
     readonly value = input.required<string>();
     readonly inputId = input.required<string>();
+    readonly isReadonly = input<boolean | undefined>(false);
     readonly changeHandler = output<string>();
     readonly remInvalid = computed(() => {
-        const value = this.value();
-        return !/^(0|\d*\.?\d+rem)$/.test(value);
+        const tokens = (this.value() ?? '').trim().split(/\s+/).filter(Boolean);
+        // невалидно, если пусто или хоть один токен не '0' и не число+rem
+        return !tokens.length || tokens.some(token => !/^(0|\d*\.?\d+rem)$/.test(token));
     });
     convert() {
-        const raw = (this.value() ?? '').trim();
-        const match = /^(-?\d*\.?\d+)(px)?$/.exec(raw);   // "16px" | "16"
-        if (!match || raw.endsWith('rem')) { return; }
-        const rem = Number.parseFloat(match[1]) / REM_BASE;
-        this.changeHandler.emit(rem === 0 ? '0' : `${rem}rem`);
+        const tokens = (this.value() ?? '').trim().split(/\s+/).filter(Boolean);
+        if (!tokens.length) { return; }
+        const converted = tokens.map(token => {
+            if (token.endsWith('rem')) { return token; }          // уже rem — оставляем
+            const match = /^(-?\d*\.?\d+)(px)?$/.exec(token);     // "16px" | "16"
+            if (!match) { return token; }                         // не число/px — как есть
+            const rem = Number.parseFloat(match[1]) / REM_BASE;
+            return rem === 0 ? '0' : `${rem}rem`;
+        });
+        this.changeHandler.emit(converted.join(' '));
     }
 }

@@ -31,13 +31,14 @@ export interface INavigationItem {
     items?: INavigationItem[];
     styleClass?: string;
 }
-export type FieldType = 'color' | 'primary' | 'surface' | 'size' | 'rem' | 'number' | 'string' | 'select' | 'shadow';
+export type FieldType = 'color' | 'size' | 'rem' | 'number' | 'string' | 'select' | 'shadow';
 
 export interface IFieldMeta {
     path: string;
     label: string;
     type: FieldType;
-    visible?: boolean;
+    isReadonly?: boolean;
+    isVisible?: boolean;
     options?: string[];
 }
 export interface IGroupMeta {

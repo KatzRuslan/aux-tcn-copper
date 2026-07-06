@@ -19,6 +19,7 @@ interface IContext {
     readonly httpClient: HttpClient;
     readonly palettes: Signal<IPalette[]>;
     readonly borderRadius: Signal<Record<string, string>>;
+    readonly semantic: Signal<object>;
 }
 let ctx!: IContext;
 export function initStyleGuideHelperContext(context: IContext) {
@@ -36,14 +37,20 @@ function createPrimitive() {
 export function createPreset() {
     // console.log(ctx.palettes())
     // console.log(Aura)
-    // const aura = definePreset(Aura) as any;
+    const aura = definePreset(Aura) as any;
     // console.log(aura)
     // console.log(JSON.stringify(aura.primitive.borderRadius, null, 4))
     // console.log($dt('typography.lineHeight'))
     // console.log(aura.primitive)
-    console.log('------------------')
+    // console.log(aura.semantic)
+    // console.log(aura.semantic.surface)
+    // console.log(aura.semantic.surface)
+    // console.log((ctx.semantic() as any).primary);
+    // console.log((ctx.semantic() as any));
     const preset = {
         primitive: createPrimitive(),
+        sementic: ctx.semantic(),
     };
-    console.log(preset.primitive)
+    console.log('------------------')
+    console.log(preset)
 }

@@ -2,13 +2,14 @@ import { Component, model, input } from '@angular/core';
 import { FormValueControl } from '@angular/forms/signals';
 import { IFieldMeta } from '@interfaces';
 import { SharedModule } from '@shared-module';
+import { ColorField } from './color-field/color-field';
 import { RemField } from './rem-field/rem-field';
 
 @Component({
     selector: 'form-component',
     imports: [
         SharedModule,
-        RemField,
+        ColorField, RemField,
     ],
     templateUrl: './form-component.html',
     styleUrl: './form-component.scss',
