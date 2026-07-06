@@ -41,6 +41,6 @@ export default class Semantic {
         //     console.log(this.formGroup().value())
         //     console.log(this.store.schema())
         // }, 860);
-        // effect(() => console.log(this.formGroup().value()))
+        effect(() => console.log(this.formGroup().value()))
     }
 }

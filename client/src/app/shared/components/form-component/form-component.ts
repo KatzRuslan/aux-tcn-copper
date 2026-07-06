@@ -19,6 +19,6 @@ export class FormComponent implements FormValueControl<string> {
     readonly value = model.required<string>();
     readonly field = input.required<IFieldMeta>();
     changeValueHandler(value: string) {
-        this.value.set(value);
+        this.value.set(value ?? '');
     }
 }

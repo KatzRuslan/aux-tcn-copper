@@ -19,7 +19,7 @@ export class ColorField {
     readonly isReadonly = input<boolean | undefined>(false);
     readonly changeHandler = output<string>();
     readonly format = computed(() => this.options().at(0));
-    readonly popupparams = signal({ type: '', name: '', onclick: (color: string) => {} });
+    readonly popupparams = signal({ type: '', name: '', view: '', onclick: (color: string) => {} });
     readonly inputicons = computed(() => {
         const inputicons: any[] = [];
         switch (this.format()) {
@@ -29,6 +29,36 @@ export class ColorField {
             case '___':
                 //--
                 break;
+            case 'single-color-name':
+                {
+                    const color = $dt(`{${this.value()}.500}`).variable;
+                    const { label } = this.store.palettes().find(({ name }) => name === this.value())!;
+                    inputicons.push({
+                        color,
+                        tooltip: `${label}`,
+                        popup: { type: 'single-color', name: this.value(), view: 'single-color-name' }
+                    });
+                }
+                break;
+            case 'double-color-name':
+                {
+                    const [light, dark] = this.value().split(',').map(node => node.trim());
+                    if (light && dark) {
+                        inputicons.push(
+                            {
+                                color: $dt(`${light}.500`).variable,
+                                tooltip: 'Light Color',
+                                popup: { type: 'light', name: light, view: 'double-color-name' },
+                            },
+                            {
+                                color: $dt(`${dark}.500`).variable,
+                                tooltip: 'Dark Color',
+                                popup: { type: 'dark', name: dark, view: 'double-color-name' },
+                            },
+                        );
+                    }
+                }
+                break;
             default:
                 {
                     const [_, light, dark] = /^light-dark\(\s*(.+?)\s*,\s*(.+?)\s*\)$/i.exec(this.value().trim()) ?? ['', undefined, undefined];
@@ -37,12 +67,12 @@ export class ColorField {
                             {
                                 color: $dt(light).variable,
                                 tooltip: 'Light Color',
-                                popup: { type: 'light', name: light.replace(/[{}]/g, '') },
+                                popup: { type: 'light', name: light.replace(/[{}]/g, ''), view: 'grouped' },
                             },
                             {
                                 color: $dt(dark).variable,
                                 tooltip: 'Dark Color',
-                                popup: { type: 'dark', name: dark.replace(/[{}]/g, '') },
+                                popup: { type: 'dark', name: dark.replace(/[{}]/g, ''), view: 'grouped' },
                             },
                         );
                     }
@@ -59,6 +89,14 @@ export class ColorField {
                 break;
             case '___':
                 //--
+                break;
+            case 'single-color-name':
+            case 'double-color-name':
+                palettes.push(
+                    ...this.store.palettes().map(({ name, colors }) => ({
+                        name, color: colors.at(4)!.color,
+                    })),
+                );
                 break;
             default:
                 palettes.push(
@@ -85,10 +123,6 @@ export class ColorField {
     });
     readonly popover = viewChild<Popover>('popover');
     readonly colorInput = viewChild<ElementRef<HTMLElement>>('colorInput');
-    openDialog(d: any) {
-        console.log(this.palettes())
-        console.log(d)
-    }
     /** Прижимает поповер правым краем к правому краю инпута → раскрытие вниз и влево. */
     alignPopover() {
         console.log()
@@ -107,12 +141,13 @@ export class ColorField {
         const target = box?.querySelector<HTMLElement>(`[id="${this.popupparams().name}"]`);
         target?.scrollIntoView({ block: 'center' });
     }
-    openPopup(popup: { type: string; name: string; }, event: Event) {
+    openPopup(popup: { type: string; name: string; view: string }, event: Event) {
         if (this.popupparams().type === popup.type) {
             this.popover()?.hide();
             return;
         }
         // this.popover()?.hide();
+        // console.log(popup)
         this.popupparams.set({
             ...popup,
             onclick: (color: string) => {
@@ -125,13 +160,19 @@ export class ColorField {
                     case '___':
                         //--
                         break;
+                    case 'single-color-name':
+                        value = color;
+                        break;
+                    case 'double-color-name':
+                        {
+                            const [light, dark] = this.value().split(',').map(node => node.trim());
+                            value = popup.type === 'light' ? `${color}, ${dark}` : `${light}, ${color}`;
+                        }
+                        break;
                     default:
                         {
                             const [_, light, dark] = /^light-dark\(\s*(.+?)\s*,\s*(.+?)\s*\)$/i.exec(this.value()) ?? ['', undefined, undefined];
-                            console.log(light, dark)
                             value = popup.type === 'light' ? `light-dark({${color}}, ${dark})` : `light-dark(${light}, {${color}})` ;
-                            console.log(value)
-
                         }
                         break;
                 }

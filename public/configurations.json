@@ -171,8 +171,9 @@
                     "path": "primarySet",
                     "label": "Primary Set",
                     "isReadonly": false,
-                    "isVisible": false,
-                    "type": "color"
+                    "isVisible": true,
+                    "type": "color",
+                    "options": ["single-color-name"]
                 },
                 {
                     "path": "primary.color",
@@ -191,9 +192,10 @@
                 {
                     "path": "surfaceSet",
                     "label": "Surface Set",
-                    "isReadonly": true,
-                    "isVisible": false,
-                    "type": "color"
+                    "isReadonly": false,
+                    "isVisible": true,
+                    "type": "color",
+                    "options": ["double-color-name"]
                 },
                 {
                     "path": "surface.1000",
@@ -201,13 +203,6 @@
                     "isReadonly": false,
                     "isVisible": false,
                     "type": "color"
-                },
-                {
-                    "path": "surface",
-                    "label": "Surface Color",
-                    "isReadonly": false,
-                    "isVisible": false,
-                    "type": "surface"
                 },
                 {
                     "path": "primary.contrastColor",

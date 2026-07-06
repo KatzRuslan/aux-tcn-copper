@@ -14,22 +14,52 @@
     </p-inputicon>
 </p-iconfield>
 <p-popover #popover appendTo="body" (onShow)="alignPopover()" (onHide)="onPopupHide()" styleClass="color-field-popover">
-    <div class="p-3">{{ popupparams().type }} — {{ popupparams().name }}</div>
-    <div class="flex flex-column gap-3 h-16rem overflow-y-auto">
-        @for (palette of this.palettes(); track $index) {
-            <div class="">
-                <div class="p-2"><span class="">{{ palette.label }}</span></div>
+    @if (popupparams().view == 'grouped') {
+        <div class="p-3">{{ popupparams().type }} — {{ popupparams().name }}</div>
+    }
+    <div class="flex flex-column gap-3 h-16rem w-20rem  overflow-y-auto">
+        @switch (popupparams().view) {
+            @case ('single-color-name') {
                 <div class="flex flex-column gap-2 px-1">
-                    @for (node of palette.colors; track $index) {
-                        <button pButton variant="text" class="flex gap-2 w-18rem px-2 justify-content-start align-items-center"
-                            [attr.id]="node.label"
-                            (click)="popupparams().onclick(node.label)">
-                            <span class="inline-flex border-1 border-800 border-circle w-1rem h-1rem" [style.background]="node[popupparams().type]"></span>
-                            <span class="text-900" [class.font-bold]="node.label==popupparams().name">{{node.label}}</span>
+                    @for (palette of this.palettes(); track $index) {
+                        <button pButton variant="text" class="flex gap-2 w-full px-2 justify-content-start align-items-center"
+                            [attr.id]="palette.name"
+                            (click)="popupparams().onclick(palette.name)">
+                            <span class="inline-flex border-1 border-800 border-circle w-1rem h-1rem" [style.background]="palette.color"></span>
+                            <span class="text-900" [class.font-bold]="palette.name==popupparams().name">{{palette.name}}</span>
                         </button>
                     }
                 </div>
-            </div>
+            }
+            @case ('double-color-name') {
+                <div class="flex flex-column gap-2 px-1">
+                    @for (palette of this.palettes(); track $index) {
+                        <button pButton variant="text" class="flex gap-2 w-full px-2 justify-content-start align-items-center"
+                            [attr.id]="palette.name"
+                            (click)="popupparams().onclick(palette.name)">
+                            <span class="inline-flex border-1 border-800 border-circle w-1rem h-1rem" [style.background]="palette.color"></span>
+                            <span class="text-900" [class.font-bold]="palette.name==popupparams().name">{{palette.name}}</span>
+                        </button>
+                    }
+                </div>
+            }
+            @default {
+                @for (palette of this.palettes(); track $index) {
+                    <div class="">
+                        <div class="p-2"><span class="">{{ palette.label }}</span></div>
+                        <div class="flex flex-column gap-2 px-1">
+                            @for (node of palette.colors; track $index) {
+                                <button pButton variant="text" class="flex gap-2 w-full px-2 justify-content-start align-items-center"
+                                    [attr.id]="node.label"
+                                    (click)="popupparams().onclick(node.label)">
+                                    <span class="inline-flex border-1 border-800 border-circle w-1rem h-1rem" [style.background]="node[popupparams().type]"></span>
+                                    <span class="text-900" [class.font-bold]="node.label==popupparams().name">{{node.label}}</span>
+                                </button>
+                            }
+                        </div>
+                    </div>
+                }
+            }
         }
     </div>
 </p-popover>
