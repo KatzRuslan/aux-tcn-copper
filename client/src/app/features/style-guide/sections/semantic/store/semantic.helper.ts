@@ -30,7 +30,7 @@ export function getSemantic() {
     return from(globalThis.runElectronCommand<any>('read-data', { target: 'semantic' })).pipe();
 }
 export function createSemantic() {
-    const flaten = ctx.custom();
+    const flaten = { ...ctx.custom() };
     const primary = ctx.colorSteps()
         .map(step => ({ key: step, value: `{${ctx.custom()['primarySet']}.${step}}` }))
         .reduce((total, { key, value }) => ({ ...total, [key]: value }), {});

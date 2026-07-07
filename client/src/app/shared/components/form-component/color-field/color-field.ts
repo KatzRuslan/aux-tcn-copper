@@ -19,16 +19,11 @@ export class ColorField {
     readonly isReadonly = input<boolean | undefined>(false);
     readonly changeHandler = output<string>();
     readonly format = computed(() => this.options().at(0));
-    readonly popupparams = signal({ type: '', name: '', view: '', onclick: (color: string) => {} });
+    readonly popoverParams = signal({ type: '', name: '', view: '', onclick: (color: string) => {} });
+    readonly popoverHeaderAvailable = computed(() => ['grouped', 'primary-color'].includes(this.popoverParams().view))
     readonly inputicons = computed(() => {
         const inputicons: any[] = [];
         switch (this.format()) {
-            case '':
-                //-
-                break;
-            case '___':
-                //--
-                break;
             case 'single-color-name':
                 {
                     const color = $dt(`{${this.value()}.500}`).variable;
@@ -36,7 +31,7 @@ export class ColorField {
                     inputicons.push({
                         color,
                         tooltip: `${label}`,
-                        popup: { type: 'single-color', name: this.value(), view: 'single-color-name' }
+                        popover: { type: 'single-color', name: this.value(), view: 'single-color-name' }
                     });
                 }
                 break;
@@ -48,16 +43,47 @@ export class ColorField {
                             {
                                 color: $dt(`${light}.500`).variable,
                                 tooltip: 'Light Color',
-                                popup: { type: 'light', name: light, view: 'double-color-name' },
+                                popover: { type: 'light', name: light, view: 'double-color-name' },
                             },
                             {
                                 color: $dt(`${dark}.500`).variable,
                                 tooltip: 'Dark Color',
-                                popup: { type: 'dark', name: dark, view: 'double-color-name' },
+                                popover: { type: 'dark', name: dark, view: 'double-color-name' },
                             },
                         );
                     }
                 }
+                break;
+            case 'none':
+                inputicons.push({
+                    color: this.value().startsWith('#') ? this.value() : $dt(this.value()).variable,
+                });
+                break;
+            case 'primary-color':
+                {
+                    const [_, light, dark] = /^light-dark\(\s*(.+?)\s*,\s*(.+?)\s*\)$/i.exec(this.value().trim()) ?? ['', undefined, undefined];
+                    if (light && dark) {
+                        inputicons.push(
+                            {
+                                color: $dt(light).variable,
+                                tooltip: 'Light Color',
+                                popover: { type: 'light', name: light.replace(/[{}]/g, ''), view: 'primary-color' },
+                            },
+                            {
+                                color: $dt(dark).variable,
+                                tooltip: 'Dark Color',
+                                popover: { type: 'dark', name: dark.replace(/[{}]/g, ''), view: 'primary-color' },
+                            },
+                        );
+                    }
+                }
+                break;
+            case 'surface-color':
+                inputicons.push({
+                    color: $dt(this.value()).variable,
+                    tooltip: 'Surface Color',
+                    popover: { type: 'single-color', name: this.value().replace(/[{}]/g, ''), view: 'surface-color' },
+                });
                 break;
             default:
                 {
@@ -67,12 +93,12 @@ export class ColorField {
                             {
                                 color: $dt(light).variable,
                                 tooltip: 'Light Color',
-                                popup: { type: 'light', name: light.replace(/[{}]/g, ''), view: 'grouped' },
+                                popover: { type: 'light', name: light.replace(/[{}]/g, ''), view: 'grouped' },
                             },
                             {
                                 color: $dt(dark).variable,
                                 tooltip: 'Dark Color',
-                                popup: { type: 'dark', name: dark.replace(/[{}]/g, ''), view: 'grouped' },
+                                popover: { type: 'dark', name: dark.replace(/[{}]/g, ''), view: 'grouped' },
                             },
                         );
                     }
@@ -84,18 +110,32 @@ export class ColorField {
     readonly palettes = computed(() => {
         const palettes: any[] = [];
         switch (this.format()) {
-            case '':
-                //-
-                break;
-            case '___':
-                //--
-                break;
             case 'single-color-name':
             case 'double-color-name':
                 palettes.push(
                     ...this.store.palettes().map(({ name, colors }) => ({
                         name, color: colors.at(4)!.color,
                     })),
+                );
+                break;
+            case 'primary-color':
+                palettes.push(
+                    ...this.store.colorSteps().map(step => {
+                        const color = `primary.${step}`;
+                        return {
+                            label: color, color: $dt(color).value,
+                        }
+                    })
+                );
+                break;
+            case 'surface-color':
+                palettes.push(
+                    ...[0, ...this.store.colorSteps(), 1000].map(step => {
+                        const color = `surface.${step}`;
+                        return {
+                            label: color, color: $dt(color).value,
+                        }
+                    })
                 );
                 break;
             default:
@@ -125,54 +165,48 @@ export class ColorField {
     readonly colorInput = viewChild<ElementRef<HTMLElement>>('colorInput');
     /** Прижимает поповер правым краем к правому краю инпута → раскрытие вниз и влево. */
     alignPopover() {
-        console.log()
         const box = this.popover()?.container;
         const input = this.colorInput()?.nativeElement;
         if (!box || !input) { return; }
         const rect = input.getBoundingClientRect();
         box.style.left = `${rect.right - box.offsetWidth + window.scrollX}px`;
     }
-    onPopupHide() {
-        this.popupparams.update(current => ({ ...current, type: '' }));
+    onPopoverHide() {
+        this.popoverParams.update(current => ({ ...current, type: '' }));
     }
     /** Скроллит список поповера к кнопке с id = выбранный токен (по центру видимой области). */
     scrollToSelected() {
         const box = this.popover()?.container;
-        const target = box?.querySelector<HTMLElement>(`[id="${this.popupparams().name}"]`);
+        const target = box?.querySelector<HTMLElement>(`[id="${this.popoverParams().name}"]`);
         target?.scrollIntoView({ block: 'center' });
     }
-    openPopup(popup: { type: string; name: string; view: string }, event: Event) {
-        if (this.popupparams().type === popup.type) {
+    openPopover(popover: { type: string; name: string; view: string }, event: Event) {
+        if (this.popoverParams().type === popover.type) {
             this.popover()?.hide();
             return;
         }
-        // this.popover()?.hide();
-        // console.log(popup)
-        this.popupparams.set({
-            ...popup,
+        this.popoverParams.set({
+            ...popover,
             onclick: (color: string) => {
                 this.popover()?.hide();
                 let value = '';
                 switch (this.format()) {
-                    case '':
-                        //-
-                        break;
-                    case '___':
-                        //--
-                        break;
                     case 'single-color-name':
                         value = color;
+                        break;
+                    case 'surface-color':
+                        value = `{${color}}`;
                         break;
                     case 'double-color-name':
                         {
                             const [light, dark] = this.value().split(',').map(node => node.trim());
-                            value = popup.type === 'light' ? `${color}, ${dark}` : `${light}, ${color}`;
+                            value = popover.type === 'light' ? `${color}, ${dark}` : `${light}, ${color}`;
                         }
                         break;
                     default:
                         {
                             const [_, light, dark] = /^light-dark\(\s*(.+?)\s*,\s*(.+?)\s*\)$/i.exec(this.value()) ?? ['', undefined, undefined];
-                            value = popup.type === 'light' ? `light-dark({${color}}, ${dark})` : `light-dark(${light}, {${color}})` ;
+                            value = popover.type === 'light' ? `light-dark({${color}}, ${dark})` : `light-dark(${light}, {${color}})` ;
                         }
                         break;
                 }
@@ -184,13 +218,5 @@ export class ColorField {
         requestAnimationFrame(() => this.alignPopover());
         // скролл — после анимации открытия, иначе геометрия списка ещё «плывёт»
         setTimeout(() => this.scrollToSelected(), 240);
-    }
-    constructor() {
-        setTimeout(() => {
-            // console.log(this.options())
-            // console.log(this.inputicons())
-            // console.log(this.palettes())
-            // console.log(this.store.palettes())
-        }, 480);
     }
 }

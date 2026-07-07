@@ -34,6 +34,8 @@ import { Plus } from '@primeicons/angular/plus';
 import { Search } from '@primeicons/angular/search';
 import { Times } from '@primeicons/angular/times';
 import { Trash } from '@primeicons/angular/trash';
+//
+import { TooltipExtension } from './directives/tooltip-extension';
 
 const modules = [
     FormsModule,
@@ -64,6 +66,8 @@ const modules = [
     Search,
     Times,
     Trash,
+    //
+    TooltipExtension
 ];
 
 @NgModule({
