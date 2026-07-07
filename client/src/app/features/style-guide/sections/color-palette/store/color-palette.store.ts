@@ -5,8 +5,8 @@ import { updateState, withDevtools, withDevToolsStub } from '@angular-architects
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { tapResponse } from '@ngrx/operators';
 import { initialColorPaletteSlice } from './color-palette.slice';
-import { initColorPaletteHelperContext, getPalette, checkColor, electronWritePalettes } from './color-palette.helper';
-import { initStore, initPalettes, toogleCustomPalettesOnly, updateSearchColor, pushPalette, putPalette, deletePalette } from './color-palette.updates';
+import { initColorPaletteHelperContext, initColorPalette, checkColor, electronWritePalettes, createColorPalette } from './color-palette.helper';
+import { initColorPaletteStore, toogleCustomPalettesOnly, updateSearchColor, pushPalette, putPalette, deletePalette } from './color-palette.updates';
 import { vmColorPalettes, vmRightHeader } from './color-palette.vm-builder';
 import { environment } from '@environments';
 import { IPalette } from '@interfaces';
@@ -29,22 +29,36 @@ export const Store = signalStore(
 	withMethods(store => {
 		//-- const _test = () => updateState(store, '[ColorPaletteStore] Action', );
         return {
-            initStore: ({ steps, names }: { steps: number[]; names: string[] }) => {
-                updateState(store, '[ColorPalette Store] Init Store', initStore(steps, names));
-                rxMethod<void>(
-                    pipe(
-                        switchMap(_ =>
-                            getPalette().pipe(
-                                tapResponse({
-                                    next: palettes => updateState(store, '[ColorPalette Store] Init Palettes', initPalettes(palettes)),
-                                    error: err => console.error(err),
-                                })
-                            )
+            // initStore2: ({ steps, names }: { steps: number[]; names: string[] }) => {
+            //     updateState(store, '[ColorPalette Store] Init Store', initStore(steps, names));
+            //     rxMethod<void>(
+            //         pipe(
+            //             switchMap(_ =>
+            //                 getPalette().pipe(
+            //                     tapResponse({
+            //                         next: palettes => updateState(store, '[ColorPalette Store] Init Palettes', initPalettes(palettes)),
+            //                         error: err => console.error(err),
+            //                     })
+            //                 )
+            //             )
+            //         ),
+            //         { injector: store._injector }
+            //     )();
+            // },
+            initStore: rxMethod<void>(
+                pipe(
+                    switchMap(_ =>
+                        initColorPalette().pipe(
+                            tapResponse({
+                                // next: ({ scheme, semantic }) => updateState(store, '[SemanticStore] Init Store', initSemanticStore(scheme, semantic)),
+                                next: ({ palettes, steps}) => updateState(store, '[ColorPalette Store] Init Palettes', initColorPaletteStore(palettes, steps)),
+                                error: err => console.error(err),
+                            })
                         )
-                    ),
-                    { injector: store._injector }
-                )();
-            },
+                    )
+                ),
+                { injector: store._injector }
+            ),
             toogleCustomPalettesOnly: () => updateState(store, '[ColorPalette Store] Toogle Custom Palettes Only', toogleCustomPalettesOnly()),
             updateSearchColor: (search: string) => updateState(store, '[ColorPalette Store] Update Search Color', updateSearchColor(search)),
             pushPalette: (palette: IPalette) => {
@@ -68,13 +82,13 @@ export const Store = signalStore(
         return {
             vmColorPalettes: computed<{ steps: number[], palettes: IPalette[] }>(() => vmColorPalettes(store.palettes(), store.steps(), store.searchColor(), store.customPalettesOnly())),
             vmRightHeader: computed(() => vmRightHeader(store.searchColor(), store.customPalettesOnly(), !checkColor(store.searchColor(), store.palettes()))),
+            getColorPalette: computed(() => createColorPalette()),
         }
     }),
 	withHooks({
 		onInit(store) {
 			initColorPaletteHelperContext({
                 steps: computed(() => store.steps()),
-                baseColorNames: computed(() => store.baseColorNames()),
                 palettes: computed(() => store.palettes()),
 			})
 		},

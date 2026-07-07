@@ -1,6 +1,7 @@
 import { Signal } from '@angular/core';
 import { $dt } from '@primeuix/themes';
 import chroma from 'chroma-js';
+import { upperFirst } from 'lodash';
 import { from, map } from 'rxjs';
 import { IPalette } from '@interfaces';
 
@@ -16,7 +17,6 @@ import { IPalette } from '@interfaces';
 
 interface IContext {
     readonly steps: Signal<number[]>,
-    readonly baseColorNames: Signal<string[]>,
     readonly palettes: Signal<IPalette[]>,
 }
 let ctx!: IContext;
@@ -24,24 +24,27 @@ export function initColorPaletteHelperContext(context: IContext) {
     ctx = context;
 }
 //
-function getPrimePalette(): IPalette[] {
-    return ctx.baseColorNames().map(colorName => {
-        const label = `${colorName.charAt(0).toUpperCase()}${colorName.slice(1)}`;
-        return {
-            name: colorName, label, custom: false,
-            colors: ctx.steps().map(step => {
-                const { name, value } = $dt(`${colorName}.${step}`)
+export function initColorPalette() {
+    return from(Promise.all([
+            globalThis.runElectronCommand<{ steps: number[]; names: string[]; }>('read-data', { target: 'schemes/color-palette.scheme' }),
+            globalThis.runElectronCommand<IPalette[]>('read-data', { target: 'data/color-palette.data' }),
+    ])).pipe(map(([{ steps, names }, palettes ]) => ({
+        steps, palettes: [
+            ...names.map(colorName => {
+                const label = upperFirst(colorName);
                 return {
-                    color: `${value}`, token: name, step
-                };
-            })
-        };
-    })
-}
-export function getPalette() {
-    return from(globalThis.runElectronCommand<IPalette[]>('read-data', { target: 'color-palette' })).pipe(
-        map(custom => ([...getPrimePalette(), ...(custom ?? [])]))
-    );
+                    name: colorName, label, custom: false,
+                    colors: steps.map(step => {
+                            const { name, value } = $dt(`${colorName}.${step}`)
+                            return {
+                                color: `${value}`, token: name, step
+                            };
+                        })
+                    };
+            }),
+            ...palettes
+        ]
+    })))
 }
 function isValidColor(color: string) {
     return /^#([0-9A-Fa-f]{6})$/.test(color);
@@ -128,5 +131,12 @@ export function getCustomPalette(hex: string): IPalette {
     };
 };
 export function electronWritePalettes() {
-    runElectronCommand('write-data', { target: 'color-palette', data: ctx.palettes().filter(({ custom }) => custom), reload: false });
+    runElectronCommand('write-data', { target: 'data/color-palette.data', data: ctx.palettes().filter(({ custom }) => custom), reload: false });
+}
+export function createColorPalette() {
+    const preset = ctx.palettes()
+        .filter(({ custom }) => custom)
+        .map(({ name, colors}) => ({ name, colors: colors.reduce((total, { step, color }) => ({ ...total, [step]: color }), {}) }))
+        .reduce((total, { name, colors}) => ({...total, [name]: colors }), {});
+    return preset;
 }

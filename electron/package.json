@@ -27,13 +27,7 @@
             "target": "portable"
         },
         "extraResources": [
-            { "from": "../public/schemes/border-radius.scheme.json", "to": "border-radius.scheme.json" },
-            { "from": "../public/data/border-radius.data.json", "to": "border-radius.data.json" },
-            { "from": "../public/schemes/color-palette.scheme.json", "to": "color-palette.scheme.json" },
-            { "from": "../public/data/color-palette.data.json", "to": "color-palette.json" },
-            { "from": "../public/schemes/semantic.scheme.json", "to": "semantic.scheme.json" },
-            { "from": "../public/data/semantic.data.json", "to": "semantic.data.json" },
-            { "from": "../public/configurations.json", "to": "configurations.json" }
+            { "from": "../public", "to": "public", "filter": ["**/*.json"] }
         ]
     },
     "devDependencies": {

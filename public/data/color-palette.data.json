@@ -6,57 +6,68 @@
       {
         "step": "50",
         "color": "#e4faff",
-        "token": "--p-breeze-50"
+        "token": "--p-breeze-50",
+        "active": false
       },
       {
         "step": "100",
         "color": "#d1efff",
-        "token": "--p-breeze-100"
+        "token": "--p-breeze-100",
+        "active": false
       },
       {
         "step": "200",
         "color": "#a8dbfa",
-        "token": "--p-breeze-200"
+        "token": "--p-breeze-200",
+        "active": false
       },
       {
         "step": "300",
         "color": "#4dc7ff",
-        "token": "--p-breeze-300"
+        "token": "--p-breeze-300",
+        "active": false
       },
       {
         "step": "400",
         "color": "#1996c5",
-        "token": "--p-breeze-400"
+        "token": "--p-breeze-400",
+        "active": false
       },
       {
         "step": "500",
         "color": "#0075a8",
-        "token": "--p-breeze-500"
+        "token": "--p-breeze-500",
+        "active": false
       },
       {
         "step": "600",
         "color": "#006093",
-        "token": "--p-breeze-600"
+        "token": "--p-breeze-600",
+        "active": false
       },
       {
         "step": "700",
         "color": "#00487c",
-        "token": "--p-breeze-700"
+        "token": "--p-breeze-700",
+        "active": false
       },
       {
         "step": "800",
         "color": "#003668",
-        "token": "--p-breeze-800"
+        "token": "--p-breeze-800",
+        "active": false
       },
       {
         "step": "900",
         "color": "#002754",
-        "token": "--p-breeze-900"
+        "token": "--p-breeze-900",
+        "active": false
       },
       {
         "step": "950",
         "color": "#001c43",
-        "token": "--p-breeze-950"
+        "token": "--p-breeze-950",
+        "active": false
       }
     ],
     "custom": true

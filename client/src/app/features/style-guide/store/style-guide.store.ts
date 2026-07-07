@@ -1,5 +1,4 @@
 import { Injector, computed, runInInjectionContext, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Store as ColorPaletteStore} from '../sections/color-palette/store/color-palette.store';
 import { Store as BorderRadiusStore} from '../sections/border-radius/store/border-radius.store';
 import { Store as SemanticStore} from '../sections/semantic/store/semantic.store';
@@ -43,7 +42,7 @@ export const Store = signalStore(
 		//- const _test = () => updateState(store, '[StyleGuideStore] Action', );
         return {
             initStore: ({ colorPalette, borderRadius, semantic }: IConfigurations) => {
-                store._colorPaletteStore().initStore(colorPalette);
+                store._colorPaletteStore().initStore();
                 store._borderRadiusStore().initStore();
                 store._semanticStore().initStore();
             },
@@ -59,8 +58,7 @@ export const Store = signalStore(
 	withHooks({
 		onInit(store) {
 			initStyleGuideHelperContext({
-				httpClient: inject(HttpClient),
-                palettes: computed(() => store._colorPaletteStore().palettes().filter(({ custom }) => custom)),
+                colorPalette: computed(() => store._colorPaletteStore().getColorPalette()),
                 borderRadius: computed(() => store._borderRadiusStore().getBorderRadius()),
                 semantic: computed(() => store._semanticStore().getSemantic()),
 			});

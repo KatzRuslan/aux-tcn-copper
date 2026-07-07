@@ -5,9 +5,9 @@ import { IPalette } from '@interfaces';
 export function initStore(steps: number[], baseColorNames: string[]): PartialStateUpdater<IColorPaletteSlice> {
     return _ => ({ steps, baseColorNames });
 }
-export function initPalettes(palettes: IPalette[]): PartialStateUpdater<IColorPaletteSlice> {
-    return _ => ({ palettes });
-};
+export function initColorPaletteStore(palettes: IPalette[], steps: number[]): PartialStateUpdater<IColorPaletteSlice> {
+    return _ => ({ palettes, steps });
+}
 export function toogleCustomPalettesOnly(): PartialStateUpdater<IColorPaletteSlice> {
 	return store => ({ customPalettesOnly: !store.customPalettesOnly });
 };
