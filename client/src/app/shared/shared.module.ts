@@ -29,11 +29,14 @@ import { Check } from '@primeicons/angular/check';
 import { ChevronDown } from '@primeicons/angular/chevron-down';
 import { CircleFill } from '@primeicons/angular/circle-fill';
 import { Copy } from '@primeicons/angular/copy';
+import { History } from '@primeicons/angular/history';
 import { Pencil } from '@primeicons/angular/pencil';
 import { Plus } from '@primeicons/angular/plus';
+import { Refresh } from '@primeicons/angular/refresh';
 import { Search } from '@primeicons/angular/search';
 import { Times } from '@primeicons/angular/times';
 import { Trash } from '@primeicons/angular/trash';
+import { Undo } from '@primeicons/angular/undo';
 //
 import { TooltipExtension } from './directives/tooltip-extension';
 
@@ -61,11 +64,14 @@ const modules = [
     ChevronDown,
     CircleFill,
     Copy,
+    History,
     Pencil,
     Plus,
+    Refresh,
     Search,
     Times,
     Trash,
+    Undo,
     //
     TooltipExtension
 ];

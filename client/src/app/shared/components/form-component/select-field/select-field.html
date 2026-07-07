@@ -1,1 +1,4 @@
-<p>select-field works!</p>
+<p-select class="w-full"
+    [inputId]="inputId()"
+    [ngModel]="value()" [options]="options()" (ngModelChange)="changeHandler.emit($event)"
+/>

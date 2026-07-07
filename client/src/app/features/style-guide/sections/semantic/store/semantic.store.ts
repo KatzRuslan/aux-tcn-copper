@@ -34,7 +34,7 @@ export const Store = signalStore(
                     switchMap(input$ =>
                         getSemantic().pipe(
                             tapResponse({
-                                next: ({ custom, original }) => updateState(store, '[SemanticStore] Init Store', initSemanticStore(input$, custom, original)),
+                                next: semantic => updateState(store, '[SemanticStore] Init Store', initSemanticStore(input$, semantic)),
                                 error: err => console.error(err),
                             })
                         )
@@ -46,16 +46,14 @@ export const Store = signalStore(
     }),
 	withComputed(store => {
         return {
-            semantic: computed(() => createSemantic())
+            getSemantic: computed(() => createSemantic())
         }
     }),
 	withHooks({
 		onInit(store) {
 			initSemanticHelperContext({
-                custom: computed(() => store.custom()),
-                original: computed(() => store.original()),
-                colorSteps: computed(() => store._styleGuidStore().colorSteps())
-				// httpClient: inject(HttpClient),
+                semantic: computed(() => store.semantic()),
+                colorSteps: computed(() => store._styleGuidStore().colorSteps()),
 			})
 		},
 	}),

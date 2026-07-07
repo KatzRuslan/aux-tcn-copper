@@ -17,8 +17,7 @@ import { from } from 'rxjs';
 
 interface IContext {
     // readonly httpClient: HttpClient;
-    readonly custom: Signal<Record<string, string>>;
-    readonly original: Signal<Record<string, string>>;
+    readonly semantic: Signal<Record<string, string>>;
     readonly colorSteps: Signal<number[]>;
 }
 let ctx!: IContext;
@@ -30,12 +29,12 @@ export function getSemantic() {
     return from(globalThis.runElectronCommand<any>('read-data', { target: 'semantic' })).pipe();
 }
 export function createSemantic() {
-    const flaten = { ...ctx.custom() };
+    const flaten = { ...ctx.semantic() };
     const primary = ctx.colorSteps()
-        .map(step => ({ key: step, value: `{${ctx.custom()['primarySet']}.${step}}` }))
+        .map(step => ({ key: step, value: `{${ctx.semantic()['primarySet']}.${step}}` }))
         .reduce((total, { key, value }) => ({ ...total, [key]: value }), {});
     delete flaten['primarySet'];
-    const [surfaceLight, surfaceDark] = ctx.custom()['surfaceSet'].split(',').map(node => node.trim());
+    const [surfaceLight, surfaceDark] = ctx.semantic()['surfaceSet'].split(',').map(node => node.trim());
     const surface = ctx.colorSteps()
         .map(step => ({ key: step, value: `light-dark({${surfaceLight}.${step}}, {${surfaceDark}.${step}})` }))
         .reduce((total, { key, value }) => ({ ...total, [key]: value }), {});

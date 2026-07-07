@@ -1,18 +1,38 @@
 <label [for]="field().path" class="w-16rem"><span class="">{{ field().label }}</span></label>
-<div class="flex w-20rem">
-    @switch (field().type) {
-        @case ('rem') {
-            <rem-field [value]="value()" [inputId]="field().path" [isReadonly]="field().isReadonly" (changeHandler)="changeValueHandler($event)" />
+<div class="flex align-items-center gap-2">
+    <div class="flex w-20rem">
+        @switch (field().type) {
+            @case ('rem') {
+                <rem-field [value]="value()" [inputId]="field().path" [isReadonly]="field().isReadonly" (changeHandler)="changeValueHandler($event)" />
+            }
+            @case ('color') {
+                <color-field [value]="value()" [options]="field().options ?? ['light-dark']" [inputId]="field().path" [isReadonly]="field().isReadonly" (changeHandler)="changeValueHandler($event)" />
+            }
+            @case ('select') {
+                <select-field [value]="value()" [options]="field().options ?? []" [inputId]="field().path" [isReadonly]="field().isReadonly" (changeHandler)="changeValueHandler($event)" />
+            }
+            @default {
+                <input #defaultInput pInputText
+                    [id]="field().path" class="w-full"
+                    [value]="value()" [title]="field().type" [readonly]="field().isReadonly"
+                    (input)="changeValueHandler(defaultInput.value)" />
+            }
         }
-        @case ('color') {
-            <color-field [value]="value()" [options]="field().options ?? ['light-dark']" [inputId]="field().path" [isReadonly]="field().isReadonly" (changeHandler)="changeValueHandler($event)" />
-        }
-        @default {
-            <input #defaultInput pInputText
-                [id]="field().path" class="w-full bg-pink-100"
-                [value]="value()" [title]="field().type" [readonly]="field().isReadonly"
-                (input)="changeValueHandler(defaultInput.value)" />
-        }
-    }
+    </div>
+    <button pButton iconOnly
+        rounded variant="outlined" aria-label="History" size="small"
+        [disabled]="!reverts()"
+        (click)="popover.toggle($event)">
+        <svg data-p-icon="history"></svg>
+    </button>
+    <p-popover #popover appendTo="body">
+        <div class="flex flex-column gap-2">
+            @for (node of reverts(); track $index) {
+                <button type="button" pButton variant="text" size="small" class="justify-content-start min-w-10rem px-1" (click)="popover.hide(); changeValueHandler(node.value)">
+                    <svg [pIcon]="node.icon" [size]="'.8rem'"></svg>
+                    <span class="">{{ node.title }}</span>
+                </button>
+            }
+        </div>
+    </p-popover>
 </div>
-

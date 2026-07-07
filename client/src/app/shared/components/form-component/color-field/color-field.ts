@@ -1,8 +1,8 @@
-import { Component, input, output, signal, computed, inject, viewChild, ElementRef } from '@angular/core';
+import { Component, ElementRef, viewChild, input, output, signal, computed, inject } from '@angular/core';
 import { $dt } from '@primeuix/themes';
 import { SharedModule } from '@shared-module';
-import { Store } from '@style-guide-store';
 import { Popover } from 'primeng/popover';
+import { Store } from '@style-guide-store';
 
 @Component({
     selector: 'color-field',

@@ -19,7 +19,9 @@ body {
     --p-tieredmenu-item-icon-focus-color: var(--p-tieredmenu-item-focus-color);
 }
 
-
+.min-w-10rem {
+    min-width: 10rem;
+}
 
 .fix-w-20rem {
     width: 20rem;

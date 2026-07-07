@@ -250,7 +250,8 @@
                     "label": "Font Weight",
                     "isReadonly": false,
                     "isVisible": true,
-                    "type": "select"
+                    "type": "select",
+                    "options": ["lighter", "normal", "bolder", "bold", "100", "200", "300", "400", "500", "600", "700", "800", "900"]
                 },
                 {
                     "path": "typography.fontSize",
@@ -298,16 +299,9 @@
                 {
                     "path": "formField.fontWeight",
                     "label": "Font Weight",
-                    "isReadonly": false,
+                    "isReadonly": true,
                     "isVisible": true,
-                    "type": "select",
-                    "options": [
-                        "normal",
-                        "500",
-                        "600",
-                        "700",
-                        "bold"
-                    ]
+                    "type": "string"
                 },
                 {
                     "path": "formField.fontSize",
@@ -377,7 +371,8 @@
                     "label": "Border Radius",
                     "isReadonly": false,
                     "isVisible": true,
-                    "type": "size"
+                    "type": "select",
+                    "options": ["{border.radius.none}", "{border.radius.xs}", "{border.radius.sm}", "{border.radius.md}", "{border.radius.lg}", "{border.radius.xl}"]
                 },
                 {
                     "path": "formField.focusRing.width",
@@ -594,14 +589,15 @@
                     "label": "Option Border Radius",
                     "isReadonly": false,
                     "isVisible": true,
-                    "type": "size"
+                    "type": "select",
+                    "options": ["{border.radius.none}", "{border.radius.xs}", "{border.radius.sm}", "{border.radius.md}", "{border.radius.lg}", "{border.radius.xl}"]
                 },
                 {
                     "path": "list.option.fontWeight",
                     "label": "Option Font Weight",
                     "isReadonly": true,
                     "isVisible": true,
-                    "type": "select"
+                    "type": "string"
                 },
                 {
                     "path": "list.option.fontSize",
@@ -699,7 +695,8 @@
                     "label": "Option Group Font Weight",
                     "isReadonly": false,
                     "isVisible": true,
-                    "type": "select"
+                    "type": "select",
+                    "options": ["lighter", "normal", "bolder", "bold", "100", "200", "300", "400", "500", "600", "700", "800", "900"]
                 },
                 {
                     "path": "list.optionGroup.fontSize",
@@ -755,7 +752,8 @@
                     "label": "Item Border Radius",
                     "isReadonly": false,
                     "isVisible": true,
-                    "type": "size"
+                    "type": "select",
+                    "options": ["{border.radius.none}", "{border.radius.xs}", "{border.radius.sm}", "{border.radius.md}", "{border.radius.lg}", "{border.radius.xl}"]
                 },
                 {
                     "path": "navigation.item.gap",
@@ -860,7 +858,8 @@
                     "label": "Submenu Label Font Weight",
                     "isReadonly": false,
                     "isVisible": true,
-                    "type": "select"
+                    "type": "select",
+                    "options": ["lighter", "normal", "bolder", "bold", "100", "200", "300", "400", "500", "600", "700", "800", "900"]
                 },
                 {
                     "path": "navigation.submenuLabel.fontSize",
@@ -923,7 +922,8 @@
                     "label": "Select Border Radius",
                     "isReadonly": false,
                     "isVisible": true,
-                    "type": "size"
+                    "type": "select",
+                    "options": ["{border.radius.none}", "{border.radius.xs}", "{border.radius.sm}", "{border.radius.md}", "{border.radius.lg}", "{border.radius.xl}"]
                 },
                 {
                     "path": "overlay.select.shadow",
@@ -958,7 +958,8 @@
                     "label": "Popover Border Radius",
                     "isReadonly": false,
                     "isVisible": true,
-                    "type": "size"
+                    "type": "select",
+                    "options": ["{border.radius.none}", "{border.radius.xs}", "{border.radius.sm}", "{border.radius.md}", "{border.radius.lg}", "{border.radius.xl}"]
                 },
                 {
                     "path": "overlay.popover.padding",
@@ -1000,7 +1001,8 @@
                     "label": "Modal Border Radius",
                     "isReadonly": false,
                     "isVisible": true,
-                    "type": "size"
+                    "type": "select",
+                    "options": ["{border.radius.none}", "{border.radius.xs}", "{border.radius.sm}", "{border.radius.md}", "{border.radius.lg}", "{border.radius.xl}"]
                 },
                 {
                     "path": "overlay.modal.padding",
@@ -1056,7 +1058,8 @@
                     "label": "Border Radius",
                     "isReadonly": false,
                     "isVisible": true,
-                    "type": "size"
+                    "type": "select",
+                    "options": ["{border.radius.none}", "{border.radius.xs}", "{border.radius.sm}", "{border.radius.md}", "{border.radius.lg}", "{border.radius.xl}"]
                 },
                 {
                     "path": "content.background",

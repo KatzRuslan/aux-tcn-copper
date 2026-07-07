@@ -15,7 +15,7 @@ import { isEqual } from 'lodash';
 })
 export default class Semantic {
     readonly store = inject(Store);
-    readonly formModel = linkedSignal<Record<string, string>>(() => this.store.custom());
+    readonly formModel = linkedSignal<Record<string, string>>(() => this.store.semantic());
     readonly formGroup = form<Record<string, string>>(this.formModel, (schema) => {
         this.store.schema().flatMap(({ fields }) => fields).forEach(({ path, label, type, isReadonly }) => {
             required(schema[path], { message: `Border ${label} is required` });
@@ -26,7 +26,7 @@ export default class Semantic {
             // readonly(schema[path], { when: () => this.someSignal() });
         });
         validate(schema, ({ value }) => {
-            return isEqual(value(), this.store.custom()) ? { kind: 'unchanged', message: 'Unchanged' } : null;
+            return isEqual(value(), this.store.semantic()) ? { kind: 'unchanged', message: 'Unchanged' } : null;
         });
     });
     readonly errors = computed(() => this.formGroup().errorSummary().map(({ message }) => message));
