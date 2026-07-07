@@ -1,0 +1,1085 @@
+[
+    {
+        "key": "general",
+        "label": "General",
+        "styleClass": "w-6",
+        "fields": [
+            {
+                "path": "transitionDuration",
+                "label": "Transition Duration",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "size"
+            },
+            {
+                "path": "disabledOpacity",
+                "label": "Disabled Opacity",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "number"
+            },
+            {
+                "path": "iconSize",
+                "label": "Icon Size",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "rem"
+            },
+            {
+                "path": "anchorGutter",
+                "label": "Anchor Gutter",
+                "isReadonly": true,
+                "isVisible": true,
+                "type": "rem"
+            }
+        ]
+    },
+    {
+        "key": "text",
+        "label": "Text",
+        "styleClass": "w-6",
+        "fields": [
+            {
+                "path": "text.color",
+                "label": "Color",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color"
+            },
+            {
+                "path": "text.hoverColor",
+                "label": "Hover Color",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color"
+            },
+            {
+                "path": "text.mutedColor",
+                "label": "Muted Color",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color"
+            },
+            {
+                "path": "text.hoverMutedColor",
+                "label": "Hover Muted Color",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color"
+            }
+        ]
+    },
+    {
+        "key": "focusRing",
+        "label": "Focus Ring",
+        "styleClass": "w-6",
+        "fields": [
+            {
+                "path": "focusRing.width",
+                "label": "Width",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "rem"
+            },
+            {
+                "path": "focusRing.style",
+                "label": "Style",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "string"
+            },
+            {
+                "path": "focusRing.color",
+                "label": "Color",
+                "isReadonly": true,
+                "isVisible": true,
+                "type": "color",
+                "options": ["none"]
+            },
+            {
+                "path": "focusRing.offset",
+                "label": "Offset",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "rem"
+            },
+            {
+                "path": "focusRing.shadow",
+                "label": "Shadow",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "shadow"
+            }
+        ]
+    },
+    {
+        "key": "primary",
+        "label": "Colors",
+        "styleClass": "w-6",
+        "fields": [
+            {
+                "path": "primarySet",
+                "label": "Primary Set",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color",
+                "options": ["single-color-name"]
+            },
+            {
+                "path": "primary.color",
+                "label": "Primary Color",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color",
+                "options": ["primary-color"]
+            },
+            {
+                "path": "primary.contrastColor",
+                "label": "Primary Contrast Color",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color"
+            },
+            {
+                "path": "primary.hoverColor",
+                "label": "Primary Hover Color",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color",
+                "options": ["primary-color"]
+            },
+            {
+                "path": "primary.activeColor",
+                "label": "Primary Active Color",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color",
+                "options": ["primary-color"]
+            },
+            {
+                "path": "surface.0",
+                "label": "Surface 0",
+                "isReadonly": true,
+                "isVisible": true,
+                "type": "color",
+                "options": ["none"]
+            },
+            {
+                "path": "surfaceSet",
+                "label": "Surface Set",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color",
+                "options": ["double-color-name"]
+            },
+            {
+                "path": "surface.1000",
+                "label": "Surface 1000",
+                "isReadonly": true,
+                "isVisible": true,
+                "type": "color",
+                "options": ["none"]
+            }
+        ]
+    },
+    {
+        "key": "typography",
+        "label": "Typography",
+        "styleClass": "w-6",
+        "fields": [
+            {
+                "path": "typography.lineHeight",
+                "label": "Line Height",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "number"
+            },
+            {
+                "path": "typography.fontWeight",
+                "label": "Font Weight",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "select",
+                "options": ["lighter", "normal", "bolder", "bold", "100", "200", "300", "400", "500", "600", "700", "800", "900"]
+            },
+            {
+                "path": "typography.fontSize",
+                "label": "Font Size",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "rem"
+            }
+        ]
+    },
+    {
+        "key": "mask",
+        "label": "Mask",
+        "styleClass": "w-6",
+        "fields": [
+            {
+                "path": "mask.transitionDuration",
+                "label": "Transition Duration",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "size"
+            },
+            {
+                "path": "mask.background",
+                "label": "Background",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "string"
+            },
+            {
+                "path": "mask.color",
+                "label": "Color",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color",
+                "options": ["surface-color"]
+            }
+        ]
+    },
+    {
+        "key": "formField",
+        "label": "Form Field",
+        "styleClass": "w-full",
+        "fields": [
+            {
+                "path": "formField.fontWeight",
+                "label": "Font Weight",
+                "isReadonly": true,
+                "isVisible": true,
+                "type": "string"
+            },
+            {
+                "path": "formField.fontSize",
+                "label": "Font Size",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "size"
+            },
+            {
+                "path": "formField.paddingX",
+                "label": "Padding X",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "rem"
+            },
+            {
+                "path": "formField.paddingY",
+                "label": "Padding Y",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "rem"
+            },
+            {
+                "path": "formField.sm.fontSize",
+                "label": "Font Size (Small)",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "rem"
+            },
+            {
+                "path": "formField.sm.paddingX",
+                "label": "Padding X (Small)",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "rem"
+            },
+            {
+                "path": "formField.sm.paddingY",
+                "label": "Padding Y (Small)",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "rem"
+            },
+            {
+                "path": "formField.lg.fontSize",
+                "label": "Font Size (Large)",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "rem"
+            },
+            {
+                "path": "formField.lg.paddingX",
+                "label": "Padding X (Large)",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "rem"
+            },
+            {
+                "path": "formField.lg.paddingY",
+                "label": "Padding Y (Large)",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "rem"
+            },
+            {
+                "path": "formField.borderRadius",
+                "label": "Border Radius",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "select",
+                "options": ["{border.radius.none}", "{border.radius.xs}", "{border.radius.sm}", "{border.radius.md}", "{border.radius.lg}", "{border.radius.xl}"]
+            },
+            {
+                "path": "formField.focusRing.width",
+                "label": "Focus Ring Width",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "rem"
+            },
+            {
+                "path": "formField.focusRing.style",
+                "label": "Focus Ring Style",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "string"
+            },
+            {
+                "path": "formField.focusRing.color",
+                "label": "Focus Ring Color",
+                "isReadonly": true,
+                "isVisible": true,
+                "type": "string"
+            },
+            {
+                "path": "formField.focusRing.offset",
+                "label": "Focus Ring Offset",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "rem"
+            },
+            {
+                "path": "formField.focusRing.shadow",
+                "label": "Focus Ring Shadow",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "shadow"
+            },
+            {
+                "path": "formField.transitionDuration",
+                "label": "Transition Duration",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "string"
+            },
+            {
+                "path": "formField.background",
+                "label": "Background",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color"
+            },
+            {
+                "path": "formField.disabledBackground",
+                "label": "Disabled Background",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color"
+            },
+            {
+                "path": "formField.filledBackground",
+                "label": "Filled Background",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color"
+            },
+            {
+                "path": "formField.filledHoverBackground",
+                "label": "Filled Hover Background",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color"
+            },
+            {
+                "path": "formField.filledFocusBackground",
+                "label": "Filled Focus Background",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color"
+            },
+            {
+                "path": "formField.borderColor",
+                "label": "Border Color",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color"
+            },
+            {
+                "path": "formField.hoverBorderColor",
+                "label": "Hover Border Color",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color"
+            },
+            {
+                "path": "formField.focusBorderColor",
+                "label": "Focus Border Color",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "string"
+            },
+            {
+                "path": "formField.invalidBorderColor",
+                "label": "Invalid Border Color",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color"
+            },
+            {
+                "path": "formField.color",
+                "label": "Color",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color"
+            },
+            {
+                "path": "formField.disabledColor",
+                "label": "Disabled Color",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color"
+            },
+            {
+                "path": "formField.placeholderColor",
+                "label": "Placeholder Color",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color"
+            },
+            {
+                "path": "formField.invalidPlaceholderColor",
+                "label": "Invalid Placeholder Color",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color"
+            },
+            {
+                "path": "formField.floatLabelColor",
+                "label": "Float Label Color",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color"
+            },
+            {
+                "path": "formField.floatLabelFocusColor",
+                "label": "Float Label Focus Color",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color"
+            },
+            {
+                "path": "formField.floatLabelActiveColor",
+                "label": "Float Label Active Color",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color"
+            },
+            {
+                "path": "formField.floatLabelInvalidColor",
+                "label": "Float Label Invalid Color",
+                "isReadonly": true,
+                "isVisible": true,
+                "type": "string"
+            },
+            {
+                "path": "formField.iconColor",
+                "label": "Icon Color",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "string"
+            },
+            {
+                "path": "formField.shadow",
+                "label": "Shadow",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "shadow"
+            }
+        ]
+    },
+    {
+        "key": "list",
+        "label": "List",
+        "styleClass": "w-full",
+        "fields": [
+            {
+                "path": "list.padding",
+                "label": "Padding",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "rem"
+            },
+            {
+                "path": "list.gap",
+                "label": "Gap",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "rem"
+            },
+            {
+                "path": "list.header.padding",
+                "label": "Header Padding",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "rem"
+            },
+            {
+                "path": "list.option.padding",
+                "label": "Option Padding",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "rem"
+            },
+            {
+                "path": "list.option.borderRadius",
+                "label": "Option Border Radius",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "select",
+                "options": ["{border.radius.none}", "{border.radius.xs}", "{border.radius.sm}", "{border.radius.md}", "{border.radius.lg}", "{border.radius.xl}"]
+            },
+            {
+                "path": "list.option.fontWeight",
+                "label": "Option Font Weight",
+                "isReadonly": true,
+                "isVisible": true,
+                "type": "string"
+            },
+            {
+                "path": "list.option.fontSize",
+                "label": "Option Font Size",
+                "isReadonly": true,
+                "isVisible": true,
+                "type": "size"
+            },
+            {
+                "path": "list.option.transitionDuration",
+                "label": "Option Transition Duration",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "size"
+            },
+            {
+                "path": "list.option.focusBackground",
+                "label": "Option Focus Background",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color"
+            },
+            {
+                "path": "list.option.selectedBackground",
+                "label": "Option Selected Background",
+                "isReadonly": true,
+                "isVisible": true,
+                "type": "string"
+            },
+            {
+                "path": "list.option.selectedFocusBackground",
+                "label": "Option Selected Focus Background",
+                "isReadonly": true,
+                "isVisible": true,
+                "type": "string"
+            },
+            {
+                "path": "list.option.color",
+                "label": "Option Color",
+                "isReadonly": true,
+                "isVisible": true,
+                "type": "string"
+            },
+            {
+                "path": "list.option.focusColor",
+                "label": "Option Focus Color",
+                "isReadonly": true,
+                "isVisible": true,
+                "type": "string"
+            },
+            {
+                "path": "list.option.selectedColor",
+                "label": "Option Selected Color",
+                "isReadonly": true,
+                "isVisible": true,
+                "type": "string"
+            },
+            {
+                "path": "list.option.selectedFocusColor",
+                "label": "Option Selected Focus Color",
+                "isReadonly": true,
+                "isVisible": true,
+                "type": "string"
+            },
+            {
+                "path": "list.option.selectedFontWeight",
+                "label": "Option Selected Font Weight",
+                "isReadonly": true,
+                "isVisible": true,
+                "type": "string"
+            },
+            {
+                "path": "list.option.icon.color",
+                "label": "Option Icon Color",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color"
+            },
+            {
+                "path": "list.option.icon.focusColor",
+                "label": "Option Icon Focus Color",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color"
+            },
+            {
+                "path": "list.optionGroup.padding",
+                "label": "Option Group Padding",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "rem"
+            },
+            {
+                "path": "list.optionGroup.fontWeight",
+                "label": "Option Group Font Weight",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "select",
+                "options": ["lighter", "normal", "bolder", "bold", "100", "200", "300", "400", "500", "600", "700", "800", "900"]
+            },
+            {
+                "path": "list.optionGroup.fontSize",
+                "label": "Option Group Font Size",
+                "isReadonly": true,
+                "isVisible": true,
+                "type": "size"
+            },
+            {
+                "path": "list.optionGroup.background",
+                "label": "Option Group Background",
+                "isReadonly": true,
+                "isVisible": true,
+                "type": "string"
+            },
+            {
+                "path": "list.optionGroup.color",
+                "label": "Option Group Color",
+                "isReadonly": true,
+                "isVisible": true,
+                "type": "string"
+            }
+        ]
+    },
+    {
+        "key": "navigation",
+        "label": "Navigation",
+        "styleClass": "w-full",
+        "fields": [
+            {
+                "path": "navigation.list.padding",
+                "label": "List Padding",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "rem"
+            },
+            {
+                "path": "navigation.list.gap",
+                "label": "List Gap",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "rem"
+            },
+            {
+                "path": "navigation.item.padding",
+                "label": "Item Padding",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "rem"
+            },
+            {
+                "path": "navigation.item.borderRadius",
+                "label": "Item Border Radius",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "select",
+                "options": ["{border.radius.none}", "{border.radius.xs}", "{border.radius.sm}", "{border.radius.md}", "{border.radius.lg}", "{border.radius.xl}"]
+            },
+            {
+                "path": "navigation.item.gap",
+                "label": "Item Gap",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "rem"
+            },
+            {
+                "path": "navigation.item.focusBackground",
+                "label": "Item Focus Background",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color"
+            },
+            {
+                "path": "navigation.item.activeBackground",
+                "label": "Item Active Background",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color"
+            },
+            {
+                "path": "navigation.item.color",
+                "label": "Item Color",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color"
+            },
+            {
+                "path": "navigation.item.focusColor",
+                "label": "Item Focus Color",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color"
+            },
+            {
+                "path": "navigation.item.activeColor",
+                "label": "Item Active Color",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color"
+            },
+            {
+                "path": "navigation.item.icon.size",
+                "label": "Item Icon Size",
+                "isReadonly": true,
+                "isVisible": true,
+                "type": "string"
+            },
+            {
+                "path": "navigation.item.icon.color",
+                "label": "Item Icon Color",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color"
+            },
+            {
+                "path": "navigation.item.icon.focusColor",
+                "label": "Item Icon Focus Color",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color"
+            },
+            {
+                "path": "navigation.item.icon.activeColor",
+                "label": "Item Icon Active Color",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color"
+            },
+            {
+                "path": "navigation.item.label.fontWeight",
+                "label": "Item Label Font Weight",
+                "isReadonly": true,
+                "isVisible": true,
+                "type": "string"
+            },
+            {
+                "path": "navigation.item.label.fontSize",
+                "label": "Item Label Font Size",
+                "isReadonly": true,
+                "isVisible": true,
+                "type": "string"
+            },
+            {
+                "path": "navigation.item.transitionDuration",
+                "label": "Item Transition Duration",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "size"
+            },
+            {
+                "path": "navigation.submenuLabel.padding",
+                "label": "Submenu Label Padding",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "rem"
+            },
+            {
+                "path": "navigation.submenuLabel.fontWeight",
+                "label": "Submenu Label Font Weight",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "select",
+                "options": ["lighter", "normal", "bolder", "bold", "100", "200", "300", "400", "500", "600", "700", "800", "900"]
+            },
+            {
+                "path": "navigation.submenuLabel.fontSize",
+                "label": "Submenu Label Font Size",
+                "isReadonly": true,
+                "isVisible": true,
+                "type": "string"
+            },
+            {
+                "path": "navigation.submenuLabel.background",
+                "label": "Submenu Label Background",
+                "isReadonly": true,
+                "isVisible": true,
+                "type": "string"
+            },
+            {
+                "path": "navigation.submenuLabel.color",
+                "label": "Submenu Label Color",
+                "isReadonly": true,
+                "isVisible": true,
+                "type": "string"
+            },
+            {
+                "path": "navigation.submenuIcon.size",
+                "label": "Submenu Icon Size",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "rem"
+            },
+            {
+                "path": "navigation.submenuIcon.color",
+                "label": "Submenu Icon Color",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color"
+            },
+            {
+                "path": "navigation.submenuIcon.focusColor",
+                "label": "Submenu Icon Focus Color",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color"
+            },
+            {
+                "path": "navigation.submenuIcon.activeColor",
+                "label": "Submenu Icon Active Color",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color"
+            }
+        ]
+    },
+    {
+        "key": "overlay",
+        "label": "Overlay",
+        "styleClass": "w-full",
+        "fields": [
+            {
+                "path": "overlay.select.borderRadius",
+                "label": "Select Border Radius",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "select",
+                "options": ["{border.radius.none}", "{border.radius.xs}", "{border.radius.sm}", "{border.radius.md}", "{border.radius.lg}", "{border.radius.xl}"]
+            },
+            {
+                "path": "overlay.select.shadow",
+                "label": "Select Shadow",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "shadow"
+            },
+            {
+                "path": "overlay.select.background",
+                "label": "Select Background",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color"
+            },
+            {
+                "path": "overlay.select.borderColor",
+                "label": "Select Border Color",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color"
+            },
+            {
+                "path": "overlay.select.color",
+                "label": "Select Color",
+                "isReadonly": true,
+                "isVisible": true,
+                "type": "string"
+            },
+            {
+                "path": "overlay.popover.borderRadius",
+                "label": "Popover Border Radius",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "select",
+                "options": ["{border.radius.none}", "{border.radius.xs}", "{border.radius.sm}", "{border.radius.md}", "{border.radius.lg}", "{border.radius.xl}"]
+            },
+            {
+                "path": "overlay.popover.padding",
+                "label": "Popover Padding",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "rem"
+            },
+            {
+                "path": "overlay.popover.shadow",
+                "label": "Popover Shadow",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "shadow"
+            },
+            {
+                "path": "overlay.popover.background",
+                "label": "Popover Background",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color"
+            },
+            {
+                "path": "overlay.popover.borderColor",
+                "label": "Popover Border Color",
+                "isReadonly": true,
+                "isVisible": true,
+                "type": "string"
+            },
+            {
+                "path": "overlay.popover.color",
+                "label": "Popover Color",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color"
+            },
+            {
+                "path": "overlay.modal.borderRadius",
+                "label": "Modal Border Radius",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "select",
+                "options": ["{border.radius.none}", "{border.radius.xs}", "{border.radius.sm}", "{border.radius.md}", "{border.radius.lg}", "{border.radius.xl}"]
+            },
+            {
+                "path": "overlay.modal.padding",
+                "label": "Modal Padding",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "rem"
+            },
+            {
+                "path": "overlay.modal.shadow",
+                "label": "Modal Shadow",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "shadow"
+            },
+            {
+                "path": "overlay.modal.background",
+                "label": "Modal Background",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color"
+            },
+            {
+                "path": "overlay.modal.borderColor",
+                "label": "Modal Border Color",
+                "isReadonly": true,
+                "isVisible": true,
+                "type": "string"
+            },
+            {
+                "path": "overlay.modal.color",
+                "label": "Modal Color",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color"
+            },
+            {
+                "path": "overlay.navigation.shadow",
+                "label": "Navigation Shadow",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "shadow"
+            }
+        ]
+    },
+    {
+        "key": "content",
+        "label": "Content",
+        "styleClass": "w-full",
+        "fields": [
+            {
+                "path": "content.borderRadius",
+                "label": "Border Radius",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "select",
+                "options": ["{border.radius.none}", "{border.radius.xs}", "{border.radius.sm}", "{border.radius.md}", "{border.radius.lg}", "{border.radius.xl}"]
+            },
+            {
+                "path": "content.background",
+                "label": "Background",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color"
+            },
+            {
+                "path": "content.hoverBackground",
+                "label": "Hover Background",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color"
+            },
+            {
+                "path": "content.borderColor",
+                "label": "Border Color",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color"
+            },
+            {
+                "path": "content.color",
+                "label": "Color",
+                "isReadonly": true,
+                "isVisible": true,
+                "type": "string"
+            },
+            {
+                "path": "content.hoverColor",
+                "label": "Hover Color",
+                "isReadonly": true,
+                "isVisible": true,
+                "type": "string"
+            }
+        ]
+    },
+    {
+        "key": "highlight",
+        "label": "Highlight",
+        "styleClass": "w-full",
+        "fields": [
+            {
+                "path": "highlight.background",
+                "label": "Background",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color"
+            },
+            {
+                "path": "highlight.focusBackground",
+                "label": "Focus Background",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color"
+            },
+            {
+                "path": "highlight.color",
+                "label": "Color",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color"
+            },
+            {
+                "path": "highlight.focusColor",
+                "label": "Focus Color",
+                "isReadonly": false,
+                "isVisible": true,
+                "type": "color"
+            }
+        ]
+    }
+]

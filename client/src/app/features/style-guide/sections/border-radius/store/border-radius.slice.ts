@@ -1,12 +1,10 @@
 import { IFieldMeta } from '@interfaces';
 export interface IBorderRadiusSlice {
-    readonly schema: IFieldMeta[];
-    readonly custom: Record<string, string>
-    readonly original: Record<string, string>
+    readonly scheme: IFieldMeta[];
+    readonly borderRadius: Record<string, string>;
 };
 
 export const initialBorderRadiusSlice: IBorderRadiusSlice = {
-    schema: [],
-    custom: {},
-    original: {},
+    scheme: [],
+    borderRadius: {},
 };

@@ -1,0 +1,44 @@
+[
+    {
+        "path": "borderRadius.none",
+        "label": "Radius None",
+        "isReadonly": false,
+        "isVisible": true,
+        "type": "rem"
+    },
+    {
+        "path": "borderRadius.xs",
+        "label": "Radius XS",
+        "isReadonly": false,
+        "isVisible": true,
+        "type": "rem"
+    },
+    {
+        "path": "borderRadius.sm",
+        "label": "Radius SM",
+        "isReadonly": false,
+        "isVisible": true,
+        "type": "rem"
+    },
+    {
+        "path": "borderRadius.md",
+        "label": "Radius MD",
+        "isReadonly": false,
+        "isVisible": true,
+        "type": "rem"
+    },
+    {
+        "path": "borderRadius.lg",
+        "label": "Radius LG",
+        "isReadonly": false,
+        "isVisible": true,
+        "type": "rem"
+    },
+    {
+        "path": "borderRadius.xl",
+        "label": "Radius XL",
+        "isReadonly": false,
+        "isVisible": true,
+        "type": "rem"
+    }
+]

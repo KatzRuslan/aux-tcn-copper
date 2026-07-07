@@ -1,0 +1,8 @@
+{
+    "borderRadius.none": "0",
+    "borderRadius.xs": "2px",
+    "borderRadius.sm": "4px",
+    "borderRadius.md": "6px",
+    "borderRadius.lg": "8px",
+    "borderRadius.xl": "12px"
+}

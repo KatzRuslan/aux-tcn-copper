@@ -1,9 +1,8 @@
 import { Signal } from '@angular/core';
-import { getDeepDiff, unflatten } from '@helpers/utils.helpers';
 import Aura from '@primeuix/themes/aura';
-import { isEqual } from 'lodash';
-import { from } from 'rxjs';
-// import {  } from '@interfaces';
+import { getDeepDiff, unflatten } from '@helpers/utils.helpers';
+import { from, map } from 'rxjs';
+import { IGroupMeta } from '@interfaces';
 
 /**
  * ⚠️ Singleton helper context.
@@ -25,8 +24,11 @@ export function initSemanticHelperContext(context: IContext) {
     ctx = context;
 }
 //
-export function getSemantic() {
-    return from(globalThis.runElectronCommand<any>('read-data', { target: 'semantic' })).pipe();
+export function initSemantis() {
+    return from(Promise.all([
+        globalThis.runElectronCommand<IGroupMeta[]>('read-data', { target: 'schemes/semantic.scheme' }),
+        globalThis.runElectronCommand<Record<string, string>>('read-data', { target: 'data/semantic.data' }),
+    ])).pipe(map(([ scheme, semantic ]) => ({ scheme, semantic })));
 }
 export function createSemantic() {
     const flaten = { ...ctx.semantic() };

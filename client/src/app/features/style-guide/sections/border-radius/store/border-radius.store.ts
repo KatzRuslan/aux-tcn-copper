@@ -5,12 +5,11 @@ import { updateState, withDevtools, withDevToolsStub } from '@angular-architects
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { tapResponse } from '@ngrx/operators';
 import { initialBorderRadiusSlice } from './border-radius.slice';
-import { electronWriteBorderRadius, getBorderRadius, initBorderRadiusHelperContext } from './border-radius.helper';
-import { initBorderRadiusStore, putCustom } from './border-radius.updates';
-import { vmodel } from './border-radius.vm-builder';
+import { createBorderRadius, electronWriteBorderRadius, initBorderRadius, initBorderRadiusHelperContext } from './border-radius.helper';
+import { initBorderRadiusStore, putBorderRadius } from './border-radius.updates';
+// import { vmodel } from './border-radius.vm-builder';
 import { environment } from '@environments';
 import { pipe, switchMap } from 'rxjs';
-import { IFieldMeta } from '@interfaces';
 
 export const Store = signalStore(
 	{ providedIn: 'root' },
@@ -29,12 +28,12 @@ export const Store = signalStore(
 	withMethods(store => {
 		//- const _test = () => updateState(store, '[BorderRadiusStore] Action', );
         return {
-            initStore: rxMethod<IFieldMeta[]>(
+            initStore: rxMethod<void>(
                 pipe(
-                    switchMap(input$ =>
-                        getBorderRadius().pipe(
+                    switchMap(_ =>
+                        initBorderRadius().pipe(
                             tapResponse({
-                                next: ({ custom, original }) => updateState(store, '[BorderRadiusStore] Init Store', initBorderRadiusStore(input$, custom, original)),
+                                next: ({ scheme, borderRadius }) => updateState(store, '[BorderRadiusStore] Init Store', initBorderRadiusStore(scheme, borderRadius)),
                                 error: err => console.error(err),
                             })
                         )
@@ -42,8 +41,8 @@ export const Store = signalStore(
                 ),
                 { injector: store._injector }
             ),
-            putBorderRadius: (custom: Record<string, string>) => {
-                updateState(store, '[BorderRadiusStore] Put Custom Border Radius', putCustom(custom));
+            putBorderRadius: (borderRadius: Record<string, string>) => {
+                updateState(store, '[BorderRadiusStore] Put Custom Border Radius', putBorderRadius(borderRadius));
                 electronWriteBorderRadius();
                 store._styleGuidStore().createPreset();
             }
@@ -51,13 +50,14 @@ export const Store = signalStore(
     }),
 	withComputed(store => {
         return {
+            getBorderRadius: computed(() => createBorderRadius())
             // vmodel: computed(() => vmodel())
         }
     }),
 	withHooks({
 		onInit(store) {
 			initBorderRadiusHelperContext({
-				borderRadius: computed(() => ({ custom: store.custom(), original: store.original() })),
+				borderRadius: computed(() => store.borderRadius()),
 			});
 		},
 	}),

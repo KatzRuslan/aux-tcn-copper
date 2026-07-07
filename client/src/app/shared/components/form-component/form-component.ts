@@ -43,15 +43,15 @@ export class FormComponent implements FormValueControl<string> {
     changeValueHandler(value: string) {
         this.value.set(value ?? '');
     }
-    constructor() {
-        setTimeout(() => {
-            console.clear()
-            // console.log(this.value())
-            // console.log(this.auraValue())
-            // console.log(this.presetValue())
-            console.log(this.reverts())
-            console.log()
-            console.log()
-        }, 480);
-    }
+    // constructor() {
+    //     setTimeout(() => {
+    //         console.clear()
+    //         // console.log(this.value())
+    //         // console.log(this.auraValue())
+    //         // console.log(this.presetValue())
+    //         console.log(this.reverts())
+    //         console.log()
+    //         console.log()
+    //     }, 480);
+    // }
 }

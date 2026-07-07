@@ -5,12 +5,11 @@ import { updateState, withDevtools, withDevToolsStub } from '@angular-architects
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { tapResponse } from '@ngrx/operators';
 import { initialSemanticSlice } from './semantic.slice';
-import { initSemanticHelperContext, getSemantic, createSemantic } from './semantic.helper';
+import { initSemanticHelperContext, initSemantis, createSemantic } from './semantic.helper';
 import { initSemanticStore } from './semantic.updates';
 import { vmodel } from './semantic.vm-builder';
 import { environment } from '@environments';
 import { pipe, switchMap } from 'rxjs';
-import { IGroupMeta } from '@interfaces';
 
 export const Store = signalStore(
 	{ providedIn: 'root' },
@@ -29,12 +28,12 @@ export const Store = signalStore(
 	withMethods(store => {
 		//- const _test = () => updateState(store, '[SemanticStore] Action', );
         return {
-            initStore: rxMethod<IGroupMeta[]>(
+            initStore: rxMethod<void>(
                 pipe(
-                    switchMap(input$ =>
-                        getSemantic().pipe(
+                    switchMap(_ =>
+                        initSemantis().pipe(
                             tapResponse({
-                                next: semantic => updateState(store, '[SemanticStore] Init Store', initSemanticStore(input$, semantic)),
+                                next: ({ scheme, semantic }) => updateState(store, '[SemanticStore] Init Store', initSemanticStore(scheme, semantic)),
                                 error: err => console.error(err),
                             })
                         )
@@ -54,7 +53,7 @@ export const Store = signalStore(
 			initSemanticHelperContext({
                 semantic: computed(() => store.semantic()),
                 colorSteps: computed(() => store._styleGuidStore().colorSteps()),
-			})
+			});
 		},
 	}),
 	// withDevtools('semantic-store'),

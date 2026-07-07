@@ -1,0 +1,64 @@
+[
+  {
+    "name": "breeze",
+    "label": "Breeze",
+    "colors": [
+      {
+        "step": "50",
+        "color": "#e4faff",
+        "token": "--p-breeze-50"
+      },
+      {
+        "step": "100",
+        "color": "#d1efff",
+        "token": "--p-breeze-100"
+      },
+      {
+        "step": "200",
+        "color": "#a8dbfa",
+        "token": "--p-breeze-200"
+      },
+      {
+        "step": "300",
+        "color": "#4dc7ff",
+        "token": "--p-breeze-300"
+      },
+      {
+        "step": "400",
+        "color": "#1996c5",
+        "token": "--p-breeze-400"
+      },
+      {
+        "step": "500",
+        "color": "#0075a8",
+        "token": "--p-breeze-500"
+      },
+      {
+        "step": "600",
+        "color": "#006093",
+        "token": "--p-breeze-600"
+      },
+      {
+        "step": "700",
+        "color": "#00487c",
+        "token": "--p-breeze-700"
+      },
+      {
+        "step": "800",
+        "color": "#003668",
+        "token": "--p-breeze-800"
+      },
+      {
+        "step": "900",
+        "color": "#002754",
+        "token": "--p-breeze-900"
+      },
+      {
+        "step": "950",
+        "color": "#001c43",
+        "token": "--p-breeze-950"
+      }
+    ],
+    "custom": true
+  }
+]

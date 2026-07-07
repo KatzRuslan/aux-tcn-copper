@@ -1,5 +1,5 @@
 <div class="flex flex-wrap gap-3 w-full h-full overflow-auto">
-    @for (fieldset of store.schema(); track $index) {
+    @for (fieldset of store.scheme(); track $index) {
         <p-fieldset [legend]="fieldset.label" class="gap-2" [class]="fieldset.styleClass" styleClass="">
             <div class="flex gap-3 w-full"
                 [class.flex-column]="fieldset.styleClass=='w-6'"

@@ -36,7 +36,7 @@ function createPrimitive() {
 }
 export function createPreset() {
     // console.log(ctx.palettes())
-    // console.log(Aura)
+    console.log(Aura)
     const aura = definePreset(Aura) as any;
     // console.log(aura)
     // console.log(JSON.stringify(aura.primitive.borderRadius, null, 4))
@@ -47,9 +47,12 @@ export function createPreset() {
     // console.log(aura.semantic.surface)
     // console.log((ctx.semantic() as any).primary);
     // console.log((ctx.semantic() as any));
+    console.log(ctx.borderRadius())
     const preset = {
-        primitive: createPrimitive(),
-        sementic: ctx.semantic(),
+        primitive: {
+            ...ctx.borderRadius(),
+        },
+        semantic: ctx.semantic(),
     };
     console.log('------------------')
     console.log(preset)

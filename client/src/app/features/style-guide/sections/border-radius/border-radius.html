@@ -1,16 +1,8 @@
 <div class="flex flex-column gap-3 w-full h-full overflow-auto">
-    @for (node of store.schema(); track $index) {
-        <div class="flex align-items-center gap-2">
-            <label [for]="node.label" class="w-5rem"><span class="">{{ node.label }}</span></label>
-            <p-iconfield>
-                <input pInputText class="" class="w-18rem" [formField]="formGroup[node.path]" [attr.id]="node.label" />
-                @if (hasError(node.path, 'rem')) {
-                    <p-inputicon (click)="convertToRem(formGroup[node.path])" (keypress)="null" class="cursor-pointer">
-                        <svg data-p-icon="exclamation-circle" color="var(--p-red-500)" ></svg>
-                    </p-inputicon>
-                }
-            </p-iconfield>
-        </div>
+    @for (field of store.scheme(); track $index) {
+        @if (field.isVisible) {
+            <form-component [formField]="formGroup[field.path]" [field]="field" source="primitive" />
+        }
     }
 </div>
 <div class="flex">

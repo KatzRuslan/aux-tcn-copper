@@ -44,8 +44,8 @@ export const Store = signalStore(
         return {
             initStore: ({ colorPalette, borderRadius, semantic }: IConfigurations) => {
                 store._colorPaletteStore().initStore(colorPalette);
-                store._borderRadiusStore().initStore(borderRadius);
-                store._semanticStore().initStore(semantic);
+                store._borderRadiusStore().initStore();
+                store._semanticStore().initStore();
             },
             createPreset,
         }
@@ -61,8 +61,8 @@ export const Store = signalStore(
 			initStyleGuideHelperContext({
 				httpClient: inject(HttpClient),
                 palettes: computed(() => store._colorPaletteStore().palettes().filter(({ custom }) => custom)),
-                borderRadius: computed(() => store._borderRadiusStore().custom()),
-                semantic: computed(() => store._semanticStore().semantic()),
+                borderRadius: computed(() => store._borderRadiusStore().getBorderRadius()),
+                semantic: computed(() => store._semanticStore().getSemantic()),
 			});
             setTimeout(() => {
                 store.createPreset();
