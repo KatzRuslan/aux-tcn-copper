@@ -13,7 +13,7 @@ import { from } from 'rxjs';
  */
 
 interface IContext {
-    readonly overrides: Signal<Record<string, string>>;
+    readonly overrides: Signal<ICssOverrideItem[]>;
     readonly palettes: Signal<IPalette[]>;
     readonly surface1000: Signal<string>;
 }
@@ -23,25 +23,17 @@ export function initCssOverridesHelperContext(context: IContext) {
 }
 //
 export function initCssOverrides() {
-    return from(globalThis.runElectronCommand<Record<string, string>>('read-data', { target: 'data/css-overrides.data' }));
+    return from(globalThis.runElectronCommand<ICssOverrideItem[]>('read-data', { target: 'data/css-overrides.data' }));
 }
 export function electronWriteCssOverrides() {
     runElectronCommand('write-data', { target: 'data/css-overrides.data', data: ctx.overrides(), reload: false });
 }
-export function flattenOverrides(items: ICssOverrideItem[]): Record<string, string> {
-    return Object.fromEntries(items.flatMap(({ selector, properties }) =>
-        properties.filter(({ name }) => name).map(({ name, value }) => [`${selector}|${name}`, value])));
-}
-export function unflattenOverrides(flat: Record<string, string>): ICssOverrideItem[] {
-    const groups = new Map<string, ICssOverridePropertyItem[]>();
-    for (const [key, value] of Object.entries(flat)) {
-        const splitAt = key.lastIndexOf('|');
-        const selector = key.slice(0, splitAt);
-        const name = key.slice(splitAt + 1);
-        if (!groups.has(selector)) { groups.set(selector, []); }
-        groups.get(selector)!.push({ name, value, path: key });
-    }
-    return [...groups.entries()].map(([selector, properties]) => ({ selector, properties }));
+export function getStyleCssOverrides(overrides: ICssOverrideItem[]) {
+    return overrides
+        .map(({ selector, properties }) => ({ selector, properties: properties.map(({ name, value }) => `${name}: ${value};`).join(' ') }))
+        .map(({ selector, properties }) => `${selector} { ${properties} }`)
+        .join(' ');
+    return '';
 }
 function getColorCssOverrides() {
     const colors = ctx.palettes().filter(({ custom }) => custom).flatMap(({ name, colors }) => colors.map(({ step, token, color }) => ({ name, step, token, color })));
@@ -76,6 +68,7 @@ export function createCssOverrides() {
     const preset: string[] = [
         getColorCssOverrides(),
         getDimensionsCssOverrides(),
+        getStyleCssOverrides(ctx.overrides()),
     ];
     return preset.join(' ');
 }

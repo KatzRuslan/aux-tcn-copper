@@ -1,12 +1,36 @@
-{
-    "html|test": "test",
-    "html|width": "100%",
-    "html|height": "100%",
-    "body|test": "test",
-    "body|margin": "0",
-    "body|width": "100%",
-    "body|height": "100%",
-    "body|overflow": "hidden",
-    ".test|test": "test value",
-    ".test2 .subclass|test": "test value"
-}
+[
+  {
+    "selector": "html",
+    "properties": [
+      {
+        "name": "width",
+        "value": "100%"
+      },
+      {
+        "name": "height",
+        "value": "100%"
+      }
+    ]
+  },
+  {
+    "selector": "body",
+    "properties": [
+      {
+        "name": "margin",
+        "value": "0"
+      },
+      {
+        "name": "width",
+        "value": "100%"
+      },
+      {
+        "name": "height",
+        "value": "100%"
+      },
+      {
+        "name": "overflow",
+        "value": "hidden"
+      }
+    ]
+  }
+]

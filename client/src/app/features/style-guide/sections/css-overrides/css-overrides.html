@@ -1,1 +1,1 @@
-<form-styles-overrides [vmodel]="overrides" (submitHandler)="store.testCssOverrides($event)" />
+<form-styles-overrides [vmodel]="store.overrides()" (submitHandler)="store.putCssOverrides($event)" />

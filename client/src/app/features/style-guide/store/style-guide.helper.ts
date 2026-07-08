@@ -40,8 +40,8 @@ export function createPreset() {
     // console.log(aura.semantic.surface)
     // console.log((ctx.semantic() as any).primary);
     // console.log((ctx.semantic() as any));
-    console.log('* cssOverrides *********')
-    console.log(ctx.cssOverrides());
+    // console.log('* cssOverrides *********')
+    // console.log(ctx.cssOverrides());
     const preset = {
         primitive: {
             ...ctx.borderRadius(),

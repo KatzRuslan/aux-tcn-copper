@@ -42,7 +42,7 @@ export const Store = signalStore(
                 ),
                 { injector: store._injector }
             ),
-            putCssOverrides: (overrides: Record<string, string>) => {
+            putCssOverrides: (overrides: ICssOverrideItem[]) => {
                 updateState(store, '[CssOverridesStore] Put CssOverrides', putCssOverrides(overrides));
                 electronWriteCssOverrides();
                 store._styleGuidStore().createPreset();

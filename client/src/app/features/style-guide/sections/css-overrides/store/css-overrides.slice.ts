@@ -1,9 +1,9 @@
 import { ICssOverrideItem } from '@interfaces';
 
 export interface ICssOverridesSlice {
-    readonly overrides: Record<string, string>;
+    readonly overrides: ICssOverrideItem[];
 };
 
 export const initialCssOverridesSlice: ICssOverridesSlice = {
-    overrides: {},
+    overrides: [],
 };

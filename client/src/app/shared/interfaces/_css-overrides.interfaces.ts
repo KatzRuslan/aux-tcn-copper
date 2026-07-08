@@ -1,7 +1,6 @@
 export interface ICssOverridePropertyItem {
     readonly name: string;
-    readonly value: string | number | any;
-    readonly path: string;
+    readonly value: string;
 }
 export interface ICssOverrideItem {
     readonly selector: string;

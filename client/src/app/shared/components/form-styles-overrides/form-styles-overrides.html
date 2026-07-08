@@ -1,5 +1,4 @@
 <div class="flex flex-column gap-3 px-2 w-full h-full overflow-auto">
-    <p>form-styles-overrides works!</p>
     @for (node of formModel(); track $index) {
         @let overrideIndex = $index;
         @let selectorField = getSelecorField(overrideIndex);
@@ -13,6 +12,7 @@
                         </p-inputicon>
                     </p-iconfield>
                     <div class=""><span class="text-3xl font-bold">&#123;</span></div>
+                    <button pButton iconOnly rounded variant="outlined" size="small" (click)="addProperty(overrideIndex)"><svg data-p-icon="plus"></svg></button>
                 </div>
             </ng-template>
             <div class="px-4">
@@ -49,8 +49,8 @@
             }
         </ng-template>
     </div>
-    <div class="" [pTooltip]="errors().length ? tooltipContent: ''" tooltipPosition="top">
-        <button pButton [disabled]="formGroup().invalid()" (click)="submitHandler.emit(formGroup().value())"><svg data-p-icon="check"></svg> Save</button>
+    <div class="">
+        <button pButton iconOnly rounded  (click)="addOverride()"><svg data-p-icon="plus"></svg></button>
     </div>
 </div>
 
