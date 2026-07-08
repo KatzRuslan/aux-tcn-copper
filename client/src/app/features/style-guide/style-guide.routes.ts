@@ -24,6 +24,13 @@ export const routes: Routes = [
         resolve: [navigationResolver],
     },
     {
+        path: 'css-overrides',
+        loadComponent: () => import('./sections/css-overrides/css-overrides'),
+        title: 'Aux TCN - Css Overrides',
+        data: { state: 'css-overrides', header: 'Css Overrides', parent: 'css-overrides' },
+        resolve: [navigationResolver],
+    },
+    {
         path: 'component-settings/:name',
         loadComponent: () => import('./sections/ui-component/ui-component'),
         title: 'Aux TCN - Component Settings Page',

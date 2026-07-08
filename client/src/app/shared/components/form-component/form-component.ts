@@ -1,6 +1,5 @@
 import { Component, model, input, computed } from '@angular/core';
 import { FormValueControl } from '@angular/forms/signals';
-import { IFieldMeta } from '@interfaces';
 import { SharedModule } from '@shared-module';
 import { ColorField } from './color-field/color-field';
 import { RemField } from './rem-field/rem-field';
@@ -9,6 +8,7 @@ import { definePreset } from '@primeuix/themes';
 import preset from '@tcn-preset';
 import Aura from '@primeuix/themes/aura';
 import { get } from 'lodash';
+import { IFieldMeta } from '@interfaces';
 
 interface IRevert {
     title: string;

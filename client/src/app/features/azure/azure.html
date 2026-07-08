@@ -1,7 +1,7 @@
 @let mode = store.mode();
 @let options = store.vmWorkItems().options;
 
-<div class="flex flex-column gap-4 container">
+<div class="flex flex-column gap-4 max-w-60rem">
     <div class="flex gap-6">
         @for (radio of options; track $index) {
             <div class="cursor-pointer" [class.pointer-events-none]="radio.value==mode" (click)="store.putMode(radio.value)" (keypress)="null">
@@ -13,33 +13,33 @@
         }
     </div>
     <div class="flex gap-4 w-full">
-            <p-autocomplete #ac
-                [formField]="formGroup.requirement"
-                [suggestions]="requirementSuggestions()"
-                placeholder="Select requirement" appendTo="body"
-                [pt]="acPassThrough()"
-                [dropdown]="true" showClear="true" class="w-6"
-            />
-            @switch (mode) {
-                @case (modeType.TASK) {
-                    <p-autocomplete
-                        [formField]="formGroup.task"
-                        [suggestions]="taskSuggestions()"
-                        placeholder="Select task" appendTo="body"
-                        [pt]="acPassThrough()"
-                        [dropdown]="true" showClear="true" class="w-6"
-                    />
-                }
-                @case (modeType.BUG) {
-                    <p-autocomplete
-                        [formField]="formGroup.bug"
-                        [suggestions]="bugSuggestions()"
-                        placeholder="Select bug" appendTo="body"
-                        [pt]="acPassThrough()"
-                        [dropdown]="true" showClear="true" class="w-6"
-                    />
-                }
+        <p-autocomplete #ac
+            [formField]="formGroup.requirement"
+            [suggestions]="requirementSuggestions()"
+            placeholder="Select requirement" appendTo="body"
+            [pt]="acPassThrough()"
+            [dropdown]="true" showClear="true" class="w-6"
+        />
+        @switch (mode) {
+            @case (modeType.TASK) {
+                <p-autocomplete
+                    [formField]="formGroup.task"
+                    [suggestions]="taskSuggestions()"
+                    placeholder="Select task" appendTo="body"
+                    [pt]="acPassThrough()"
+                    [dropdown]="true" showClear="true" class="w-6"
+                />
             }
+            @case (modeType.BUG) {
+                <p-autocomplete
+                    [formField]="formGroup.bug"
+                    [suggestions]="bugSuggestions()"
+                    placeholder="Select bug" appendTo="body"
+                    [pt]="acPassThrough()"
+                    [dropdown]="true" showClear="true" class="w-6"
+                />
+            }
+        }
     </div>
     <div class="">
         <p-iconfield>

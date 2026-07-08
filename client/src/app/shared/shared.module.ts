@@ -20,6 +20,7 @@ import { PopoverModule } from 'primeng/popover';
 import { TooltipModule } from 'primeng/tooltip';
 import { ToastModule } from 'primeng/toast';
 import { FieldsetModule } from 'primeng/fieldset';
+import { CardModule } from 'primeng/card';
 //
 import { PIcon } from '@primeicons/angular/p-icon';
 import { EllipsisV } from '@primeicons/angular/ellipsis-v';
@@ -54,7 +55,7 @@ const modules = [
     TableModule,
     SidebarModule,
     ConfirmDialogModule, DynamicDialogModule, PopoverModule, TooltipModule, ToastModule,
-    FieldsetModule,
+    FieldsetModule, CardModule,
     //
     PIcon,
     EllipsisV,

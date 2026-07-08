@@ -1,0 +1,12 @@
+{
+    "html|test": "test",
+    "html|width": "100%",
+    "html|height": "100%",
+    "body|test": "test",
+    "body|margin": "0",
+    "body|width": "100%",
+    "body|height": "100%",
+    "body|overflow": "hidden",
+    ".test|test": "test value",
+    ".test2 .subclass|test": "test value"
+}

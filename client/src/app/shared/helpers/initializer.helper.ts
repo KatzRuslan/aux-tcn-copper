@@ -48,7 +48,7 @@ export async function load() {
     initialize();
     const configurations = await globalThis.runElectronCommand<IConfigurations>('read-data', {target: 'configurations'});
     // console.log(configurations)
-    styleGuidStore.initStore(configurations);
+    styleGuidStore.initStore();
     return true;
 }
 

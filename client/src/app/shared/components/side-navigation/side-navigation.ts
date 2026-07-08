@@ -29,6 +29,7 @@ export class SideNavigation implements OnInit {
                 { title: 'Color Palette', name: 'color-palette', isActive: false, route: 'style-guide/color-palette' },
                 { title: 'Border Radius', name: 'border-radius', isActive: false, route: 'style-guide/border-radius' },
                 { title: 'Define Semantic', name: 'define-semantic', isActive: false, route: 'style-guide/define-semantic' },
+                { title: 'Css Overrides', name: 'css-overrides', isActive: false, route: 'style-guide/css-overrides' },
                 {
                     title: 'Components', name: 'component-settings', isActive: false,
                     items: Object.entries(COMPONENT_ITEMS.reduce<Record<string, IComponentItem[]>>((accumulator, item) => {

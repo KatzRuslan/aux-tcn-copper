@@ -2,6 +2,7 @@ import { Injector, computed, runInInjectionContext, inject } from '@angular/core
 import { Store as ColorPaletteStore} from '../sections/color-palette/store/color-palette.store';
 import { Store as BorderRadiusStore} from '../sections/border-radius/store/border-radius.store';
 import { Store as SemanticStore} from '../sections/semantic/store/semantic.store';
+import { Store as CssOverridesStore} from '../sections/css-overrides/store/css-overrides.store';
 import { signalStore, withState, withProps, withMethods, withComputed, withHooks } from '@ngrx/signals';
 import { updateState, withDevtools, withDevToolsStub } from '@angular-architects/ngrx-toolkit';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
@@ -11,8 +12,6 @@ import { createPreset, initStyleGuideHelperContext } from './style-guide.helper'
 import { initStyleGuideStore } from './style-guide.updates';
 import { vmodel } from './style-guide.vm-builder';
 import { environment } from '@environments';
-import { IConfigurations } from '@interfaces';
-import { palette } from '@primeuix/themes';
 
 export const Store = signalStore(
 	{ providedIn: 'root' },
@@ -22,6 +21,7 @@ export const Store = signalStore(
         let colorPaletteStore: InstanceType<typeof ColorPaletteStore> | null = null;
         let borderRadiusStore: InstanceType<typeof BorderRadiusStore> | null = null;
         let semanticStore: InstanceType<typeof SemanticStore> | null = null;
+        let cssOverridesStore: InstanceType<typeof CssOverridesStore> | null = null;
 		return {
 			_injector: injector,
             _colorPaletteStore: (): InstanceType<typeof ColorPaletteStore> => {
@@ -36,15 +36,20 @@ export const Store = signalStore(
                 semanticStore ??= runInInjectionContext(injector, () => inject(SemanticStore));
                 return semanticStore;
             },
+            _cssOverridesStore: (): InstanceType<typeof CssOverridesStore> => {
+                cssOverridesStore ??= runInInjectionContext(injector, () => inject(CssOverridesStore));
+                return cssOverridesStore;
+            },
 		}
 	}),
 	withMethods(store => {
 		//- const _test = () => updateState(store, '[StyleGuideStore] Action', );
         return {
-            initStore: ({ colorPalette, borderRadius, semantic }: IConfigurations) => {
+            initStore: () => {
                 store._colorPaletteStore().initStore();
                 store._borderRadiusStore().initStore();
                 store._semanticStore().initStore();
+                store._cssOverridesStore().initStore();
             },
             createPreset,
         }
@@ -52,7 +57,8 @@ export const Store = signalStore(
 	withComputed(store => {
         return {
             colorSteps: computed(() => store._colorPaletteStore().steps()),
-            palettes: computed(() => store._colorPaletteStore().palettes())
+            palettes: computed(() => store._colorPaletteStore().palettes()),
+            surface1000: computed(() => store._semanticStore().semantic()['surface.1000']),
         }
     }),
 	withHooks({
@@ -61,10 +67,11 @@ export const Store = signalStore(
                 colorPalette: computed(() => store._colorPaletteStore().getColorPalette()),
                 borderRadius: computed(() => store._borderRadiusStore().getBorderRadius()),
                 semantic: computed(() => store._semanticStore().getSemantic()),
+                cssOverrides: computed(() => store._cssOverridesStore().getCssOverrides()),
 			});
-            setTimeout(() => {
-                store.createPreset();
-            }, 860);
+            // setTimeout(() => {
+            //     store.createPreset();
+            // }, 860);
 		},
 	}),
 	// withDevtools('style-guide-store'),
