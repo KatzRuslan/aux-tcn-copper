@@ -1,29 +1,7 @@
-// import { Signal } from '@angular/core';
-// import { HttpClient } from '@angular/common/http';
-//import { environment } from '@environments';
-// import {  } from '@interfaces';
-
-import { validate, FieldTree } from '@angular/forms/signals';
+import { validate } from '@angular/forms/signals';
+import { ICssOverrideItem } from '@interfaces';
 import { isEqual } from 'lodash';
 
-/**
- * ⚠️ Singleton helper context.
- *
- * Initialized once from Store `onInit`.
- * Assumes a single UtilsStore instance and
- * that initialization happens before any usage.
- *
- * Not intended for SSR or multiple store instances.
- */
-
-interface IContext {
-    // readonly httpClient: HttpClient;
-}
-let ctx!: IContext;
-export function initUtilsHelperContext(context: IContext) {
-    ctx = context;
-}
-//
 export function fieldValidator(field: Parameters<typeof validate>[0], name: string, type: string) {
     return validate(field, ({ value }) => {
         if (value() === null) {
@@ -36,7 +14,7 @@ export function fieldValidator(field: Parameters<typeof validate>[0], name: stri
                 break;
             case 'rem': {
                 const tokens = (value() as string).trim().split(/\s+/).filter(Boolean);
-                const valid = tokens.length > 0 && tokens.every(token => /^(0|\d*\.?\d+rem)$/.test(token));
+                const valid = tokens.length > 0 && tokens.every(token => /^(0|(\d+(\.\d+)?|\.\d+)rem)$/.test(token));
                 error = valid ? null : { kind: 'rem', message: `${name} should be REM` };
                 break;
             }
@@ -46,22 +24,13 @@ export function fieldValidator(field: Parameters<typeof validate>[0], name: stri
         return error;
     });
 }
-/** Базовый размер шрифта для перевода px → rem. */
-const REM_BASE = 16;
-
-/** Конвертирует значение поля из px в rem (16px → 1rem), поддерживает shorthand ("20px 15px"). */
-export function convertToRem(field: FieldTree<string>) {
-    const tokens = (field().value() ?? '').trim().split(/\s+/).filter(Boolean);
-    if (!tokens.length) { return; }
-    const converted = tokens.map(token => {
-        if (token.endsWith('rem')) { return token; }          // уже rem — оставляем
-        const match = /^(-?\d*\.?\d+)(px)?$/.exec(token);     // "16px" | "16"
-        if (!match) { return token; }                         // не число/px — как есть
-        const rem = Number.parseFloat(match[1]) / REM_BASE;
-        return rem === 0 ? '0' : `${rem}rem`;
-    });
-    field().value.set(converted.join(' '));
+export function getStyleCssOverrides(overrides: ICssOverrideItem[]) {
+    return overrides
+        .map(({ selector, properties }) => ({ selector, properties: properties.map(({ name, value }) => `${name}: ${value};`).join(' ') }))
+        .map(({ selector, properties }) => `${selector} { ${properties} }`)
+        .join(' ');
 }
+//
 const isPlainObject = (val: any): boolean => typeof val === 'object' && val !== null && !Array.isArray(val);
 /** Признак «поле не изменилось» — отличается от undefined (валидного значения diff). */
 const NO_CHANGE = Symbol('no-change');

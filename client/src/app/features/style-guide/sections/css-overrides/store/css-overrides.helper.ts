@@ -1,4 +1,5 @@
 import { Signal } from '@angular/core';
+import { getStyleCssOverrides } from '@helpers/utils.helpers';
 import { ICssOverrideItem, ICssOverridePropertyItem, IPalette } from '@interfaces';
 import { from } from 'rxjs';
 
@@ -27,12 +28,6 @@ export function initCssOverrides() {
 }
 export function electronWriteCssOverrides() {
     runElectronCommand('write-data', { target: 'data/css-overrides.data', data: ctx.overrides(), reload: false });
-}
-export function getStyleCssOverrides(overrides: ICssOverrideItem[]) {
-    return overrides
-        .map(({ selector, properties }) => ({ selector, properties: properties.map(({ name, value }) => `${name}: ${value};`).join(' ') }))
-        .map(({ selector, properties }) => `${selector} { ${properties} }`)
-        .join(' ');
 }
 function getColorCssOverrides() {
     const colors = ctx.palettes().filter(({ custom }) => custom).flatMap(({ name, colors }) => colors.map(({ step, token, color }) => ({ name, step, token, color })));

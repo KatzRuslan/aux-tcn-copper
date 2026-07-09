@@ -117,12 +117,6 @@ function generateLchPalette(hex: string): Record<string, string> {
     Object.keys(lightnessSteps).forEach(k=>sorted[k]=out[k]);
     return sorted;
 }
-export function getColorsRef() {
-    return ctx.palettes().map(({ name, colors }) => ({
-        label: name,
-        items: colors.map(({ step }) => ({ label: `${name}.${step}`, value: `{${name}.${step}}` }))
-    }));
-}
 export function getCustomPalette(hex: string): IPalette {
     const norm = hex.startsWith('#') ? hex : `#${hex}`;
     const colors: any = Object.entries(isPureColor(norm) ? generatePurePalette(norm) : generateLchPalette(norm)).map(([step, color]) => ({ step, color, token: '' }));

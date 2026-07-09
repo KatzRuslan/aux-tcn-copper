@@ -1,9 +1,8 @@
 import { Signal } from '@angular/core';
 import Aura from '@primeuix/themes/aura';
-import { getDeepDiff, unflatten } from '@helpers/utils.helpers';
+import { getDeepDiff, getStyleCssOverrides, unflatten } from '@helpers/utils.helpers';
 import { from, map } from 'rxjs';
 import { IUiComponentScheme, IUiComponentSet } from '@interfaces';
-import { getStyleCssOverrides } from '../../css-overrides/store/css-overrides.helper';
 
 /**
  * ⚠️ Singleton helper context.

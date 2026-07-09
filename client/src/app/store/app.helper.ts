@@ -62,10 +62,6 @@ export function copyToClipboard(copy: string, detail: string) {
             detail: `"${detail}" was copied to clipboard`, severity: 'success'
         }]));
 }
-export function stopPropagation(event: Event) {
-    event.stopPropagation();
-    document.dispatchEvent(new MouseEvent('click', { bubbles: true }));
-}
 export function runElectronCommand(command: string, params?: any): Observable<any> {
     return new Observable(subscriber => {
         if (globalThis.electronAPI) {
