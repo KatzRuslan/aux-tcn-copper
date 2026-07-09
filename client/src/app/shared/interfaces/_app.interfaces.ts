@@ -37,6 +37,7 @@ export interface IFieldMeta {
     path: string;
     label: string;
     type: FieldType;
+    styleClass?: string;
     isReadonly?: boolean;
     isVisible?: boolean;
     options?: string[];

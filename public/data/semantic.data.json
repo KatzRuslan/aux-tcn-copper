@@ -10,7 +10,6 @@
   "primarySet": "emerald",
   "surfaceSet": "slate, zinc",
   "surface.0": "#ffffff",
-  "surface.1000": "#000000",
   "primary.color": "light-dark({primary.500}, {primary.400})",
   "primary.contrastColor": "light-dark(#ffffff, {surface.900})",
   "primary.hoverColor": "light-dark({primary.600}, {primary.300})",
@@ -138,5 +137,5 @@
   "transitionDuration": "0.2s",
   "disabledOpacity": "0.6",
   "iconSize": "0.875rem",
-  "anchorGutter": "2px"
+  "anchorGutter": "0.125rem"
 }

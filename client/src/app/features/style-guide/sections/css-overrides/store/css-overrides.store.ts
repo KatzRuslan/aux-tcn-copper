@@ -62,7 +62,6 @@ export const Store = signalStore(
 			initCssOverridesHelperContext({
 				overrides: computed(() => store.overrides()),
                 palettes: computed(() => store._styleGuidStore().palettes()),
-                surface1000: computed(() => store._styleGuidStore().surface1000()),
 			})
 		},
 	}),

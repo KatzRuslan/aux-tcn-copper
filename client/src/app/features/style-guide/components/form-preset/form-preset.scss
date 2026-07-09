@@ -4,3 +4,6 @@
 :host(.gap-3) > .w-full {
     max-width: calc(100% - .2rem);
 }
+.break-after {
+    margin-right: 100%;   // «доедает» остаток ряда — следующий элемент уходит на новую строку
+}

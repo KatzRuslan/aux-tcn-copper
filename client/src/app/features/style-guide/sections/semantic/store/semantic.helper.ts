@@ -52,7 +52,6 @@ export function createSemantic() {
     preset.surface = {
         0: flaten['surface.0'],
         ...surface,
-        1000: flaten['surface.1000'],
     };
     return getDeepDiff(preset, Aura.semantic) ?? {};
 }

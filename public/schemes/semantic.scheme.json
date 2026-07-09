@@ -28,7 +28,7 @@
             {
                 "path": "anchorGutter",
                 "label": "Anchor Gutter",
-                "isReadonly": true,
+                "isReadonly": false,
                 "isVisible": true,
                 "type": "rem"
             }
@@ -171,14 +171,6 @@
                 "isVisible": true,
                 "type": "color",
                 "options": ["double-color-name"]
-            },
-            {
-                "path": "surface.1000",
-                "label": "Surface 1000",
-                "isReadonly": true,
-                "isVisible": true,
-                "type": "color",
-                "options": ["none"]
             }
         ]
     },

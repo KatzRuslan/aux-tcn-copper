@@ -32,8 +32,8 @@
         "value": "hidden"
       },
       {
-        "name": "test",
-        "value": "red"
+        "name": "border-bottom",
+        "value": "0"
       }
     ]
   }

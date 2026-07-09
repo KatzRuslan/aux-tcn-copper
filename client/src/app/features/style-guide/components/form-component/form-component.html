@@ -14,7 +14,7 @@
             @default {
                 <input #defaultInput pInputText
                     [id]="field().path" class="w-full"
-                    [value]="value()" [title]="field().type" [readonly]="field().isReadonly"
+                    [value]="value()" [readonly]="field().isReadonly"
                     (input)="changeValueHandler(defaultInput.value)" />
             }
         }

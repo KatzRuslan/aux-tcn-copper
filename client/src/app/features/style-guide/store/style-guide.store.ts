@@ -65,7 +65,6 @@ export const Store = signalStore(
         return {
             colorSteps: computed(() => store._colorPaletteStore().steps()),
             palettes: computed(() => store._colorPaletteStore().palettes()),
-            surface1000: computed(() => store._semanticStore().semantic()['surface.1000']),
         }
     }),
 	withHooks({

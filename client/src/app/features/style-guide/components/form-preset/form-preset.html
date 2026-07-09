@@ -6,7 +6,7 @@
             [class.flex-wrap]="fieldset.styleClass=='w-full'">
             @for (field of fieldset.fields; track $index) {
                 @if (field.isVisible) {
-                    <form-component [formField]="formGroup()[field.path]" [field]="field" source="semantic" />
+                    <form-component [formField]="formGroup()[field.path]" [field]="field" source="semantic" [class]="field.styleClass" />
                 }
             }
         </div>

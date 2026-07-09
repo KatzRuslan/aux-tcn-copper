@@ -16,7 +16,6 @@ import { from } from 'rxjs';
 interface IContext {
     readonly overrides: Signal<ICssOverrideItem[]>;
     readonly palettes: Signal<IPalette[]>;
-    readonly surface1000: Signal<string>;
 }
 let ctx!: IContext;
 export function initCssOverridesHelperContext(context: IContext) {
@@ -32,10 +31,6 @@ export function electronWriteCssOverrides() {
 function getColorCssOverrides() {
     const colors = ctx.palettes().filter(({ custom }) => custom).flatMap(({ name, colors }) => colors.map(({ step, token, color }) => ({ name, step, token, color })));
     return [
-        `--p-surface-1000: ${ctx.surface1000()};`,
-        `.surface-1000 { background-color: light-dark(var(--p-surface-1000), var(--p-surface-0)) !important; }`,
-        `.text-1000 { color: light-dark(var(--p-surface-1000), var(--p-surface-0)) !important; }`,
-        `.border-1000 { border-color: light-dark(var(--p-surface-1000), var(--p-surface-0)) !important; }`,
         ...colors.map(({ token, name, color, step }) => [
             // `${token}: ${color};`,
             `.bg-${name}-${step} { background-color: var(${token}) !important; }`,

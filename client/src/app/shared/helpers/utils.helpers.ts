@@ -14,7 +14,7 @@ export function fieldValidator(field: Parameters<typeof validate>[0], name: stri
                 break;
             case 'rem': {
                 const tokens = (value() as string).trim().split(/\s+/).filter(Boolean);
-                const valid = tokens.length > 0 && tokens.every(token => /^(0|(\d+(\.\d+)?|\.\d+)rem)$/.test(token));
+                const valid = tokens.length > 0 && tokens.every(token => /^(0|-?(\d+(\.\d+)?|\.\d+)rem)$/.test(token));
                 error = valid ? null : { kind: 'rem', message: `${name} should be REM` };
                 break;
             }
