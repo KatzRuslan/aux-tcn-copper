@@ -1,0 +1,8 @@
+::ng-deep {
+    .color-field-popover {
+        --p-popover-border-color: transparent;
+    }
+}
+.p-iconfield .p-inputtext:not(:last-child).double-inputicon {
+    padding-inline-end: calc(((var(--p-form-field-padding-x) * 2) + var(--p-icon-size)) * 1.6);
+}

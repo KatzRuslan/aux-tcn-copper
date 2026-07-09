@@ -63,7 +63,7 @@ export const navigationResolver: ResolveFn<void> = ({ data, params }: ActivatedR
     let name = `${state}`;
     if (state === 'component-settings') {
         name = params['name'];
-        const { title } = COMPONENT_ITEMS.find(({ name }) => name === state) ?? { title: 'Unknown'};
+        const { title } = COMPONENT_ITEMS.find((node) => name === node.name) ?? { title: 'Unknown'};
         header = `${title} Component`;
     }
     const store = inject(AppStore);

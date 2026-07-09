@@ -3,6 +3,7 @@ import { Store as ColorPaletteStore} from '../sections/color-palette/store/color
 import { Store as BorderRadiusStore} from '../sections/border-radius/store/border-radius.store';
 import { Store as SemanticStore} from '../sections/semantic/store/semantic.store';
 import { Store as CssOverridesStore} from '../sections/css-overrides/store/css-overrides.store';
+import { Store as UiComponentStore} from '../sections/ui-component/store/ui-component.store';
 import { signalStore, withState, withProps, withMethods, withComputed, withHooks } from '@ngrx/signals';
 import { updateState, withDevtools, withDevToolsStub } from '@angular-architects/ngrx-toolkit';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
@@ -22,6 +23,7 @@ export const Store = signalStore(
         let borderRadiusStore: InstanceType<typeof BorderRadiusStore> | null = null;
         let semanticStore: InstanceType<typeof SemanticStore> | null = null;
         let cssOverridesStore: InstanceType<typeof CssOverridesStore> | null = null;
+        let uiComponentStore: InstanceType<typeof UiComponentStore> | null = null;
 		return {
 			_injector: injector,
             _colorPaletteStore: (): InstanceType<typeof ColorPaletteStore> => {
@@ -40,6 +42,10 @@ export const Store = signalStore(
                 cssOverridesStore ??= runInInjectionContext(injector, () => inject(CssOverridesStore));
                 return cssOverridesStore;
             },
+            _uiComponentStore: (): InstanceType<typeof UiComponentStore> => {
+                uiComponentStore ??= runInInjectionContext(injector, () => inject(UiComponentStore));
+                return uiComponentStore;
+            },
 		}
 	}),
 	withMethods(store => {
@@ -50,6 +56,7 @@ export const Store = signalStore(
                 store._borderRadiusStore().initStore();
                 store._semanticStore().initStore();
                 store._cssOverridesStore().initStore();
+                store._uiComponentStore().initStore();
             },
             createPreset,
         }
@@ -68,6 +75,7 @@ export const Store = signalStore(
                 borderRadius: computed(() => store._borderRadiusStore().getBorderRadius()),
                 semantic: computed(() => store._semanticStore().getSemantic()),
                 cssOverrides: computed(() => store._cssOverridesStore().getCssOverrides()),
+                components: computed(() => store._uiComponentStore().getComponents()),
 			});
             // setTimeout(() => {
             //     store.createPreset();

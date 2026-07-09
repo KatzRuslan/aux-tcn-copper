@@ -27,5 +27,5 @@ export const routes: Routes = [
         path: 'style-guide',
         loadChildren: () => import('./features/style-guide/style-guide.routes').then(r => r.routes),
     },
-    { path: '', pathMatch: 'full', redirectTo: 'style-guide/define-semantic' },
+    { path: '', pathMatch: 'full', redirectTo: 'style-guide/component-settings/inputtext' },
 ];

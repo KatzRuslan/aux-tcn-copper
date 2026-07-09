@@ -1,7 +1,7 @@
 import { Signal } from '@angular/core';
-import { environment } from '@environments';
-import Aura from '@primeuix/themes/aura';
-import { definePreset, $dt } from '@primeuix/themes';
+// import { environment } from '@environments';
+// import Aura from '@primeuix/themes/aura';
+// import { definePreset, $dt } from '@primeuix/themes';
 import { Preset } from '@primeuix/themes/types';
 
 /**
@@ -19,6 +19,7 @@ interface IContext {
     readonly borderRadius: Signal<Record<string, string>>;
     readonly semantic: Signal<object>;
     readonly cssOverrides: Signal<string>;
+    readonly components: Signal<Record<string, object>>;
 }
 let ctx!: IContext;
 export function initStyleGuideHelperContext(context: IContext) {
@@ -41,13 +42,14 @@ export function createPreset() {
     // console.log((ctx.semantic() as any).primary);
     // console.log((ctx.semantic() as any));
     // console.log('* cssOverrides *********')
-    // console.log(ctx.cssOverrides());
-    const preset = {
+    // console.log();
+    const preset: Preset = {
         primitive: {
             ...ctx.borderRadius(),
             ...ctx.colorPalette(),
         },
         semantic: ctx.semantic(),
+        components: ctx.components(),
         css: ctx.cssOverrides(),
     };
     console.log('= preset =========================')

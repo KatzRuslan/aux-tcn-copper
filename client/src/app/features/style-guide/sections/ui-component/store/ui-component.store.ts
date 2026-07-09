@@ -1,20 +1,24 @@
 import { Injector, computed, runInInjectionContext, inject } from '@angular/core';
 import { signalStore, withState, withProps, withMethods, withComputed, withHooks } from '@ngrx/signals';
+import { Store as AppStore } from '@app-store';
 import { Store as StyleGuidStore } from '@style-guide-store';
 import { updateState, withDevtools, withDevToolsStub } from '@angular-architects/ngrx-toolkit';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { tapResponse } from '@ngrx/operators';
-import { initialBorderRadiusSlice } from './border-radius.slice';
-import { createBorderRadius, electronWriteBorderRadius, initBorderRadius, initBorderRadiusHelperContext } from './border-radius.helper';
-import { initBorderRadiusStore, putBorderRadius } from './border-radius.updates';
+import { initialUiComponentSlice } from './ui-component.slice';
+import { initUiComponentHelperContext, initUiComponent, createUiComponent } from './ui-component.helper';
+import { initUiComponentStore } from './ui-component.updates';
+import { vmodel } from './ui-component.vm-builder';
 import { environment } from '@environments';
 import { pipe, switchMap } from 'rxjs';
+// import {  } from '@interfaces';
 
 export const Store = signalStore(
 	{ providedIn: 'root' },
-	withState(initialBorderRadiusSlice),
+	withState(initialUiComponentSlice),
 	withProps(_ => {
         const injector = inject(Injector);
+		let appStore: InstanceType<typeof AppStore> | null = null;
 		let styleGuidStore: InstanceType<typeof StyleGuidStore> | null = null;
 		return {
 			_injector: injector,
@@ -22,17 +26,21 @@ export const Store = signalStore(
                 styleGuidStore ??= runInInjectionContext(injector, () => inject(StyleGuidStore));
                 return styleGuidStore;
             },
+            _appStore: (): InstanceType<typeof AppStore> => {
+                appStore ??= runInInjectionContext(injector, () => inject(AppStore));
+                return appStore;
+            },
 		}
 	}),
 	withMethods(store => {
-		//- const _test = () => updateState(store, '[BorderRadiusStore] Action', );
+		// const _test = () => updateState(store, '[UiComponentStore] Action', );
         return {
             initStore: rxMethod<void>(
                 pipe(
                     switchMap(_ =>
-                        initBorderRadius().pipe(
+                        initUiComponent().pipe(
                             tapResponse({
-                                next: ({ scheme, borderRadius }) => updateState(store, '[BorderRadiusStore] Init Store', initBorderRadiusStore(scheme, borderRadius)),
+                                next: ({ schemes, components }) => updateState(store, '[UiComponentStore] Init Store', initUiComponentStore(schemes, components)),
                                 error: err => console.error(err),
                             })
                         )
@@ -40,26 +48,21 @@ export const Store = signalStore(
                 ),
                 { injector: store._injector }
             ),
-            putBorderRadius: (borderRadius: Record<string, string>) => {
-                updateState(store, '[BorderRadiusStore] Put Custom Border Radius', putBorderRadius(borderRadius));
-                electronWriteBorderRadius();
-                store._styleGuidStore().createPreset();
-            }
         }
     }),
 	withComputed(store => {
         return {
-            getBorderRadius: computed(() => createBorderRadius())
-            // vmodel: computed(() => vmodel())
+            vmodel: computed(() => vmodel(store._appStore().aciveState(), store._appStore().activeName(), store.components(), store.schemes())),
+            getComponents: computed(() => createUiComponent()),
         }
     }),
 	withHooks({
 		onInit(store) {
-			initBorderRadiusHelperContext({
-				borderRadius: computed(() => store.borderRadius()),
-			});
+			initUiComponentHelperContext({
+                components: computed(() => store.components())
+			})
 		},
 	}),
-	// withDevtools('border-radius-store'),
-	environment.production ? withDevToolsStub('border-radius-store') : withDevtools('border-radius-store'),
+	// withDevtools('ui-component-store'),
+	environment.production ? withDevToolsStub('ui-component-store') : withDevtools('ui-component-store'),
 );

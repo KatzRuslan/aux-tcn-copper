@@ -1,0 +1,39 @@
+import { Component, Injector, input, linkedSignal, computed, untracked, runInInjectionContext, inject } from '@angular/core';
+import { form, FormField, required, validate, readonly } from '@angular/forms/signals';
+import { SharedModule } from '@shared-module';
+import { FormComponent } from '../form-component/form-component';
+import { fieldValidator } from '@helpers/utils.helpers';
+import { isEqual } from 'lodash';
+import { IFieldMeta, IGroupMeta } from '@interfaces';
+
+@Component({
+    selector: 'form-preset',
+    imports: [SharedModule, FormField, FormComponent],
+    templateUrl: './form-preset.html',
+    styleUrl: './form-preset.scss',
+    host: { class: 'flex align-items-start flex-wrap gap-3 w-full h-full overflow-auto' }
+})
+export class FormPreset {
+    readonly _injector = inject(Injector);
+    readonly vmodel = input.required<Record<string, string>>();
+    readonly scheme = input.required<IGroupMeta[]>(); // | IFieldMeta[]
+    readonly formModel = linkedSignal<Record<string, string>>(() => this.vmodel());
+    readonly formGroup = computed(() => {
+        const fields = this.scheme().flatMap(({ fields }) => fields);
+        return untracked(() => runInInjectionContext(this._injector, () =>
+            form<Record<string, string>>(this.formModel, (schema) => {
+                fields.forEach(({ path, label, type, isReadonly }) => { // nosonar (it will need to be repaired)
+                    required(schema[path], { message: `${label} is required` });
+                    fieldValidator(schema[path], label, type);
+                    if (isReadonly) {
+                        readonly(schema[path]);
+                    }
+                });
+                validate(schema, ({ value }) => { // nosonar (it will need to be repaired)
+                    return isEqual(value(), this.vmodel()) ? { kind: 'unchanged', message: 'Unchanged' } : null;
+                });
+            })
+        ));
+    });
+    readonly errors = computed(() => this.formGroup()().errorSummary().map(({ message }) => message).filter((message): message is string => !!message));
+}

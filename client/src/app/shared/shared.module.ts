@@ -14,13 +14,14 @@ import { ToggleSwitchModule } from 'primeng/toggleswitch';
 import { ButtonModule, ButtonDirective  } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { SidebarModule } from 'primeng/sidebar';
+import { TabsModule } from 'primeng/tabs';
+import { FieldsetModule } from 'primeng/fieldset';
+import { CardModule } from 'primeng/card';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { PopoverModule } from 'primeng/popover';
 import { TooltipModule } from 'primeng/tooltip';
 import { ToastModule } from 'primeng/toast';
-import { FieldsetModule } from 'primeng/fieldset';
-import { CardModule } from 'primeng/card';
 //
 import { PIcon } from '@primeicons/angular/p-icon';
 import { EllipsisV } from '@primeicons/angular/ellipsis-v';
@@ -53,9 +54,8 @@ const modules = [
     CheckboxModule, RadioButtonModule, ToggleSwitchModule,
     ButtonModule, ButtonDirective,
     TableModule,
-    SidebarModule,
+    SidebarModule, TabsModule, FieldsetModule, CardModule,
     ConfirmDialogModule, DynamicDialogModule, PopoverModule, TooltipModule, ToastModule,
-    FieldsetModule, CardModule,
     //
     PIcon,
     EllipsisV,

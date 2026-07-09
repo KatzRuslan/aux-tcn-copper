@@ -1,0 +1,44 @@
+@let overrides = formModel() ?? [];
+
+@if (overrides.length) {
+    @for (override of overrides; track $index) {
+        @let overrideIndex = $index;
+        @let selectorField = getSelecorField(overrideIndex);
+        <p-card class="m-1 surface-50">
+            <ng-template #title>
+                <div class="flex align-items-center gap-4">
+                    <p-iconfield>
+                        <input type="text" pInputText variant="filled" aria-label="Override selector" [formField]="selectorField" class="w-18rem" />
+                        <p-inputicon (click)="removeOverride(overrideIndex)" (keypress)="null">
+                            <svg data-p-icon="trash"></svg>
+                        </p-inputicon>
+                    </p-iconfield>
+                    <div class=""><span class="text-3xl font-bold">&#123;</span></div>
+                    <button pButton iconOnly rounded variant="outlined" size="small" (click)="addProperty(overrideIndex)"><svg data-p-icon="plus"></svg></button>
+                </div>
+            </ng-template>
+            <div class="px-4">
+                @for (property of override.properties; track $index) {
+                    @let propertyField = getPropertyField(overrideIndex, $index);
+                    <div class="flex align-items-center gap-2">
+                        <div class="flex align-items-center gap-3">
+                            <div class="flex align-items-center gap-1">
+                                <property-name [formField]="propertyField.name" class="w-16rem" />
+                                <span class="text-3xl font-bold pb-1">:</span>
+                            </div>
+                            <div class="">
+                                <property-value [formField]="propertyField.value" [propertyname]="propertyField.name().value()" [isDisabled]="propertyField.name().value().length==0" class="w-16rem" />
+                            </div>
+                        </div>
+                        <button pButton iconOnly rounded variant="outlined" aria-label="Trash" size="small" (click)="removeProperty(overrideIndex, $index)"><svg data-p-icon="trash"></svg></button>
+                    </div>
+                }
+            </div>
+            <ng-template #footer>
+                <div class=""><span class="font-bold text-3xl">&#125;</span></div>
+            </ng-template>
+        </p-card>
+    }
+} @else {
+    <div class="p-2"><span class="">Css overrides is empty</span></div>
+}

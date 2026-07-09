@@ -1,0 +1,14 @@
+@for (fieldset of scheme(); track $index) {
+    <p-fieldset [legend]="fieldset.label" class="gap-2" [class]="fieldset.styleClass" styleClass="">
+        <div class="flex gap-3 w-full"
+            [class.flex-column]="fieldset.styleClass=='w-6'"
+            [class.column-gap-8]="fieldset.styleClass=='w-full'"
+            [class.flex-wrap]="fieldset.styleClass=='w-full'">
+            @for (field of fieldset.fields; track $index) {
+                @if (field.isVisible) {
+                    <form-component [formField]="formGroup()[field.path]" [field]="field" source="semantic" />
+                }
+            }
+        </div>
+    </p-fieldset>
+}
