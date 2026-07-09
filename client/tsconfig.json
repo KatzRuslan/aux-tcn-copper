@@ -26,8 +26,8 @@
             "@seed": ["./src/app/shared/seed-data/index.ts"],
             "@app-store": ["./src/app/store/app.store.ts"],
             "@app-helper": ["./src/app/store/app.helper.ts"],
-            // "@settings-store": ["./src/app/redux/settings-store/settings-store.store.ts"],
-            // "@settings-helper": ["./src/app/redux/settings-store/settings-store.helper.ts"],
+            "@settings-store": ["./src/app/features/settings/store/settings.store.ts"],
+            "@settings-helper": ["./src/app/features/settings/store/settings-store.helper.ts"],
             // "@templates-right": ["./src/app/features/templates/templates-right/templates-right.ts"]
             "@style-guide-store": ["./src/app/features/style-guide/store/style-guide.store.ts"],
             "@header-color-palette-right": ["./src/app/features/style-guide/sections/color-palette/header-right/header-right.ts"]

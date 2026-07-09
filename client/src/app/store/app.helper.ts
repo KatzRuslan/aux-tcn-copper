@@ -85,3 +85,11 @@ export function runElectronCommand(command: string, params?: any): Observable<an
         }
     });
 }
+export function changeThemeMode(isDark: boolean) {
+    const html: HTMLHtmlElement = document.querySelector('html')!;
+    if (isDark) {
+        html.classList.add('dark');
+    } else {
+        html.classList.remove('dark');
+    }
+}

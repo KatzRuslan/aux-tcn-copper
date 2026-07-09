@@ -48,25 +48,4 @@ export interface IGroupMeta {
     styleClass: string;
     fields: IFieldMeta[];
 }
-export interface IConfigurations {
-    readonly settings: {
-        readonly colorIdenifier: {
-            readonly skeleton: string;
-            readonly implant: string;
-            readonly measurement: string;
-            readonly treated: string;
-            readonly contralateral: string;
-        };
-        readonly textFramingSpaces: {
-            readonly xspace: number;
-            readonly yspace: number;
-        };
-        readonly tokenUri: string;
-    };
-    readonly colorPalette: {
-        readonly steps: number[];
-        readonly names: string[];
-    }
-    readonly borderRadius: IFieldMeta[];
-    readonly semantic: IGroupMeta[];
-}
+

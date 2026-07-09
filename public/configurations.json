@@ -1,16 +1,15 @@
 {
-    "settings": {
-        "colorIdenifier": {
-            "skeleton": "#1d1d1b",
-            "implant": "#4dc7ff",
-            "measurement": "#cd4a9b",
-            "treated": "#00ff6d",
-            "contralateral": "#148282"
-        },
-        "textFramingSpaces": {
-            "xspace": 5,
-            "yspace": -2
-        },
-        "tokenUri": "http://localhost:5011/auth"
-    }
+  "colorIdenifier": {
+    "skeleton": "#1d1d1b",
+    "implant": "#4dc7ff",
+    "measurement": "#cd4a9b",
+    "treated": "#00ff6d",
+    "contralateral": "#148282"
+  },
+  "textFramingSpaces": {
+    "xspace": 5,
+    "yspace": -2
+  },
+  "tokenUri": "http://localhost:5011/auth",
+  "darkMode": false
 }

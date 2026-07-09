@@ -127,7 +127,7 @@ function writeData({ target, data, reload }) {
 }
 electron_1.ipcMain.handle('run-command', async (event, payload) => {
     const { command, args } = payload;
-    console.log(args);
+    // console.log(args)
     let result;
     switch (command) {
         // case 'save-data':

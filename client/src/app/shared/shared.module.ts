@@ -32,10 +32,12 @@ import { ChevronDown } from '@primeicons/angular/chevron-down';
 import { CircleFill } from '@primeicons/angular/circle-fill';
 import { Copy } from '@primeicons/angular/copy';
 import { History } from '@primeicons/angular/history';
+import { Moon } from '@primeicons/angular/moon';
 import { Pencil } from '@primeicons/angular/pencil';
 import { Plus } from '@primeicons/angular/plus';
 import { Refresh } from '@primeicons/angular/refresh';
 import { Search } from '@primeicons/angular/search';
+import { Sun } from '@primeicons/angular/sun';
 import { Times } from '@primeicons/angular/times';
 import { Trash } from '@primeicons/angular/trash';
 import { Undo } from '@primeicons/angular/undo';
@@ -66,10 +68,12 @@ const modules = [
     CircleFill,
     Copy,
     History,
+    Moon,
     Pencil,
     Plus,
     Refresh,
     Search,
+    Sun,
     Times,
     Trash,
     Undo,

@@ -2,12 +2,12 @@ import { HttpEvent, HttpHandlerFn, HttpRequest } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { ActivatedRouteSnapshot, ResolveFn } from '@angular/router';
 import { Store as AppStore } from '@app-store';
-// import { Store as SettingsStore } from '@settings-store';
+import { Store as SettingsStore } from '@settings-store';
 import { Store as StyleGuidStore } from '@style-guide-store';
 import { Observable } from 'rxjs';
 import { environment } from '@environments';
 import { COMPONENT_ITEMS } from '@seed';
-import { IConfigurations } from '@interfaces';
+import { ICommonSettings } from '@interfaces';
 
 declare global {
     var runElectronCommand: <T>(command: string, args: object) => Promise<T>;
@@ -28,9 +28,9 @@ function initialize() {
 }
 
 export async function load() {
-    const appStore = inject(AppStore);
+    // const appStore = inject(AppStore);
+    const settingsStore = inject(SettingsStore);
     const styleGuidStore = inject(StyleGuidStore);
-    // const settingsStore = inject(SettingsStore);
     // const config = await (globalThis as any).electronAPI.getConfig();
     // if (config.tokenUri) {
     //     settingsStore.putTokenUri(config.tokenUri);
@@ -46,8 +46,9 @@ export async function load() {
     // appStore.putAuthorization(jwt);
     // console.log('*')
     initialize();
-    const configurations = await globalThis.runElectronCommand<IConfigurations>('read-data', {target: 'configurations'});
-    // console.log(configurations)
+    const configurations = await globalThis.runElectronCommand<ICommonSettings>('read-data', {target: 'configurations'});
+    //
+    settingsStore.initStore(configurations);
     styleGuidStore.initStore();
     return true;
 }

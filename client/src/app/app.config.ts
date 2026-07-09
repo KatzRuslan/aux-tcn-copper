@@ -24,7 +24,7 @@ export const appConfig: ApplicationConfig = {
                 // preset: Aura,
                 preset: definePreset(Aura, preset),
                 options: {
-                    darkModeSelector: '.dark-none' //
+                    darkModeSelector: '.dark'
                 }
             },
             license: `${environment.primeNgLicenseKey}`

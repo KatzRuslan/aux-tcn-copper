@@ -96,7 +96,7 @@ function writeData({ target, data, reload }: { target: string; data: any; reload
 }
 ipcMain.handle('run-command', async (event, payload: { command: string; args?: any }) => {
     const { command, args } = payload;
-    console.log(args)
+    // console.log(args)
     let result: any;
     switch (command) {
         // case 'save-data':
