@@ -41,6 +41,9 @@ export const Store = signalStore(
                 ),
                 { injector: store._injector }
             ),
+            putSemantic: (semantic: Record<string, string>) => {
+                console.log(semantic);
+            }
         }
     }),
 	withComputed(store => {

@@ -1,17 +1,17 @@
 import { Component, Injector, input, linkedSignal, computed, untracked, runInInjectionContext, inject } from '@angular/core';
-import { form, FormField, required, validate, readonly } from '@angular/forms/signals';
+import { form, FormField, required, readonly } from '@angular/forms/signals';
 import { SharedModule } from '@shared-module';
 import { FormComponent } from '../form-component/form-component';
 import { fieldValidator } from '@helpers/utils.helpers';
 import { isEqual } from 'lodash';
-import { IFieldMeta, IGroupMeta } from '@interfaces';
+import { IGroupMeta } from '@interfaces';
 
 @Component({
     selector: 'form-preset',
     imports: [SharedModule, FormField, FormComponent],
     templateUrl: './form-preset.html',
     styleUrl: './form-preset.scss',
-    host: { class: 'flex align-items-start flex-wrap gap-3 w-full h-full overflow-auto' }
+    host: { class: 'flex align-items-start align-content-start flex-wrap gap-3 w-full h-full overflow-auto' }
 })
 export class FormPreset {
     readonly _injector = inject(Injector);
@@ -29,11 +29,13 @@ export class FormPreset {
                         readonly(schema[path]);
                     }
                 });
-                validate(schema, ({ value }) => { // nosonar (it will need to be repaired)
-                    return isEqual(value(), this.vmodel()) ? { kind: 'unchanged', message: 'Unchanged' } : null;
-                });
             })
         ));
     });
+    readonly invalid = computed(() => this.formGroup()().invalid());
+    readonly unchanged = computed(() => isEqual(this.formGroup()().value(), this.vmodel()));
     readonly errors = computed(() => this.formGroup()().errorSummary().map(({ message }) => message).filter((message): message is string => !!message));
+    getValue() {
+        return this.formGroup()().value();
+    }
 }

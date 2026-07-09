@@ -29,7 +29,7 @@ export function initUiComponent() {
         globalThis.runElectronCommand<IUiComponentSet[]>('read-data', { target: 'data/components.data' }),
     ])).pipe(map(([ schemes, components ]) => ({ schemes, components })));
 }
-export function electronWriteBorderRadius() {
+export function electronWriteUiComponent() {
     runElectronCommand('write-data', { target: 'data/components.data', data: ctx.components(), reload: false });
 }
 export function createUiComponent() {

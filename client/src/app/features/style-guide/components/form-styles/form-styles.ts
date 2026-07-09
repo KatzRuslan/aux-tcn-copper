@@ -1,5 +1,5 @@
 import { Component, ElementRef, input, computed, linkedSignal, inject } from '@angular/core';
-import { form, FormField, required, validate, applyEach } from '@angular/forms/signals';
+import { form, FormField, required, applyEach } from '@angular/forms/signals';
 import { ICssOverrideItem } from '@interfaces';
 import { SharedModule } from '@shared-module';
 import { PropertyName } from './property-name/property-name';
@@ -21,7 +21,6 @@ export class FormStyles {
     readonly vmodel = input.required<ICssOverrideItem[]>();
     readonly formModel = linkedSignal(() => this.vmodel());
     readonly formGroup = form<ICssOverrideItem[]>(this.formModel, (schema) => {
-        validate(schema, ({ value }) => isEqual(value(), this.vmodel()) ? { kind: 'unchanged', message: 'Unchanged' } : undefined);
         applyEach(schema, (override) => {
             required(override.selector, { message: 'Selector is required' });
             applyEach(override.properties, (property) => {
@@ -67,5 +66,10 @@ export class FormStyles {
         if (this.formModel().at(overrideIndex)!.properties.length === 0) {
             this.removeOverride(overrideIndex);
         }
+    }
+    readonly invalid = computed(() => this.formGroup().invalid());
+    readonly unchanged = computed(() => isEqual(this.formGroup().value(), this.vmodel()));
+    getValue() {
+        return this.formGroup().value();
     }
 }

@@ -1,4 +1,4 @@
-import { Component, signal, computed, inject, viewChild } from '@angular/core';
+import { Component, signal, computed, viewChild, inject } from '@angular/core';
 import { SharedModule } from '@shared-module';
 import { Store } from './store/ui-component.store';
 import { FormPreset } from '../../components/form-preset/form-preset';
@@ -19,21 +19,19 @@ export default class UiComponent {
     readonly formStyles = viewChild(FormStyles);
     readonly presetErrors = computed(() => this.formPreset()!.errors());
     readonly stylesErrors = computed(() => this.formStyles()!.errors());
+    readonly invalid = computed(() => this.formPreset()!.invalid() || this.formStyles()!.invalid() || (this.formPreset()!.unchanged() && this.formStyles()!.unchanged()));
     readonly errors = computed<string[]>(() => {
         const errors: string[] = [];
-        for (const error of [...this.presetErrors(), ...this.stylesErrors()]) {
-            if (!errors.includes(error)) {
-                errors.push(error);
-            }
+        if (this.formPreset()!.unchanged() && this.formStyles()!.unchanged()) {
+            errors.push('Unchanged')
         }
+        errors.push(...this.presetErrors(), ...this.stylesErrors())
         return errors;
     });
     addOverride() {
         this.formStyles()!.addOverride();
     }
-    constructor() {
-        setTimeout(() => {
-            console.log(this.store.vmodel())
-        }, 860);
+    onSubmit() {
+        this.store.putUiComponent(this.vmodel().name, this.formPreset()!.getValue(), this.formStyles()!.getValue());
     }
 }
