@@ -5,8 +5,8 @@ import { updateState, withDevtools, withDevToolsStub } from '@angular-architects
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { tapResponse } from '@ngrx/operators';
 import { initialSemanticSlice } from './semantic.slice';
-import { initSemanticHelperContext, initSemantis, createSemantic } from './semantic.helper';
-import { initSemanticStore } from './semantic.updates';
+import { initSemanticHelperContext, initSemantis, createSemantic, electronWriteSemantic } from './semantic.helper';
+import { initSemanticStore, putSemantic } from './semantic.updates';
 import { vmodel } from './semantic.vm-builder';
 import { environment } from '@environments';
 import { pipe, switchMap } from 'rxjs';
@@ -42,7 +42,9 @@ export const Store = signalStore(
                 { injector: store._injector }
             ),
             putSemantic: (semantic: Record<string, string>) => {
-                console.log(semantic);
+                updateState(store, '[SemanticStore] Put Semantic', putSemantic(semantic));
+                electronWriteSemantic();
+                store._styleGuidStore().createPreset();
             }
         }
     }),

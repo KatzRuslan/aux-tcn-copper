@@ -30,6 +30,9 @@ export function initSemantis() {
         globalThis.runElectronCommand<Record<string, string>>('read-data', { target: 'data/semantic.data' }),
     ])).pipe(map(([ scheme, semantic ]) => ({ scheme, semantic })));
 }
+export function electronWriteSemantic() {
+    runElectronCommand('write-data', { target: 'data/semantic.data', data: ctx.semantic(), reload: false });
+}
 export function createSemantic() {
     const flaten = { ...ctx.semantic() };
     const primary = ctx.colorSteps()

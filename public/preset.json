@@ -15,8 +15,20 @@
     }
   },
   "semantic": {
+    "focusRing": {
+      "width": "0.0625rem",
+      "offset": "0.125rem"
+    },
     "surface": {
       "1000": "#000000"
+    },
+    "list": {
+      "gap": "0.125rem"
+    },
+    "navigation": {
+      "list": {
+        "gap": "0.125rem"
+      }
     }
   },
   "components": {},
