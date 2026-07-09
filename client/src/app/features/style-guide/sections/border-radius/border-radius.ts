@@ -1,7 +1,7 @@
 import { Component, linkedSignal, computed, inject } from '@angular/core';
 import { form, FormField, required, validate } from '@angular/forms/signals';
 import { SharedModule } from '@shared-module';
-import { FormComponent } from '@shared-components/form-component/form-component';
+import { FormComponent } from '../../components/form-component/form-component';
 import { Store } from './store/border-radius.store';
 import { fieldValidator } from '@helpers/utils.helpers';
 import { isEqual } from 'lodash';

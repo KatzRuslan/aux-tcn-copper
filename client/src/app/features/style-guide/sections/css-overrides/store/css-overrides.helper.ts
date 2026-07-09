@@ -33,7 +33,6 @@ export function getStyleCssOverrides(overrides: ICssOverrideItem[]) {
         .map(({ selector, properties }) => ({ selector, properties: properties.map(({ name, value }) => `${name}: ${value};`).join(' ') }))
         .map(({ selector, properties }) => `${selector} { ${properties} }`)
         .join(' ');
-    return '';
 }
 function getColorCssOverrides() {
     const colors = ctx.palettes().filter(({ custom }) => custom).flatMap(({ name, colors }) => colors.map(({ step, token, color }) => ({ name, step, token, color })));
