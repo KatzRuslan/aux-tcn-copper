@@ -5,3 +5,6 @@ import { IStyleGuideSlice } from './style-guide.slice';
 export function initStyleGuideStore(): PartialStateUpdater<IStyleGuideSlice> {
 	return _ => ({ });
 };
+export function putShowDrawer(showDrawer: boolean): PartialStateUpdater<IStyleGuideSlice> {
+	return _ => ({ showDrawer });
+};

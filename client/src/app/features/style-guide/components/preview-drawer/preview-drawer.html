@@ -1,1 +1,20 @@
-<p>preview-drawer works!</p>
+@let visible = store.showDrawer();
+<p-drawer [visible]="visible" styleClass="min-w-20rem" (onHide)="store.showDrawer()?store.toggleDrawer():null">
+    @switch (store.active()) {
+        @case ('aaa') {
+
+        }
+        @default {
+            <ng-container [ngTemplateOutlet]="emptyDrawer"></ng-container>
+        }
+    }
+    <!--  -->
+    <ng-template #emptyDrawer>
+        <ng-template #header>
+            <div class="flex items-center gap-2">
+                <span class="font-bold">Amy Elsner</span>
+            </div>
+        </ng-template>
+        <p>A slide-in panel from the edge of the screen for contextual content.</p>
+    </ng-template>
+</p-drawer>

@@ -1,1 +1,7 @@
 <conductor />
+@let drawSeverity = store.showDrawer() ? 'contrast' : 'secondary';
+<button pButton iconOnly rounded raised aria-label="Toggle Drawer"
+    [severity]="drawSeverity"
+    (click)="store.toggleDrawer()">
+    <svg data-p-icon="bars"></svg>
+</button>

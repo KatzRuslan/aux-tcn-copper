@@ -3,13 +3,14 @@ import { SharedModule } from '@shared-module';
 import { Store } from './store/ui-component.store';
 import { FormPreset } from '../../components/form-preset/form-preset';
 import { FormStyles } from '../../components/form-styles/form-styles';
+import { PreviewDrawer } from '../../components/preview-drawer/preview-drawer';
 
 @Component({
     selector: 'ui-component',
-    imports: [SharedModule, FormPreset, FormStyles],
+    imports: [SharedModule, FormPreset, FormStyles, PreviewDrawer],
     templateUrl: './ui-component.html',
     styleUrl: './ui-component.scss',
-    host: { class: 'flex flex-column gap-4 pt-0 px-1 pb-3 w-full h-full overflow-hidden' },
+    host: { class: 'flex flex-column gap-4 px-1 pb-3 w-full h-full overflow-hidden' },
 })
 export default class UiComponent {
     readonly store = inject(Store);

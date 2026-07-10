@@ -1,4 +1,5 @@
-import { Injector, computed, runInInjectionContext, inject } from '@angular/core';
+import { Injector, computed, runInInjectionContext, inject, effect, untracked } from '@angular/core';
+import { Store as AppStore} from '@app-store';
 import { Store as ColorPaletteStore} from '../sections/color-palette/store/color-palette.store';
 import { Store as BorderRadiusStore} from '../sections/border-radius/store/border-radius.store';
 import { Store as SemanticStore} from '../sections/semantic/store/semantic.store';
@@ -10,7 +11,7 @@ import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { tapResponse } from '@ngrx/operators';
 import { initialStyleGuideSlice } from './style-guide.slice';
 import { createPreset, initStyleGuideHelperContext } from './style-guide.helper';
-import { initStyleGuideStore } from './style-guide.updates';
+import { initStyleGuideStore, putShowDrawer } from './style-guide.updates';
 import { vmodel } from './style-guide.vm-builder';
 import { environment } from '@environments';
 
@@ -19,6 +20,7 @@ export const Store = signalStore(
 	withState(initialStyleGuideSlice),
 	withProps(_ => {
         const injector = inject(Injector);
+        let appStore: InstanceType<typeof AppStore> | null = null;
         let colorPaletteStore: InstanceType<typeof ColorPaletteStore> | null = null;
         let borderRadiusStore: InstanceType<typeof BorderRadiusStore> | null = null;
         let semanticStore: InstanceType<typeof SemanticStore> | null = null;
@@ -26,6 +28,10 @@ export const Store = signalStore(
         let uiComponentStore: InstanceType<typeof UiComponentStore> | null = null;
 		return {
 			_injector: injector,
+            _appStore: (): InstanceType<typeof AppStore> => {
+                appStore ??= runInInjectionContext(injector, () => inject(AppStore));
+                return appStore;
+            },
             _colorPaletteStore: (): InstanceType<typeof ColorPaletteStore> => {
                 colorPaletteStore ??= runInInjectionContext(injector, () => inject(ColorPaletteStore));
                 return colorPaletteStore;
@@ -46,6 +52,12 @@ export const Store = signalStore(
                 uiComponentStore ??= runInInjectionContext(injector, () => inject(UiComponentStore));
                 return uiComponentStore;
             },
+            _active: computed(() => {
+                const state = appStore?.aciveState() ?? '';
+                console.log(state)
+                console.log('***********')
+                return 'aa'
+            })
 		}
 	}),
 	withMethods(store => {
@@ -58,13 +70,29 @@ export const Store = signalStore(
                 store._cssOverridesStore().initStore();
                 store._uiComponentStore().initStore();
             },
+            toggleDrawer: () => updateState(store, '[StyleGuideStore] Put ShowDrawer', putShowDrawer(!store.showDrawer())),
             createPreset,
         }
     }),
 	withComputed(store => {
+        const active = computed(() => {
+            const state = store._appStore().aciveState() ?? '';
+            if (state === 'define-semantic') {
+                return 'define-semantic';
+            }
+            if (state !== 'component-settings') {
+                return '';
+            }
+            return store._appStore().activeName() ?? '';
+        });
         return {
+            active,
             colorSteps: computed(() => store._colorPaletteStore().steps()),
             palettes: computed(() => store._colorPaletteStore().palettes()),
+            drawer: computed(() => {
+                console.log(active())
+                return false
+            }),
         }
     }),
 	withHooks({
@@ -76,9 +104,14 @@ export const Store = signalStore(
                 cssOverrides: computed(() => store._cssOverridesStore().getCssOverrides()),
                 components: computed(() => store._uiComponentStore().getComponents()),
 			});
-            // setTimeout(() => {
-            //     store.createPreset();
-            // }, 860);
+            effect(() => {
+                store.active(); // триггер — смена активного раздела
+                untracked(() => {
+                    if (store.showDrawer()) {
+                        updateState(store, '[StyleGuideStore] Put ShowDrawer', putShowDrawer(false));
+                    }
+                });
+            });
 		},
 	}),
 	// withDevtools('style-guide-store'),

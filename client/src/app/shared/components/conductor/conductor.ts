@@ -12,7 +12,7 @@ import { DialogService } from 'primeng/dynamicdialog';
     templateUrl: './conductor.html',
     styleUrl: './conductor.scss',
     host: {
-        class: 'flex justify-content-center align-items-center gap-3 p-3 pb-2',
+        class: 'flex justify-content-center align-items-center gap-3',
         '(document:keydown.control.k)': 'openSearcher()',
         '(document:keydown.meta.k)': 'openSearcher()',
     },

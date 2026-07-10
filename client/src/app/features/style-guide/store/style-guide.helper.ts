@@ -56,3 +56,13 @@ export function createPreset() {
     console.log(preset)
     electronWritePreset(preset);
 }
+export function getDrawer(selector: string) {
+    return {
+        header: 'Drawer Header',
+        body: `
+@let value1="Value1";
+
+<input pInputText [value]="value" />
+        `,
+    }
+}

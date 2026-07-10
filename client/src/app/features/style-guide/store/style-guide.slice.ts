@@ -1,4 +1,8 @@
 import {  } from '@interfaces';
-export interface IStyleGuideSlice {};
+export interface IStyleGuideSlice {
+    readonly showDrawer: boolean
+};
 
-export const initialStyleGuideSlice: IStyleGuideSlice = {};
+export const initialStyleGuideSlice: IStyleGuideSlice = {
+    showDrawer: false,
+};
