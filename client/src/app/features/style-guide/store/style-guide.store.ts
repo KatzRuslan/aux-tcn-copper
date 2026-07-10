@@ -10,7 +10,7 @@ import { updateState, withDevtools, withDevToolsStub } from '@angular-architects
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { tapResponse } from '@ngrx/operators';
 import { initialStyleGuideSlice } from './style-guide.slice';
-import { createPreset, getDrawer, initStyleGuideHelperContext } from './style-guide.helper';
+import { createPreset, initStyleGuideHelperContext } from './style-guide.helper';
 import { initStyleGuideStore, putShowDrawer } from './style-guide.updates';
 import { vmodel } from './style-guide.vm-builder';
 import { environment } from '@environments';
@@ -89,7 +89,6 @@ export const Store = signalStore(
             active,
             colorSteps: computed(() => store._colorPaletteStore().steps()),
             palettes: computed(() => store._colorPaletteStore().palettes()),
-            drawer: computed(() => getDrawer(active())),
         }
     }),
 	withHooks({

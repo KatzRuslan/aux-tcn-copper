@@ -1,13 +1,13 @@
 import { Component, Injector, signal, inject, computed, linkedSignal, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { COMPONENT_ITEMS } from '@seed';
-import { SharedModule } from '@shared-module';
+import { SharedCoreModule } from '@shared-core-module';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { IComponentItem } from '@interfaces';
 
 @Component({
     selector: 'searher',
-    imports: [SharedModule, RouterLink],
+    imports: [SharedCoreModule, RouterLink],
     templateUrl: './searher.html',
     styleUrl: './searher.scss',
     host: { class: 'flex flex-column w-34rem h-28rem overflow-hidden' },

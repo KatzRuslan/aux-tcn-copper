@@ -1,6 +1,6 @@
 import { Component, OnInit, Injector, effect, inject, signal, untracked } from '@angular/core';
 import { Router } from '@angular/router';
-import { SharedModule } from '@shared-module';
+import { SharedCoreModule } from '@shared-core-module';
 import { COMPONENT_ITEMS } from '@seed';
 import { IComponentItem, INavigationItem } from '@interfaces';
 import { Store } from '@app-store';
@@ -9,7 +9,7 @@ import { Conductor } from '../conductor/conductor';
 @Component({
     selector: 'side-navigation',
     imports: [
-        SharedModule, Conductor,
+        SharedCoreModule, Conductor,
     ],
     templateUrl: './side-navigation.html',
     styleUrl: './side-navigation.scss',

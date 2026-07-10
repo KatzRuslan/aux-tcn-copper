@@ -1,9 +1,10 @@
 @let visible = store.showDrawer();
-@let drawer = store.drawer();
-<p-drawer [visible]="visible" [header]="drawer.header" styleClass="min-w-20rem" (onHide)="store.showDrawer()?store.toggleDrawer():null">
-    <div class="flex w-full h-full overflow-auto" dir="rtl">
-        <div class="w-full" [class]="drawer.styleClass ?? defaultStyleClass" dir="ltr">
-            <ng-container *ngComponentOutlet="drawer.component" />
+@if (drawer(); as drawer) {
+    <p-drawer [visible]="visible" [header]="drawer.header" styleClass="min-w-20rem" (onHide)="store.showDrawer()?store.toggleDrawer():null">
+        <div class="flex w-full h-full overflow-auto" dir="rtl">
+            <div class="w-full" [class]="drawer.styleClass ?? defaultStyleClass" dir="ltr">
+                <ng-container *ngComponentOutlet="drawer.component" />
+            </div>
         </div>
-    </div>
-</p-drawer>
+    </p-drawer>
+}

@@ -552,7 +552,7 @@ export class CarouselDrawer {
         <div class="px-2"><span class="">Basic</span></div>
         <!-- $any: в primeng 22.0.4 options ошибочно типизирован как string | string[] -->
         <p-cascadeselect [(ngModel)]="selectedCity" [options]="$any(countries)" optionLabel="cname" optionGroupLabel="name"
-            [optionGroupChildren]="['states', 'cities']" placeholder="Select a City" class="w-full" styleClass="w-full" />
+            [optionGroupChildren]="['states', 'cities']" placeholder="Select a City" class="w-full" styleClass="w-full" appendTo="body" />
     </div>
     `,
     host: { class: 'flex flex-column gap-3 w-full' }
@@ -609,53 +609,61 @@ export class CascadeSelectDrawer {
 interface CheckboxCategory {
     name: string;
     key: string;
+    isReadonly: boolean;
+    isDisabled: boolean;
+    isInvalid: boolean;
 }
 @Component({
     selector: 'checkbox-drawer',
     imports: [SharedModule],
     template: `
     <div class="w-full">
-        <div class="px-2"><span class="">Basic</span></div>
-        <div class="flex justify-content-center">
-            <p-checkbox [(ngModel)]="checked" [binary]="true" />
-        </div>
-    </div>
-    <div class="w-full">
-        <div class="px-2"><span class="">Group</span></div>
-        <div class="flex flex-wrap justify-content-center gap-3">
-            @for (ingredient of ingredients; track ingredient) {
-                <div class="flex align-items-center">
-                    <p-checkbox [inputId]="'ingredient-' + ingredient" name="pizza" [value]="ingredient" [(ngModel)]="pizza" />
-                    <label [for]="'ingredient-' + ingredient" class="ml-2">{{ ingredient }}</label>
-                </div>
-            }
-        </div>
-    </div>
-    <div class="w-full">
-        <div class="px-2"><span class="">Dynamic</span></div>
-        <div class="flex flex-column gap-3">
+        <div class="flex flex-column gap-3 mb-4">
             @for (category of categories; track category.key) {
                 <div class="flex align-items-center">
-                    <p-checkbox [inputId]="category.key" name="group" [value]="category" [(ngModel)]="selectedCategories" />
-                    <label [for]="category.key" class="ml-2">{{ category.name }}</label>
+                    <p-checkbox
+                        [inputId]="category.key" name="group" [value]="category" [(ngModel)]="selectedCategories"
+                        [invalid]="category.isInvalid"
+                        [readonly]="category.isReadonly"
+                        [disabled]="category.isDisabled" />
+                    <label [for]="category.key" class="ml-2" [class.text-red-500]="category.isInvalid">{{ category.name }}</label>
                 </div>
             }
+        </div>
+    </div>
+    <div class="w-full">
+        <div class="px-2 pb-2"><span class="">Sizes</span></div>
+        <div class="flex gap-3">
+            <div class="flex align-items-center gap-2">
+                <p-checkbox [binary]="true" inputId="small-checkbox" size="small" />
+                <label pLabel for="small-checkbox" class="text-sm">Small</label>
+            </div>
+            <div class="flex align-items-center gap-2">
+                <p-checkbox [binary]="true" inputId="normal-checkbox" />
+                <label pLabel for="normal-checkbox" class="text-sm">Normal</label>
+            </div>
+            <div class="flex align-items-center gap-2">
+                <p-checkbox [binary]="true" inputId="large-checkbox" size="large" />
+                <label pLabel for="large-checkbox" class="text-sm">Large</label>
+            </div>
         </div>
     </div>
     `,
     host: { class: 'flex flex-column gap-3 w-full' }
 })
 export class CheckboxDrawer {
-    checked = false;
-    ingredients = ['Cheese', 'Mushroom', 'Pepper', 'Onion'];
-    pizza: string[] = [];
     categories: CheckboxCategory[] = [
-        { name: 'Accounting', key: 'A' },
-        { name: 'Marketing', key: 'M' },
-        { name: 'Production', key: 'P' },
-        { name: 'Research', key: 'R' },
+        { name: 'Accounting', key: 'A', isReadonly: false, isInvalid: false, isDisabled: false },
+        { name: 'Marketing', key: 'M', isReadonly: false, isInvalid: false, isDisabled: false },
+        { name: 'Production', key: 'P', isReadonly: false, isInvalid: false, isDisabled: false },
+        { name: 'Research', key: 'R', isReadonly: false, isInvalid: false, isDisabled: false },
+        { name: 'Readonly CheckBox', key: 'RO', isReadonly: true, isInvalid: false, isDisabled: false },
+        { name: 'Readonly CheckBox (Checked)', key: 'ROC', isReadonly: true, isInvalid: false, isDisabled: false },
+        { name: 'Disabled CheckBox', key: 'D', isReadonly: false, isInvalid: false, isDisabled: true },
+        { name: 'Disabled CheckBox (Checked)', key: 'DC', isReadonly: false, isInvalid: false, isDisabled: true },
+        { name: 'Invalid CheckBox', key: 'I', isReadonly: true, isInvalid: true, isDisabled: false },
     ];
-    selectedCategories: CheckboxCategory[] = [this.categories[1]];
+    selectedCategories: CheckboxCategory[] = [this.categories[1], this.categories[5], this.categories[7]];
 }
 
 @Component({
@@ -687,11 +695,97 @@ export class ChipDrawer {
 }
 
 @Component({
+    selector: 'inputcolor-drawer',
+    imports: [SharedModule],
+    template: `
+    <div class="w-full">
+        <p-inputcolor [(ngModel)]="color" [format]="activeFormat" class="max-w-xs mx-auto space-y-3">
+            <p-inputcolor-area class="mb-2">
+                <p-inputcolor-area-background />
+                <p-inputcolor-area-handle />
+            </p-inputcolor-area>
+            <div class="flex align-items-center gap-2">
+                <div class="flex flex-column gap-1 space-y-1 mr-1 w-full">
+                    <p-inputcolor-slider>
+                        <p-inputcolor-transparency-grid />
+                        <p-inputcolor-slider-track />
+                        <p-inputcolor-slider-handle />
+                    </p-inputcolor-slider>
+                    <p-inputcolor-slider channel="alpha">
+                        <p-inputcolor-transparency-grid />
+                        <p-inputcolor-slider-track />
+                        <p-inputcolor-slider-handle />
+                    </p-inputcolor-slider>
+                </div>
+                <p-inputcolor-swatch class="fix-size-2rem">
+                    <p-inputcolor-transparency-grid />
+                    <p-inputcolor-swatch-background />
+                </p-inputcolor-swatch>
+                <p-inputcolor-eyedropper [iconOnly]="true" [outlined]="true" severity="secondary" class="pointer-events-none">
+                    <svg data-p-icon="eye-dropper"></svg>
+                </p-inputcolor-eyedropper>
+            </div>
+        </p-inputcolor>
+    </div>
+    <div class="w-full">
+        <div class="px-2 pb-2"><span class=""></span></div>
+        <!--  -->
+    </div>
+    `,
+    host: { class: 'flex flex-column gap-3' },
+})
+export class ColorPickerDrawer {
+    color: string = '#276def';
+    format: string = 'hex';
+    formatOptions = [
+        { label: 'HEX', value: 'hex' },
+        { label: 'RGBA', value: 'rgba' },
+        { label: 'HSBA', value: 'hsba' },
+        { label: 'HSLA', value: 'hsla' },
+        { label: 'OKLCHA', value: 'oklcha' }
+    ];
+    get activeFormat(): any {
+        return this.format === 'hex' ? 'rgba' : this.format === 'oklcha' ? 'oklch' : this.format;  // nosonar (it will need to be repaired)
+    }
+}
+@Component({
+    selector: 'dialog-drawer',
+    imports: [SharedModule],
+    template: `
+    <div class="w-full">
+        <div class="p-component p-confirmdialog p-dialog static flex flex-column">
+            <span class="p-hidden-accessible p-hidden-focusable" tabindex="0" role="presentation" aria-hidden="true" data-p-hidden-accessible="true" data-p-hidden-focusable="true" data-pc-section="firstfocusableelement"></span>
+            <div class="p-resizable-handle" data-pc-section="resizehandle" style="z-index: 90;"></div>
+            <div class="p-dialog-header" data-pc-section="header">
+                <span class="p-dialog-title">Dialog Title</span>
+                <div class="p-dialog-header-actions">
+                    <button type="button" icononly="" class="p-ripple p-dialog-close-button p-button p-button-icon-only p-button-rounded p-button-secondary p-button-text p-component" tabindex="0">
+                        <svg data-p-icon="times"></svg>
+                    </button>
+                </div>
+            </div>
+            <div class="p-dialog-content h-8rem">
+                <i class="p-confirmdialog-icon"><svg data-p-icon="star" [size]="'var(--p-confirmdialog-icon-size)'"></svg></i>
+                <span class="p-confirmdialog-message">Are you sure that you want to proceed?</span>
+            </div>
+            <div class="p-dialog-footer" >
+                <button type="button" class="p-ripple p-confirmdialog-reject-button p-button p-button-secondary p-component">Cancel</button>
+                <button type="button" class="p-ripple p-confirmdialog-accept-button p-button p-component">Save</button>
+            </div>
+            <span class="p-hidden-accessible p-hidden-focusable" tabindex="0" role="presentation" aria-hidden="true" data-p-hidden-accessible="true" data-p-hidden-focusable="true" data-pc-section="lastfocusableelement"></span>
+        </div>
+    </div>
+    `,
+    host: { class: 'flex flex-column gap-3' },
+})
+export class DialogDrawer {
+}
+@Component({
     selector: 'test-drawer',
     imports: [SharedModule],
     template: `
     <div class="w-full">
-        <div class="px-2"><span class=""></span></div>
+        <div class="px-2 pb-2"><span class=""></span></div>
         <!--  -->
     </div>
     `,
@@ -712,7 +806,7 @@ export class InputTextDrawer {
 }
 
 /** Демо-контент drawer'а по имени компонента (COMPONENT_ITEMS.name). */
-interface IDrawerDemo {
+export interface IDrawerDemo {
     readonly header: string;
     readonly component: Type<unknown>;
     readonly styleClass?: string;
@@ -732,6 +826,9 @@ export const DRAWER_DEMOS: Record<string, IDrawerDemo> = {
     cascadeselect: { component: CascadeSelectDrawer, header: 'CascadeSelect', },
     checkbox: { component: CheckboxDrawer, header: 'Checkbox', },
     chip: { component: ChipDrawer, header: 'Chip', },
+    confirmdialog: { component: DialogDrawer, header: 'Confirm Dialog Drawer', styleClass: 'p-dialog-mask p-overlay-mask static p-2' },
+    dynamicdialog: { component: DialogDrawer, header: 'Dialog Drawer', styleClass: 'p-dialog-mask p-overlay-mask static p-2' },
+    inputcolor: { component: ColorPickerDrawer, header: 'InputColor', },
     //
     inputtext: { component: InputTextDrawer, header: 'Input Text', },
 };

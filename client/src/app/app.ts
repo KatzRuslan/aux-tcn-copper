@@ -2,12 +2,12 @@ import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { MainHeader } from '@shared-components/main-header/main-header';
 import { SideNavigation } from '@shared-components/side-navigation/side-navigation';
-import { SharedModule } from '@shared-module';
+import { SharedCoreModule } from '@shared-core-module';
 
 @Component({
     selector: 'app-root',
     imports: [
-        RouterOutlet, SharedModule,
+        RouterOutlet, SharedCoreModule,
         MainHeader, SideNavigation
     ],
     templateUrl: './app.html',

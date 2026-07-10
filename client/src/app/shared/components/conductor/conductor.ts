@@ -3,12 +3,12 @@ import { Store } from '@app-store';
 import { IComponentItem } from '@interfaces';
 import { COMPONENT_ITEMS } from '@seed';
 import { Searher } from '@shared-components/searher/searher';
-import { SharedModule } from '@shared-module';
+import { SharedCoreModule } from '@shared-core-module';
 import { DialogService } from 'primeng/dynamicdialog';
 
 @Component({
     selector: 'conductor',
-    imports: [SharedModule],
+    imports: [SharedCoreModule],
     templateUrl: './conductor.html',
     styleUrl: './conductor.scss',
     host: {

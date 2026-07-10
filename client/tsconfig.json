@@ -18,6 +18,7 @@
             "@tcn-preset": ["../public/preset.json"],
             "@environments": ["./src/environments/environment"],
             "@shared-module": ["./src/app/shared/shared.module.ts"],
+            "@shared-core-module": ["./src/app/shared/shared-core.module.ts"],
             "@helpers/*": ["./src/app/shared/helpers/*"],
             "@enums": ["./src/app/shared/enums/index.ts"],
             "@shared-components/*": ["./src/app/shared/components/*"],
