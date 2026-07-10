@@ -35,6 +35,7 @@ import { ToggleSwitchModule } from 'primeng/toggleswitch';
 import { TreeSelectModule } from 'primeng/treeselect';
 // Button
 import { ButtonModule } from 'primeng/button';
+import { ButtonGroupModule } from 'primeng/buttongroup';
 import { SpeedDialModule } from 'primeng/speeddial';
 import { SplitButtonModule } from 'primeng/splitbutton';
 // Data
@@ -508,6 +509,7 @@ const modules = [
     TreeSelectModule,
     // Button
     ButtonModule,
+    ButtonGroupModule,
     SpeedDialModule,
     SplitButtonModule,
     // Data

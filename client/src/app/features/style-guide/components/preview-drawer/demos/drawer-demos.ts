@@ -1,6 +1,8 @@
-import { Component, Type, computed, inject } from '@angular/core';
+import { Component, Type, signal, linkedSignal, computed, inject } from '@angular/core';
+import { MenuItem } from 'primeng/api';
 import { Store as AppStore } from '@app-store';
 import { SharedModule } from '@shared-module';
+import { ButtonVariant } from 'primeng/button';
 
 @Component({
     selector: 'empty-drawer',
@@ -242,6 +244,449 @@ export class AvatarDrawer {
 }
 
 @Component({
+    selector: 'badge-drawer',
+    imports: [SharedModule],
+    template: `
+    <div class="w-full">
+        <div class="px-2 pb-2"><span class="">Severity</span></div>
+        <div class="flex flex-wrap gap-2 px-2">
+            <p-badge value="2" />
+            <p-badge value="6" severity="secondary" />
+            <p-badge value="8" severity="success" />
+            <p-badge value="4" severity="info" />
+            <p-badge value="9" severity="warn" />
+            <p-badge value="3" severity="danger" />
+            <p-badge value="5" severity="contrast" />
+        </div>
+    </div>
+    <div class="w-full">
+        <div class="px-2 pb-2"><span class="">Size</span></div>
+        <div class="flex gap-2 px-2">
+            <p-badge value="8" badgeSize="xlarge" severity="success" />
+            <p-badge value="6" badgeSize="large" severity="warn" />
+            <p-badge value="4" severity="info" />
+            <p-badge value="2" badgeSize="small" />
+        </div>
+    </div>
+    <div class="w-full">
+        <div class="px-2 pb-2"><span class="">Overlay</span></div>
+        <div class="flex gap-3 px-2 pt-1">
+            <p-overlay-badge value="2">
+                <svg data-p-icon="bell" width="32" height="32"></svg>
+            </p-overlay-badge>
+            <p-overlay-badge value="4" severity="danger">
+                <svg data-p-icon="calendar" width="32" height="32"></svg>
+            </p-overlay-badge>
+            <p-overlay-badge severity="danger">
+                <svg data-p-icon="envelope" width="32" height="32"></svg>
+            </p-overlay-badge>
+        </div>
+    </div>
+    <div class="w-full">
+        <div class="px-2 pb-2"><span class="">Button</span></div>
+        <div class="flex justify-content-center gap-4 pb-2">
+            <p-button label="Notifications" badge="2" />
+            <p-button label="Inbox" badge="2" badgeSeverity="contrast" variant="outlined" />
+        </div>
+    </div>
+    `,
+    host: { class: 'flex flex-column gap-3 w-full' }
+})
+export class BadgeDrawer {
+}
+
+@Component({
+    selector: 'blockui-drawer',
+    imports: [SharedModule],
+    template: `
+    <div class="w-full">
+        <div class="flex gap-2 mb-3">
+            <p-button label="Block" severity="secondary" (onClick)="blockedPanel = true" />
+            <p-button label="Unblock" severity="secondary" (onClick)="blockedPanel = false" />
+        </div>
+        <p-blockui [target]="pnl" [blocked]="blockedPanel" />
+        <p-panel #pnl header="Header">
+            <p class="m-0 text-sm">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </p>
+        </p-panel>
+    </div>
+    `,
+    host: { class: 'flex flex-column gap-3 w-full' }
+})
+export class BlockUiDrawer {
+    blockedPanel = false;
+}
+
+@Component({
+    selector: 'breadcrumb-drawer',
+    imports: [SharedModule],
+    template: `
+    <div class="w-full">
+        <div class="px-2"><span class="">Basic</span></div>
+        <p-breadcrumb [model]="items" [home]="home" />
+    </div>
+    `,
+    host: { class: 'flex flex-column gap-3 w-full' }
+})
+export class BreadcrumbDrawer {
+    items: MenuItem[] = [{ label: 'Electronics' }, { label: 'Computer' }];
+    home: MenuItem = { label: 'Home' };
+}
+
+@Component({
+    selector: 'button-drawer',
+    imports: [SharedModule],
+    template: `
+    <div class="w-full">
+        <div class="flex align-items-center mb-2">
+            <div class="flex align-items-center gap-2 w-6rem cursor-pointer">
+                <p-checkbox [ngModel]="raised()" (ngModelChange)="raised.set(!raised())" class="" inputId="raised" [binary]="true" />
+                <label pLabel for="raised"><span class="capitalize">raised</span></label>
+            </div>
+            <div class="flex align-items-center gap-2 w-6rem cursor-pointer">
+                <p-checkbox [ngModel]="rounded()" (ngModelChange)="rounded.set(!rounded())" class="" inputId="rounded" [binary]="true" />
+                <label pLabel for="rounded"><span class="capitalize">rounded</span></label>
+            </div>
+            <div class="flex align-items-center gap-2 w-6rem cursor-pointer">
+                <p-checkbox [ngModel]="link()" (ngModelChange)="link.set(!link())" class="" inputId="link" [binary]="true" />
+                <label pLabel for="link"><span class="capitalize">link</span></label>
+            </div>
+        </div>
+        <div class="flex align-items-center mb-2">
+            <div class="flex align-items-center gap-2 w-6rem cursor-pointer">
+                <p-radiobutton [ngModel]="variant()" (ngModelChange)="variant.set(undefinedValue)" inputId="none" [value]="undefinedValue" />
+                <label pLabel for="none"><span class="capitalize">none</span></label>
+            </div>
+            <div class="flex align-items-center gap-2 w-6rem cursor-pointer">
+                <p-radiobutton [ngModel]="variant()" (ngModelChange)="variant.set('text')" inputId="text" value="text" />
+                <label pLabel for="text"><span class="capitalize">text</span></label>
+            </div>
+            <div class="flex align-items-center gap-2 w-6rem cursor-pointer">
+                <p-radiobutton [ngModel]="variant()" (ngModelChange)="variant.set('outlined')" inputId="outlined" value="outlined" />
+                <label pLabel for="outlined"><span class="capitalize">outlined</span></label>
+            </div>
+        </div>
+        <div class="flex align-items-center mb-4">
+            <div class="flex align-items-center gap-2 cursor-pointer">
+                <p-checkbox [ngModel]="isDisabeld()" (ngModelChange)="isDisabeld.set(!isDisabeld())" class="" inputId="isDisabeld" [binary]="true" />
+                <label pLabel for="isDisabeld"><span class="capitalize">Set as disabled</span></label>
+            </div>
+        </div>
+        <div class="flex flex-wrap justify-content-center gap-2 mb-3">
+            @for (button of buttons(); track $index) {
+                <button pButton [severity]="$any(button.severity)" class="w-6rem"
+                    [raised]="raised()"
+                    [rounded]="rounded()"
+                    [link]="link()"
+                    [variant]="variant()"
+                    [disabled]="isDisabeld()"
+                    >
+                    <svg [pIcon]="button.icon"></svg>
+                    <span class="capitalize">{{ button.label }}</span>
+                </button>
+            }
+        </div>
+        <div class="flex flex-wrap justify-content-center column-gap-5 row-gap-2">
+            @for (button of buttons(); track $index) {
+                <button pButton iconOnly  [severity]="$any(button.severity)" class=""
+                    [raised]="raised()"
+                    [rounded]="rounded()"
+                    [link]="link()"
+                    [variant]="variant()"
+                    [disabled]="isDisabeld()"
+                    >
+                    <svg [pIcon]="button.icon"></svg>
+                </button>
+            }
+        </div>
+    </div>
+    <div class="w-full mb-4">
+        <div class="px-2 pb-2"><span class="">Button Group</span></div>
+        <div class="flex justify-content-center">
+            <p-buttongroup>
+                <button pButton><svg data-p-icon="check"></svg> Save</button>
+                <button pButton><svg data-p-icon="trash"></svg> Delete</button>
+                <button pButton><svg data-p-icon="times"></svg> Cancel</button>
+            </p-buttongroup>
+        </div>
+    </div>
+    <div class="w-full mb-4">
+        <div class="px-2 pb-2"><span class="">Badge</span></div>
+        <div class="flex justify-content-center gap-2">
+            <button pButton>Emails <p-badge severity="secondary" shape="circle" value="2" /></button>
+            <button pButton variant="outlined"><svg data-p-icon="users"></svg> Messages <p-badge severity="contrast" shape="circle" value="2" /></button>
+            <p-overlay-badge>
+                <button pButton variant="outlined" iconOnly><svg data-p-icon="bell"></svg></button>
+                <p-badge severity="info" class="animate-pulse" />
+            </p-overlay-badge>
+        </div>
+    </div>
+    <div class="w-full mb-4">
+        <div class="px-2 pb-2"><span class="">Sizes</span></div>
+        <div class="flex justify-content-center gap-2">
+            <div class=""><button pButton size="small"><svg data-p-icon="check"></svg> Small</button></div>
+            <div class=""><button pButton><svg data-p-icon="check"></svg> Normal</button></div>
+            <div class=""><button pButton size="large"><svg data-p-icon="check"></svg> Large</button></div>
+        </div>
+    </div>
+    `,
+    host: { class: 'flex flex-column gap-3 w-full' }
+})
+export class ButtonDrawer {
+    readonly undefinedValue = undefined;
+    readonly raised = signal(false);
+    readonly rounded = signal(false);
+    readonly link = signal(false);
+    readonly variant = signal<ButtonVariant | undefined>(this.undefinedValue);
+    readonly isDisabeld = signal(false);
+    readonly buttons = signal([
+        { label: 'primary', severity: 'normal', icon: "check" },
+        { label: 'secondary', severity: 'secondary', icon: "check" },
+        { label: 'success', severity: 'success', icon: "check" },
+        { label: 'info', severity: 'info', icon: "check" },
+        { label: 'warn', severity: 'warn', icon: "check" },
+        { label: 'help', severity: 'help', icon: "check" },
+        { label: 'danger', severity: 'danger', icon: "check" },
+        { label: 'contrast', severity: 'contrast', icon: "check" },
+    ]);
+}
+
+@Component({
+    selector: 'card-drawer',
+    imports: [SharedModule],
+    template: `
+    <div class="w-full">
+        <div class="px-2"><span class="">Basic</span></div>
+        <p-card header="Simple Card">
+            <p class="m-0 text-sm">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt
+                quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!
+            </p>
+        </p-card>
+    </div>
+    <div class="w-full">
+        <div class="px-2"><span class="">Advanced</span></div>
+        <p-card class="overflow-hidden">
+            <ng-template #header>
+                <img alt="Card" class="w-full" src="https://primefaces.org/cdn/primeng/images/card-ng.jpg" />
+            </ng-template>
+            <ng-template #title> Advanced Card </ng-template>
+            <ng-template #subtitle> Card subtitle </ng-template>
+            <p class="m-0 text-sm">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt
+                quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!
+            </p>
+            <ng-template #footer>
+                <div class="flex gap-3 mt-1">
+                    <p-button label="Cancel" severity="secondary" variant="outlined" class="w-full" styleClass="w-full" />
+                    <p-button label="Save" class="w-full" styleClass="w-full" />
+                </div>
+            </ng-template>
+        </p-card>
+    </div>
+    `,
+    host: { class: 'flex flex-column gap-3 w-full' }
+})
+export class CardDrawer {
+}
+
+interface CarouselProduct {
+    name: string;
+    image: string;
+    price: number;
+    inventoryStatus: string;
+}
+@Component({
+    selector: 'carousel-drawer',
+    imports: [SharedModule],
+    template: `
+    <div class="w-full">
+        <div class="px-2"><span class="">Basic</span></div>
+        <p-carousel [value]="products" [numVisible]="1" [numScroll]="1" [circular]="true">
+            <ng-template let-product #item>
+                <div class="border-1 surface-border border-round m-2 p-3">
+                    <div class="mb-3">
+                        <img [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + product.image" [alt]="product.name" class="w-full border-round" />
+                    </div>
+                    <div class="mb-3 flex justify-content-between align-items-center">
+                        <span class="font-medium">{{ product.name }}</span>
+                        <p-tag [value]="product.inventoryStatus" [severity]="getSeverity(product.inventoryStatus)" />
+                    </div>
+                    <div class="flex justify-content-between align-items-center">
+                        <span class="font-semibold text-xl">{{ '$' + product.price }}</span>
+                        <span class="flex gap-2">
+                            <p-button severity="secondary" variant="outlined"><svg data-p-icon="heart"></svg></p-button>
+                            <p-button><svg data-p-icon="shopping-cart"></svg></p-button>
+                        </span>
+                    </div>
+                </div>
+            </ng-template>
+        </p-carousel>
+    </div>
+    `,
+    host: { class: 'flex flex-column gap-3 w-full' }
+})
+export class CarouselDrawer {
+    products: CarouselProduct[] = [
+        { name: 'Bamboo Watch', image: 'bamboo-watch.jpg', price: 65, inventoryStatus: 'INSTOCK' },
+        { name: 'Black Watch', image: 'black-watch.jpg', price: 72, inventoryStatus: 'OUTOFSTOCK' },
+        { name: 'Blue Band', image: 'blue-band.jpg', price: 79, inventoryStatus: 'LOWSTOCK' },
+        { name: 'Blue T-Shirt', image: 'blue-t-shirt.jpg', price: 29, inventoryStatus: 'INSTOCK' },
+    ];
+    getSeverity(status: string) {
+        switch (status) {
+            case 'OUTOFSTOCK': return 'danger';
+            case 'LOWSTOCK': return 'warn';
+            default: return 'success';
+        }
+    }
+}
+
+@Component({
+    selector: 'cascadeselect-drawer',
+    imports: [SharedModule],
+    template: `
+    <div class="w-full">
+        <div class="px-2"><span class="">Basic</span></div>
+        <!-- $any: в primeng 22.0.4 options ошибочно типизирован как string | string[] -->
+        <p-cascadeselect [(ngModel)]="selectedCity" [options]="$any(countries)" optionLabel="cname" optionGroupLabel="name"
+            [optionGroupChildren]="['states', 'cities']" placeholder="Select a City" class="w-full" styleClass="w-full" />
+    </div>
+    `,
+    host: { class: 'flex flex-column gap-3 w-full' }
+})
+export class CascadeSelectDrawer {
+    selectedCity: any;
+    countries = [
+        {
+            name: 'Australia',
+            code: 'AU',
+            states: [
+                {
+                    name: 'New South Wales',
+                    cities: [
+                        { cname: 'Sydney', code: 'A-SY' },
+                        { cname: 'Newcastle', code: 'A-NE' },
+                        { cname: 'Wollongong', code: 'A-WO' },
+                    ]
+                },
+                {
+                    name: 'Queensland',
+                    cities: [
+                        { cname: 'Brisbane', code: 'A-BR' },
+                        { cname: 'Townsville', code: 'A-TO' },
+                    ]
+                },
+            ]
+        },
+        {
+            name: 'United States',
+            code: 'US',
+            states: [
+                {
+                    name: 'California',
+                    cities: [
+                        { cname: 'Los Angeles', code: 'US-LA' },
+                        { cname: 'San Diego', code: 'US-SD' },
+                        { cname: 'San Francisco', code: 'US-SF' },
+                    ]
+                },
+                {
+                    name: 'Florida',
+                    cities: [
+                        { cname: 'Jacksonville', code: 'US-JA' },
+                        { cname: 'Miami', code: 'US-MI' },
+                        { cname: 'Orlando', code: 'US-OR' },
+                    ]
+                },
+            ]
+        },
+    ];
+}
+
+interface CheckboxCategory {
+    name: string;
+    key: string;
+}
+@Component({
+    selector: 'checkbox-drawer',
+    imports: [SharedModule],
+    template: `
+    <div class="w-full">
+        <div class="px-2"><span class="">Basic</span></div>
+        <div class="flex justify-content-center">
+            <p-checkbox [(ngModel)]="checked" [binary]="true" />
+        </div>
+    </div>
+    <div class="w-full">
+        <div class="px-2"><span class="">Group</span></div>
+        <div class="flex flex-wrap justify-content-center gap-3">
+            @for (ingredient of ingredients; track ingredient) {
+                <div class="flex align-items-center">
+                    <p-checkbox [inputId]="'ingredient-' + ingredient" name="pizza" [value]="ingredient" [(ngModel)]="pizza" />
+                    <label [for]="'ingredient-' + ingredient" class="ml-2">{{ ingredient }}</label>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="w-full">
+        <div class="px-2"><span class="">Dynamic</span></div>
+        <div class="flex flex-column gap-3">
+            @for (category of categories; track category.key) {
+                <div class="flex align-items-center">
+                    <p-checkbox [inputId]="category.key" name="group" [value]="category" [(ngModel)]="selectedCategories" />
+                    <label [for]="category.key" class="ml-2">{{ category.name }}</label>
+                </div>
+            }
+        </div>
+    </div>
+    `,
+    host: { class: 'flex flex-column gap-3 w-full' }
+})
+export class CheckboxDrawer {
+    checked = false;
+    ingredients = ['Cheese', 'Mushroom', 'Pepper', 'Onion'];
+    pizza: string[] = [];
+    categories: CheckboxCategory[] = [
+        { name: 'Accounting', key: 'A' },
+        { name: 'Marketing', key: 'M' },
+        { name: 'Production', key: 'P' },
+        { name: 'Research', key: 'R' },
+    ];
+    selectedCategories: CheckboxCategory[] = [this.categories[1]];
+}
+
+@Component({
+    selector: 'chip-drawer',
+    imports: [SharedModule],
+    template: `
+    <div class="w-full">
+        <div class="px-2"><span class="">Basic</span></div>
+        <div class="flex align-items-center flex-wrap gap-2">
+            <p-chip label="Action" />
+            <p-chip label="Comedy" />
+            <p-chip label="Mystery" />
+            <p-chip label="Thriller" [removable]="true" />
+        </div>
+    </div>
+    <div class="w-full">
+        <div class="px-2"><span class="">Image</span></div>
+        <div class="flex align-items-center flex-wrap gap-2">
+            <p-chip label="Amy Elsner" image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" alt="Avatar image" />
+            <p-chip label="Asiya Javayant" image="https://primefaces.org/cdn/primeng/images/demo/avatar/asiyajavayant.png" alt="Avatar image" />
+            <p-chip label="Onyama Limba" image="https://primefaces.org/cdn/primeng/images/demo/avatar/onyamalimba.png" alt="Avatar image" />
+            <p-chip label="Xuxue Feng" image="https://primefaces.org/cdn/primeng/images/demo/avatar/xuxuefeng.png" alt="Avatar image" [removable]="true" />
+        </div>
+    </div>
+    `,
+    host: { class: 'flex flex-column gap-3 w-full' }
+})
+export class ChipDrawer {
+}
+
+@Component({
     selector: 'test-drawer',
     imports: [SharedModule],
     template: `
@@ -278,6 +723,15 @@ export const DRAWER_DEMOS: Record<string, IDrawerDemo> = {
     accordion: { component: AccordionDrawer, header: 'Accordion', },
     autocomplete: { component: AutoCompleteDrawer, header: 'Autocomplete', },
     avatar: { component: AvatarDrawer, header: 'Avatar', },
+    badge: { component: BadgeDrawer, header: 'Badge', },
+    blockui: { component: BlockUiDrawer, header: 'BlockUI', },
+    breadcrumb: { component: BreadcrumbDrawer, header: 'Breadcrumb', },
+    button: { component: ButtonDrawer, header: 'Button', },
+    card: { component: CardDrawer, header: 'Card', },
+    carousel: { component: CarouselDrawer, header: 'Carousel', },
+    cascadeselect: { component: CascadeSelectDrawer, header: 'CascadeSelect', },
+    checkbox: { component: CheckboxDrawer, header: 'Checkbox', },
+    chip: { component: ChipDrawer, header: 'Chip', },
     //
     inputtext: { component: InputTextDrawer, header: 'Input Text', },
 };
