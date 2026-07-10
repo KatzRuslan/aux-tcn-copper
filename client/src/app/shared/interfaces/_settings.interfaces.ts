@@ -12,4 +12,5 @@ export interface ICommonSettings {
     };
     readonly tokenUri: string;
     readonly darkMode: boolean;
+    readonly searcherBookmarks: [];
 }

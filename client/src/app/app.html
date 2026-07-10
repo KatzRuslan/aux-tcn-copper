@@ -1,7 +1,9 @@
 <main-header />
 <div class="flex gap-3 w-full h-full overflow-hidden">
     <side-navigation class="flex h-full fix-w-20rem" />
-    <div class="flex flex-column w-full h-full overflow-hidden router-container"><router-outlet /></div>
+    <div class="flex flex-column w-full h-full overflow-hidden router-container">
+        <router-outlet />
+    </div>
 </div>
 <p-confirmdialog #regularConfirmDialog>
     <!-- <ng-template #footer>

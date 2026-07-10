@@ -1,10 +1,5 @@
-export interface IComponentItem {
-    title: string;
-    name: string;
-    route: string;
-    category: string;
-    available: boolean;
-}
+import { IComponentItem } from '@interfaces';
+
 
 export const COMPONENT_ITEMS: IComponentItem[] = [
     {

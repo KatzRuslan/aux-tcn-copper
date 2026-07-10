@@ -11,5 +11,9 @@
     "yspace": -2
   },
   "tokenUri": "http://localhost:5011/auth",
-  "darkMode": false
+  "darkMode": false,
+  "searcherBookmarks": [
+    "inputtext",
+    "checkbox"
+  ]
 }

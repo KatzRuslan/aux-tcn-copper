@@ -43,6 +43,7 @@ export const Store = signalStore(
                     textFramingSpaces: store.textFramingSpaces(),
                     tokenUri: store.tokenUri(),
                     darkMode: store.darkMode(),
+                    searcherBookmarks: store.searcherBookmarks(),
                 })),
 			})
 		},

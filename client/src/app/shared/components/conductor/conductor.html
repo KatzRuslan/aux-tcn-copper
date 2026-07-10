@@ -1,0 +1,12 @@
+<button pButton raised severity="secondary" (click)="openSearcher()">
+    <svg data-p-icon="search"></svg>
+    <span class="w-3rem">Search</span>
+    <kbd class="">
+        <span class="surface-300 border-1 border-surface-300 doc-search">CTRL</span>
+        <span class="px-1">+</span>
+        <span class="">K</span>
+    </kbd>
+</button>
+<button pButton iconOnly rounded raised severity="secondary" aria-label="Theme Mode" (click)="store.toggleDarkMode()">
+    <svg [pIcon]="store.modeIcon()" [size]="'1.2rem'"></svg>
+</button>

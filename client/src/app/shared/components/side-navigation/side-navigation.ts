@@ -1,14 +1,15 @@
 import { Component, OnInit, Injector, effect, inject, signal, untracked } from '@angular/core';
 import { Router } from '@angular/router';
 import { SharedModule } from '@shared-module';
-import { COMPONENT_ITEMS, IComponentItem } from '@seed';
-import { INavigationItem } from '@interfaces';
+import { COMPONENT_ITEMS } from '@seed';
+import { IComponentItem, INavigationItem } from '@interfaces';
 import { Store } from '@app-store';
+import { Conductor } from '../conductor/conductor';
 
 @Component({
     selector: 'side-navigation',
     imports: [
-        SharedModule,
+        SharedModule, Conductor,
     ],
     templateUrl: './side-navigation.html',
     styleUrl: './side-navigation.scss',
@@ -49,33 +50,18 @@ export class SideNavigation implements OnInit {
             item.isActive = !item.isActive
         }
     }
+    /** Проставляет isActive по всему поддереву; узел активен, если совпало имя или активен потомок. */
+    private _applyActiveState(node: INavigationItem, name: string): boolean {
+        const childActive = (node.items ?? []).map(child => this._applyActiveState(child, name)).some(Boolean);
+        node.isActive = node.name === name || childActive;
+        return node.isActive;
+    }
     ngOnInit(): void {
         effect(
             () => {
                 const name = this.store.activeName();
-                const navigations = untracked(() => this.navigations())
-                for (const navigationItem of navigations) {
-                    navigationItem.isActive = navigationItem.name === name;
-                    for (const navigationSubItem of navigationItem?.items ?? []) {
-                        if (navigationSubItem.name === name) {
-                            navigationSubItem.isActive = true;
-                            navigationItem.isActive = true;
-                        } else {
-                            navigationSubItem.isActive = false;
-                        }
-                        for (const group of navigationSubItem?.items ?? []) {
-                            for (const item of group?.items ?? []) {
-                                if (item.name === name) {
-                                    navigationItem.isActive = true;
-                                    navigationSubItem.isActive = true;
-                                    item.isActive = true;
-                                } else {
-                                    item.isActive = false;
-                                }
-                            }
-                        }
-                    }
-                }
+                const navigations = untracked(() => this.navigations());
+                navigations.forEach(item => this._applyActiveState(item, name));
                 this.navigations.set([...navigations]);
             },
             { injector: this._injector }

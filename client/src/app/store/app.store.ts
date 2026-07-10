@@ -38,6 +38,7 @@ export const Store = signalStore(
 	withComputed(store => {
         return {
             modeIcon: computed(() => store._settingsStore().darkMode() ? 'moon' : 'sun'),
+            bookmarks: computed(() => store._settingsStore().searcherBookmarks()),
         }
     }),
 	withHooks({

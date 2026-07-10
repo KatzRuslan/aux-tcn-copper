@@ -14,6 +14,7 @@ export interface ISettingsSlice {
     };
     readonly tokenUri: string;
     readonly darkMode: boolean;
+    readonly searcherBookmarks: [];
 };
 
 export const initialSettingsSlice: ISettingsSlice = {
@@ -29,5 +30,6 @@ export const initialSettingsSlice: ISettingsSlice = {
         yspace: -2
     },
     tokenUri: 'http://localhost:5011/auth',
-    darkMode: false
+    darkMode: false,
+    searcherBookmarks: []
 };
