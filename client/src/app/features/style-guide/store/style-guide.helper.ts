@@ -3,6 +3,7 @@ import { Signal } from '@angular/core';
 // import Aura from '@primeuix/themes/aura';
 // import { definePreset, $dt } from '@primeuix/themes';
 import { Preset } from '@primeuix/themes/types';
+import { DRAWER_DEMOS } from '../components/preview-drawer/demos/drawer-demos';
 
 /**
  * ⚠️ Singleton helper context.
@@ -57,12 +58,5 @@ export function createPreset() {
     electronWritePreset(preset);
 }
 export function getDrawer(selector: string) {
-    return {
-        header: 'Drawer Header',
-        body: `
-@let value1="Value1";
-
-<input pInputText [value]="value" />
-        `,
-    }
+    return DRAWER_DEMOS[selector] ?? DRAWER_DEMOS['empty'];
 }

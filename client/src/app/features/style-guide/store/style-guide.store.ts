@@ -10,7 +10,7 @@ import { updateState, withDevtools, withDevToolsStub } from '@angular-architects
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { tapResponse } from '@ngrx/operators';
 import { initialStyleGuideSlice } from './style-guide.slice';
-import { createPreset, initStyleGuideHelperContext } from './style-guide.helper';
+import { createPreset, getDrawer, initStyleGuideHelperContext } from './style-guide.helper';
 import { initStyleGuideStore, putShowDrawer } from './style-guide.updates';
 import { vmodel } from './style-guide.vm-builder';
 import { environment } from '@environments';
@@ -89,10 +89,7 @@ export const Store = signalStore(
             active,
             colorSteps: computed(() => store._colorPaletteStore().steps()),
             palettes: computed(() => store._colorPaletteStore().palettes()),
-            drawer: computed(() => {
-                console.log(active())
-                return false
-            }),
+            drawer: computed(() => getDrawer(active())),
         }
     }),
 	withHooks({
@@ -104,13 +101,14 @@ export const Store = signalStore(
                 cssOverrides: computed(() => store._cssOverridesStore().getCssOverrides()),
                 components: computed(() => store._uiComponentStore().getComponents()),
 			});
+            updateState(store, '[StyleGuideStore] Put ShowDrawer', putShowDrawer(true));
             effect(() => {
-                store.active(); // триггер — смена активного раздела
-                untracked(() => {
-                    if (store.showDrawer()) {
-                        updateState(store, '[StyleGuideStore] Put ShowDrawer', putShowDrawer(false));
-                    }
-                });
+                // store.active(); // триггер — смена активного раздела
+                // untracked(() => {
+                //     if (store.showDrawer()) {
+                //         updateState(store, '[StyleGuideStore] Put ShowDrawer', putShowDrawer(false));
+                //     }
+                // });
             });
 		},
 	}),

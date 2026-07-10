@@ -90,7 +90,9 @@ import { GalleryModule } from 'primeng/gallery';
 import { AnimateOnScrollModule } from 'primeng/animateonscroll';
 import { AutoFocusModule } from 'primeng/autofocus';
 import { AvatarModule } from 'primeng/avatar';
+import { AvatarGroupModule } from 'primeng/avatargroup';
 import { BadgeModule } from 'primeng/badge';
+import { OverlayBadgeModule } from 'primeng/overlaybadge';
 import { BindModule } from 'primeng/bind';
 import { BlockUIModule } from 'primeng/blockui';
 import { ChipModule } from 'primeng/chip';
@@ -561,7 +563,9 @@ const modules = [
     AnimateOnScrollModule,
     AutoFocusModule,
     AvatarModule,
+    AvatarGroupModule,
     BadgeModule,
+    OverlayBadgeModule,
     BindModule,
     BlockUIModule,
     ChipModule,
