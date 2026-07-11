@@ -14,7 +14,7 @@
             <p-inputicon><svg data-p-icon="search"></svg></p-inputicon>
         }
     </p-iconfield>
-    <div class="flex align-items-center gap-2 cursor-pointer" (click)="store.toogleCustomPalettesOnly()" (keypress)="null">
+    <div class="flex align-items-center gap-2 cursor-pointer" (click)="store.toggleCustomPalettesOnly()" (keypress)="null">
         <p-toggleswitch [ngModel]="vm.customPalettesOnly" class="pointer-events-none" />
         <div class=""><span class="">Custom Palette</span></div>
     </div>

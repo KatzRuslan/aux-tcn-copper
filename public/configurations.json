@@ -13,6 +13,9 @@
   "tokenUri": "http://localhost:5011/auth",
   "darkMode": false,
   "searcherBookmarks": [
+    "checkbox"
+  ],
+  "availableComponents": [
     "inputtext",
     "checkbox"
   ]

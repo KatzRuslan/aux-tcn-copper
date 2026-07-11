@@ -1,1 +1,0 @@
-import {g as gE,a8 as Hc,a1 as FD,a9 as Bc}from'./main-TTKUNSL7.js';var t=class a{static \u0275fac=function(e){return new(e||a)};static \u0275cmp=gE({type:a,selectors:[["templates"]],decls:2,vars:0,consts:[[1,"m-0"]],template:function(e,l){e&1&&(Hc(0,"p",0),FD(1,"templates not implemented yet!"),Bc());},encapsulation:2})};export{t as default};

@@ -6,7 +6,7 @@ import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { tapResponse } from '@ngrx/operators';
 import { initialColorPaletteSlice } from './color-palette.slice';
 import { initColorPaletteHelperContext, initColorPalette, checkColor, electronWritePalettes, createColorPalette } from './color-palette.helper';
-import { initColorPaletteStore, toogleCustomPalettesOnly, updateSearchColor, pushPalette, putPalette, deletePalette } from './color-palette.updates';
+import { initColorPaletteStore, toggleCustomPalettesOnly, updateSearchColor, pushPalette, putPalette, deletePalette } from './color-palette.updates';
 import { vmColorPalettes, vmRightHeader } from './color-palette.vm-builder';
 import { environment } from '@environments';
 import { IPalette } from '@interfaces';
@@ -59,7 +59,7 @@ export const Store = signalStore(
                 ),
                 { injector: store._injector }
             ),
-            toogleCustomPalettesOnly: () => updateState(store, '[ColorPalette Store] Toogle Custom Palettes Only', toogleCustomPalettesOnly()),
+            toggleCustomPalettesOnly: () => updateState(store, '[ColorPalette Store] Toggle Custom Palettes Only', toggleCustomPalettesOnly()),
             updateSearchColor: (search: string) => updateState(store, '[ColorPalette Store] Update Search Color', updateSearchColor(search)),
             pushPalette: (palette: IPalette) => {
                 updateState(store, '[ColorPalette Store] Push Custom Palette', pushPalette(palette));

@@ -8,7 +8,7 @@ export function initStore(steps: number[], baseColorNames: string[]): PartialSta
 export function initColorPaletteStore(palettes: IPalette[], steps: number[]): PartialStateUpdater<IColorPaletteSlice> {
     return _ => ({ palettes, steps });
 }
-export function toogleCustomPalettesOnly(): PartialStateUpdater<IColorPaletteSlice> {
+export function toggleCustomPalettesOnly(): PartialStateUpdater<IColorPaletteSlice> {
 	return store => ({ customPalettesOnly: !store.customPalettesOnly });
 };
 export function updateSearchColor(searchColor: string): PartialStateUpdater<IColorPaletteSlice> {

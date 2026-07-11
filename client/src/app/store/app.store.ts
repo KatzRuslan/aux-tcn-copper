@@ -32,6 +32,8 @@ export const Store = signalStore(
         return {
             showConfirmDialog, showToastMessages,
             toggleDarkMode: store._settingsStore().toggleDarkMode,
+            toggleBookmark: store._settingsStore().toggleBookmark,
+            toggleAvailableComponent: store._settingsStore().toggleAvailableComponent,
             onNavigation: (state: string, header: string, name: string) => updateState(store, '[AppStore] Put ActiveState', putActiveState(state, header, name)),
         }
     }),
@@ -39,6 +41,7 @@ export const Store = signalStore(
         return {
             modeIcon: computed(() => store._settingsStore().darkMode() ? 'moon' : 'sun'),
             bookmarks: computed(() => store._settingsStore().searcherBookmarks()),
+            availableComponents: computed(() => store._settingsStore().availableComponents()),
         }
     }),
 	withHooks({

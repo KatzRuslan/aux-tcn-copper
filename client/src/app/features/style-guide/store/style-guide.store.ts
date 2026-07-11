@@ -12,7 +12,7 @@ import { tapResponse } from '@ngrx/operators';
 import { initialStyleGuideSlice } from './style-guide.slice';
 import { createPreset, initStyleGuideHelperContext } from './style-guide.helper';
 import { initStyleGuideStore, putShowDrawer } from './style-guide.updates';
-import { vmodel } from './style-guide.vm-builder';
+import { vmDrawer, vmodel } from './style-guide.vm-builder';
 import { environment } from '@environments';
 
 export const Store = signalStore(
@@ -71,6 +71,8 @@ export const Store = signalStore(
                 store._uiComponentStore().initStore();
             },
             toggleDrawer: () => updateState(store, '[StyleGuideStore] Put ShowDrawer', putShowDrawer(!store.showDrawer())),
+            toggleBookmark: store._appStore().toggleBookmark,
+            toggleAvailableComponent: store._appStore().toggleAvailableComponent,
             createPreset,
         }
     }),
@@ -89,6 +91,7 @@ export const Store = signalStore(
             active,
             colorSteps: computed(() => store._colorPaletteStore().steps()),
             palettes: computed(() => store._colorPaletteStore().palettes()),
+            vmDrawer: computed(() => vmDrawer(active(), store._appStore().availableComponents(), store._appStore().bookmarks())),
         }
     }),
 	withHooks({
@@ -100,14 +103,14 @@ export const Store = signalStore(
                 cssOverrides: computed(() => store._cssOverridesStore().getCssOverrides()),
                 components: computed(() => store._uiComponentStore().getComponents()),
 			});
-            updateState(store, '[StyleGuideStore] Put ShowDrawer', putShowDrawer(true));
+            // updateState(store, '[StyleGuideStore] Put ShowDrawer', putShowDrawer(true));
             effect(() => {
-                // store.active(); // триггер — смена активного раздела
-                // untracked(() => {
-                //     if (store.showDrawer()) {
-                //         updateState(store, '[StyleGuideStore] Put ShowDrawer', putShowDrawer(false));
-                //     }
-                // });
+                store.active(); // триггер — смена активного раздела
+                untracked(() => {
+                    if (store.showDrawer()) {
+                        updateState(store, '[StyleGuideStore] Put ShowDrawer', putShowDrawer(false));
+                    }
+                });
             });
 		},
 	}),

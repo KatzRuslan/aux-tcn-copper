@@ -1,8 +1,7 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject, resource } from '@angular/core';
 import { NgComponentOutlet } from '@angular/common';
 import { SharedModule } from '@shared-module';
 import { Store } from '@style-guide-store';
-import type { IDrawerDemo } from './demos/drawer-demos';
 
 @Component({
     selector: 'preview-drawer',
@@ -12,14 +11,16 @@ import type { IDrawerDemo } from './demos/drawer-demos';
 })
 export class PreviewDrawer {
     readonly store = inject(Store);
+    readonly active = computed(() => this.store.vmDrawer().active);
+    readonly isAvailable = computed(() => this.store.vmDrawer().isAvailable);
+    readonly isBookmarked = computed(() => this.store.vmDrawer().isBookmarked);
     readonly defaultStyleClass = 'flex flex-column gap-3 px-2';
     /** Карта демо грузится отдельным чанком, чтобы не тянуть все примеры в стартовый бандл. */
-    private readonly _demos = signal<Record<string, IDrawerDemo> | null>(null);
-    readonly drawer = computed(() => {
-        const demos = this._demos();
-        return demos ? demos[this.store.active()] ?? demos['empty'] : null;
+    private readonly _demos = resource({
+        loader: () => import('./demos/drawer-demos').then(({ DRAWER_DEMOS }) => DRAWER_DEMOS),
     });
-    constructor() {
-        import('./demos/drawer-demos').then(({ DRAWER_DEMOS }) => this._demos.set(DRAWER_DEMOS));
-    }
+    readonly drawer = computed(() => {
+        const demos = this._demos.value();
+        return demos ? demos[this.active()] ?? demos['empty'] : null;
+    });
 }

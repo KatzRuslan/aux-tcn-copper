@@ -1,4 +1,4 @@
-import { Component, Type, signal, linkedSignal, computed, inject } from '@angular/core';
+import { Component, Type, signal, computed, inject } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { Store as AppStore } from '@app-store';
 import { SharedModule } from '@shared-module';

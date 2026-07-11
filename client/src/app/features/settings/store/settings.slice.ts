@@ -1,4 +1,4 @@
-import {  } from '@interfaces';
+// import {  } from '@interfaces';
 
 export interface ISettingsSlice {
     readonly colorIdenifier: {
@@ -14,7 +14,8 @@ export interface ISettingsSlice {
     };
     readonly tokenUri: string;
     readonly darkMode: boolean;
-    readonly searcherBookmarks: [];
+    readonly availableComponents: string[];
+    readonly searcherBookmarks: string[];
 };
 
 export const initialSettingsSlice: ISettingsSlice = {
@@ -31,5 +32,6 @@ export const initialSettingsSlice: ISettingsSlice = {
     },
     tokenUri: 'http://localhost:5011/auth',
     darkMode: false,
-    searcherBookmarks: []
+    availableComponents: [],
+    searcherBookmarks: [],
 };

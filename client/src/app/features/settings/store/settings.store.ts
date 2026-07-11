@@ -5,8 +5,8 @@ import { updateState, withDevtools, withDevToolsStub } from '@angular-architects
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { tapResponse } from '@ngrx/operators';
 import { initialSettingsSlice } from './settings.slice';
-import { electronWriteSettings, initSettingsHelperContext } from './settings.helper';
-import { initSettingsStore, toggleDarkMode } from './settings.updates';
+import { electronWriteSettings, initSettingsHelperContext, toggleAvailableComponent, toggleBookmark } from './settings.helper';
+import { initSettingsStore, putAvailableComponents, putBookmarks, toggleDarkMode } from './settings.updates';
 import { vmodel } from './settings.vm-builder';
 import { environment } from '@environments';
 import { ICommonSettings } from '@interfaces';
@@ -28,7 +28,16 @@ export const Store = signalStore(
             toggleDarkMode: () => {
                 updateState(store, '[SettingsStore] Init Store', toggleDarkMode());
                 electronWriteSettings();
-            }
+            },
+            toggleBookmark: (component: string) => {
+                updateState(store, '[SettingsStore] Put SearcherBookmarks', putBookmarks(toggleBookmark(component)));
+                electronWriteSettings();
+            },
+            toggleAvailableComponent: (component: string) => {
+                const { availableComponents, searcherBookmarks } = toggleAvailableComponent(component);
+                updateState(store, '[SettingsStore] Put AvailableComponents/SearcherBookmarks', putAvailableComponents(availableComponents), putBookmarks(searcherBookmarks));
+                electronWriteSettings();
+            },
         }
     }),
 	withComputed(store => {
@@ -44,6 +53,7 @@ export const Store = signalStore(
                     tokenUri: store.tokenUri(),
                     darkMode: store.darkMode(),
                     searcherBookmarks: store.searcherBookmarks(),
+                    availableComponents: store.availableComponents()
                 })),
 			})
 		},

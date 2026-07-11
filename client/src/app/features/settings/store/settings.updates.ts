@@ -8,3 +8,9 @@ export function initSettingsStore(settings: ICommonSettings): PartialStateUpdate
 export function toggleDarkMode(): PartialStateUpdater<ISettingsSlice> {
 	return store => ({ darkMode: !store.darkMode });
 };
+export function putBookmarks(searcherBookmarks: string[]): PartialStateUpdater<ISettingsSlice> {
+	return _ => ({ searcherBookmarks });
+};
+export function putAvailableComponents(availableComponents: string[]): PartialStateUpdater<ISettingsSlice> {
+	return _ => ({ availableComponents });
+};
