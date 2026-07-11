@@ -17,6 +17,7 @@
   ],
   "availableComponents": [
     "inputtext",
-    "checkbox"
+    "checkbox",
+    "select"
   ]
 }

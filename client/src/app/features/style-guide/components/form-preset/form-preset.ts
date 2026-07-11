@@ -1,4 +1,4 @@
-import { Component, Injector, input, linkedSignal, computed, untracked, runInInjectionContext, inject } from '@angular/core';
+import { Component, OnInit, Injector, input, output, linkedSignal, computed, effect, untracked, runInInjectionContext, inject } from '@angular/core';
 import { form, FormField, required, readonly } from '@angular/forms/signals';
 import { SharedModule } from '@shared-module';
 import { FormComponent } from '../form-component/form-component';
@@ -13,10 +13,11 @@ import { IGroupMeta } from '@interfaces';
     styleUrl: './form-preset.scss',
     host: { class: 'flex align-items-start align-content-start flex-wrap gap-3 w-full h-full overflow-auto' }
 })
-export class FormPreset {
+export class FormPreset implements OnInit {
     readonly _injector = inject(Injector);
     readonly vmodel = input.required<Record<string, string>>();
     readonly scheme = input.required<IGroupMeta[]>(); // | IFieldMeta[]
+    readonly applyPreset = output<void>();
     readonly formModel = linkedSignal<Record<string, string>>(() => this.vmodel());
     readonly formGroup = computed(() => {
         const fields = this.scheme().flatMap(({ fields }) => fields);
@@ -37,5 +38,14 @@ export class FormPreset {
     readonly errors = computed(() => this.formGroup()().errorSummary().map(({ message }) => message).filter((message): message is string => !!message));
     getValue() {
         return this.formGroup()().value();
+    }
+    ngOnInit(): void {
+        effect(
+            () => {
+                this.formGroup()().value();
+                this.applyPreset.emit();
+            },
+            { injector: this._injector }
+        );
     }
 }

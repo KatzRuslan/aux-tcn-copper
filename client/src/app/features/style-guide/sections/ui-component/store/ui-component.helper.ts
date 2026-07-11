@@ -2,7 +2,8 @@ import { Signal } from '@angular/core';
 import Aura from '@primeuix/themes/aura';
 import { getDeepDiff, getStyleCssOverrides, unflatten } from '@helpers/utils.helpers';
 import { from, map } from 'rxjs';
-import { IUiComponentScheme, IUiComponentSet } from '@interfaces';
+import { ICssOverrideItem, IUiComponentScheme, IUiComponentSet } from '@interfaces';
+import { updatePreset } from '@primeuix/themes';
 
 /**
  * ⚠️ Singleton helper context.
@@ -36,4 +37,12 @@ export function createUiComponent() {
         .map(({ name, data, css }) => ({ [name]: css.length ? { ...unflatten(data), css: getStyleCssOverrides(css) } : unflatten(data) }))
         .reduce((total, current) => ({ ...total, ...current }), {});
     return getDeepDiff(preset, Aura.components) ?? {};
+}
+export function applyPreset(name: string, data: Record<string, string>, css: ICssOverrideItem[]) {
+    const components = {
+        [name]: {
+            ...unflatten(data), css: getStyleCssOverrides(css)
+        }
+    }
+    updatePreset({ components });
 }

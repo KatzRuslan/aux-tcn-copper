@@ -103,15 +103,15 @@ export const Store = signalStore(
                 cssOverrides: computed(() => store._cssOverridesStore().getCssOverrides()),
                 components: computed(() => store._uiComponentStore().getComponents()),
 			});
-            // updateState(store, '[StyleGuideStore] Put ShowDrawer', putShowDrawer(true));
-            effect(() => {
-                store.active(); // триггер — смена активного раздела
-                untracked(() => {
-                    if (store.showDrawer()) {
-                        updateState(store, '[StyleGuideStore] Put ShowDrawer', putShowDrawer(false));
-                    }
-                });
-            });
+            updateState(store, '[StyleGuideStore] Put ShowDrawer', putShowDrawer(true));
+            // effect(() => {
+            //     store.active(); // триггер — смена активного раздела
+            //     untracked(() => {
+            //         if (store.showDrawer()) {
+            //             updateState(store, '[StyleGuideStore] Put ShowDrawer', putShowDrawer(false));
+            //         }
+            //     });
+            // });
 		},
 	}),
 	// withDevtools('style-guide-store'),

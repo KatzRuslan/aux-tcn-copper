@@ -10,7 +10,7 @@ import { PreviewDrawer } from '../../components/preview-drawer/preview-drawer';
     imports: [SharedModule, FormPreset, FormStyles, PreviewDrawer],
     templateUrl: './ui-component.html',
     styleUrl: './ui-component.scss',
-    host: { class: 'flex flex-column gap-4 px-1 pb-3 w-full h-full overflow-hidden' },
+    host: { class: 'flex flex-column px-1 pb-3 w-full h-full overflow-hidden' },
 })
 export default class UiComponent {
     readonly store = inject(Store);
@@ -34,5 +34,9 @@ export default class UiComponent {
     }
     onSubmit() {
         this.store.putUiComponent(this.vmodel().name, this.formPreset()!.getValue(), this.formStyles()!.getValue());
+    }
+    applyPreset() {
+        if (this.invalid()) { return; }
+        this.store.applyPreset(this.vmodel().name, this.formPreset()!.getValue(), this.formStyles()!.getValue());
     }
 }

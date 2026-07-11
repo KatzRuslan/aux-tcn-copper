@@ -1,4 +1,4 @@
-import { Component, ElementRef, input, computed, linkedSignal, inject } from '@angular/core';
+import { Component, OnInit, Injector, ElementRef, input, output, linkedSignal, computed, effect, inject } from '@angular/core';
 import { form, FormField, required, applyEach } from '@angular/forms/signals';
 import { ICssOverrideItem } from '@interfaces';
 import { SharedModule } from '@shared-module';
@@ -16,9 +16,11 @@ import { isEqual } from 'lodash';
     styleUrl: './form-styles.scss',
     host: { class: 'flex flex-column gap-3 w-full h-full overflow-auto' }
 })
-export class FormStyles {
+export class FormStyles implements OnInit {
+    readonly _injector = inject(Injector);
     readonly _elementRef = inject(ElementRef);
     readonly vmodel = input.required<ICssOverrideItem[]>();
+    readonly applyPreset = output<void>();
     readonly formModel = linkedSignal(() => this.vmodel());
     readonly formGroup = form<ICssOverrideItem[]>(this.formModel, (schema) => {
         applyEach(schema, (override) => {
@@ -71,5 +73,14 @@ export class FormStyles {
     readonly unchanged = computed(() => isEqual(this.formGroup().value(), this.vmodel()));
     getValue() {
         return this.formGroup().value();
+    }
+    ngOnInit(): void {
+        effect(
+            () => {
+                this.formGroup().value();
+                this.applyPreset.emit();
+            },
+            { injector: this._injector }
+        );
     }
 }

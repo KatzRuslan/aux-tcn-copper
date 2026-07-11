@@ -1,6 +1,7 @@
 import { Signal } from '@angular/core';
 import { getStyleCssOverrides } from '@helpers/utils.helpers';
 import { ICssOverrideItem, ICssOverridePropertyItem, IPalette } from '@interfaces';
+import { updatePreset } from '@primeuix/themes';
 import { from } from 'rxjs';
 
 /**
@@ -60,4 +61,12 @@ export function createCssOverrides() {
         getStyleCssOverrides(ctx.overrides()),
     ];
     return preset.join(' ');
+}
+export function applyPreset(overrides: ICssOverrideItem[]) {
+    const css = [
+        getColorCssOverrides(),
+        getDimensionsCssOverrides(),
+        getStyleCssOverrides(overrides),
+    ].join(' ');
+    updatePreset({ css });
 }

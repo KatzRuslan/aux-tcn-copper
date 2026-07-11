@@ -1,4 +1,4 @@
-<form-styles [vmodel]="store.overrides()" />
+<form-styles [vmodel]="store.overrides()" (applyPreset)="applyPreset()" />
 <div class="flex justify-content-between align-items-center px-4">
     <div class="" [pTooltip]="errors().length ? tooltipContent: ''" tooltipPosition="top">
         <button pButton [disabled]="invalid()" (click)="onSubmit()"><svg data-p-icon="check"></svg> Save</button>

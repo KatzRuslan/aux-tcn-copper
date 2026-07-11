@@ -1,4 +1,5 @@
 import { Component, Type, signal, computed, inject } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { MenuItem } from 'primeng/api';
 import { Store as AppStore } from '@app-store';
 import { SharedModule } from '@shared-module';
@@ -406,9 +407,9 @@ export class BreadcrumbDrawer {
         <div class="px-2 pb-2"><span class="">Button Group</span></div>
         <div class="flex justify-content-center">
             <p-buttongroup>
-                <button pButton><svg data-p-icon="check"></svg> Save</button>
-                <button pButton><svg data-p-icon="trash"></svg> Delete</button>
-                <button pButton><svg data-p-icon="times"></svg> Cancel</button>
+                <button pButton [raised]="raised()" [rounded]="rounded()" [link]="link()" [variant]="variant()" [disabled]="isDisabeld()"><svg data-p-icon="check"></svg> Save</button>
+                <button pButton [raised]="raised()" [rounded]="rounded()" [link]="link()" [variant]="variant()"><svg data-p-icon="trash"></svg> Delete</button>
+                <button pButton [raised]="raised()" [rounded]="rounded()" [link]="link()" [variant]="variant()"><svg data-p-icon="times"></svg> Cancel</button>
             </p-buttongroup>
         </div>
     </div>
@@ -426,9 +427,9 @@ export class BreadcrumbDrawer {
     <div class="w-full mb-4">
         <div class="px-2 pb-2"><span class="">Sizes</span></div>
         <div class="flex justify-content-center gap-2">
-            <div class=""><button pButton size="small"><svg data-p-icon="check"></svg> Small</button></div>
-            <div class=""><button pButton><svg data-p-icon="check"></svg> Normal</button></div>
-            <div class=""><button pButton size="large"><svg data-p-icon="check"></svg> Large</button></div>
+            <div class=""><button pButton size="small" [raised]="raised()" [rounded]="rounded()" [link]="link()" [variant]="variant()"><svg data-p-icon="check"></svg> Small</button></div>
+            <div class=""><button pButton [raised]="raised()" [rounded]="rounded()" [link]="link()" [variant]="variant()"><svg data-p-icon="check"></svg> Normal</button></div>
+            <div class=""><button pButton [raised]="raised()" [rounded]="rounded()" [link]="link()" [variant]="variant()" size="large"><svg data-p-icon="check"></svg> Large</button></div>
         </div>
     </div>
     `,
@@ -804,6 +805,157 @@ export class TestDrawer {
 })
 export class InputTextDrawer {
 }
+@Component({
+    selector: 'select-drawer',
+    imports: [SharedModule],
+    template: `
+    <div class=" w-full">
+        <div class="px-2 pb-2"><span class=""></span></div>
+        <!--  -->
+    </div>
+    @for (node of selects; track $index) {
+        <div class="w-full">
+            <div class="px-2 pb-2"><span class="">{{node.title}}</span></div>
+            <p-select
+                [(ngModel)]="node.value" [options]="node.options"
+                [readonly]="node.readonly" [disabled]="node.disabled" [invalid]="node.invalid"
+                [placeholder]="node.placeholder" optionLabel="label" optionValue="value"
+                [showClear]="true"
+                class="w-full" appendTo="body"
+            />
+            <div class="" [innerHTML]="node.demo"></div>
+        </div>
+    }
+    `,
+    host: { class: 'flex flex-column gap-3' },
+    // max-height задан здесь, а не inline: атрибут style не входит в whitelist санитайзера [innerHTML]
+    styles: [`:host ::ng-deep .p-select-list-container { max-height: 8rem; overflow: auto; }`],
+})
+export class SelectDrawer {
+    private readonly _sanitizer = inject(DomSanitizer);
+    /** Статичный дамп раскрытого оверлея. bypass обязателен: input/svg/path не входят
+     *  в whitelist санитайзера [innerHTML] и были бы вырезаны. Строка своя, не пользовательская. */
+    demoHtml = `
+    <div class="p-component p-overlay static">
+        <div class="p-overlay-content">
+            <div class="p-component p-component-overlay p-select-overlay">
+                <div class="p-select-header">
+                    <div class="p-iconfield">
+                        <input type="text" class="p-select-filter p-component p-inputtext" />
+                        <span class="p-inputicon">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="p-icon p-icon-search"><path d="M8.76953 1.25C12.9226 1.25 16.2898 4.61656 16.29 8.76953C16.29 10.576 15.6515 12.2326 14.5898 13.5293L18.5303 17.4697C18.823 17.7626 18.8231 18.2374 18.5303 18.5303C18.2374 18.8231 17.7626 18.823 17.4697 18.5303L13.5293 14.5898C12.2326 15.6515 10.576 16.29 8.76953 16.29C4.61656 16.2898 1.25 12.9226 1.25 8.76953C1.25025 4.61672 4.61672 1.25025 8.76953 1.25ZM8.76953 2.75C5.44515 2.75025 2.75025 5.44514 2.75 8.76953C2.75 12.0941 5.44499 14.7898 8.76953 14.79C12.0943 14.79 14.79 12.0943 14.79 8.76953C14.7898 5.445 12.0941 2.75 8.76953 2.75Z" fill="currentColor"></path></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="p-select-list-container">
+                    <ul class="p-select-list">
+                        <li class="p-ripple p-select-option"><span>English</span></li>
+                        <li class="p-ripple p-select-option p-select-option-selected"><span>Deutsch</span></li>
+                        <li class="p-ripple p-select-option"><span>Español</span></li>
+                        <li class="p-ripple p-select-option p-focus"><span>Français</span></li>
+                        <li class="p-ripple p-select-option"><span>Italiano</span></li>
+                        <li class="p-ripple p-select-option"><span>Türkçe</span></li>
+                        <li class="p-ripple p-select-option"><span>日本語</span></li>
+                        <li class="p-ripple p-select-option"><span>中文</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    `;
+    options = [ { label: 'English', value: 'en' }, { label: 'Deutsch', value: 'de' }, { label: 'Español', value: 'es' }, { label: 'Français', value: 'fr' }, { label: 'Italiano', value: 'it' }, { label: 'Türkçe', value: 'tr' }, { label: '日本語', value: 'ja' }, { label: '中文', value: 'zh' } ];
+    selects = [
+        {
+            title: 'Basic',
+            placeholder: 'Select language',
+            value: 'de',
+            options: [...this.options],
+            readonly: false,
+            disabled: false,
+            invalid: false,
+            demo: this._sanitizer.bypassSecurityTrustHtml(this.demoHtml)
+        },
+        {
+            title: 'Read only',
+            placeholder: 'Select language',
+            value: 'de',
+            options: [...this.options],
+            readonly: true,
+            disabled: false,
+            invalid: false,
+            demo: ''
+        },
+        {
+            title: 'Disabled',
+            placeholder: 'Select language',
+            value: 'de',
+            options: [...this.options],
+            readonly: false,
+            disabled: true,
+            invalid: false,
+            demo: ''
+        },
+        {
+            title: 'Invalid',
+            placeholder: 'Select language',
+            value: 'de',
+            options: [...this.options],
+            readonly: false,
+            disabled: false,
+            invalid: true,
+            demo: ''
+        },
+        // {
+        //     title: '',
+        //     placeholder: 'Select...',
+        //     value: '',
+        //     options: [...this.options],
+        //     readonly: false,
+        //     disabled: false,
+        //     invalid: false,
+        //     demo: ''
+        // },
+    ];
+}
+@Component({
+    selector: 'semantic-drawer',
+    imports: [SharedModule],
+    template: `
+    <div class="w-full">
+        <div class="px-2 pb-2"><span class=""></span></div>semantic
+        <!--  -->
+    </div>
+    <p-accordion [value]="['0']" [multiple]="true" class="w-full">
+        <p-accordion-panel value="0">
+            <p-accordion-header><div class=""><span class="">Form Field</span></div></p-accordion-header>
+            <p-accordion-content>
+                <div class="">
+                    <input pInputText value="Lorem ipsum" placeholder="Placeholder text" class="w-full" />
+                </div>
+                <div class=""><span class=""></span></div>
+                <p class="m-0 text-sm">
+                    This service helps you manage your projects more efficiently by offering real-time collaboration, task tracking, and powerful analytics. Whether you're working solo or in a team, it's built to scale with your needs.
+                </p>
+            </p-accordion-content>
+        </p-accordion-panel>
+        <p-accordion-panel value="1">
+            <p-accordion-header>Is my data secure?</p-accordion-header>
+            <p-accordion-content>
+                <p class="m-0 text-sm">Yes. We use end-to-end encryption and follow industry best practices to ensure your data is protected. Your information is stored on secure servers and regularly backed up.</p>
+            </p-accordion-content>
+        </p-accordion-panel>
+        <p-accordion-panel value="2">
+            <p-accordion-header>Can I upgrade or downgrade my plan later?</p-accordion-header>
+            <p-accordion-content>
+                <p class="m-0 text-sm">Absolutely. You can change your subscription plan at any time from your account settings. Changes take effect immediately, and any billing adjustments are handled automatically.</p>
+            </p-accordion-content>
+        </p-accordion-panel>
+    </p-accordion>
+    `,
+    host: { class: 'flex flex-column gap-3' },
+})
+export class SemanticDrawer {
+}
 
 /** Демо-контент drawer'а по имени компонента (COMPONENT_ITEMS.name). */
 export interface IDrawerDemo {
@@ -831,4 +983,6 @@ export const DRAWER_DEMOS: Record<string, IDrawerDemo> = {
     inputcolor: { component: ColorPickerDrawer, header: 'InputColor', },
     //
     inputtext: { component: InputTextDrawer, header: 'Input Text', },
+    select: { component: SelectDrawer, header: 'Select', },
+    'define-semantic': { component: SemanticDrawer, header: 'Define Semantic', },
 };

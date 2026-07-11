@@ -1,14 +1,14 @@
 @let visible = store.showDrawer();
 @if (drawer(); as drawer) {
-    <p-drawer [visible]="visible" [header]="drawer.header" styleClass="min-w-20rem" (onHide)="store.showDrawer()?store.toggleDrawer():null">
+    <p-drawer [visible]="visible" [modal]="false" [header]="drawer.header" styleClass="min-w-20rem" (onHide)="store.showDrawer()?store.toggleDrawer():null">
         <div class="flex w-full h-full overflow-auto" dir="rtl">
             <div class="w-full" [class]="drawer.styleClass ?? defaultStyleClass" dir="ltr">
                 <ng-container *ngComponentOutlet="drawer.component" />
             </div>
         </div>
-        @if (active() === 'define-semantic') {
+        @if (active() !== 'define-semantic') {
             <ng-template #footer>
-                <div class="flex items-center gap-2">
+                <div class="flex items-center gap-2 mt-3">
                     <div class="flex align-items-center gap-2 w-6rem cursor-pointer">
                         <p-checkbox [ngModel]="isAvailable()" (ngModelChange)="store.toggleAvailableComponent(active())" class="" inputId="raised" [binary]="true" />
                         <label pLabel for="raised"><span class="capitalize cursor-pointer">available</span></label>
