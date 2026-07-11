@@ -40,5 +40,26 @@
         "isReadonly": false,
         "isVisible": true,
         "type": "rem"
+    },
+    {
+        "path": "borderRadius.2xl",
+        "label": "Radius 2XL",
+        "isReadonly": false,
+        "isVisible": true,
+        "type": "rem"
+    },
+    {
+        "path": "borderRadius.3xl",
+        "label": "Radius 3XL",
+        "isReadonly": false,
+        "isVisible": true,
+        "type": "rem"
+    },
+    {
+        "path": "borderRadius.4xl",
+        "label": "Radius 4XL",
+        "isReadonly": false,
+        "isVisible": true,
+        "type": "rem"
     }
 ]

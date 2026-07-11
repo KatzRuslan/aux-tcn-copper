@@ -313,7 +313,7 @@
                 "isReadonly": false,
                 "isVisible": true,
                 "type": "select",
-                "options": ["{border.radius.none}", "{border.radius.xs}", "{border.radius.sm}", "{border.radius.md}", "{border.radius.lg}", "{border.radius.xl}"]
+                "options": ["{border.radius.none}", "{border.radius.xs}", "{border.radius.sm}", "{border.radius.md}", "{border.radius.lg}", "{border.radius.xl}", "{border.radius.2xl}", "{border.radius.3xl}", "{border.radius.4xl}"]
             },
             {
                 "path": "formField.focusRing.width",
@@ -531,7 +531,7 @@
                 "isReadonly": false,
                 "isVisible": true,
                 "type": "select",
-                "options": ["{border.radius.none}", "{border.radius.xs}", "{border.radius.sm}", "{border.radius.md}", "{border.radius.lg}", "{border.radius.xl}"]
+                "options": ["{border.radius.none}", "{border.radius.xs}", "{border.radius.sm}", "{border.radius.md}", "{border.radius.lg}", "{border.radius.xl}", "{border.radius.2xl}", "{border.radius.3xl}", "{border.radius.4xl}"]
             },
             {
                 "path": "list.option.fontWeight",
@@ -694,7 +694,7 @@
                 "isReadonly": false,
                 "isVisible": true,
                 "type": "select",
-                "options": ["{border.radius.none}", "{border.radius.xs}", "{border.radius.sm}", "{border.radius.md}", "{border.radius.lg}", "{border.radius.xl}"]
+                "options": ["{border.radius.none}", "{border.radius.xs}", "{border.radius.sm}", "{border.radius.md}", "{border.radius.lg}", "{border.radius.xl}", "{border.radius.2xl}", "{border.radius.3xl}", "{border.radius.4xl}"]
             },
             {
                 "path": "navigation.item.gap",
@@ -864,7 +864,7 @@
                 "isReadonly": false,
                 "isVisible": true,
                 "type": "select",
-                "options": ["{border.radius.none}", "{border.radius.xs}", "{border.radius.sm}", "{border.radius.md}", "{border.radius.lg}", "{border.radius.xl}"]
+                "options": ["{border.radius.none}", "{border.radius.xs}", "{border.radius.sm}", "{border.radius.md}", "{border.radius.lg}", "{border.radius.xl}", "{border.radius.2xl}", "{border.radius.3xl}", "{border.radius.4xl}"]
             },
             {
                 "path": "overlay.select.shadow",
@@ -900,7 +900,7 @@
                 "isReadonly": false,
                 "isVisible": true,
                 "type": "select",
-                "options": ["{border.radius.none}", "{border.radius.xs}", "{border.radius.sm}", "{border.radius.md}", "{border.radius.lg}", "{border.radius.xl}"]
+                "options": ["{border.radius.none}", "{border.radius.xs}", "{border.radius.sm}", "{border.radius.md}", "{border.radius.lg}", "{border.radius.xl}", "{border.radius.2xl}", "{border.radius.3xl}", "{border.radius.4xl}"]
             },
             {
                 "path": "overlay.popover.padding",
@@ -943,7 +943,7 @@
                 "isReadonly": false,
                 "isVisible": true,
                 "type": "select",
-                "options": ["{border.radius.none}", "{border.radius.xs}", "{border.radius.sm}", "{border.radius.md}", "{border.radius.lg}", "{border.radius.xl}"]
+                "options": ["{border.radius.none}", "{border.radius.xs}", "{border.radius.sm}", "{border.radius.md}", "{border.radius.lg}", "{border.radius.xl}", "{border.radius.2xl}", "{border.radius.3xl}", "{border.radius.4xl}"]
             },
             {
                 "path": "overlay.modal.padding",
@@ -1000,7 +1000,7 @@
                 "isReadonly": false,
                 "isVisible": true,
                 "type": "select",
-                "options": ["{border.radius.none}", "{border.radius.xs}", "{border.radius.sm}", "{border.radius.md}", "{border.radius.lg}", "{border.radius.xl}"]
+                "options": ["{border.radius.none}", "{border.radius.xs}", "{border.radius.sm}", "{border.radius.md}", "{border.radius.lg}", "{border.radius.xl}", "{border.radius.2xl}", "{border.radius.3xl}", "{border.radius.4xl}"]
             },
             {
                 "path": "content.background",
