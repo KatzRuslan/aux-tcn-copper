@@ -28,7 +28,7 @@ export default class Semantic {
         this.store.putSemantic(this.formPreset()!.getValue());
     }
     applyPreset() {
-        if (this.invalid()) { return; }
+        if (this.formPreset()!.invalid()) { return; }
         this.store.applyPreset(this.formPreset()!.getValue());
     }
 }

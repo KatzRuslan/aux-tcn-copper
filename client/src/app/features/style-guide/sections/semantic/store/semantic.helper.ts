@@ -77,4 +77,5 @@ export function applyPreset(data: Record<string, string>) {
         ...surface,
     };
     updatePreset({ semantic });
+    console.log(semantic)
 }

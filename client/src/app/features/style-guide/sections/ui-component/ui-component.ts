@@ -36,7 +36,7 @@ export default class UiComponent {
         this.store.putUiComponent(this.vmodel().name, this.formPreset()!.getValue(), this.formStyles()!.getValue());
     }
     applyPreset() {
-        if (this.invalid()) { return; }
+        if (this.formPreset()!.invalid() || this.formStyles()!.invalid()) { return; }
         this.store.applyPreset(this.vmodel().name, this.formPreset()!.getValue(), this.formStyles()!.getValue());
     }
 }

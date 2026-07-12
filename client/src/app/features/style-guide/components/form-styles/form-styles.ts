@@ -75,9 +75,14 @@ export class FormStyles implements OnInit {
         return this.formGroup().value();
     }
     ngOnInit(): void {
+        let first = true;
         effect(
             () => {
                 this.formGroup().value();
+                if (first) {
+                    first = false;
+                    return;
+                }
                 this.applyPreset.emit();
             },
             { injector: this._injector }

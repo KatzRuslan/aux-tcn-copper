@@ -1,4 +1,4 @@
-<p-select class="w-full"
-    [inputId]="inputId()"
-    [ngModel]="value()" [options]="options()" (ngModelChange)="changeHandler.emit($event)"
+<p-select class="w-full" appendTo="body"
+    [ngModel]="value()" [options]="options()"
+    (ngModelChange)="changeHandler.emit($event)"
 />

@@ -30,7 +30,7 @@ export default class CssOverrides {
         this.store.putCssOverrides(this.formStyles()!.getValue());
     }
     applyPreset() {
-        if (this.invalid()) { return; }
+        if (this.formStyles()!.invalid()) { return; }
         this.store.applyPreset(this.formStyles()!.getValue());
     }
 }
