@@ -5,11 +5,12 @@ import { COMPONENT_ITEMS } from '@seed';
 import { IComponentItem, INavigationItem } from '@interfaces';
 import { Store } from '@app-store';
 import { Conductor } from '../conductor/conductor';
+import { Notification } from '../notification/notification';
 
 @Component({
     selector: 'side-navigation',
     imports: [
-        SharedCoreModule, Conductor,
+        SharedCoreModule, Conductor, Notification,
     ],
     templateUrl: './side-navigation.html',
     styleUrl: './side-navigation.scss',

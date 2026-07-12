@@ -2,7 +2,14 @@
     <p-sidebar-panel class="overflow-hidden">
         <p-sidebar-header>
             <p-sidebar-menu>
-                <p-sidebar-menu-item>header-sidebar-menu-item</p-sidebar-menu-item>
+                <p-sidebar-menu-item>
+                    <div class="p-2"><span class="text-lg text-pink-600">I haven't figured it out yet...</span></div>
+                    <!--
+                    <div class="flex justify-content-end">
+                        <notification class="pt-1" />
+                    </div>
+                    -->
+                </p-sidebar-menu-item>
             </p-sidebar-menu>
         </p-sidebar-header>
         <p-sidebar-content class="">
@@ -64,7 +71,9 @@
         </p-sidebar-content>
         <p-sidebar-footer>
             <p-sidebar-menu class="">
-                <p-sidebar-menu-item class="surface-100 p-3 pb-2"><conductor /></p-sidebar-menu-item>
+                <p-sidebar-menu-item class="flex justify-content-between align-items-center surface-100 p-3 pb-2">
+                    <conductor /><notification class="pt-1" />
+                </p-sidebar-menu-item>
             </p-sidebar-menu>
         </p-sidebar-footer>
     </p-sidebar-panel>

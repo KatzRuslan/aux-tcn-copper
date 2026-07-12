@@ -30,10 +30,6 @@
       {
         "name": "overflow",
         "value": "hidden"
-      },
-      {
-        "name": "border-bottom",
-        "value": "0"
       }
     ]
   }

@@ -1,0 +1,27 @@
+@let notifications2 = store.notifications();
+@let notifications = ['aaaa'];
+@let value = notifications.length;
+@let disabled = value==0;
+<p-overlaybadge
+    [value]="value" (click)="popover.toggle($event)"
+    (keydown.enter)="popover.toggle($event)"
+    (keydown.space)="popover.toggle($event); $event.preventDefault()"
+    class="block cursor-pointer" [class.pointer-events-none]="disabled"
+    [pt]="{ pcBadge: { root: { class: value ? 'notification-badge' : 'p-badge-dot-hidden hidden' } } }">
+    <svg data-p-icon="bell" [size]="24"></svg>
+</p-overlaybadge>
+<p-popover #popover>
+    <div class="max-w-72 w-full">
+        <div class="flex items-center justify-between">
+            <span class="font-semibold text-sm">Create a New Workspace</span>
+        </div>
+        <p class="text-sm text-muted-color mt-2 mb-0!">Name your workspace to get started. You can always change this later.</p>
+        <div class="flex items-center justify-between mt-4">
+            <span class="text-xs text-surface-500 dark:text-surface-400">Lowercase letters and dashes only</span>
+            <div class="flex items-center gap-2">
+                <button type="button" pButton severity="secondary" variant="outlined" size="small" (click)="popover.hide()">Cancel</button>
+                <button type="button" pButton size="small" (click)="popover.hide()">Create</button>
+            </div>
+        </div>
+    </div>
+</p-popover>
