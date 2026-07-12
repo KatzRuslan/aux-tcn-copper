@@ -1,0 +1,6 @@
+{
+    "header": "Button Drawer",
+    "template": "<div class=\"\"><div class=\"\"></div></div>",
+    "data": {},
+    "styleClass": "bg-breeze-100 flex flex-column w-full min-h-full"
+}

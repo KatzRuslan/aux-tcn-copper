@@ -1,1 +1,0 @@
-import {P as PE,a8 as Yc,a1 as rw,a9 as Kc}from'./main-YFHAM6P6.js';var t=class a{static \u0275fac=function(e){return new(e||a)};static \u0275cmp=PE({type:a,selectors:[["templates"]],decls:2,vars:0,consts:[[1,"m-0"]],template:function(e,l){e&1&&(Yc(0,"p",0),rw(1,"templates not implemented yet!"),Kc());},encapsulation:2})};export{t as default};

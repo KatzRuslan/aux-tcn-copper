@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { Store } from '@app-store';
-import { SharedModule } from '@shared-module';
+import { SharedCoreModule } from '@shared-core-module';
 
 @Component({
     selector: 'notification',
-    imports: [SharedModule],
+    imports: [SharedCoreModule],
     templateUrl: './notification.html',
     styleUrl: './notification.scss',
     host: { class: 'pr-1'}

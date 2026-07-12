@@ -14,7 +14,8 @@
   "darkMode": false,
   "searcherBookmarks": [
     "checkbox",
-    "button"
+    "button",
+    "inputnumber"
   ],
   "availableComponents": [
     "inputtext",

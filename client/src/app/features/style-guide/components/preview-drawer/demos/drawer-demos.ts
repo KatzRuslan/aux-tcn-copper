@@ -20,7 +20,7 @@ import { ButtonVariant } from 'primeng/button';
         </div>
     </div>
     `,
-    host: { class: 'flex flex-column' }
+    host: { class: 'flex flex-column bg-red-400' }
 })
 export class EmptyDrawer {
     private readonly _appStore = inject(AppStore);

@@ -6,12 +6,15 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
+import { OverlayBadgeModule } from 'primeng/overlaybadge';
+import { PopoverModule } from 'primeng/popover';
 import { SidebarModule } from 'primeng/sidebar';
 import { ToastModule } from 'primeng/toast';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
 //
 import { PIcon } from '@primeicons/angular/p-icon';
 import { Bars } from '@primeicons/angular/bars';
+import { Bell } from '@primeicons/angular/bell';
 import { Bookmark } from '@primeicons/angular/bookmark';
 import { ChevronDown } from '@primeicons/angular/chevron-down';
 import { History } from '@primeicons/angular/history';
@@ -32,12 +35,15 @@ const modules = [
     ConfirmDialogModule,
     IconFieldModule, InputIconModule,
     InputTextModule,
+    OverlayBadgeModule,
+    PopoverModule,
     SidebarModule,
     ToastModule,
     ToggleSwitchModule,
     //
     PIcon,
     Bars,
+    Bell,
     Bookmark,
     ChevronDown,
     History,
