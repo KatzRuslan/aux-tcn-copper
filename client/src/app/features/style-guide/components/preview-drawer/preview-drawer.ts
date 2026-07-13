@@ -47,7 +47,6 @@ export class PreviewDrawer {
     })
     constructor() {
         effect(() => {
-            console.log(this.active())
             const vcr = this.drawerhost();
             vcr?.clear();
             // пока loader не завершился, JIT-компилятор ещё не подгружен — компилировать нечем

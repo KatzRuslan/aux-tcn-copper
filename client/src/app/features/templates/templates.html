@@ -1,124 +1,93 @@
-<div #source class="flex flex-column gap-3 ----- min-w-20rem h-full">
+<div #source class="flex flex-column gap-3 ----- min-w-20rem max-w-20rem h-full bg-breeze-50">
     <!-- source-start -->
     <div class="">
-        <div class="mb-2">
-            <div class="px-1 mb-1"><span class="">Severity</span></div>
-            <p-select [(ngModel)]="vmodel['selectedSeverity']" [options]="vmodel['severities']" optionLabel="label" placeholder="Select a severity" class="w-full" />
-        </div>
-        <div class="flex align-items-center mb-2">
-            <div class="flex align-items-center gap-2 w-6rem cursor-pointer">
-                <p-checkbox [ngModel]="vmodel['raised']" (ngModelChange)="vmodel['raised']=!vmodel['raised']" class="" inputId="raised" [binary]="true" />
-                <label pLabel for="raised"><span class="capitalize">raised</span></label>
+        <div class="mb-2 px-2"><span class="">Set as..</span></div>
+        <div class="flex align-items-center mb-2 gap-3">
+            <div class="flex align-items-center gap-1 cursor-pointer">
+                <p-checkbox [ngModel]="vmodel['readonly']" (ngModelChange)="vmodel['readonly']=!vmodel['readonly']" class="" inputId="readonly" [binary]="true" />
+                <label pLabel for="readonly"><span class="capitalize">readonly</span></label>
             </div>
-            <div class="flex align-items-center gap-2 w-6rem cursor-pointer">
-                <p-checkbox [ngModel]="vmodel['rounded']" (ngModelChange)="vmodel['rounded']=!vmodel['rounded']" class="" inputId="rounded" [binary]="true" />
-                <label pLabel for="rounded"><span class="capitalize">rounded</span></label>
+            <div class="flex align-items-center gap-1 cursor-pointer">
+                <p-checkbox [ngModel]="vmodel['invalid']" (ngModelChange)="vmodel['invalid']=!vmodel['invalid']" class="" inputId="invalid" [binary]="true" />
+                <label pLabel for="invalid"><span class="capitalize">invalid</span></label>
             </div>
-            <div class="flex align-items-center gap-2 w-6rem cursor-pointer">
-                <p-checkbox [ngModel]="vmodel['link']" (ngModelChange)="vmodel['link']=!vmodel['link']" class="" inputId="link" [binary]="true" />
-                <label pLabel for="link"><span class="capitalize">link</span></label>
+            <div class="flex align-items-center gap-1 cursor-pointer">
+                <p-checkbox [ngModel]="vmodel['disabled']" (ngModelChange)="vmodel['disabled']=!vmodel['disabled']" class="" inputId="disabled" [binary]="true" />
+                <label pLabel for="disabled"><span class="capitalize">disabled</span></label>
             </div>
         </div>
-        <div class="flex align-items-center mb-2">
-            <div class="flex align-items-center gap-2 w-6rem cursor-pointer">
-                <p-radiobutton [ngModel]="vmodel['variant']" (ngModelChange)="vmodel['variant']=null" inputId="none" [value]="null" />
-                <label pLabel for="none"><span class="capitalize">none</span></label>
+            <div class="flex gap-3">
+                <div class="flex align-items-center gap-1">
+                    <p-radiobutton value="small" [(ngModel)]="vmodel['size']" inputId="smallSize" [disabled]="vmodel['readonly'] || vmodel['disabled']" [invalid]="vmodel['invalid']" />
+                    <label pLabel for="smallSize" class="capitalize">small</label>
+                </div>
+                <div class="flex align-items-center gap-1">
+                    <p-radiobutton value="regular" [(ngModel)]="vmodel['size']" inputId="regularSize" [disabled]="vmodel['readonly'] || vmodel['disabled']" [invalid]="vmodel['invalid']" />
+                    <label pLabel for="regularSize" class="capitalize">regular</label>
+                </div>
+                <div class="flex align-items-center gap-1">
+                    <p-radiobutton value="large" [(ngModel)]="vmodel['size']" inputId="largeSize" [disabled]="vmodel['readonly'] || vmodel['disabled']" [invalid]="vmodel['invalid']" />
+                    <label pLabel for="largeSize" class="capitalize">large</label>
+                </div>
             </div>
-            <div class="flex align-items-center gap-2 w-6rem cursor-pointer">
-                <p-radiobutton [ngModel]="vmodel['variant']" (ngModelChange)="vmodel['variant']='text'" inputId="text" value="text" />
-                <label pLabel for="text"><span class="capitalize">text</span></label>
-            </div>
-            <div class="flex align-items-center gap-2 w-6rem cursor-pointer">
-                <p-radiobutton [ngModel]="vmodel['variant']" (ngModelChange)="vmodel['variant']='outlined'" inputId="outlined" value="outlined" />
-                <label pLabel for="outlined"><span class="capitalize">outlined</span></label>
-            </div>
-        </div>
-        <div class="flex align-items-center mb-3">
-            <div class="flex align-items-center gap-2 cursor-pointer">
-                <p-checkbox [ngModel]="vmodel['disabled']" (ngModelChange)="vmodel['disabled']=!vmodel['disabled']" class="" inputId="isDisabeld" [binary]="true" />
-                <label pLabel for="isDisabeld"><span class="capitalize">Set as disabled</span></label>
-            </div>
-        </div>
-        <div class="flex gap-3">
-            <div class="">
-                <button pButton iconOnly
-                    [severity]="vmodel['selectedSeverity'].value" [disabled]="vmodel['disabled']"
-                    [raised]="vmodel['raised']" [rounded]="vmodel['rounded']" [link]="vmodel['link']"
-                    [variant]="vmodel['variant']">
-                    <svg data-p-icon="star"></svg>
-                </button>
-            </div>
-            <div class="">
-                <button pButton class=""
-                    [severity]="vmodel['selectedSeverity'].value" [disabled]="vmodel['disabled']"
-                    [raised]="vmodel['raised']" [rounded]="vmodel['rounded']" [link]="vmodel['link']"
-                    [variant]="vmodel['variant']"
-                    >
-                    <svg data-p-icon="users"></svg>
-                    <span class="">{{vmodel['selectedSeverity'].label}}</span>
-                </button>
-            </div>
-        </div>
     </div>
     <div class="">
-        <div class="px-1 mb-3"><span class="font-bold text-lg">Sizes</span></div>
-        <div class="flex gap-3 mb-2">
-            <div class="">
-                <button pButton iconOnly size="small" [raised]="vmodel['raised']" [severity]="vmodel['selectedSeverity'].value" [rounded]="vmodel['rounded']" [link]="vmodel['link']" [variant]="vmodel['variant']">
-                    <svg data-p-icon="star"></svg>
-                </button>
+        <div class="mb-2 px-2"><span class="font-bold text-lg">Form Fields</span></div>
+        <div class="flex flex-column gap-3 w-full">
+            <div class="flex gap-3">
+                <div class="flex align-items-center gap-1">
+                    <p-checkbox inputId="cheeseCheckbox" [size]="vmodel['size']" [readonly]="vmodel['readonly']" [disabled]="vmodel['disabled']" [invalid]="vmodel['invalid']" class="" [binary]="true" />
+                    <label pLabel for="cheeseCheckbox"><span class="capitalize">cheese</span></label>
+                </div>
+                <div class="flex align-items-center gap-1">
+                    <p-checkbox inputId="mushroomCheckbox" [size]="vmodel['size']" [readonly]="vmodel['readonly']" [disabled]="vmodel['disabled']" [invalid]="vmodel['invalid']" class="" [binary]="true" />
+                    <label pLabel for="mushroomCheckbox"><span class="capitalize">mushroom</span></label>
+                </div>
+                <div class="flex align-items-center gap-1">
+                    <p-checkbox inputId="pepperCheckbox" [size]="vmodel['size']" [readonly]="vmodel['readonly']" [disabled]="vmodel['disabled']" [invalid]="vmodel['invalid']" class="" [binary]="true" />
+                    <label pLabel for="pepperCheckbox"><span class="capitalize">pepper</span></label>
+                </div>
+            </div>
+            <div class="flex gap-3">
+                <div class="flex align-items-center gap-1">
+                    <p-radiobutton value="cheese" [(ngModel)]="vmodel['pizza']" inputId="cheeseRadiobutton" [size]="vmodel['size']" [disabled]="vmodel['readonly'] || vmodel['disabled']" [invalid]="vmodel['invalid']" />
+                    <label pLabel for="cheeseRadiobutton" class="capitalize">cheese</label>
+                </div>
+                <div class="flex align-items-center gap-1">
+                    <p-radiobutton value="mushroom" [(ngModel)]="vmodel['pizza']" inputId="mushroomRadiobutton" [size]="vmodel['size']" [disabled]="vmodel['readonly'] || vmodel['disabled']" [invalid]="vmodel['invalid']" />
+                    <label pLabel for="mushroomRadiobutton" class="capitalize">mushroom</label>
+                </div>
+                <div class="flex align-items-center gap-1">
+                    <p-radiobutton value="pepper" [(ngModel)]="vmodel['pizza']" inputId="pepperRadiobutton" [size]="vmodel['size']" [disabled]="vmodel['readonly'] || vmodel['disabled']" [invalid]="vmodel['invalid']" />
+                    <label pLabel for="pepperRadiobutton" class="capitalize">pepper</label>
+                </div>
+            </div>
+            <div class="w-full">
+                <input pInputText value="Lorem ipsum" placeholder="Input Text Placeholder" class="w-full" id="" [pSize]="vmodel['size']" [readonly]="vmodel['readonly']" [disabled]="vmodel['disabled']" [invalid]="vmodel['invalid']" />
             </div>
             <div class="">
-                <button pButton iconOnly [raised]="vmodel['raised']" [severity]="vmodel['selectedSeverity'].value" [rounded]="vmodel['rounded']" [link]="vmodel['link']" [variant]="vmodel['variant']">
-                    <svg data-p-icon="star"></svg>
-                </button>
+                <textarea placeholder="Textarea Placeholder" rows="5" pTextarea [autoResize]="false" id="" class="w-full" [pSize]="vmodel['size']" [readonly]="vmodel['readonly']" [disabled]="vmodel['disabled']" [invalid]="vmodel['invalid']">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ut purus non purus fringilla accumsan eu eget erat. Curabitur iaculis pellentesque dolor tincidunt mattis. Mauris cursus imperdiet libero, at interdum sapien rhoncus non. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Integer sagittis diam at est placerat, eu convallis nisi iaculis. Curabitur porta turpis nec lectus condimentum, et lobortis sapien imperdiet. Nulla facilisi. Donec quis iaculis metus. Mauris non neque accumsan, vestibulum metus ac, aliquet justo. Integer bibendum enim fermentum aliquam vehicula. Suspendisse potenti. Fusce tincidunt ante id mauris pharetra, vitae luctus risus vestibulum.</textarea>
             </div>
-            <div class="">
-                <button pButton iconOnly size="large" [raised]="vmodel['raised']" [severity]="vmodel['selectedSeverity'].value" [rounded]="vmodel['rounded']" [link]="vmodel['link']" [variant]="vmodel['variant']">
-                    <svg data-p-icon="star"></svg>
-                </button>
+            <div class="w-full">
+                <p-select
+                    [(ngModel)]="vmodel['selected']" [options]="vmodel['options']" [scrollHeight]="'11.8rem'" placeholder="Select a language" class="w-full"
+                    [size]="vmodel['size']" [readonly]="vmodel['readonly']" [disabled]="vmodel['disabled']" [invalid]="vmodel['invalid']"
+                    (onShow)="vmodel['selectIsOpen']=true" (onHide)="vmodel['selectIsOpen']=false"
+                />
+                <div class="p-component p-overlay static mt-1" [class.opacity-0]="vmodel['selectIsOpen']">
+                    <div class="p-overlay-content">
+                        <div class="p-component p-component-overlay p-select-overlay">
+                            <div class="p-select-list-container" style="max-height: 11.8rem;">
+                                <ul class="p-select-list">
+                                    @for (option of vmodel['options']; track $index) {
+                                        <li class="p-ripple p-select-option" [class.p-select-option-selected]="option.value==vmodel['selected']"><span>{{option.label}}</span></li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="flex gap-3">
-            <div class="">
-                <button pButton class="" size="small" [raised]="vmodel['raised']" [severity]="vmodel['selectedSeverity'].value" [rounded]="vmodel['rounded']" [link]="vmodel['link']" [variant]="vmodel['variant']">
-                    <svg data-p-icon="users"></svg>
-                    <span class="">Small</span>
-                </button>
-            </div>
-            <div class="">
-                <button pButton class="" [raised]="vmodel['raised']" [severity]="vmodel['selectedSeverity'].value" [rounded]="vmodel['rounded']" [link]="vmodel['link']" [variant]="vmodel['variant']">
-                    <svg data-p-icon="users"></svg>
-                    <span class="">Regular</span>
-                </button>
-            </div>
-            <div class="">
-                <button pButton class="" size="large" [raised]="vmodel['raised']" [severity]="vmodel['selectedSeverity'].value" [rounded]="vmodel['rounded']" [link]="vmodel['link']" [variant]="vmodel['variant']">
-                    <svg data-p-icon="users"></svg>
-                    <span class="">Large</span>
-                </button>
-            </div>
-        </div>
-    </div>
-    <div class="w-full">
-        <div class="px-1 mb-3"><span class="font-bold text-lg">Button Group</span></div>
-        <div class="flex justify-content-center">
-            <p-buttongroup>
-                <button pButton [raised]="vmodel['raised']" [severity]="vmodel['selectedSeverity'].value" [rounded]="vmodel['rounded']" [link]="vmodel['link']" [variant]="vmodel['variant']" [disabled]="vmodel['disabled']"><svg data-p-icon="check"></svg> Save</button>
-                <button pButton [raised]="vmodel['raised']" [severity]="vmodel['selectedSeverity'].value" [rounded]="vmodel['rounded']" [link]="vmodel['link']" [variant]="vmodel['variant']"><svg data-p-icon="trash"></svg> Delete</button>
-                <button pButton [raised]="vmodel['raised']" [severity]="vmodel['selectedSeverity'].value" [rounded]="vmodel['rounded']" [link]="vmodel['link']" [variant]="vmodel['variant']"><svg data-p-icon="times"></svg> Cancel</button>
-            </p-buttongroup>
-        </div>
-    </div>
-    <div class="w-full mb-4">
-        <div class="px-1 mb-3"><span class="font-bold text-lg">Badge</span></div>
-        <div class="flex justify-content-center gap-2">
-            <button pButton>Emails <p-badge severity="secondary" shape="circle" value="2" /></button>
-            <button pButton variant="outlined"><svg data-p-icon="users"></svg> Messages <p-badge severity="contrast" shape="circle" value="2" /></button>
-            <p-overlay-badge>
-                <button pButton variant="outlined" iconOnly><svg data-p-icon="bell"></svg></button>
-                <p-badge severity="info" class="animate-pulse" />
-            </p-overlay-badge>
         </div>
     </div>
     <!-- source-end -->

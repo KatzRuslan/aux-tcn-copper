@@ -2742,7 +2742,17 @@
       "root.lg.paddingX": "{form.field.lg.padding.x}",
       "root.lg.paddingY": "{form.field.lg.padding.y}"
     },
-    "css": []
+    "css": [
+      {
+        "selector": ".p-textarea",
+        "properties": [
+          {
+            "name": "resize",
+            "value": "none"
+          }
+        ]
+      }
+    ]
   },
   {
     "name": "tieredmenu",

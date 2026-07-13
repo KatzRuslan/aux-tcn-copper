@@ -5,7 +5,7 @@ import {
 } from "./chunk-QOVLIQBZ.js";
 import {
   preset_default
-} from "./chunk-TDHTSLXK.js";
+} from "./chunk-4JRIKI4A.js";
 import {
   COMPONENT_ITEMS
 } from "./chunk-RIDKRWJE.js";
@@ -70,7 +70,7 @@ import {
   providePrimeNG,
   provideRouter,
   withHashLocation
-} from "./chunk-DMMSTZEH.js";
+} from "./chunk-PNUGKQVR.js";
 import {
   ConfirmationService,
   DefaultValueAccessor,
@@ -127,8 +127,7 @@ import {
   ɵɵstoreLet,
   ɵɵtext,
   ɵɵtextInterpolate,
-  ɵɵtextInterpolate1,
-  ɵɵtextInterpolate2
+  ɵɵtextInterpolate1
 } from "./chunk-CNIBSPWC.js";
 import "./chunk-2YRFR7EU.js";
 import "./chunk-GXO7LGC6.js";
@@ -150,14 +149,14 @@ import {
 var routes = [
   {
     path: "azure",
-    loadComponent: () => import("./chunk-NIUUAJXQ.js"),
+    loadComponent: () => import("./chunk-Q3XD2WIO.js"),
     title: "Aux TCN - Azure DevOps",
     data: { state: "azure", header: "Azure DevOps" },
     resolve: [navigationResolver]
   },
   {
     path: "templates",
-    loadComponent: () => import("./chunk-BWVHNUD7.js"),
+    loadComponent: () => import("./chunk-ADLARGJQ.js"),
     title: "Aux TCN - Templates",
     data: { state: "templates", header: "Templates" },
     resolve: [navigationResolver]
@@ -171,7 +170,7 @@ var routes = [
   },
   {
     path: "style-guide",
-    loadChildren: () => import("./chunk-2SB5OKPI.js").then((r) => r.routes)
+    loadChildren: () => import("./chunk-VALM7M5U.js").then((r) => r.routes)
   },
   { path: "", pathMatch: "full", redirectTo: "style-guide/component-settings/inputtext" }
 ];
@@ -1030,7 +1029,7 @@ function SideNavigation_For_10_Conditional_2_Template(rf, ctx) {
     \u0275\u0275advance();
     \u0275\u0275property("pIcon", navigationItem_r1.icon);
     \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate2("", navigationItem_r1.title, " ", navigationItem_r1.isActive);
+    \u0275\u0275textInterpolate(navigationItem_r1.title);
   }
 }
 function SideNavigation_For_10_Conditional_3_For_2_Conditional_0_Template(rf, ctx) {
@@ -1137,7 +1136,7 @@ function SideNavigation_For_10_Conditional_3_Template(rf, ctx) {
 function SideNavigation_For_10_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "p-sidebar-menu-item", 8);
-    \u0275\u0275conditionalCreate(1, SideNavigation_For_10_Conditional_1_Template, 4, 4, "a", 9)(2, SideNavigation_For_10_Conditional_2_Template, 5, 4, "button", 10);
+    \u0275\u0275conditionalCreate(1, SideNavigation_For_10_Conditional_1_Template, 4, 4, "a", 9)(2, SideNavigation_For_10_Conditional_2_Template, 5, 3, "button", 10);
     \u0275\u0275conditionalCreate(3, SideNavigation_For_10_Conditional_3_Template, 3, 2, "p-sidebar-menu-sub", 11);
     \u0275\u0275elementEnd();
   }
@@ -1210,7 +1209,7 @@ var SideNavigation = class _SideNavigation {
   static \u0275fac = function SideNavigation_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _SideNavigation)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _SideNavigation, selectors: [["side-navigation"]], hostAttrs: [1, "flex", "flex-column", "h-full", "overflow-hidden"], decls: 16, vars: 0, consts: [[1, "h-full", "min-h-0", "overflow-hidden"], [1, "overflow-hidden"], [1, "p-2"], [1, "text-lg", "text-pink-600"], [1, ""], [3, "class", "collapsible", "open"], [1, "flex", "justify-content-between", "align-items-center", "surface-100", "p-3", "pb-2"], [1, "pt-1"], [3, "collapsible", "open"], ["pSidebarMenuButton", "", 1, "no-underline", 3, "routerLink", "isActive"], ["pSidebarMenuButton", "", 3, "isActive"], [1, "flex-1", "min-h-0", "border-0", 3, "flex"], ["color", "var(--p-sidebar-menu-button-color)", 3, "pIcon"], ["pSidebarMenuButton", "", 3, "click", "isActive"], ["data-p-icon", "chevron-down", "color", "var(--p-sidebar-menu-button-color)", 1, "ml-auto"], [1, "flex-1", "min-h-0", "border-0"], [1, "flex", "flex-1", "min-h-0"], [1, "flex-column", "flex-1", "min-h-0", 3, "collapsible", "open"], ["data-p-icon", "chevron-down", 1, "ml-auto"], [1, "flex-1", "m-0", "p-0", "min-h-0", "border-0", "overflow-y-auto"], [1, "gap-3"]], template: function SideNavigation_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _SideNavigation, selectors: [["side-navigation"]], hostAttrs: [1, "flex", "flex-column", "h-full", "overflow-hidden"], decls: 16, vars: 0, consts: [[1, "h-full", "min-h-0", "overflow-hidden"], [1, "overflow-hidden"], [1, "p-2"], [1, "text-lg", "text-pink-600"], [1, ""], [3, "class", "collapsible", "open"], [1, "flex", "justify-content-between", "align-items-center", "surface-100", "p-3", "pb-2"], [1, "pt-1"], [3, "collapsible", "open"], ["pSidebarMenuButton", "", 1, "no-underline", "min-h-2rem", 3, "routerLink", "isActive"], ["pSidebarMenuButton", "", 1, "min-h-2rem", 3, "isActive"], [1, "flex-1", "min-h-0", "border-0", 3, "flex"], ["color", "var(--p-sidebar-menu-button-color)", 3, "pIcon"], ["pSidebarMenuButton", "", 1, "min-h-2rem", 3, "click", "isActive"], ["data-p-icon", "chevron-down", "color", "var(--p-sidebar-menu-button-color)", 1, "ml-auto"], [1, "flex-1", "min-h-0", "border-0"], [1, "flex", "flex-1", "min-h-0"], [1, "flex-column", "flex-1", "min-h-0", 3, "collapsible", "open"], ["data-p-icon", "chevron-down", 1, "ml-auto"], [1, "flex-1", "m-0", "p-0", "min-h-0", "border-0", "overflow-y-auto"], [1, "gap-3"]], template: function SideNavigation_Template(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275elementStart(0, "p-sidebar-layout", 0)(1, "p-sidebar-panel", 1)(2, "p-sidebar-header")(3, "p-sidebar-menu")(4, "p-sidebar-menu-item")(5, "div", 2)(6, "span", 3);
       \u0275\u0275text(7, "I haven't figured it out yet...");
@@ -1249,14 +1248,14 @@ var SideNavigation = class _SideNavigation {
             @for (navigationItem of navigations(); track $index) {
                 <p-sidebar-menu-item [class]="navigationItem.styleClass" [collapsible]="!!navigationItem.items" [open]="navigationItem?.isActive==true">
                     @if (navigationItem.route) {
-                        <a pSidebarMenuButton [routerLink]="navigationItem.route" [isActive]="navigationItem.isActive" class="no-underline">
+                        <a pSidebarMenuButton [routerLink]="navigationItem.route" [isActive]="navigationItem.isActive" class="no-underline min-h-2rem">
                             <svg [pIcon]="navigationItem.icon!" color="var(--p-sidebar-menu-button-color)"></svg>
                             <span>{{navigationItem.title}}</span>
                         </a>
                     } @else {
-                        <button pSidebarMenuButton [isActive]="navigationItem.isActive" (click)="navigationItem.isActive=!navigationItem.isActive">
+                        <button pSidebarMenuButton class="min-h-2rem" [isActive]="navigationItem.isActive" (click)="navigationItem.isActive=!navigationItem.isActive">
                             <svg [pIcon]="navigationItem.icon!" color="var(--p-sidebar-menu-button-color)"></svg>
-                            <span>{{navigationItem.title}} {{navigationItem.isActive}}</span>
+                            <span>{{navigationItem.title}}</span>
                             <svg data-p-icon="chevron-down" class="ml-auto" color="var(--p-sidebar-menu-button-color)"></svg>
                         </button>
                     }
@@ -1264,14 +1263,14 @@ var SideNavigation = class _SideNavigation {
                         <p-sidebar-menu-sub class="flex-1 min-h-0 border-0" [class.flex]="navigationItem.isActive">
                             @for (navigationSubItem of navigationItem.items; track $index) {
                                 @if (navigationSubItem.route) {
-                                    <a pSidebarMenuButton [routerLink]="navigationSubItem.route" [isActive]="navigationSubItem.isActive" class="no-underline">
+                                    <a pSidebarMenuButton [routerLink]="navigationSubItem.route" [isActive]="navigationSubItem.isActive" class="no-underline min-h-2rem">
                                         <span>{{navigationSubItem.title}}</span>
                                     </a>
                                 } @else {
                                     <p-sidebar-layout class="flex flex-1 min-h-0">
                                         <p-sidebar-content class="overflow-hidden">
                                             <p-sidebar-menu-item class="flex-column flex-1 min-h-0" [class.flex]="navigationSubItem.isActive" [collapsible]="!!navigationSubItem.items" [open]="navigationSubItem?.isActive==true">
-                                                <button pSidebarMenuButton [isActive]="navigationSubItem.isActive" (click)="navigationSubItem.isActive=!navigationSubItem.isActive">
+                                                <button pSidebarMenuButton class="min-h-2rem" [isActive]="navigationSubItem.isActive" (click)="navigationSubItem.isActive=!navigationSubItem.isActive">
                                                     <span>{{navigationSubItem.title}}</span>
                                                     <svg data-p-icon="chevron-down" class="ml-auto"></svg>
                                                 </button>
@@ -1284,7 +1283,7 @@ var SideNavigation = class _SideNavigation {
                                                                     <p-sidebar-menu>
                                                                         @for (item of group.items; track $index) {
                                                                             <p-sidebar-menu-sub-item>
-                                                                                <a pSidebarMenuButton [routerLink]="item.route" [isActive]="item.isActive" class="no-underline">
+                                                                                <a pSidebarMenuButton [routerLink]="item.route" [isActive]="item.isActive" class="no-underline min-h-2rem">
                                                                                     <span>{{item.title}}</span>
                                                                                 </a>
                                                                             </p-sidebar-menu-sub-item>

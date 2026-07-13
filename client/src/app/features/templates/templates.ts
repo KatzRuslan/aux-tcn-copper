@@ -2,6 +2,7 @@ import { Component, computed } from '@angular/core';
 import { SharedModule } from '@shared-module';
 import templateSource from './templates.html';
 import { copyToClipboard } from '@app-helper';
+import { readonly } from '@angular/forms/signals';
 
 /** Вырезает блок между маркерами source-start/source-end из сырого текста шаблона и убирает общий отступ. */
 function extractSource(raw: string): string {
@@ -27,22 +28,23 @@ function extractSource(raw: string): string {
 })
 export default class Templates {
     readonly vmodel: Record<string, any> = {
-        severities: [
-            { value: 'primary', label: 'Primary' },
-            { value: 'secondary', label: 'Secondary' },
-            { value: 'success', label: 'Success' },
-            { value: 'info', label: 'Info' },
-            { value: 'warn', label: 'Warn' },
-            { value: 'help', label: 'Help' },
-            { value: 'danger', label: 'Danger' },
-            { value: 'contrast', label: 'Contrast' },
+        options: [
+            { label: 'English', value: 'en' },
+            { label: 'Deutsch', value: 'de' },
+            { label: 'Español', value: 'es' },
+            { label: 'Français', value: 'fr' },
+            { label: 'Italiano', value: 'it' },
+            { label: 'Türkçe', value: 'tr' },
+            { label: '日本語', value: 'ja' },
+            { label: '中文', value: 'zh' }
         ],
-        selectedSeverity: { value: 'primary', label: 'Primary' },
-        raised: false,
-        rounded: false,
-        link: false,
-        variant: null,
+        selected: 'de',
+        selectIsOpen: false,
+        readonly: false,
+        invalid: false,
         disabled: false,
+        pizza: 'cheese',
+        size: 'regular'
     };
     readonly methods: Record<string, (...d: any) => void> = {};
     /** Исходник блока #source — буквально те же строки файла, что компилирует Angular. */
