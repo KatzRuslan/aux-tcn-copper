@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/features/icons/icons.ts", "src/app/features/icons/icons.html"],
+  "sourcesContent": ["import { Component } from '@angular/core';\n\n@Component({\n    selector: 'icons',\n    imports: [],\n    templateUrl: './icons.html',\n    styleUrl: './icons.scss',\n})\nexport default class Icons {}\n", "<p class=\"m-0\">icons not implemented yet!</p>\n"],
+  "mappings": ";;;;;;;;;;;;AAQA,IAAqB,QAArB,MAAqB,OAAK;;qCAAL,QAAK;EAAA;yEAAL,QAAK,WAAA,CAAA,CAAA,OAAA,CAAA,GAAA,OAAA,GAAA,MAAA,GAAA,QAAA,CAAA,CAAA,GAAA,KAAA,CAAA,GAAA,UAAA,SAAA,eAAA,IAAA,KAAA;AAAA,QAAA,KAAA,GAAA;ACR1B,MAAA,4BAAA,GAAA,KAAA,CAAA;AAAe,MAAA,iBAAA,GAAA,4BAAA;AAA0B,MAAA,0BAAA;;;;;sEDQpB,OAAK,CAAA;UANzB;uBACa,SAAO,SACR,CAAA,GAAE,UAAA,kDAAA,CAAA;;;;6EAIM,OAAK,EAAA,WAAA,SAAA,UAAA,mCAAA,YAAA,EAAA,CAAA;AAAA,GAAA;",
+  "names": []
+}

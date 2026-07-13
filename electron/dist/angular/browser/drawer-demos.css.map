@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/features/style-guide/components/preview-drawer/demos/drawer-demos.ts"],
+  "sourcesContent": [":host ::ng-deep .p-select-list-container { max-height: 8rem; overflow: auto; }"],
+  "mappings": ";AAAA,MAAA,UAAA,CAAA;AAA2C,cAAA;AAAkB,YAAA;;",
+  "names": []
+}

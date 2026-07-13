@@ -36,7 +36,8 @@
                             "node_modules/primeflex/primeflex.css",
                             "src/styles/main.scss"
                         ],
-                        "allowedCommonJsDependencies": ["dayjs", "lodash"]
+                        "allowedCommonJsDependencies": ["dayjs", "lodash"],
+                        "loader": { ".html": "text" }
                     },
                     "configurations": {
                         "production": {

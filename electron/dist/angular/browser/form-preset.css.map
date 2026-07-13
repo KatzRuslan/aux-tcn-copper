@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/features/style-guide/components/form-preset/form-preset.scss"],
+  "sourcesContent": [":host(.gap-3) > .w-6 {\r\n    max-width: calc((100% - 1rem) / 2 - .2rem);\r\n}\r\n:host(.gap-3) > .w-full {\r\n    max-width: calc(100% - .2rem);\r\n}\r\n.break-after {\r\n    margin-right: 100%;   // «доедает» остаток ряда — следующий элемент уходит на новую строку\r\n}\r\n"],
+  "mappings": ";AAAA,MAAA,CAAA,OAAA,EAAA,CAAA;AACI,aAAA,KAAA,CAAA,KAAA,EAAA,MAAA,EAAA,EAAA,EAAA;;AAEJ,MAAA,CAAA,OAAA,EAAA,CAAA;AACI,aAAA,KAAA,KAAA,EAAA;;AAEJ,CAAA;AACI,gBAAA;;",
+  "names": []
+}

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/features/style-guide/components/form-component/color-field/color-field.scss"],
+  "sourcesContent": ["::ng-deep {\r\n    .color-field-popover {\r\n        --p-popover-border-color: transparent;\r\n    }\r\n}\r\n.p-iconfield .p-inputtext:not(:last-child).double-inputicon {\r\n    padding-inline-end: calc(((var(--p-form-field-padding-x) * 2) + var(--p-icon-size)) * 1.6);\r\n}\r\n"],
+  "mappings": ";AACI,UAAA,CAAA;AACI,4BAAA;;AAGR,CAAA,YAAA,CAAA,WAAA,KAAA,YAAA,CAAA;AACI,sBAAA,KAAA,CAAA,IAAA,0BAAA,EAAA,EAAA,EAAA,IAAA,gBAAA,EAAA;;",
+  "names": []
+}

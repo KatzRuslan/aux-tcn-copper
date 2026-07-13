@@ -1,6 +1,50 @@
 {
     "header": "Button Drawer",
-    "template": "<div class=\"\"><div class=\"\"></div></div>",
-    "data": {},
-    "styleClass": "bg-breeze-100 flex flex-column w-full min-h-full"
+    "template": "<div class=\"\"><div class=\"mb-2\"><div class=\"px-1 mb-1\"><span class=\"\">Severity</span></div><p-select [(dModel)]=\"vmodel['selectedSeverity']\" [options]=\"vmodel['severities']\" optionLabel=\"label\" placeholder=\"Select a severity\" class=\"w-full\" /></div><div class=\"flex align-items-center mb-2\"><div class=\"flex align-items-center gap-2 w-6rem cursor-pointer\"><p-checkbox [dModel]=\"vmodel['raised']\" (dModelChange)=\"vmodel['raised']=!vmodel['raised']\" class=\"\" inputId=\"raised\" [binary]=\"true\" /><label pLabel for=\"raised\"><span class=\"capitalize\">raised</span></label></div><div class=\"flex align-items-center gap-2 w-6rem cursor-pointer\"><p-checkbox [dModel]=\"vmodel['rounded']\" (dModelChange)=\"vmodel['rounded']=!vmodel['rounded']\" class=\"\" inputId=\"rounded\" [binary]=\"true\" /><label pLabel for=\"rounded\"><span class=\"capitalize\">rounded</span></label></div><div class=\"flex align-items-center gap-2 w-6rem cursor-pointer\"><p-checkbox [dModel]=\"vmodel['link']\" (dModelChange)=\"vmodel['link']=!vmodel['link']\" class=\"\" inputId=\"link\" [binary]=\"true\" /><label pLabel for=\"link\"><span class=\"capitalize\">link</span></label></div></div><div class=\"flex align-items-center mb-2\"><div class=\"flex align-items-center gap-2 w-6rem cursor-pointer\"><p-radiobutton [dModel]=\"vmodel['variant']\" (dModelChange)=\"vmodel['variant']=null\" inputId=\"none\" [value]=\"null\" /><label pLabel for=\"none\"><span class=\"capitalize\">none</span></label></div><div class=\"flex align-items-center gap-2 w-6rem cursor-pointer\"><p-radiobutton [dModel]=\"vmodel['variant']\" (dModelChange)=\"vmodel['variant']='text'\" inputId=\"text\" value=\"text\" /><label pLabel for=\"text\"><span class=\"capitalize\">text</span></label></div><div class=\"flex align-items-center gap-2 w-6rem cursor-pointer\"><p-radiobutton [dModel]=\"vmodel['variant']\" (dModelChange)=\"vmodel['variant']='outlined'\" inputId=\"outlined\" value=\"outlined\" /><label pLabel for=\"outlined\"><span class=\"capitalize\">outlined</span></label></div></div><div class=\"flex align-items-center mb-3\"><div class=\"flex align-items-center gap-2 cursor-pointer\"><p-checkbox [dModel]=\"vmodel['disabled']\" (dModelChange)=\"vmodel['disabled']=!vmodel['disabled']\" class=\"\" inputId=\"isDisabeld\" [binary]=\"true\" /><label pLabel for=\"isDisabeld\"><span class=\"capitalize\">Set as disabled</span></label></div></div><div class=\"flex gap-3\"><div class=\"\"><button pButton iconOnly [severity]=\"vmodel['selectedSeverity'].value\" [disabled]=\"vmodel['disabled']\" [raised]=\"vmodel['raised']\" [rounded]=\"vmodel['rounded']\" [link]=\"vmodel['link']\" [variant]=\"vmodel['variant']\"><svg data-p-icon=\"star\"></svg></button></div><div class=\"\"><button pButton class=\"\" [severity]=\"vmodel['selectedSeverity'].value\" [disabled]=\"vmodel['disabled']\" [raised]=\"vmodel['raised']\" [rounded]=\"vmodel['rounded']\" [link]=\"vmodel['link']\" [variant]=\"vmodel['variant']\"><svg data-p-icon=\"users\"></svg><span class=\"\">{{vmodel['selectedSeverity'].label}}</span></button></div></div></div><div class=\"\"><div class=\"px-1 mb-3\"><span class=\"font-bold text-lg\">Sizes</span></div><div class=\"flex gap-3 mb-2\"><div class=\"\"><button pButton iconOnly size=\"small\" [raised]=\"vmodel['raised']\" [severity]=\"vmodel['selectedSeverity'].value\" [rounded]=\"vmodel['rounded']\" [link]=\"vmodel['link']\" [variant]=\"vmodel['variant']\"><svg data-p-icon=\"star\"></svg></button></div><div class=\"\"><button pButton iconOnly [raised]=\"vmodel['raised']\" [severity]=\"vmodel['selectedSeverity'].value\" [rounded]=\"vmodel['rounded']\" [link]=\"vmodel['link']\" [variant]=\"vmodel['variant']\"><svg data-p-icon=\"star\"></svg></button></div><div class=\"\"><button pButton iconOnly size=\"large\" [raised]=\"vmodel['raised']\" [severity]=\"vmodel['selectedSeverity'].value\" [rounded]=\"vmodel['rounded']\" [link]=\"vmodel['link']\" [variant]=\"vmodel['variant']\"><svg data-p-icon=\"star\"></svg></button></div></div><div class=\"flex gap-3\"><div class=\"\"><button pButton class=\"\" size=\"small\" [raised]=\"vmodel['raised']\" [severity]=\"vmodel['selectedSeverity'].value\" [rounded]=\"vmodel['rounded']\" [link]=\"vmodel['link']\" [variant]=\"vmodel['variant']\"><svg data-p-icon=\"users\"></svg><span class=\"\">Small</span></button></div><div class=\"\"><button pButton class=\"\" [raised]=\"vmodel['raised']\" [severity]=\"vmodel['selectedSeverity'].value\" [rounded]=\"vmodel['rounded']\" [link]=\"vmodel['link']\" [variant]=\"vmodel['variant']\"><svg data-p-icon=\"users\"></svg><span class=\"\">Regular</span></button></div><div class=\"\"><button pButton class=\"\" size=\"large\" [raised]=\"vmodel['raised']\" [severity]=\"vmodel['selectedSeverity'].value\" [rounded]=\"vmodel['rounded']\" [link]=\"vmodel['link']\" [variant]=\"vmodel['variant']\"><svg data-p-icon=\"users\"></svg><span class=\"\">Large</span></button></div></div></div><div class=\"w-full\"><div class=\"px-1 mb-3\"><span class=\"font-bold text-lg\">Button Group</span></div><div class=\"flex justify-content-center\"><p-buttongroup><button pButton [raised]=\"vmodel['raised']\" [severity]=\"vmodel['selectedSeverity'].value\" [rounded]=\"vmodel['rounded']\" [link]=\"vmodel['link']\" [variant]=\"vmodel['variant']\" [disabled]=\"vmodel['disabled']\"><svg data-p-icon=\"check\"></svg> Save</button><button pButton [raised]=\"vmodel['raised']\" [severity]=\"vmodel['selectedSeverity'].value\" [rounded]=\"vmodel['rounded']\" [link]=\"vmodel['link']\" [variant]=\"vmodel['variant']\"><svg data-p-icon=\"trash\"></svg> Delete</button><button pButton [raised]=\"vmodel['raised']\" [severity]=\"vmodel['selectedSeverity'].value\" [rounded]=\"vmodel['rounded']\" [link]=\"vmodel['link']\" [variant]=\"vmodel['variant']\"><svg data-p-icon=\"times\"></svg> Cancel</button></p-buttongroup></div></div><div class=\"w-full mb-4\"><div class=\"px-1 mb-3\"><span class=\"font-bold text-lg\">Badge</span></div><div class=\"flex justify-content-center gap-2\"><button pButton>Emails <p-badge severity=\"secondary\" shape=\"circle\" value=\"2\" /></button><button pButton variant=\"outlined\"><svg data-p-icon=\"users\"></svg> Messages <p-badge severity=\"contrast\" shape=\"circle\" value=\"2\" /></button><p-overlay-badge><button pButton variant=\"outlined\" iconOnly><svg data-p-icon=\"bell\"></svg></button><p-badge severity=\"info\" class=\"animate-pulse\" /></p-overlay-badge></div></div>",
+    "data": {
+        "severities": [
+            {
+                "value": "primary",
+                "label": "Primary"
+            },
+            {
+                "value": "secondary",
+                "label": "Secondary"
+            },
+            {
+                "value": "success",
+                "label": "Success"
+            },
+            {
+                "value": "info",
+                "label": "Info"
+            },
+            {
+                "value": "warn",
+                "label": "Warn"
+            },
+            {
+                "value": "help",
+                "label": "Help"
+            },
+            {
+                "value": "danger",
+                "label": "Danger"
+            },
+            {
+                "value": "contrast",
+                "label": "Contrast"
+            }
+        ],
+        "selectedSeverity": {
+            "value": "primary",
+            "label": "Primary"
+        },
+        "raised": false,
+        "rounded": false,
+        "link": false,
+        "variant": null,
+        "disabled": false
+    },
+    "styleClass": "flex flex-column gap-3 px-3 w-full"
 }

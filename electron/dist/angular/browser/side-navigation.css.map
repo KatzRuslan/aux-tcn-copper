@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/shared/components/side-navigation/side-navigation.scss"],
+  "sourcesContent": [":host {\n    --p-sidebar-group-label-font-size: .7rem;\n    --p-sidebar-group-label-height: 1.5rem;\n    --p-sidebar-group-label-font-weight: 400;\n}\n// Тема ставит .p-sidebar-layout { min-height: 100svh }, из-за чего layout\n// не помещается в контейнер и footer уезжает вниз. Привязываем высоту к хосту,\n// чтобы panel(height:100%) → content(flex:1, overflow:auto) скроллился, а footer был прижат.\n.p-sidebar-layout {\n    // min-height: 0;\n    // height: 100%;\n}\n// .group-scroll {\n//     display: block;\n//     overflow-y: auto;\n//     max-height: calc(100vh - 18.4rem);\n//     scrollbar-width: initial;\n// }\n// Скроллится только список Components. Чтобы он тянулся на остаток высоты, вся\n// цепочка предков от ограниченной панели до него должна быть flex-колонкой с min-height:0.\n// .nav-fill — растущее flex-звено, .nav-clip — не даём промежуточным контейнерам скроллиться,\n// .nav-scroll — единственный реальный скроллер (сам список).\n// .nav-fill {\n//     display: flex;\n//     flex-direction: column;\n//     flex: 1 1 0;\n//     min-height: 0;\n// }\n// .nav-clip {\n//     overflow: hidden;\n// }\n// .nav-scroll {\n//     // overflow-y: auto;\n// }\n"],
+  "mappings": ";AAAA;AACI,qCAAA;AACA,kCAAA;AACA,uCAAA;;",
+  "names": []
+}

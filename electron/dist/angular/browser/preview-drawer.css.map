@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/features/style-guide/components/preview-drawer/preview-drawer.scss"],
+  "sourcesContent": [":host {\r\n    --p-drawer-content-padding: 0;\r\n}\r\n"],
+  "mappings": ";AAAA;AACI,8BAAA;;",
+  "names": []
+}

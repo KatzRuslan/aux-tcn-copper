@@ -1,6 +1,7 @@
 import { Component, Type, computed, effect, inject, resource, signal, viewChild, ViewContainerRef } from '@angular/core';
-import { NgComponentOutlet } from '@angular/common';
+// import { NgComponentOutlet } from '@angular/common';
 import { SharedModule } from '@shared-module';
+import { RUNTIME_TEMPLATE_IMPORTS } from '@shared/runtime-template-imports';
 import { Store } from '@style-guide-store';
 
 /** Контекст рантайм-шаблона из .drawer.json: данные + обработчики. */
@@ -9,9 +10,14 @@ interface IDrawerContext {
     methods: Record<string, (...d: any[]) => void>;
 }
 
+/** Кэш скомпилированных рантайм-шаблонов (ключ — styleClass|template).
+ *  Живёт на уровне модуля: PreviewDrawer пересоздаётся при смене секции,
+ *  а повторная компиляция того же шаблона — это секунды блокировки + NG0912. */
+const COMPILED_TEMPLATES = new Map<string, Type<IDrawerContext>>();
+
 @Component({
     selector: 'preview-drawer',
-    imports: [SharedModule, NgComponentOutlet],
+    imports: [SharedModule],//, NgComponentOutlet
     templateUrl: './preview-drawer.html',
     styleUrl: './preview-drawer.scss',
 })
@@ -33,32 +39,36 @@ export class PreviewDrawer {
     // });
     // D:\projects\aux-tcn-copper\public\drawers/inputnumber.drawer
     readonly drawer = resource({
-        params: () => this.active(),
+        params: () => this.active() || undefined, // undefined → загрузка пропускается (разделы без drawer'а)
         loader: async ({ params }) => {
             await import('@angular/compiler'); // JIT-компилятор — ленивым чанком, не в стартовом бандле
             return globalThis.runElectronCommand<any>('read-data', { target: `drawers/${params}.drawer` });
         }
     })
-    /** Скомпилированные рантайм-шаблоны: ключ — styleClass|template. */
-    private readonly _compiledTemplates = new Map<string, Type<IDrawerContext>>();
     constructor() {
         effect(() => {
+            console.log(this.active())
             const vcr = this.drawerhost();
             vcr?.clear();
             // пока loader не завершился, JIT-компилятор ещё не подгружен — компилировать нечем
             if (!vcr || this.drawer.isLoading()) { return; }
+            // нет активного компонента (уходим на другой раздел) — drawer не нужен, не компилируем зря
+            if (!this.active()) { return; }
+            // ВАЖНО: фолбэк — статическая строка (динамика через vmodel), иначе каждый вариант
+            // компилируется заново со scope'ом всего SharedModule — это секунды блокировки
             const { template, header, styleClass, data } = this.drawer.value() ?? {
-                header: 'Not Found', data: undefined,
+                header: 'Not Found',
+                data: { name: this.active() },
                 styleClass: 'flex flex-column w-full h-full justify-content-center align-items-center',
                 template: `
                 <div class="flex flex-column justify-content-center align-items-center gap-3">
                     <svg class="m-auto" width="40" height="40" viewBox="0 0 20 20" fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M15.5 4.8c2 3 1.7 7-1 9.7h0l4.3 4.3-4.3-4.3a7.8 7.8 0 01-9.8 1m-2.2-2.2A7.8 7.8 0 0113.2 2.4M2 18L18 2"></path></svg>
                     <div class="flex flex-column align-items-center pb-8">
                         <div class="">
-                            <span class="uppercase">${this.active()}</span>
+                            <span class="uppercase">{{ vmodel['name'] }}</span>
                             <span class=""> drawer</span>
                         </div>
-                        <div class="" (click)="methods.test2()">
+                        <div class="" (click)="methods['test2']()">
                             <span class="">not found :(</span>
                         </div>
                     </div>
@@ -67,15 +77,16 @@ export class PreviewDrawer {
             };
             this.header.set(header);
             const cacheKey = `${styleClass ?? ''}|${template}`;
-            let cmp = this._compiledTemplates.get(cacheKey);
+            let cmp = COMPILED_TEMPLATES.get(cacheKey);
             if (!cmp) {
-                cmp = Component({ template, imports: [SharedModule], host: { class: styleClass ?? '' } })(
+                // ВАЖНО: только standalone-импорты — NgModule-скоупы вырезаны из AOT-бандла (см. runtime-template-imports)
+                cmp = Component({ template, imports: RUNTIME_TEMPLATE_IMPORTS, host: { class: styleClass ?? '' } })(
                     class {
                         vmodel: Record<string, any> = {};
                         methods: Record<string, (...d: any) => void> = {};
                     }
                 );
-                this._compiledTemplates.set(cacheKey, cmp);
+                COMPILED_TEMPLATES.set(cacheKey, cmp);
             }
             const ref = vcr.createComponent(cmp);
             ref.instance.vmodel = structuredClone(data ?? {});
@@ -86,16 +97,12 @@ export class PreviewDrawer {
                     console.log(this.vmodel); // данные текущего drawer'а
                 },
                 test2() {
-                    console.log('************');
+                    console.log('*1***********');
                     console.log(this); // ref.instance
                 },
             };
             Object.keys(methods).forEach(key => methods[key] = methods[key].bind(ref.instance));
             ref.instance.methods = methods;
-            //
-            console.log(data)
-            console.log(styleClass)
-            console.log(template)
         });
     }
 }

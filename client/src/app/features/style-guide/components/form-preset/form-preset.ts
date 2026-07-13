@@ -1,8 +1,8 @@
-import { Component, OnInit, Injector, input, output, linkedSignal, computed, effect, untracked, runInInjectionContext, inject } from '@angular/core';
+import { Component, OnInit, Injector, input, output, linkedSignal, computed, untracked, runInInjectionContext, inject } from '@angular/core';
 import { form, FormField, required, readonly } from '@angular/forms/signals';
 import { SharedModule } from '@shared-module';
 import { FormComponent } from '../form-component/form-component';
-import { fieldValidator } from '@helpers/utils.helpers';
+import { emitOnUserEdit, fieldValidator } from '@helpers/utils.helpers';
 import { isEqual } from 'lodash';
 import { IGroupMeta } from '@interfaces';
 
@@ -40,17 +40,11 @@ export class FormPreset implements OnInit {
         return this.formGroup()().value();
     }
     ngOnInit(): void {
-        let first = true;
-        effect(
-            () => {
-                this.formGroup()().value();
-                if (first) {
-                    first = false;
-                    return;
-                }
-                this.applyPreset.emit();
-            },
-            { injector: this._injector }
-        );
+        emitOnUserEdit({
+            value: () => this.formGroup()().value(),
+            generation: () => [this.formGroup(), this.vmodel()],
+            emit: () => this.applyPreset.emit(),
+            injector: this._injector,
+        });
     }
 }

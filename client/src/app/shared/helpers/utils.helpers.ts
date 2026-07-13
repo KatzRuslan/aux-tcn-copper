@@ -1,6 +1,46 @@
+import { Injector, effect, untracked } from '@angular/core';
 import { validate } from '@angular/forms/signals';
 import { ICssOverrideItem } from '@interfaces';
 import { isEqual } from 'lodash';
+
+interface IEmitOnUserEditOptions {
+    /** Значение формы — единственный отслеживаемый сигнал эффекта. */
+    readonly value: () => unknown;
+    /** «Поколение» формы: ссылки (vmodel, инстанс формы...), смена которых означает сброс/инициализацию, а не правку. */
+    readonly generation: () => unknown[];
+    /** Вызывается при правке пользователем, с дебаунсом. */
+    readonly emit: () => void;
+    /** Пауза после последнего изменения, мс. 0 — эмитить сразу. */
+    readonly debounce?: number;
+    readonly injector: Injector;
+}
+
+/**
+ * Эмитит только на правки пользователя: инициализация и программные сбросы формы
+ * (смена любого элемента generation) молча запоминаются, отложенный эмит при этом отменяется.
+ */
+export function emitOnUserEdit({ value, generation, emit, debounce = 400, injector }: IEmitOnUserEditOptions) {
+    let lastGeneration: unknown[] | null = null;
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    effect(() => {
+        value(); // подписка на изменения значения формы
+        const current = untracked(generation);
+        const previous = lastGeneration;
+        const isReset = current.length !== previous?.length
+            || current.some((item, index) => item !== previous?.[index]);
+        if (isReset) {
+            lastGeneration = current;
+            clearTimeout(timer); // сброс отменяет отложенный эмит устаревшего значения
+            return;
+        }
+        clearTimeout(timer);
+        if (debounce > 0) {
+            timer = setTimeout(emit, debounce);
+        } else {
+            emit();
+        }
+    }, { injector });
+}
 
 export function fieldValidator(field: Parameters<typeof validate>[0], name: string, type: string) {
     return validate(field, ({ value }) => {
@@ -24,8 +64,8 @@ export function fieldValidator(field: Parameters<typeof validate>[0], name: stri
         return error;
     });
 }
-export function getStyleCssOverrides(overrides: ICssOverrideItem[]) {
-    return overrides
+export function getStyleCssOverrides(overrides: ICssOverrideItem[] | undefined) {
+    return (overrides ?? [])
         .map(({ selector, properties }) => ({ selector, properties: properties.map(({ name, value }) => `${name}: ${value};`).join(' ') }))
         .map(({ selector, properties }) => `${selector} { ${properties} }`)
         .join(' ');

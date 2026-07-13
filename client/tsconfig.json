@@ -33,6 +33,8 @@
             "@style-guide-store": ["./src/app/features/style-guide/store/style-guide.store.ts"],
             "@header-color-palette-right": ["./src/app/features/style-guide/sections/color-palette/header-right/header-right.ts"],
             "@header-ui-component-right": ["./src/app/features/style-guide/sections/ui-component/header-right/header-right.ts"],
+            //
+            "@shared/*": ["./src/app/shared/*"],
         }
     },
     "angularCompilerOptions": {

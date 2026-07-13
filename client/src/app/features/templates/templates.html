@@ -1,1 +1,131 @@
-<p class="m-0">templates not implemented yet!</p>
+<div #source class="flex flex-column gap-3 ----- min-w-20rem h-full">
+    <!-- source-start -->
+    <div class="">
+        <div class="mb-2">
+            <div class="px-1 mb-1"><span class="">Severity</span></div>
+            <p-select [(ngModel)]="vmodel['selectedSeverity']" [options]="vmodel['severities']" optionLabel="label" placeholder="Select a severity" class="w-full" />
+        </div>
+        <div class="flex align-items-center mb-2">
+            <div class="flex align-items-center gap-2 w-6rem cursor-pointer">
+                <p-checkbox [ngModel]="vmodel['raised']" (ngModelChange)="vmodel['raised']=!vmodel['raised']" class="" inputId="raised" [binary]="true" />
+                <label pLabel for="raised"><span class="capitalize">raised</span></label>
+            </div>
+            <div class="flex align-items-center gap-2 w-6rem cursor-pointer">
+                <p-checkbox [ngModel]="vmodel['rounded']" (ngModelChange)="vmodel['rounded']=!vmodel['rounded']" class="" inputId="rounded" [binary]="true" />
+                <label pLabel for="rounded"><span class="capitalize">rounded</span></label>
+            </div>
+            <div class="flex align-items-center gap-2 w-6rem cursor-pointer">
+                <p-checkbox [ngModel]="vmodel['link']" (ngModelChange)="vmodel['link']=!vmodel['link']" class="" inputId="link" [binary]="true" />
+                <label pLabel for="link"><span class="capitalize">link</span></label>
+            </div>
+        </div>
+        <div class="flex align-items-center mb-2">
+            <div class="flex align-items-center gap-2 w-6rem cursor-pointer">
+                <p-radiobutton [ngModel]="vmodel['variant']" (ngModelChange)="vmodel['variant']=null" inputId="none" [value]="null" />
+                <label pLabel for="none"><span class="capitalize">none</span></label>
+            </div>
+            <div class="flex align-items-center gap-2 w-6rem cursor-pointer">
+                <p-radiobutton [ngModel]="vmodel['variant']" (ngModelChange)="vmodel['variant']='text'" inputId="text" value="text" />
+                <label pLabel for="text"><span class="capitalize">text</span></label>
+            </div>
+            <div class="flex align-items-center gap-2 w-6rem cursor-pointer">
+                <p-radiobutton [ngModel]="vmodel['variant']" (ngModelChange)="vmodel['variant']='outlined'" inputId="outlined" value="outlined" />
+                <label pLabel for="outlined"><span class="capitalize">outlined</span></label>
+            </div>
+        </div>
+        <div class="flex align-items-center mb-3">
+            <div class="flex align-items-center gap-2 cursor-pointer">
+                <p-checkbox [ngModel]="vmodel['disabled']" (ngModelChange)="vmodel['disabled']=!vmodel['disabled']" class="" inputId="isDisabeld" [binary]="true" />
+                <label pLabel for="isDisabeld"><span class="capitalize">Set as disabled</span></label>
+            </div>
+        </div>
+        <div class="flex gap-3">
+            <div class="">
+                <button pButton iconOnly
+                    [severity]="vmodel['selectedSeverity'].value" [disabled]="vmodel['disabled']"
+                    [raised]="vmodel['raised']" [rounded]="vmodel['rounded']" [link]="vmodel['link']"
+                    [variant]="vmodel['variant']">
+                    <svg data-p-icon="star"></svg>
+                </button>
+            </div>
+            <div class="">
+                <button pButton class=""
+                    [severity]="vmodel['selectedSeverity'].value" [disabled]="vmodel['disabled']"
+                    [raised]="vmodel['raised']" [rounded]="vmodel['rounded']" [link]="vmodel['link']"
+                    [variant]="vmodel['variant']"
+                    >
+                    <svg data-p-icon="users"></svg>
+                    <span class="">{{vmodel['selectedSeverity'].label}}</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="">
+        <div class="px-1 mb-3"><span class="font-bold text-lg">Sizes</span></div>
+        <div class="flex gap-3 mb-2">
+            <div class="">
+                <button pButton iconOnly size="small" [raised]="vmodel['raised']" [severity]="vmodel['selectedSeverity'].value" [rounded]="vmodel['rounded']" [link]="vmodel['link']" [variant]="vmodel['variant']">
+                    <svg data-p-icon="star"></svg>
+                </button>
+            </div>
+            <div class="">
+                <button pButton iconOnly [raised]="vmodel['raised']" [severity]="vmodel['selectedSeverity'].value" [rounded]="vmodel['rounded']" [link]="vmodel['link']" [variant]="vmodel['variant']">
+                    <svg data-p-icon="star"></svg>
+                </button>
+            </div>
+            <div class="">
+                <button pButton iconOnly size="large" [raised]="vmodel['raised']" [severity]="vmodel['selectedSeverity'].value" [rounded]="vmodel['rounded']" [link]="vmodel['link']" [variant]="vmodel['variant']">
+                    <svg data-p-icon="star"></svg>
+                </button>
+            </div>
+        </div>
+        <div class="flex gap-3">
+            <div class="">
+                <button pButton class="" size="small" [raised]="vmodel['raised']" [severity]="vmodel['selectedSeverity'].value" [rounded]="vmodel['rounded']" [link]="vmodel['link']" [variant]="vmodel['variant']">
+                    <svg data-p-icon="users"></svg>
+                    <span class="">Small</span>
+                </button>
+            </div>
+            <div class="">
+                <button pButton class="" [raised]="vmodel['raised']" [severity]="vmodel['selectedSeverity'].value" [rounded]="vmodel['rounded']" [link]="vmodel['link']" [variant]="vmodel['variant']">
+                    <svg data-p-icon="users"></svg>
+                    <span class="">Regular</span>
+                </button>
+            </div>
+            <div class="">
+                <button pButton class="" size="large" [raised]="vmodel['raised']" [severity]="vmodel['selectedSeverity'].value" [rounded]="vmodel['rounded']" [link]="vmodel['link']" [variant]="vmodel['variant']">
+                    <svg data-p-icon="users"></svg>
+                    <span class="">Large</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="w-full">
+        <div class="px-1 mb-3"><span class="font-bold text-lg">Button Group</span></div>
+        <div class="flex justify-content-center">
+            <p-buttongroup>
+                <button pButton [raised]="vmodel['raised']" [severity]="vmodel['selectedSeverity'].value" [rounded]="vmodel['rounded']" [link]="vmodel['link']" [variant]="vmodel['variant']" [disabled]="vmodel['disabled']"><svg data-p-icon="check"></svg> Save</button>
+                <button pButton [raised]="vmodel['raised']" [severity]="vmodel['selectedSeverity'].value" [rounded]="vmodel['rounded']" [link]="vmodel['link']" [variant]="vmodel['variant']"><svg data-p-icon="trash"></svg> Delete</button>
+                <button pButton [raised]="vmodel['raised']" [severity]="vmodel['selectedSeverity'].value" [rounded]="vmodel['rounded']" [link]="vmodel['link']" [variant]="vmodel['variant']"><svg data-p-icon="times"></svg> Cancel</button>
+            </p-buttongroup>
+        </div>
+    </div>
+    <div class="w-full mb-4">
+        <div class="px-1 mb-3"><span class="font-bold text-lg">Badge</span></div>
+        <div class="flex justify-content-center gap-2">
+            <button pButton>Emails <p-badge severity="secondary" shape="circle" value="2" /></button>
+            <button pButton variant="outlined"><svg data-p-icon="users"></svg> Messages <p-badge severity="contrast" shape="circle" value="2" /></button>
+            <p-overlay-badge>
+                <button pButton variant="outlined" iconOnly><svg data-p-icon="bell"></svg></button>
+                <p-badge severity="info" class="animate-pulse" />
+            </p-overlay-badge>
+        </div>
+    </div>
+    <!-- source-end -->
+</div>
+<div class="flex flex-column flex-grow-1 h-full overflow-auto">
+    <div class="flex w-full h-full overflow-auto"><pre class="m-0 p-2 white-space-pre-wrap">{{ sourceHtml() }}</pre></div>
+    <div class="p-3">
+        <button pButton rounded (click)="copyClipboard($event)">Primary</button>
+    </div>
+</div>

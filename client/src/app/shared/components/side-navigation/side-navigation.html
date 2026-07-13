@@ -4,32 +4,36 @@
             <p-sidebar-menu>
                 <p-sidebar-menu-item>
                     <div class="p-2"><span class="text-lg text-pink-600">I haven't figured it out yet...</span></div>
-                    <!--
-                    <div class="flex justify-content-end">
-                        <notification class="pt-1" />
-                    </div>
-                    -->
                 </p-sidebar-menu-item>
             </p-sidebar-menu>
         </p-sidebar-header>
         <p-sidebar-content class="">
             @for (navigationItem of navigations(); track $index) {
-                <p-sidebar-menu-item [class]="navigationItem.styleClass" [collapsible]="!!navigationItem.items" [open]="!!navigationItem.isActive">
-                    <button pSidebarMenuButton [isActive]="navigationItem.isActive" (click)="onItemClick(navigationItem)">
-                        <svg [pIcon]="navigationItem.icon!" color="var(--p-sidebar-menu-button-color)"></svg>
-                        <span>{{navigationItem.title}}</span>
-                        @if (navigationItem.items) {
+                <p-sidebar-menu-item [class]="navigationItem.styleClass" [collapsible]="!!navigationItem.items" [open]="navigationItem?.isActive==true">
+                    @if (navigationItem.route) {
+                        <a pSidebarMenuButton [routerLink]="navigationItem.route" [isActive]="navigationItem.isActive" class="no-underline min-h-2rem">
+                            <svg [pIcon]="navigationItem.icon!" color="var(--p-sidebar-menu-button-color)"></svg>
+                            <span>{{navigationItem.title}}</span>
+                        </a>
+                    } @else {
+                        <button pSidebarMenuButton class="min-h-2rem" [isActive]="navigationItem.isActive" (click)="navigationItem.isActive=!navigationItem.isActive">
+                            <svg [pIcon]="navigationItem.icon!" color="var(--p-sidebar-menu-button-color)"></svg>
+                            <span>{{navigationItem.title}}</span>
                             <svg data-p-icon="chevron-down" class="ml-auto" color="var(--p-sidebar-menu-button-color)"></svg>
-                        }
-                    </button>
+                        </button>
+                    }
                     @if (navigationItem.items) {
-                        <p-sidebar-menu-sub class="flex-1 min-h-0 border-0">
+                        <p-sidebar-menu-sub class="flex-1 min-h-0 border-0" [class.flex]="navigationItem.isActive">
                             @for (navigationSubItem of navigationItem.items; track $index) {
-                                @if (navigationSubItem.items) {
+                                @if (navigationSubItem.route) {
+                                    <a pSidebarMenuButton [routerLink]="navigationSubItem.route" [isActive]="navigationSubItem.isActive" class="no-underline min-h-2rem">
+                                        <span>{{navigationSubItem.title}}</span>
+                                    </a>
+                                } @else {
                                     <p-sidebar-layout class="flex flex-1 min-h-0">
                                         <p-sidebar-content class="overflow-hidden">
-                                            <p-sidebar-menu-item class="flex-column flex-1 min-h-0" [class.flex]="navigationSubItem.isActive" [collapsible]="!!navigationSubItem.items" [open]="!!navigationSubItem.isActive">
-                                                <button pSidebarMenuButton [isActive]="navigationSubItem.isActive" (click)="onItemClick(navigationSubItem)">
+                                            <p-sidebar-menu-item class="flex-column flex-1 min-h-0" [class.flex]="navigationSubItem.isActive" [collapsible]="!!navigationSubItem.items" [open]="navigationSubItem?.isActive==true">
+                                                <button pSidebarMenuButton class="min-h-2rem" [isActive]="navigationSubItem.isActive" (click)="navigationSubItem.isActive=!navigationSubItem.isActive">
                                                     <span>{{navigationSubItem.title}}</span>
                                                     <svg data-p-icon="chevron-down" class="ml-auto"></svg>
                                                 </button>
@@ -42,9 +46,9 @@
                                                                     <p-sidebar-menu>
                                                                         @for (item of group.items; track $index) {
                                                                             <p-sidebar-menu-sub-item>
-                                                                                <button pSidebarMenuSubButton [isActive]="item.isActive" (click)="onItemClick(item)">
+                                                                                <a pSidebarMenuButton [routerLink]="item.route" [isActive]="item.isActive" class="no-underline min-h-2rem">
                                                                                     <span>{{item.title}}</span>
-                                                                                </button>
+                                                                                </a>
                                                                             </p-sidebar-menu-sub-item>
                                                                         }
                                                                     </p-sidebar-menu>
@@ -56,12 +60,6 @@
                                             </p-sidebar-menu-item>
                                         </p-sidebar-content>
                                     </p-sidebar-layout>
-                                } @else {
-                                    <p-sidebar-menu-sub-item>
-                                        <button pSidebarMenuSubButton [isActive]="navigationSubItem.isActive" (click)="onItemClick(navigationSubItem)">
-                                            <span>{{navigationSubItem.title}}</span>
-                                        </button>
-                                    </p-sidebar-menu-sub-item>
                                 }
                             }
                         </p-sidebar-menu-sub>

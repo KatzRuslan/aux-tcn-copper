@@ -13,20 +13,15 @@
   "tokenUri": "http://localhost:5011/auth",
   "darkMode": false,
   "searcherBookmarks": [
-    "checkbox",
     "button",
-    "inputnumber"
+    "checkbox",
+    "inputcolor",
+    "confirmdialog",
+    "select"
   ],
   "availableComponents": [
     "inputtext",
-    "checkbox",
-    "select",
-    "inputcolor",
-    "dynamicdialog",
-    "confirmdialog",
     "button",
-    "accordion",
-    "card",
-    "inputnumber"
+    "accordion"
   ]
 }

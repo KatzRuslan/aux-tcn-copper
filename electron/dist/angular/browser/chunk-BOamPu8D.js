@@ -1,1 +1,0 @@
-import {R as Rv,a8 as ec,a5 as CE,a9 as tc}from'./main-BUQFS6OW.js';var t=class n{static \u0275fac=function(e){return new(e||n)};static \u0275cmp=Rv({type:n,selectors:[["icons"]],decls:2,vars:0,consts:[[1,"m-0"]],template:function(e,m){e&1&&(ec(0,"p",0),CE(1,"icons not implemented yet!"),tc());},encapsulation:2})};export{t as default};

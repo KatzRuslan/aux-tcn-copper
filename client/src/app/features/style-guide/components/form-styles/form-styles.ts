@@ -1,5 +1,6 @@
-import { Component, OnInit, Injector, ElementRef, input, output, linkedSignal, computed, effect, inject } from '@angular/core';
+import { Component, OnInit, Injector, ElementRef, input, output, linkedSignal, computed, inject } from '@angular/core';
 import { form, FormField, required, applyEach } from '@angular/forms/signals';
+import { emitOnUserEdit } from '@helpers/utils.helpers';
 import { ICssOverrideItem } from '@interfaces';
 import { SharedModule } from '@shared-module';
 import { PropertyName } from './property-name/property-name';
@@ -75,17 +76,11 @@ export class FormStyles implements OnInit {
         return this.formGroup().value();
     }
     ngOnInit(): void {
-        let first = true;
-        effect(
-            () => {
-                this.formGroup().value();
-                if (first) {
-                    first = false;
-                    return;
-                }
-                this.applyPreset.emit();
-            },
-            { injector: this._injector }
-        );
+        emitOnUserEdit({
+            value: () => this.formGroup().value(),
+            generation: () => [this.vmodel()],
+            emit: () => this.applyPreset.emit(),
+            injector: this._injector,
+        });
     }
 }
