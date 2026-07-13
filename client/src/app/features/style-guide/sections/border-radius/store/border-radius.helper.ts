@@ -33,6 +33,7 @@ export function electronWriteBorderRadius() {
 }
 export function createBorderRadius() {
     const preset = unflatten(ctx.borderRadius());
-    return getDeepDiff(preset, Aura.primitive);
+    return preset;
+    // return getDeepDiff(preset, Aura.primitive);
 }
 

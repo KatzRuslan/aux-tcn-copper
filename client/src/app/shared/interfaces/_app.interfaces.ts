@@ -32,7 +32,6 @@ export interface INavigationItem {
     styleClass?: string;
 }
 export type FieldType = 'color' | 'size' | 'rem' | 'number' | 'string' | 'select' | 'shadow';
-
 export interface IFieldMeta {
     path: string;
     label: string;
@@ -48,4 +47,8 @@ export interface IGroupMeta {
     styleClass: string;
     fields: IFieldMeta[];
 }
-
+export interface INotification {
+    readonly title: string;
+    readonly type: string;
+    readonly options?: any;
+}

@@ -26,9 +26,9 @@ export default class CssOverrides {
     addOverride() {
         this.formStyles()!.addOverride();
     }
-    onSubmit() {
-        this.store.putCssOverrides(this.formStyles()!.getValue());
-    }
+    // onSubmit() {
+    //     this.store.putCssOverrides(this.formStyles()!.getValue());
+    // }
     applyPreset() {
         if (this.formStyles()!.invalid()) { return; }
         this.store.applyPreset(this.formStyles()!.getValue());

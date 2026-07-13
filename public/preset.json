@@ -29,6 +29,7 @@
       "width": "0.0625rem",
       "offset": "0.125rem"
     },
+    "anchorGutter": "0.125rem",
     "list": {
       "gap": "0.125rem"
     },
@@ -36,8 +37,7 @@
       "list": {
         "gap": "0.125rem"
       }
-    },
-    "anchorGutter": "0.125rem"
+    }
   },
   "components": {
     "textarea": {

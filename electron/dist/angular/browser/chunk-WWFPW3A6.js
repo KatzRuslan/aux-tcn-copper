@@ -1,11 +1,8 @@
 import {
-  FormPreset,
-  PreviewDrawer
-} from "./chunk-LHR4GNNQ.js";
-import "./chunk-4GLHGLXN.js";
+  FormComponent
+} from "./chunk-4YSJSIDM.js";
 import {
   Check,
-  ProgressSpinner,
   SharedModule,
   Tooltip
 } from "./chunk-QPDOPGPJ.js";
@@ -354,49 +351,48 @@ import "./chunk-3EGLYLJW.js";
 import "./chunk-NA4GFC27.js";
 import "./chunk-4JRIKI4A.js";
 import {
-  Store3 as Store
-} from "./chunk-I7ZYIMSW.js";
-import "./chunk-SWDPWGAA.js";
+  Store2 as Store,
+  fieldValidator,
+  require_lodash
+} from "./chunk-RGXWWOJX.js";
+import {
+  FormField,
+  form,
+  required,
+  validate
+} from "./chunk-SWDPWGAA.js";
 import {
   ButtonDirective
 } from "./chunk-PNUGKQVR.js";
 import "./chunk-O5OVYJU6.js";
 import {
   Component,
-  ViewChild,
   computed,
-  forwardRef,
   inject,
+  linkedSignal,
   setClassMetadata,
-  viewChild,
   ɵsetClassDebugInfo,
   ɵɵadvance,
   ɵɵconditional,
   ɵɵconditionalCreate,
-  ɵɵdefer,
-  ɵɵdeferOnIdle,
+  ɵɵcontrol,
+  ɵɵcontrolCreate,
   ɵɵdefineComponent,
-  ɵɵdomTemplate,
   ɵɵelement,
   ɵɵelementEnd,
   ɵɵelementStart,
-  ɵɵgetCurrentView,
   ɵɵlistener,
   ɵɵnamespaceSVG,
   ɵɵnextContext,
   ɵɵproperty,
-  ɵɵqueryAdvance,
   ɵɵreference,
   ɵɵrepeater,
   ɵɵrepeaterCreate,
   ɵɵrepeaterTrackByIndex,
-  ɵɵresetView,
-  ɵɵrestoreView,
   ɵɵtemplate,
   ɵɵtemplateRefExtractor,
   ɵɵtext,
-  ɵɵtextInterpolate,
-  ɵɵviewQuerySignal
+  ɵɵtextInterpolate
 } from "./chunk-CNIBSPWC.js";
 import "./chunk-2YRFR7EU.js";
 import "./chunk-GXO7LGC6.js";
@@ -413,11 +409,34 @@ import "./chunk-LCKVFLJS.js";
 import "./chunk-MEULWFLU.js";
 import "./chunk-42Q7W4RO.js";
 import "./chunk-IOAZZNXC.js";
-import "./chunk-RW4ES5HA.js";
+import {
+  __toESM
+} from "./chunk-RW4ES5HA.js";
 
-// src/app/features/style-guide/sections/semantic/semantic.ts
-var Semantic_Defer_4_DepsFn = () => [ButtonDirective, Tooltip, Check, FormPreset];
-function Semantic_Defer_2_ng_template_6_Conditional_0_For_1_Template(rf, ctx) {
+// src/app/features/style-guide/sections/border-radius/border-radius.ts
+var import_lodash = __toESM(require_lodash());
+function BorderRadius_For_2_Conditional_0_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275element(0, "form-component", 6);
+    \u0275\u0275controlCreate();
+  }
+  if (rf & 2) {
+    const field_r1 = \u0275\u0275nextContext().$implicit;
+    const ctx_r1 = \u0275\u0275nextContext();
+    \u0275\u0275property("formField", ctx_r1.formGroup[field_r1.path])("field", field_r1);
+    \u0275\u0275control();
+  }
+}
+function BorderRadius_For_2_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275conditionalCreate(0, BorderRadius_For_2_Conditional_0_Template, 1, 2, "form-component", 6);
+  }
+  if (rf & 2) {
+    const field_r1 = ctx.$implicit;
+    \u0275\u0275conditional(field_r1.isVisible ? 0 : -1);
+  }
+}
+function BorderRadius_ng_template_8_Conditional_0_For_1_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "div", 7)(1, "span", 7);
     \u0275\u0275text(2);
@@ -429,165 +448,108 @@ function Semantic_Defer_2_ng_template_6_Conditional_0_For_1_Template(rf, ctx) {
     \u0275\u0275textInterpolate(message_r3);
   }
 }
-function Semantic_Defer_2_ng_template_6_Conditional_0_Template(rf, ctx) {
+function BorderRadius_ng_template_8_Conditional_0_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275repeaterCreate(0, Semantic_Defer_2_ng_template_6_Conditional_0_For_1_Template, 3, 1, "div", 7, \u0275\u0275repeaterTrackByIndex);
-  }
-  if (rf & 2) {
-    const ctx_r1 = \u0275\u0275nextContext(3);
-    \u0275\u0275repeater(ctx_r1.errors());
-  }
-}
-function Semantic_Defer_2_ng_template_6_Template(rf, ctx) {
-  if (rf & 1) {
-    \u0275\u0275conditionalCreate(0, Semantic_Defer_2_ng_template_6_Conditional_0_Template, 2, 0);
+    \u0275\u0275repeaterCreate(0, BorderRadius_ng_template_8_Conditional_0_For_1_Template, 3, 1, "div", 7, \u0275\u0275repeaterTrackByIndex);
   }
   if (rf & 2) {
     const ctx_r1 = \u0275\u0275nextContext(2);
+    \u0275\u0275repeater(ctx_r1.errors());
+  }
+}
+function BorderRadius_ng_template_8_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275conditionalCreate(0, BorderRadius_ng_template_8_Conditional_0_Template, 2, 0);
+  }
+  if (rf & 2) {
+    const ctx_r1 = \u0275\u0275nextContext();
     \u0275\u0275conditional(ctx_r1.errors().length ? 0 : -1);
   }
 }
-function Semantic_Defer_2_Template(rf, ctx) {
-  if (rf & 1) {
-    const _r1 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "form-preset", 2);
-    \u0275\u0275listener("applyPreset", function Semantic_Defer_2_Template_form_preset_applyPreset_0_listener() {
-      \u0275\u0275restoreView(_r1);
-      const ctx_r1 = \u0275\u0275nextContext();
-      return \u0275\u0275resetView(ctx_r1.applyPreset());
-    });
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(1, "div", 3)(2, "div", 4)(3, "button", 5);
-    \u0275\u0275listener("click", function Semantic_Defer_2_Template_button_click_3_listener() {
-      \u0275\u0275restoreView(_r1);
-      const ctx_r1 = \u0275\u0275nextContext();
-      return \u0275\u0275resetView(ctx_r1.onSubmit());
-    });
-    \u0275\u0275namespaceSVG();
-    \u0275\u0275element(4, "svg", 6);
-    \u0275\u0275text(5, " Save");
-    \u0275\u0275elementEnd();
-    \u0275\u0275template(6, Semantic_Defer_2_ng_template_6_Template, 1, 1, "ng-template", null, 0, \u0275\u0275templateRefExtractor);
-    \u0275\u0275elementEnd()();
-  }
-  if (rf & 2) {
-    const tooltipContent_r4 = \u0275\u0275reference(7);
-    const ctx_r1 = \u0275\u0275nextContext();
-    \u0275\u0275property("vmodel", ctx_r1.store.semantic())("scheme", ctx_r1.store.scheme());
-    \u0275\u0275advance(2);
-    \u0275\u0275property("pTooltip", ctx_r1.errors().length ? tooltipContent_r4 : "");
-    \u0275\u0275advance();
-    \u0275\u0275property("disabled", ctx_r1.invalid());
-  }
-}
-function Semantic_DeferPlaceholder_3_Template(rf, ctx) {
-  if (rf & 1) {
-    \u0275\u0275text(0, " loading... ");
-    \u0275\u0275elementStart(1, "div", 8);
-    \u0275\u0275element(2, "p-progressspinner", 9);
-    \u0275\u0275elementEnd();
-  }
-}
-var Semantic = class _Semantic {
+var BorderRadius = class _BorderRadius {
   store = inject(Store);
-  formPreset = viewChild(
-    FormPreset,
-    ...ngDevMode ? [{ debugName: "formPreset" }] : (
+  formModel = linkedSignal(
+    () => this.store.borderRadius(),
+    ...ngDevMode ? [{ debugName: "formModel" }] : (
       /* istanbul ignore next */
       []
     )
   );
-  presetErrors = computed(
-    () => this.formPreset().errors(),
-    ...ngDevMode ? [{ debugName: "presetErrors" }] : (
-      /* istanbul ignore next */
-      []
-    )
-  );
-  invalid = computed(
-    () => this.formPreset().invalid() || this.formPreset().unchanged(),
-    ...ngDevMode ? [{ debugName: "invalid" }] : (
-      /* istanbul ignore next */
-      []
-    )
-  );
+  formGroup = form(this.formModel, (schema) => {
+    this.store.scheme().forEach(({ path, label, type }) => {
+      required(schema[path], { message: `Border ${label} is required` });
+      fieldValidator(schema[path], label, type);
+    });
+    validate(schema, ({ value }) => {
+      return (0, import_lodash.isEqual)(value(), this.store.borderRadius()) ? { kind: "unchanged", message: "Unchanged" } : null;
+    });
+  });
   errors = computed(
-    () => {
-      const errors = [];
-      if (this.formPreset().unchanged()) {
-        errors.push("Unchanged");
-      }
-      errors.push(...this.presetErrors());
-      return errors;
-    },
+    () => this.formGroup().errorSummary().map(({ message }) => message),
     ...ngDevMode ? [{ debugName: "errors" }] : (
       /* istanbul ignore next */
       []
     )
   );
-  onSubmit() {
-    this.store.putSemantic(this.formPreset().getValue());
-  }
-  applyPreset() {
-    if (this.formPreset().invalid()) {
-      return;
-    }
-    this.store.applyPreset(this.formPreset().getValue());
-  }
-  static \u0275fac = function Semantic_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _Semantic)();
+  static \u0275fac = function BorderRadius_Factory(__ngFactoryType__) {
+    return new (__ngFactoryType__ || _BorderRadius)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _Semantic, selectors: [["semantic"]], viewQuery: function Semantic_Query(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _BorderRadius, selectors: [["border-radius"]], hostAttrs: [1, "flex", "flex-column", "gap-4", "p-3", "w-full", "h-full", "overflow-hidden"], decls: 10, vars: 2, consts: [["tooltipContent", ""], [1, "flex", "flex-column", "gap-3", "w-full", "h-full", "overflow-auto"], [1, "flex"], ["tooltipPosition", "top", 1, "", 3, "pTooltip"], ["pButton", "", 3, "click", "disabled"], ["data-p-icon", "check"], ["source", "primitive", 3, "formField", "field"], [1, ""]], template: function BorderRadius_Template(rf, ctx) {
     if (rf & 1) {
-      \u0275\u0275viewQuerySignal(ctx.formPreset, FormPreset, 5);
-    }
-    if (rf & 2) {
-      \u0275\u0275queryAdvance();
-    }
-  }, hostAttrs: [1, "flex", "flex-column", "w-full", "h-full", "overflow-hidden"], decls: 6, vars: 0, consts: [["tooltipContent", ""], [1, "flex", "flex-column", "gap-4", "pb-3", "w-full", "h-full", "overflow-hidden"], [3, "applyPreset", "vmodel", "scheme"], [1, "flex", "justify-content-between", "align-items-center", "px-4"], ["tooltipPosition", "top", 1, "", 3, "pTooltip"], ["pButton", "", 3, "click", "disabled"], ["data-p-icon", "check"], [1, ""], [1, "flex", "justify-content-center", "align-items-center", "w-full", "h-full"], ["strokeWidth", "8", "styleClass", "w-3rem h-3rem"]], template: function Semantic_Template(rf, ctx) {
-    if (rf & 1) {
-      \u0275\u0275element(0, "preview-drawer");
-      \u0275\u0275elementStart(1, "div", 1);
-      \u0275\u0275domTemplate(2, Semantic_Defer_2_Template, 8, 4)(3, Semantic_DeferPlaceholder_3_Template, 3, 0);
-      \u0275\u0275defer(4, 2, Semantic_Defer_4_DepsFn, null, 3);
-      \u0275\u0275deferOnIdle();
+      \u0275\u0275elementStart(0, "div", 1);
+      \u0275\u0275repeaterCreate(1, BorderRadius_For_2_Template, 1, 1, null, null, \u0275\u0275repeaterTrackByIndex);
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(3, "div", 2)(4, "div", 3)(5, "button", 4);
+      \u0275\u0275listener("click", function BorderRadius_Template_button_click_5_listener() {
+        return ctx.store.putBorderRadius(ctx.formGroup().value());
+      });
+      \u0275\u0275namespaceSVG();
+      \u0275\u0275element(6, "svg", 5);
+      \u0275\u0275text(7, " Save");
+      \u0275\u0275elementEnd()();
+      \u0275\u0275template(8, BorderRadius_ng_template_8_Template, 1, 1, "ng-template", null, 0, \u0275\u0275templateRefExtractor);
       \u0275\u0275elementEnd();
     }
-  }, dependencies: [SharedModule, ProgressSpinner, PreviewDrawer], encapsulation: 2 });
+    if (rf & 2) {
+      const tooltipContent_r4 = \u0275\u0275reference(9);
+      \u0275\u0275advance();
+      \u0275\u0275repeater(ctx.store.scheme());
+      \u0275\u0275advance(3);
+      \u0275\u0275property("pTooltip", ctx.errors().length ? tooltipContent_r4 : "");
+      \u0275\u0275advance();
+      \u0275\u0275property("disabled", ctx.formGroup().invalid());
+    }
+  }, dependencies: [SharedModule, ButtonDirective, Tooltip, Check, FormField, FormComponent], encapsulation: 2 });
 };
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(Semantic, [{
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(BorderRadius, [{
     type: Component,
-    args: [{ selector: "semantic", imports: [SharedModule, FormPreset, PreviewDrawer], host: { class: "flex flex-column w-full h-full overflow-hidden" }, template: `<preview-drawer />
-<div class="flex flex-column gap-4 pb-3 w-full h-full overflow-hidden">
-    @defer (on idle) {
-        <form-preset [vmodel]="store.semantic()" [scheme]="store.scheme()" (applyPreset)="applyPreset()" />
-        <div class="flex justify-content-between align-items-center px-4">
-            <div class="" [pTooltip]="errors().length ? tooltipContent: ''" tooltipPosition="top">
-                <button pButton [disabled]="invalid()" (click)="onSubmit()"><svg data-p-icon="check"></svg> Save</button>
-                <ng-template #tooltipContent>
-                    @if (errors().length) {
-                        @for (message of errors(); track $index) {
-                            <div class=""><span class="">{{message}}</span></div>
-                        }
-                    }
-                </ng-template>
-            </div>
-        </div>
-    } @placeholder {
-        loading...
-        <div class="flex justify-content-center align-items-center w-full h-full">
-            <p-progressspinner strokeWidth="8" styleClass="w-3rem h-3rem" />
-        </div>
+    args: [{ selector: "border-radius", imports: [SharedModule, FormField, FormComponent], host: { class: "flex flex-column gap-4 p-3 w-full h-full overflow-hidden" }, template: `<div class="flex flex-column gap-3 w-full h-full overflow-auto">
+    @for (field of store.scheme(); track $index) {
+        @if (field.isVisible) {
+            <form-component [formField]="formGroup[field.path]" [field]="field" source="primitive" />
+        }
     }
 </div>
+<div class="flex">
+    <div class="" [pTooltip]="errors().length ? tooltipContent: ''" tooltipPosition="top">
+        <button pButton [disabled]="formGroup().invalid()" (click)="store.putBorderRadius(formGroup().value())"><svg data-p-icon="check"></svg> Save</button>
+    </div>
+    <ng-template #tooltipContent>
+        @if (errors().length) {
+            @for (message of errors(); track $index) {
+                <div class=""><span class="">{{message}}</span></div>
+            }
+        }
+    </ng-template>
+</div>
 ` }]
-  }], null, { formPreset: [{ type: ViewChild, args: [forwardRef(() => FormPreset), { isSignal: true }] }] });
+  }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(Semantic, { className: "Semantic", filePath: "src/app/features/style-guide/sections/semantic/semantic.ts", lineNumber: 14 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(BorderRadius, { className: "BorderRadius", filePath: "src/app/features/style-guide/sections/border-radius/border-radius.ts", lineNumber: 16 });
 })();
 export {
-  Semantic as default
+  BorderRadius as default
 };
-//# sourceMappingURL=chunk-K4SGMRWO.js.map
+//# sourceMappingURL=chunk-WWFPW3A6.js.map

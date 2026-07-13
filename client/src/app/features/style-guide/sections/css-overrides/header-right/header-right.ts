@@ -1,19 +1,14 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { SharedCoreModule } from '@shared-core-module';
-import { Store } from '@style-guide-store';
-import { Conductor } from '@shared-components/conductor/conductor';
-import { DrawerButton } from '@shared-components/drawer-button/drawer-button';
 import { CssIcon } from '@shared/icons/css-icon';
 
 @Component({
-    selector: 'ui-component-header-right',
-    imports: [SharedCoreModule, Conductor, DrawerButton, CssIcon],
+    selector: 'css-overrides-header-right',
+    imports: [SharedCoreModule, CssIcon],
     templateUrl: './header-right.html',
     styleUrl: './header-right.scss',
-    host: { class: 'flex align-items-center gap-3' },
 })
 export class HeaderRight {
-    readonly store = inject(Store);
     /** DOM-событие вместо прямого вызова: header-right (app shell) и form-styles (lazy-секция) не связаны иерархией. */
     fireCssEvent() {
         document.dispatchEvent(new Event('add-override-css'));

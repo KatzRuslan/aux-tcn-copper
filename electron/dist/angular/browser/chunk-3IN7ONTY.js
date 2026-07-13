@@ -1,6 +1,6 @@
 import {
   FormComponent
-} from "./chunk-4GLHGLXN.js";
+} from "./chunk-4YSJSIDM.js";
 import {
   Accordion,
   AccordionContent,
@@ -47,7 +47,7 @@ import {
   emitOnUserEdit,
   fieldValidator,
   require_lodash
-} from "./chunk-I7ZYIMSW.js";
+} from "./chunk-RGXWWOJX.js";
 import {
   FormField,
   form,
@@ -285,7 +285,7 @@ var FormPreset = class _FormPreset {
   (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(FormPreset, { className: "FormPreset", filePath: "src/app/features/style-guide/components/form-preset/form-preset.ts", lineNumber: 16 });
 })();
 
-// src/app/shared/directives/d-model.ts
+// src/app/features/style-guide/components/preview-drawer/directives/d-model.ts
 var DModel = class _DModel extends NgControl {
   dModel = input(
     ...ngDevMode ? [void 0, { debugName: "dModel" }] : (
@@ -344,7 +344,7 @@ var DModel = class _DModel extends NgControl {
   }], () => [], { dModel: [{ type: Input, args: [{ isSignal: true, alias: "dModel", required: false }] }], dModelChange: [{ type: Output, args: ["dModelChange"] }] });
 })();
 
-// src/app/shared/runtime-template-imports.ts
+// src/app/features/style-guide/components/preview-drawer/runtime-template-imports.ts
 var RUNTIME_TEMPLATE_IMPORTS = [
   DModel,
   PIcon,
@@ -487,15 +487,6 @@ var PreviewDrawer = class _PreviewDrawer {
     )
   );
   defaultStyleClass = "flex flex-column gap-3 px-2";
-  // /** Карта демо грузится отдельным чанком, чтобы не тянуть все примеры в стартовый бандл. */
-  // private readonly _demos = resource({
-  //     loader: () => import('./demos/drawer-demos').then(({ DRAWER_DEMOS }) => DRAWER_DEMOS),
-  // });
-  // readonly drawer = computed(() => {
-  //     const demos = this._demos.value();
-  //     return demos ? demos[this.active()] ?? demos['empty'] : null;
-  // });
-  // D:\projects\aux-tcn-copper\public\drawers/inputnumber.drawer
   drawer = resource(__spreadProps(__spreadValues({}, ngDevMode ? { debugName: "drawer" } : (
     /* istanbul ignore next */
     {}
@@ -509,7 +500,6 @@ var PreviewDrawer = class _PreviewDrawer {
   }));
   constructor() {
     effect(() => {
-      console.log(this.active());
       const vcr = this.drawerhost();
       vcr?.clear();
       if (!vcr || this.drawer.isLoading()) {
@@ -648,11 +638,11 @@ var PreviewDrawer = class _PreviewDrawer {
   }], () => [], { drawerhost: [{ type: ViewChild, args: ["drawerhost", __spreadProps(__spreadValues({}, { read: ViewContainerRef }), { isSignal: true })] }] });
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(PreviewDrawer, { className: "PreviewDrawer", filePath: "src/app/features/style-guide/components/preview-drawer/preview-drawer.ts", lineNumber: 24 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(PreviewDrawer, { className: "PreviewDrawer", filePath: "src/app/features/style-guide/components/preview-drawer/preview-drawer.ts", lineNumber: 23 });
 })();
 
 export {
   FormPreset,
   PreviewDrawer
 };
-//# sourceMappingURL=chunk-LHR4GNNQ.js.map
+//# sourceMappingURL=chunk-3IN7ONTY.js.map

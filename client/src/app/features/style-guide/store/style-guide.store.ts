@@ -10,10 +10,11 @@ import { updateState, withDevtools, withDevToolsStub } from '@angular-architects
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { tapResponse } from '@ngrx/operators';
 import { initialStyleGuideSlice } from './style-guide.slice';
-import { createPreset, initStyleGuideHelperContext } from './style-guide.helper';
+import { initStyleGuideHelperContext, applyPreset, createPreset, electronWritePreset, } from './style-guide.helper';
 import { initStyleGuideStore, putShowDrawer } from './style-guide.updates';
 import { vmDrawer, vmodel } from './style-guide.vm-builder';
 import { environment } from '@environments';
+import { INotification } from '@interfaces';
 
 export const Store = signalStore(
 	{ providedIn: 'root' },
@@ -73,6 +74,29 @@ export const Store = signalStore(
             toggleDrawer: () => updateState(store, '[StyleGuideStore] Put ShowDrawer', putShowDrawer(!store.showDrawer())),
             toggleBookmark: store._appStore().toggleBookmark,
             toggleAvailableComponent: store._appStore().toggleAvailableComponent,
+            applyPreset: () => {
+                store._appStore().putNotifications(applyPreset());
+            },
+            savePreset: (stores: string[]) => {
+                for (const name of stores) {
+                    switch (name) {
+                        case 'borderRadius':
+                            store._borderRadiusStore().electronWriteBorderRadius();
+                            break;
+                        case 'semantic':
+                            store._semanticStore().electronWriteSemantic();
+                            break;
+                        case 'components':
+                            store._uiComponentStore().electronWriteUiComponent();
+                            break;
+                        case 'css':
+                            store._cssOverridesStore().electronWriteCssOverrides();
+                            break;
+                    }
+                }
+                electronWritePreset()
+            },
+            approveNotification: (notification: INotification) => { console.log(notification) },
             createPreset,
         }
     }),
@@ -102,16 +126,17 @@ export const Store = signalStore(
                 semantic: computed(() => store._semanticStore().getSemantic()),
                 cssOverrides: computed(() => store._cssOverridesStore().getCssOverrides()),
                 components: computed(() => store._uiComponentStore().getComponents()),
+                notifications: computed(() => store._appStore().notifications()),
 			});
-            updateState(store, '[StyleGuideStore] Put ShowDrawer', putShowDrawer(true));
-            // effect(() => {
-            //     store.active(); // триггер — смена активного раздела
-            //     untracked(() => {
-            //         if (store.showDrawer()) {
-            //             updateState(store, '[StyleGuideStore] Put ShowDrawer', putShowDrawer(false));
-            //         }
-            //     });
-            // });
+            // updateState(store, '[StyleGuideStore] Put ShowDrawer', putShowDrawer(true));
+            effect(() => {
+                store.active(); // триггер — смена активного раздела
+                untracked(() => {
+                    if (store.showDrawer()) {
+                        updateState(store, '[StyleGuideStore] Put ShowDrawer', putShowDrawer(false));
+                    }
+                });
+            });
 		},
 	}),
 	// withDevtools('style-guide-store'),

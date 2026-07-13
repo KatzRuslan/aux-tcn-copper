@@ -6,8 +6,8 @@ import { isEqual } from 'lodash';
 interface IEmitOnUserEditOptions {
     /** Значение формы — единственный отслеживаемый сигнал эффекта. */
     readonly value: () => unknown;
-    /** «Поколение» формы: ссылки (vmodel, инстанс формы...), смена которых означает сброс/инициализацию, а не правку. */
-    readonly generation: () => unknown[];
+    /** Модель формы (vmodel). Совпадение value с ней по содержимому — инициализация, сброс или эхо apply, а не правка. */
+    readonly model: () => unknown;
     /** Вызывается при правке пользователем, с дебаунсом. */
     readonly emit: () => void;
     /** Пауза после последнего изменения, мс. 0 — эмитить сразу. */
@@ -16,24 +16,19 @@ interface IEmitOnUserEditOptions {
 }
 
 /**
- * Эмитит только на правки пользователя: инициализация и программные сбросы формы
- * (смена любого элемента generation) молча запоминаются, отложенный эмит при этом отменяется.
+ * Эмитит только на правки пользователя: если значение формы совпадает с моделью по содержимому
+ * (инициализация, программный сброс, эхо собственного apply) — молчит и отменяет отложенный эмит.
+ * Сравнение по ссылкам здесь не работает: обновление vmodel после apply приходит со СЛЕДУЮЩИМ
+ * циклом CD и может совпасть с новой правкой пользователя, съедая её как «сброс».
  */
-export function emitOnUserEdit({ value, generation, emit, debounce = 400, injector }: IEmitOnUserEditOptions) {
-    let lastGeneration: unknown[] | null = null;
+export function emitOnUserEdit({ value, model, emit, debounce = 400, injector }: IEmitOnUserEditOptions) {
     let timer: ReturnType<typeof setTimeout> | undefined;
     effect(() => {
-        value(); // подписка на изменения значения формы
-        const current = untracked(generation);
-        const previous = lastGeneration;
-        const isReset = current.length !== previous?.length
-            || current.some((item, index) => item !== previous?.[index]);
-        if (isReset) {
-            lastGeneration = current;
-            clearTimeout(timer); // сброс отменяет отложенный эмит устаревшего значения
+        const current = value(); // подписка на изменения значения формы
+        clearTimeout(timer); // любое изменение отменяет отложенный эмит устаревшего значения
+        if (isEqual(current, untracked(model))) {
             return;
         }
-        clearTimeout(timer);
         if (debounce > 0) {
             timer = setTimeout(emit, debounce);
         } else {

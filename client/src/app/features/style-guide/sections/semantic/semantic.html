@@ -2,7 +2,7 @@
 <div class="flex flex-column gap-4 pb-3 w-full h-full overflow-hidden">
     @defer (on idle) {
         <form-preset [vmodel]="store.semantic()" [scheme]="store.scheme()" (applyPreset)="applyPreset()" />
-        <div class="flex justify-content-between align-items-center px-4">
+        <!-- <div class="flex justify-content-between align-items-center px-4">
             <div class="" [pTooltip]="errors().length ? tooltipContent: ''" tooltipPosition="top">
                 <button pButton [disabled]="invalid()" (click)="onSubmit()"><svg data-p-icon="check"></svg> Save</button>
                 <ng-template #tooltipContent>
@@ -13,9 +13,8 @@
                     }
                 </ng-template>
             </div>
-        </div>
+        </div> -->
     } @placeholder {
-        loading...
         <div class="flex justify-content-center align-items-center w-full h-full">
             <p-progressspinner strokeWidth="8" styleClass="w-3rem h-3rem" />
         </div>

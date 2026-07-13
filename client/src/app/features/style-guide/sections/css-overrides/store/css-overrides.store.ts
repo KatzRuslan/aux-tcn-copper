@@ -5,7 +5,7 @@ import { updateState, withDevtools, withDevToolsStub } from '@angular-architects
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { tapResponse } from '@ngrx/operators';
 import { initialCssOverridesSlice } from './css-overrides.slice';
-import { applyPreset, createCssOverrides, electronWriteCssOverrides, initCssOverrides, initCssOverridesHelperContext } from './css-overrides.helper';
+import { createCssOverrides, electronWriteCssOverrides, initCssOverrides, initCssOverridesHelperContext } from './css-overrides.helper';
 import { initCssOverridesStore, putCssOverrides } from './css-overrides.updates';
 import { vmodel } from './css-overrides.vm-builder';
 import { environment } from '@environments';
@@ -42,15 +42,20 @@ export const Store = signalStore(
                 ),
                 { injector: store._injector }
             ),
-            putCssOverrides: (overrides: ICssOverrideItem[]) => {
-                updateState(store, '[CssOverridesStore] Put CssOverrides', putCssOverrides(overrides));
-                electronWriteCssOverrides();
-                store._styleGuidStore().createPreset();
-            },
+            // putCssOverrides: (overrides: ICssOverrideItem[]) => {
+            //     updateState(store, '[CssOverridesStore] Put CssOverrides', putCssOverrides(overrides));
+            //     // electronWriteCssOverrides();
+            //     store._styleGuidStore().createPreset();
+            // },
             testCssOverrides: (overrides: any) => {
                 console.log(overrides)
             },
-            applyPreset,
+            applyPreset: (overrides: ICssOverrideItem[]) => {
+                updateState(store, '[CssOverridesStore] Put CssOverrides', putCssOverrides(overrides));
+                // electronWriteCssOverrides();
+                store._styleGuidStore().applyPreset();
+            },
+            electronWriteCssOverrides,
         }
     }),
 	withComputed(store => {

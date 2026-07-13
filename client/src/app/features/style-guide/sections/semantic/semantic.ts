@@ -24,9 +24,9 @@ export default class Semantic {
         errors.push(...this.presetErrors())
         return errors;
     });
-    onSubmit() {
-        this.store.putSemantic(this.formPreset()!.getValue());
-    }
+    // onSubmit() {
+    //     this.store.putSemantic(this.formPreset()!.getValue());
+    // }
     applyPreset() {
         if (this.formPreset()!.invalid()) { return; }
         this.store.applyPreset(this.formPreset()!.getValue());

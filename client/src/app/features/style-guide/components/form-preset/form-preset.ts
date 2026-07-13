@@ -42,7 +42,7 @@ export class FormPreset implements OnInit {
     ngOnInit(): void {
         emitOnUserEdit({
             value: () => this.formGroup()().value(),
-            generation: () => [this.formGroup(), this.vmodel()],
+            model: () => this.vmodel(),
             emit: () => this.applyPreset.emit(),
             injector: this._injector,
         });

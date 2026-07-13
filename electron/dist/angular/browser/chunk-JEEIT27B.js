@@ -364,6 +364,7 @@ import {
   setClassMetadata,
   ɵsetClassDebugInfo,
   ɵɵadvance,
+  ɵɵclassProp,
   ɵɵcontrol,
   ɵɵcontrolCreate,
   ɵɵdefineComponent,
@@ -372,7 +373,11 @@ import {
   ɵɵelementStart,
   ɵɵgetCurrentView,
   ɵɵlistener,
+  ɵɵnextContext,
   ɵɵproperty,
+  ɵɵrepeater,
+  ɵɵrepeaterCreate,
+  ɵɵrepeaterTrackByIndex,
   ɵɵresetView,
   ɵɵrestoreView,
   ɵɵtext,
@@ -471,9 +476,23 @@ var templates_default = `<div #source class="flex flex-column gap-3 ----- min-w-
             </div>
             <div class="w-full">
                 <p-select
-                    [(ngModel)]="vmodel['selected']" [options]="vmodel['options']" optionLabel="label" optionValue="value" placeholder="Select a language" class="w-full"
+                    [(ngModel)]="vmodel['selected']" [options]="vmodel['options']" [scrollHeight]="'11.8rem'" placeholder="Select a language" class="w-full"
                     [size]="vmodel['size']" [readonly]="vmodel['readonly']" [disabled]="vmodel['disabled']" [invalid]="vmodel['invalid']"
+                    (onShow)="vmodel['selectIsOpen']=true" (onHide)="vmodel['selectIsOpen']=false"
                 />
+                <div class="p-component p-overlay static mt-1" [class.opacity-0]="vmodel['selectIsOpen']">
+                    <div class="p-overlay-content">
+                        <div class="p-component p-component-overlay p-select-overlay">
+                            <div class="p-select-list-container" style="max-height: 11.8rem;">
+                                <ul class="p-select-list">
+                                    @for (option of vmodel['options']; track $index) {
+                                        <li class="p-ripple p-select-option" [class.p-select-option-selected]="option.value==vmodel['selected']"><span>{{option.label}}</span></li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -488,6 +507,20 @@ var templates_default = `<div #source class="flex flex-column gap-3 ----- min-w-
 `;
 
 // src/app/features/templates/templates.ts
+function Templates_For_82_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "li", 50)(1, "span");
+    \u0275\u0275text(2);
+    \u0275\u0275elementEnd()();
+  }
+  if (rf & 2) {
+    const option_r2 = ctx.$implicit;
+    const ctx_r2 = \u0275\u0275nextContext();
+    \u0275\u0275classProp("p-select-option-selected", option_r2.value == ctx_r2.vmodel["selected"]);
+    \u0275\u0275advance(2);
+    \u0275\u0275textInterpolate(option_r2.label);
+  }
+}
 function extractSource(raw) {
   const START = "<!-- source-start -->";
   const END = "<!-- source-end -->";
@@ -522,6 +555,7 @@ var Templates = class _Templates {
       { label: "\u4E2D\u6587", value: "zh" }
     ],
     selected: "de",
+    selectIsOpen: false,
     readonly: false,
     invalid: false,
     disabled: false,
@@ -544,7 +578,7 @@ var Templates = class _Templates {
   static \u0275fac = function Templates_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _Templates)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _Templates, selectors: [["templates"]], hostAttrs: [1, "flex", "gap-3", "w-full", "h-full", "overflow-hidden"], decls: 83, vars: 58, consts: [["source", ""], [1, "flex", "flex-column", "gap-3", "-----", "min-w-20rem", "max-w-20rem", "h-full", "bg-breeze-50"], [1, ""], [1, "mb-2", "px-2"], [1, "flex", "align-items-center", "mb-2", "gap-3"], [1, "flex", "align-items-center", "gap-1", "cursor-pointer"], ["inputId", "readonly", 1, "", 3, "ngModelChange", "ngModel", "binary"], ["pLabel", "", "for", "readonly"], [1, "capitalize"], ["inputId", "invalid", 1, "", 3, "ngModelChange", "ngModel", "binary"], ["pLabel", "", "for", "invalid"], ["inputId", "disabled", 1, "", 3, "ngModelChange", "ngModel", "binary"], ["pLabel", "", "for", "disabled"], [1, "flex", "gap-3"], [1, "flex", "align-items-center", "gap-1"], ["value", "small", "inputId", "smallSize", 3, "ngModelChange", "ngModel", "disabled", "invalid"], ["pLabel", "", "for", "smallSize", 1, "capitalize"], ["value", "regular", "inputId", "regularSize", 3, "ngModelChange", "ngModel", "disabled", "invalid"], ["pLabel", "", "for", "regularSize", 1, "capitalize"], ["value", "large", "inputId", "largeSize", 3, "ngModelChange", "ngModel", "disabled", "invalid"], ["pLabel", "", "for", "largeSize", 1, "capitalize"], [1, "font-bold", "text-lg"], [1, "flex", "flex-column", "gap-3", "w-full"], ["inputId", "cheeseCheckbox", 1, "", 3, "size", "readonly", "disabled", "invalid", "binary"], ["pLabel", "", "for", "cheeseCheckbox"], ["inputId", "mushroomCheckbox", 1, "", 3, "size", "readonly", "disabled", "invalid", "binary"], ["pLabel", "", "for", "mushroomCheckbox"], ["inputId", "pepperCheckbox", 1, "", 3, "size", "readonly", "disabled", "invalid", "binary"], ["pLabel", "", "for", "pepperCheckbox"], ["value", "cheese", "inputId", "cheeseRadiobutton", 3, "ngModelChange", "ngModel", "size", "disabled", "invalid"], ["pLabel", "", "for", "cheeseRadiobutton", 1, "capitalize"], ["value", "mushroom", "inputId", "mushroomRadiobutton", 3, "ngModelChange", "ngModel", "size", "disabled", "invalid"], ["pLabel", "", "for", "mushroomRadiobutton", 1, "capitalize"], ["value", "pepper", "inputId", "pepperRadiobutton", 3, "ngModelChange", "ngModel", "size", "disabled", "invalid"], ["pLabel", "", "for", "pepperRadiobutton", 1, "capitalize"], [1, "w-full"], ["pInputText", "", "value", "Lorem ipsum", "placeholder", "Input Text Placeholder", "id", "", 1, "w-full", 3, "pSize", "readonly", "disabled", "invalid"], ["placeholder", "Textarea Placeholder", "rows", "5", "pTextarea", "", "id", "", 1, "w-full", 3, "autoResize", "pSize", "readonly", "disabled", "invalid"], ["optionLabel", "label", "optionValue", "value", "placeholder", "Select a language", 1, "w-full", 3, "ngModelChange", "ngModel", "options", "size", "readonly", "disabled", "invalid"], [1, "flex", "flex-column", "flex-grow-1", "h-full", "overflow-auto"], [1, "flex", "w-full", "h-full", "overflow-auto"], [1, "m-0", "p-2", "white-space-pre-wrap"], [1, "p-3"], ["pButton", "", "rounded", "", 3, "click"]], template: function Templates_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _Templates, selectors: [["templates"]], hostAttrs: [1, "flex", "gap-3", "w-full", "h-full", "overflow-hidden"], decls: 90, vars: 61, consts: [["source", ""], [1, "flex", "flex-column", "gap-3", "-----", "min-w-20rem", "max-w-20rem", "h-full", "bg-breeze-50"], [1, ""], [1, "mb-2", "px-2"], [1, "flex", "align-items-center", "mb-2", "gap-3"], [1, "flex", "align-items-center", "gap-1", "cursor-pointer"], ["inputId", "readonly", 1, "", 3, "ngModelChange", "ngModel", "binary"], ["pLabel", "", "for", "readonly"], [1, "capitalize"], ["inputId", "invalid", 1, "", 3, "ngModelChange", "ngModel", "binary"], ["pLabel", "", "for", "invalid"], ["inputId", "disabled", 1, "", 3, "ngModelChange", "ngModel", "binary"], ["pLabel", "", "for", "disabled"], [1, "flex", "gap-3"], [1, "flex", "align-items-center", "gap-1"], ["value", "small", "inputId", "smallSize", 3, "ngModelChange", "ngModel", "disabled", "invalid"], ["pLabel", "", "for", "smallSize", 1, "capitalize"], ["value", "regular", "inputId", "regularSize", 3, "ngModelChange", "ngModel", "disabled", "invalid"], ["pLabel", "", "for", "regularSize", 1, "capitalize"], ["value", "large", "inputId", "largeSize", 3, "ngModelChange", "ngModel", "disabled", "invalid"], ["pLabel", "", "for", "largeSize", 1, "capitalize"], [1, "font-bold", "text-lg"], [1, "flex", "flex-column", "gap-3", "w-full"], ["inputId", "cheeseCheckbox", 1, "", 3, "size", "readonly", "disabled", "invalid", "binary"], ["pLabel", "", "for", "cheeseCheckbox"], ["inputId", "mushroomCheckbox", 1, "", 3, "size", "readonly", "disabled", "invalid", "binary"], ["pLabel", "", "for", "mushroomCheckbox"], ["inputId", "pepperCheckbox", 1, "", 3, "size", "readonly", "disabled", "invalid", "binary"], ["pLabel", "", "for", "pepperCheckbox"], ["value", "cheese", "inputId", "cheeseRadiobutton", 3, "ngModelChange", "ngModel", "size", "disabled", "invalid"], ["pLabel", "", "for", "cheeseRadiobutton", 1, "capitalize"], ["value", "mushroom", "inputId", "mushroomRadiobutton", 3, "ngModelChange", "ngModel", "size", "disabled", "invalid"], ["pLabel", "", "for", "mushroomRadiobutton", 1, "capitalize"], ["value", "pepper", "inputId", "pepperRadiobutton", 3, "ngModelChange", "ngModel", "size", "disabled", "invalid"], ["pLabel", "", "for", "pepperRadiobutton", 1, "capitalize"], [1, "w-full"], ["pInputText", "", "value", "Lorem ipsum", "placeholder", "Input Text Placeholder", "id", "", 1, "w-full", 3, "pSize", "readonly", "disabled", "invalid"], ["placeholder", "Textarea Placeholder", "rows", "5", "pTextarea", "", "id", "", 1, "w-full", 3, "autoResize", "pSize", "readonly", "disabled", "invalid"], ["placeholder", "Select a language", 1, "w-full", 3, "ngModelChange", "onShow", "onHide", "ngModel", "options", "scrollHeight", "size", "readonly", "disabled", "invalid"], [1, "p-component", "p-overlay", "static", "mt-1"], [1, "p-overlay-content"], [1, "p-component", "p-component-overlay", "p-select-overlay"], [1, "p-select-list-container", 2, "max-height", "11.8rem"], [1, "p-select-list"], [1, "p-ripple", "p-select-option", 3, "p-select-option-selected"], [1, "flex", "flex-column", "flex-grow-1", "h-full", "overflow-auto"], [1, "flex", "w-full", "h-full", "overflow-auto"], [1, "m-0", "p-2", "white-space-pre-wrap"], [1, "p-3"], ["pButton", "", "rounded", "", 3, "click"], [1, "p-ripple", "p-select-option"]], template: function Templates_Template(rf, ctx) {
     if (rf & 1) {
       const _r1 = \u0275\u0275getCurrentView();
       \u0275\u0275elementStart(0, "div", 1, 0)(2, "div", 2)(3, "div", 3)(4, "span", 2);
@@ -673,17 +707,24 @@ var Templates = class _Templates {
         \u0275\u0275twoWayBindingSet(ctx.vmodel["selected"], $event) || (ctx.vmodel["selected"] = $event);
         return \u0275\u0275resetView($event);
       });
+      \u0275\u0275listener("onShow", function Templates_Template_p_select_onShow_75_listener() {
+        return ctx.vmodel["selectIsOpen"] = true;
+      })("onHide", function Templates_Template_p_select_onHide_75_listener() {
+        return ctx.vmodel["selectIsOpen"] = false;
+      });
       \u0275\u0275elementEnd();
       \u0275\u0275controlCreate();
-      \u0275\u0275elementEnd()()()();
-      \u0275\u0275elementStart(76, "div", 39)(77, "div", 40)(78, "pre", 41);
-      \u0275\u0275text(79);
+      \u0275\u0275elementStart(76, "div", 39)(77, "div", 40)(78, "div", 41)(79, "div", 42)(80, "ul", 43);
+      \u0275\u0275repeaterCreate(81, Templates_For_82_Template, 3, 3, "li", 44, \u0275\u0275repeaterTrackByIndex);
+      \u0275\u0275elementEnd()()()()()()()()();
+      \u0275\u0275elementStart(83, "div", 45)(84, "div", 46)(85, "pre", 47);
+      \u0275\u0275text(86);
       \u0275\u0275elementEnd()();
-      \u0275\u0275elementStart(80, "div", 42)(81, "button", 43);
-      \u0275\u0275listener("click", function Templates_Template_button_click_81_listener($event) {
+      \u0275\u0275elementStart(87, "div", 48)(88, "button", 49);
+      \u0275\u0275listener("click", function Templates_Template_button_click_88_listener($event) {
         return ctx.copyClipboard($event);
       });
-      \u0275\u0275text(82, "Primary");
+      \u0275\u0275text(89, "Primary");
       \u0275\u0275elementEnd()()();
     }
     if (rf & 2) {
@@ -732,9 +773,13 @@ var Templates = class _Templates {
       \u0275\u0275property("autoResize", false)("pSize", ctx.vmodel["size"])("readonly", ctx.vmodel["readonly"])("disabled", ctx.vmodel["disabled"])("invalid", ctx.vmodel["invalid"]);
       \u0275\u0275advance(3);
       \u0275\u0275twoWayProperty("ngModel", ctx.vmodel["selected"]);
-      \u0275\u0275property("options", ctx.vmodel["options"])("size", ctx.vmodel["size"])("readonly", ctx.vmodel["readonly"])("disabled", ctx.vmodel["disabled"])("invalid", ctx.vmodel["invalid"]);
+      \u0275\u0275property("options", ctx.vmodel["options"])("scrollHeight", "11.8rem")("size", ctx.vmodel["size"])("readonly", ctx.vmodel["readonly"])("disabled", ctx.vmodel["disabled"])("invalid", ctx.vmodel["invalid"]);
       \u0275\u0275control();
-      \u0275\u0275advance(4);
+      \u0275\u0275advance();
+      \u0275\u0275classProp("opacity-0", ctx.vmodel["selectIsOpen"]);
+      \u0275\u0275advance(5);
+      \u0275\u0275repeater(ctx.vmodel["options"]);
+      \u0275\u0275advance(5);
       \u0275\u0275textInterpolate(ctx.sourceHtml());
     }
   }, dependencies: [SharedModule, NgControlStatus, NgModel, Checkbox, InputText, Label, RadioButton, Select, Textarea, ButtonDirective], encapsulation: 2 });
@@ -814,9 +859,23 @@ var Templates = class _Templates {
             </div>
             <div class="w-full">
                 <p-select
-                    [(ngModel)]="vmodel['selected']" [options]="vmodel['options']" optionLabel="label" optionValue="value" placeholder="Select a language" class="w-full"
+                    [(ngModel)]="vmodel['selected']" [options]="vmodel['options']" [scrollHeight]="'11.8rem'" placeholder="Select a language" class="w-full"
                     [size]="vmodel['size']" [readonly]="vmodel['readonly']" [disabled]="vmodel['disabled']" [invalid]="vmodel['invalid']"
+                    (onShow)="vmodel['selectIsOpen']=true" (onHide)="vmodel['selectIsOpen']=false"
                 />
+                <div class="p-component p-overlay static mt-1" [class.opacity-0]="vmodel['selectIsOpen']">
+                    <div class="p-overlay-content">
+                        <div class="p-component p-component-overlay p-select-overlay">
+                            <div class="p-select-list-container" style="max-height: 11.8rem;">
+                                <ul class="p-select-list">
+                                    @for (option of vmodel['options']; track $index) {
+                                        <li class="p-ripple p-select-option" [class.p-select-option-selected]="option.value==vmodel['selected']"><span>{{option.label}}</span></li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -837,4 +896,4 @@ var Templates = class _Templates {
 export {
   Templates as default
 };
-//# sourceMappingURL=chunk-ADLARGJQ.js.map
+//# sourceMappingURL=chunk-JEEIT27B.js.map

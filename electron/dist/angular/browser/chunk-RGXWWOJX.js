@@ -10020,7 +10020,14 @@ var Store2 = signalStore(
         cssOverrides: computed(() => store._cssOverridesStore().getCssOverrides()),
         components: computed(() => store._uiComponentStore().getComponents())
       });
-      updateState(store, "[StyleGuideStore] Put ShowDrawer", putShowDrawer(true));
+      effect(() => {
+        store.active();
+        untracked(() => {
+          if (store.showDrawer()) {
+            updateState(store, "[StyleGuideStore] Put ShowDrawer", putShowDrawer(false));
+          }
+        });
+      });
     }
   }),
   // withDevtools('style-guide-store'),
@@ -10164,4 +10171,4 @@ export {
   Store6 as Store5,
   Store2 as Store6
 };
-//# sourceMappingURL=chunk-I7ZYIMSW.js.map
+//# sourceMappingURL=chunk-RGXWWOJX.js.map

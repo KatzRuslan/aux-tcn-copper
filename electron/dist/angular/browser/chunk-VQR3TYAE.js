@@ -364,7 +364,7 @@ import {
   Store,
   getCustomPalette,
   require_lodash
-} from "./chunk-I7ZYIMSW.js";
+} from "./chunk-RGXWWOJX.js";
 import {
   FormField,
   form,
@@ -1194,4 +1194,4 @@ var ColorPalette = class _ColorPalette {
 export {
   ColorPalette as default
 };
-//# sourceMappingURL=chunk-7UZDNJIX.js.map
+//# sourceMappingURL=chunk-VQR3TYAE.js.map

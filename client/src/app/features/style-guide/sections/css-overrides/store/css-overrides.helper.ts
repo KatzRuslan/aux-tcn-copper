@@ -62,11 +62,11 @@ export function createCssOverrides() {
     ];
     return preset.join(' ');
 }
-export function applyPreset(overrides: ICssOverrideItem[]) {
-    const css = [
-        getColorCssOverrides(),
-        getDimensionsCssOverrides(),
-        getStyleCssOverrides(overrides),
-    ].join(' ');
-    updatePreset({ css });
-}
+// export function applyPreset(overrides: ICssOverrideItem[]) {
+//     const css = [
+//         getColorCssOverrides(),
+//         getDimensionsCssOverrides(),
+//         getStyleCssOverrides(overrides),
+//     ].join(' ');
+//     updatePreset({ css });
+// }

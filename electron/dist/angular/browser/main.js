@@ -2,7 +2,7 @@ import {
   interceptor,
   load,
   navigationResolver
-} from "./chunk-QOVLIQBZ.js";
+} from "./chunk-KTSQR2W5.js";
 import {
   preset_default
 } from "./chunk-4JRIKI4A.js";
@@ -14,7 +14,7 @@ import {
   Store as Store2,
   Store6 as Store3,
   t
-} from "./chunk-I7ZYIMSW.js";
+} from "./chunk-RGXWWOJX.js";
 import {
   Store2 as Store,
   environment
@@ -82,6 +82,7 @@ import {
   withInterceptors
 } from "./chunk-O5OVYJU6.js";
 import {
+  ChangeDetectionStrategy,
   Component,
   Injector,
   Input,
@@ -106,6 +107,9 @@ import {
   ɵɵdefineComponent,
   ɵɵdefineInjector,
   ɵɵdefineNgModule,
+  ɵɵdomElement,
+  ɵɵdomElementEnd,
+  ɵɵdomElementStart,
   ɵɵelement,
   ɵɵelementEnd,
   ɵɵelementStart,
@@ -156,7 +160,7 @@ var routes = [
   },
   {
     path: "templates",
-    loadComponent: () => import("./chunk-ADLARGJQ.js"),
+    loadComponent: () => import("./chunk-JEEIT27B.js"),
     title: "Aux TCN - Templates",
     data: { state: "templates", header: "Templates" },
     resolve: [navigationResolver]
@@ -170,7 +174,7 @@ var routes = [
   },
   {
     path: "style-guide",
-    loadChildren: () => import("./chunk-VALM7M5U.js").then((r) => r.routes)
+    loadChildren: () => import("./chunk-TG4UMLKJ.js").then((r) => r.routes)
   },
   { path: "", pathMatch: "full", redirectTo: "style-guide/component-settings/inputtext" }
 ];
@@ -752,37 +756,34 @@ var Conductor = class _Conductor {
   (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(Conductor, { className: "Conductor", filePath: "src/app/shared/components/conductor/conductor.ts", lineNumber: 20 });
 })();
 
-// src/app/features/style-guide/sections/ui-component/header-right/header-right.ts
-var HeaderRight2 = class _HeaderRight {
+// src/app/shared/components/drawer-button/drawer-button.ts
+var DrawerButton = class _DrawerButton {
   store = inject(Store3);
-  static \u0275fac = function HeaderRight_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _HeaderRight)();
+  static \u0275fac = function DrawerButton_Factory(__ngFactoryType__) {
+    return new (__ngFactoryType__ || _DrawerButton)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _HeaderRight, selectors: [["ui-component-header-right"]], hostAttrs: [1, "flex", "align-items-center", "gap-3"], decls: 3, vars: 1, consts: [["pButton", "", "iconOnly", "", "rounded", "", "raised", "", "aria-label", "Toggle Drawer", 3, "click", "severity"], ["data-p-icon", "bars"]], template: function HeaderRight_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _DrawerButton, selectors: [["drawer-button"]], decls: 2, vars: 1, consts: [["pButton", "", "iconOnly", "", "rounded", "", "raised", "", "aria-label", "Toggle Drawer", 3, "click", "severity"], ["data-p-icon", "bars"]], template: function DrawerButton_Template(rf, ctx) {
     if (rf & 1) {
-      \u0275\u0275element(0, "conductor");
-      \u0275\u0275elementStart(1, "button", 0);
-      \u0275\u0275listener("click", function HeaderRight_Template_button_click_1_listener() {
+      \u0275\u0275elementStart(0, "button", 0);
+      \u0275\u0275listener("click", function DrawerButton_Template_button_click_0_listener() {
         return ctx.store.toggleDrawer();
       });
       \u0275\u0275namespaceSVG();
-      \u0275\u0275element(2, "svg", 1);
+      \u0275\u0275element(1, "svg", 1);
       \u0275\u0275elementEnd();
     }
     if (rf & 2) {
-      const drawSeverity_r1 = ctx.store.showDrawer() ? "contrast" : "secondary";
-      \u0275\u0275advance();
-      \u0275\u0275property("severity", drawSeverity_r1);
+      const severity_r1 = ctx.store.showDrawer() ? "contrast" : "secondary";
+      \u0275\u0275property("severity", severity_r1);
     }
-  }, dependencies: [SharedCoreModule, ButtonDirective, Bars, Conductor], encapsulation: 2 });
+  }, dependencies: [SharedCoreModule, ButtonDirective, Bars], encapsulation: 2 });
 };
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(HeaderRight2, [{
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(DrawerButton, [{
     type: Component,
-    args: [{ selector: "ui-component-header-right", imports: [SharedCoreModule, Conductor], host: { class: "flex align-items-center gap-3" }, template: `<conductor />
-@let drawSeverity = store.showDrawer() ? 'contrast' : 'secondary';
+    args: [{ selector: "drawer-button", imports: [SharedCoreModule], template: `@let severity = store.showDrawer() ? 'contrast' : 'secondary';
 <button pButton iconOnly rounded raised aria-label="Toggle Drawer"
-    [severity]="drawSeverity"
+    [severity]="severity"
     (click)="store.toggleDrawer()">
     <svg data-p-icon="bars"></svg>
 </button>
@@ -790,7 +791,99 @@ var HeaderRight2 = class _HeaderRight {
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(HeaderRight2, { className: "HeaderRight", filePath: "src/app/features/style-guide/sections/ui-component/header-right/header-right.ts", lineNumber: 13 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(DrawerButton, { className: "DrawerButton", filePath: "src/app/shared/components/drawer-button/drawer-button.ts", lineNumber: 11 });
+})();
+
+// src/app/features/style-guide/sections/semantic/header-right/header-right.ts
+var HeaderRight2 = class _HeaderRight {
+  static \u0275fac = function HeaderRight_Factory(__ngFactoryType__) {
+    return new (__ngFactoryType__ || _HeaderRight)();
+  };
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _HeaderRight, selectors: [["define-semantic-header-right"]], hostAttrs: [1, "flex", "align-items-center", "gap-3"], decls: 2, vars: 0, template: function HeaderRight_Template(rf, ctx) {
+    if (rf & 1) {
+      \u0275\u0275element(0, "conductor")(1, "drawer-button");
+    }
+  }, dependencies: [Conductor, DrawerButton], encapsulation: 2 });
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(HeaderRight2, [{
+    type: Component,
+    args: [{ selector: "define-semantic-header-right", imports: [Conductor, DrawerButton], host: { class: "flex align-items-center gap-3" }, template: "<conductor />\n<drawer-button />\n" }]
+  }], null, null);
+})();
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(HeaderRight2, { className: "HeaderRight", filePath: "src/app/features/style-guide/sections/semantic/header-right/header-right.ts", lineNumber: 12 });
+})();
+
+// src/app/shared/icons/css-icon.ts
+var CssIcon = class _CssIcon {
+  static \u0275fac = function CssIcon_Factory(__ngFactoryType__) {
+    return new (__ngFactoryType__ || _CssIcon)();
+  };
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _CssIcon, selectors: [["svg", "dIconCss", ""]], hostAttrs: ["viewBox", "0 0 20 20", "fill", "none", "aria-hidden", "true"], decls: 4, vars: 0, consts: [["d", "M7 2.8 C5.6 2.8 5.4 3.6 5.4 4.8 L5.4 7.6 C5.4 9 4.4 9.6 3.4 10 C4.4 10.4 5.4 11 5.4 12.4 L5.4 15.2 C5.4 16.4 5.6 17.2 7 17.2", "fill", "none", "stroke", "currentColor", "stroke-width", "1.4", "stroke-linecap", "round", "stroke-linejoin", "round"], ["d", "M13 2.8 C14.4 2.8 14.6 3.6 14.6 4.8 L14.6 7.6 C14.6 9 15.6 9.6 16.6 10 C15.6 10.4 14.6 11 14.6 12.4 L14.6 15.2 C14.6 16.4 14.4 17.2 13 17.2", "fill", "none", "stroke", "currentColor", "stroke-width", "1.4", "stroke-linecap", "round", "stroke-linejoin", "round"], ["x", "10", "y", "11.9", "text-anchor", "middle", "font-size", "5.2", "font-weight", "700", "letter-spacing", ".2", "fill", "currentColor", "stroke", "none", "font-family", "inherit"]], template: function CssIcon_Template(rf, ctx) {
+    if (rf & 1) {
+      \u0275\u0275namespaceSVG();
+      \u0275\u0275domElement(0, "path", 0)(1, "path", 1);
+      \u0275\u0275domElementStart(2, "text", 2);
+      \u0275\u0275text(3, "css");
+      \u0275\u0275domElementEnd();
+    }
+  }, encapsulation: 2 });
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(CssIcon, [{
+    type: Component,
+    args: [{
+      // eslint-disable-next-line @angular-eslint/component-selector
+      selector: "svg[dIconCss]",
+      template: `
+        <svg:path d="M7 2.8 C5.6 2.8 5.4 3.6 5.4 4.8 L5.4 7.6 C5.4 9 4.4 9.6 3.4 10 C4.4 10.4 5.4 11 5.4 12.4 L5.4 15.2 C5.4 16.4 5.6 17.2 7 17.2"
+            fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+        <svg:path d="M13 2.8 C14.4 2.8 14.6 3.6 14.6 4.8 L14.6 7.6 C14.6 9 15.6 9.6 16.6 10 C15.6 10.4 14.6 11 14.6 12.4 L14.6 15.2 C14.6 16.4 14.4 17.2 13 17.2"
+            fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+        <svg:text x="10" y="11.9" text-anchor="middle" font-size="5.2" font-weight="700" letter-spacing=".2" fill="currentColor" stroke="none" font-family="inherit">css</svg:text>
+    `,
+      host: {
+        viewBox: "0 0 20 20",
+        fill: "none",
+        "aria-hidden": "true"
+      },
+      changeDetection: ChangeDetectionStrategy.OnPush
+    }]
+  }], null, null);
+})();
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(CssIcon, { className: "CssIcon", filePath: "src/app/shared/icons/css-icon.ts", lineNumber: 25 });
+})();
+
+// src/app/features/style-guide/sections/ui-component/header-right/header-right.ts
+var HeaderRight3 = class _HeaderRight {
+  store = inject(Store3);
+  static \u0275fac = function HeaderRight_Factory(__ngFactoryType__) {
+    return new (__ngFactoryType__ || _HeaderRight)();
+  };
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _HeaderRight, selectors: [["ui-component-header-right"]], hostAttrs: [1, "flex", "align-items-center", "gap-3"], decls: 4, vars: 0, consts: [["pButton", "", "iconOnly", "", "rounded", "", "raised", "", "aria-label", "Toggle Drawer", "severity", "secondary", 3, "click"], ["dIconCss", "", "width", "20", "height", "20"]], template: function HeaderRight_Template(rf, ctx) {
+    if (rf & 1) {
+      \u0275\u0275elementStart(0, "button", 0);
+      \u0275\u0275listener("click", function HeaderRight_Template_button_click_0_listener() {
+        return null;
+      });
+      \u0275\u0275namespaceSVG();
+      \u0275\u0275element(1, "svg", 1);
+      \u0275\u0275elementEnd();
+      \u0275\u0275namespaceHTML();
+      \u0275\u0275element(2, "conductor")(3, "drawer-button");
+    }
+  }, dependencies: [SharedCoreModule, ButtonDirective, Conductor, DrawerButton, CssIcon], encapsulation: 2 });
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(HeaderRight3, [{
+    type: Component,
+    args: [{ selector: "ui-component-header-right", imports: [SharedCoreModule, Conductor, DrawerButton, CssIcon], host: { class: "flex align-items-center gap-3" }, template: '<button pButton iconOnly rounded raised aria-label="Toggle Drawer"\n    severity="secondary"\n    (click)="null">\n    <svg dIconCss width="20" height="20"></svg>\n</button>\n<conductor />\n<drawer-button />\n' }]
+  }], null, null);
+})();
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(HeaderRight3, { className: "HeaderRight", filePath: "src/app/features/style-guide/sections/ui-component/header-right/header-right.ts", lineNumber: 15 });
 })();
 
 // src/app/shared/components/main-header/main-header.ts
@@ -801,7 +894,7 @@ function MainHeader_Case_6_Template(rf, ctx) {
 }
 function MainHeader_Case_7_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275element(0, "ui-component-header-right");
+    \u0275\u0275element(0, "define-semantic-header-right");
   }
 }
 function MainHeader_Case_8_Template(rf, ctx) {
@@ -832,7 +925,7 @@ var MainHeader = class _MainHeader {
       \u0275\u0275text(4);
       \u0275\u0275elementEnd()();
       \u0275\u0275elementStart(5, "div", 3);
-      \u0275\u0275conditionalCreate(6, MainHeader_Case_6_Template, 1, 0, "color-palette-header-right")(7, MainHeader_Case_7_Template, 1, 0, "ui-component-header-right")(8, MainHeader_Case_8_Template, 1, 0, "ui-component-header-right")(9, MainHeader_Case_9_Template, 1, 1);
+      \u0275\u0275conditionalCreate(6, MainHeader_Case_6_Template, 1, 0, "color-palette-header-right")(7, MainHeader_Case_7_Template, 1, 0, "define-semantic-header-right")(8, MainHeader_Case_8_Template, 1, 0, "ui-component-header-right")(9, MainHeader_Case_9_Template, 1, 1);
       \u0275\u0275elementEnd();
     }
     if (rf & 2) {
@@ -844,14 +937,15 @@ var MainHeader = class _MainHeader {
       \u0275\u0275advance(2);
       \u0275\u0275conditional((tmp_3_0 = state_r3) === "color-palette" ? 6 : tmp_3_0 === "define-semantic" ? 7 : tmp_3_0 === "component-settings" ? 8 : 9);
     }
-  }, dependencies: [HeaderRight, HeaderRight2], encapsulation: 2 });
+  }, dependencies: [HeaderRight, HeaderRight2, HeaderRight3], encapsulation: 2 });
 };
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(MainHeader, [{
     type: Component,
     args: [{ selector: "main-header", imports: [
       HeaderRight,
-      HeaderRight2
+      HeaderRight2,
+      HeaderRight3
     ], host: { class: "flex align-items-center p-2 mb-3 gap-3 border-200 border-bottom-1 h-5rem" }, template: `@let header = store.aciveHeader();\r
 @let state = store.aciveState();\r
 \r
@@ -863,7 +957,7 @@ var MainHeader = class _MainHeader {
             <color-palette-header-right />\r
         }\r
         @case ('define-semantic') {\r
-            <ui-component-header-right />\r
+            <define-semantic-header-right />\r
         }\r
         @case ('component-settings') {\r
             <ui-component-header-right />\r
@@ -877,7 +971,7 @@ var MainHeader = class _MainHeader {
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(MainHeader, { className: "MainHeader", filePath: "src/app/shared/components/main-header/main-header.ts", lineNumber: 15 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(MainHeader, { className: "MainHeader", filePath: "src/app/shared/components/main-header/main-header.ts", lineNumber: 16 });
 })();
 
 // src/app/shared/components/notification/notification.ts

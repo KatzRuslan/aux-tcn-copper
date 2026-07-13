@@ -5,7 +5,7 @@ import { updateState, withDevtools, withDevToolsStub } from '@angular-architects
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { tapResponse } from '@ngrx/operators';
 import { initialSemanticSlice } from './semantic.slice';
-import { initSemanticHelperContext, initSemantis, createSemantic, electronWriteSemantic, applyPreset } from './semantic.helper';
+import { initSemanticHelperContext, initSemantis, createSemantic, electronWriteSemantic } from './semantic.helper';
 import { initSemanticStore, putSemantic } from './semantic.updates';
 import { vmodel } from './semantic.vm-builder';
 import { environment } from '@environments';
@@ -46,7 +46,12 @@ export const Store = signalStore(
                 electronWriteSemantic();
                 store._styleGuidStore().createPreset();
             },
-            applyPreset,
+            applyPreset: (semantic: Record<string, string>) => {
+                updateState(store, '[SemanticStore] Put Semantic', putSemantic(semantic));
+                // electronWriteSemantic();
+                store._styleGuidStore().applyPreset();
+            },
+            electronWriteSemantic,
         }
     }),
 	withComputed(store => {

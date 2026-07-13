@@ -10,17 +10,9 @@
     <svg data-p-icon="bell" [size]="24"></svg>
 </p-overlaybadge>
 <p-popover #popover>
-    <div class="max-w-72 w-full">
-        <div class="flex items-center justify-between">
-            <span class="font-semibold text-sm">Create a New Workspace</span>
-        </div>
-        <p class="text-sm text-muted-color mt-2 mb-0!">Name your workspace to get started. You can always change this later.</p>
-        <div class="flex items-center justify-between mt-4">
-            <span class="text-xs text-surface-500 dark:text-surface-400">Lowercase letters and dashes only</span>
-            <div class="flex items-center gap-2">
-                <button type="button" pButton severity="secondary" variant="outlined" size="small" (click)="popover.hide()">Cancel</button>
-                <button type="button" pButton size="small" (click)="popover.hide()">Create</button>
-            </div>
-        </div>
+    <div class="flex flex-column gap-2 min-w-12rem">
+        @for (notification of notifications; track $index) {
+            <button pButton variant="text" severity="secondary" class="w-full" (click)="popover.hide(); store.approveNotification(notification)"><span class="">{{ notification.title }}</span></button>
+        }
     </div>
 </p-popover>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Injector, ElementRef, input, output, linkedSignal, computed, inject } from '@angular/core';
+import { Component, OnInit, DestroyRef, Injector, ElementRef, input, output, linkedSignal, computed, inject } from '@angular/core';
 import { form, FormField, required, applyEach } from '@angular/forms/signals';
 import { emitOnUserEdit } from '@helpers/utils.helpers';
 import { ICssOverrideItem } from '@interfaces';
@@ -19,7 +19,8 @@ import { isEqual } from 'lodash';
 })
 export class FormStyles implements OnInit {
     readonly _injector = inject(Injector);
-    readonly _elementRef = inject(ElementRef);
+    readonly _destroyRef = inject(DestroyRef);
+    readonly _elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
     readonly vmodel = input.required<ICssOverrideItem[]>();
     readonly applyPreset = output<void>();
     readonly formModel = linkedSignal(() => this.vmodel());
@@ -48,6 +49,10 @@ export class FormStyles implements OnInit {
         setTimeout(() => {
             const element = this._elementRef.nativeElement;
             element.scrollTop = element.scrollHeight;
+            // фокус на инпут селектора только что добавленного (последнего) оверрайда
+            // querySelectorAll возвращает NodeList — без .at()/.map(); Array.from даёт настоящий массив
+            const selectorInputs = Array.from(element.querySelectorAll<HTMLInputElement>('input[aria-label="Override selector"]'));
+            selectorInputs.at(-1)?.focus();
         });
     }
     addProperty(overrideIndex: number) {
@@ -55,6 +60,12 @@ export class FormStyles implements OnInit {
         this.formModel.update(current =>
             current.map((override, index) => index === overrideIndex ? { ...override, properties: [...override.properties, property] } : override)
         );
+        setTimeout(() => {
+            // фокус на имя только что добавленного (последнего) свойства в карточке своего оверрайда
+            const card = this._elementRef.nativeElement.querySelectorAll('p-card')[overrideIndex];
+            const nameInputs = Array.from(card?.querySelectorAll<HTMLInputElement>('property-name input') ?? []);
+            nameInputs.at(-1)?.focus();
+        });
     }
     removeOverride(index: number) {
         this.formModel.update(current => current.filter((_, i) => i !== index));
@@ -78,9 +89,13 @@ export class FormStyles implements OnInit {
     ngOnInit(): void {
         emitOnUserEdit({
             value: () => this.formGroup().value(),
-            generation: () => [this.vmodel()],
+            model: () => this.vmodel(),
             emit: () => this.applyPreset.emit(),
             injector: this._injector,
         });
+        // removeEventListener снимает только ту же ссылку — обработчик обязан быть общей константой
+        const addOverrideCss = () => this.addOverride();
+        document.addEventListener('add-override-css', addOverrideCss);
+        this._destroyRef.onDestroy(() => document.removeEventListener('add-override-css', addOverrideCss));
     }
 }

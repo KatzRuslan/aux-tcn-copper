@@ -32,6 +32,8 @@
             // "@templates-right": ["./src/app/features/templates/templates-right/templates-right.ts"]
             "@style-guide-store": ["./src/app/features/style-guide/store/style-guide.store.ts"],
             "@header-color-palette-right": ["./src/app/features/style-guide/sections/color-palette/header-right/header-right.ts"],
+            "@header-css-overrides-right": ["./src/app/features/style-guide/sections/css-overrides/header-right/header-right.ts"],
+            "@header-define-semantic-right": ["./src/app/features/style-guide/sections/semantic/header-right/header-right.ts"],
             "@header-ui-component-right": ["./src/app/features/style-guide/sections/ui-component/header-right/header-right.ts"],
             //
             "@shared/*": ["./src/app/shared/*"],

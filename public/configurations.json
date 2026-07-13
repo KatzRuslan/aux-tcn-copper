@@ -17,11 +17,13 @@
     "checkbox",
     "inputcolor",
     "confirmdialog",
-    "select"
+    "select",
+    "inputnumber"
   ],
   "availableComponents": [
     "inputtext",
     "button",
-    "accordion"
+    "accordion",
+    "inputnumber"
   ]
 }

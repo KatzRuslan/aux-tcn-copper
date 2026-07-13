@@ -42,9 +42,10 @@ export const Store = signalStore(
             ),
             putBorderRadius: (borderRadius: Record<string, string>) => {
                 updateState(store, '[BorderRadiusStore] Put Custom Border Radius', putBorderRadius(borderRadius));
-                electronWriteBorderRadius();
-                store._styleGuidStore().createPreset();
-            }
+                // electronWriteBorderRadius();
+                store._styleGuidStore().applyPreset();
+            },
+            electronWriteBorderRadius,
         }
     }),
 	withComputed(store => {

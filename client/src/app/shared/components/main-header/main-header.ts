@@ -1,12 +1,14 @@
 import { Component, inject } from '@angular/core';
 import { Store } from '@app-store';
 import { HeaderRight as ColorPaletteHeaderRight } from '@header-color-palette-right';
+import { HeaderRight as CssOverridesHeaderRight } from '@header-css-overrides-right';
+import { HeaderRight as DefineSemanticHeaderRight } from '@header-define-semantic-right';
 import { HeaderRight as UiComponentHeaderRight } from '@header-ui-component-right';
 
 @Component({
     selector: 'main-header',
     imports: [
-        ColorPaletteHeaderRight, UiComponentHeaderRight,
+        ColorPaletteHeaderRight, CssOverridesHeaderRight, DefineSemanticHeaderRight, UiComponentHeaderRight,
     ],
     templateUrl: './main-header.html',
     styleUrl: './main-header.scss',

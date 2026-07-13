@@ -6,7 +6,7 @@ import { updateState, withDevtools, withDevToolsStub } from '@angular-architects
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { tapResponse } from '@ngrx/operators';
 import { initialUiComponentSlice } from './ui-component.slice';
-import { initUiComponentHelperContext, initUiComponent, createUiComponent, electronWriteUiComponent, applyPreset } from './ui-component.helper';
+import { initUiComponentHelperContext, initUiComponent, createUiComponent, electronWriteUiComponent } from './ui-component.helper';
 import { initUiComponentStore, putUiComponent } from './ui-component.updates';
 import { vmodel } from './ui-component.vm-builder';
 import { environment } from '@environments';
@@ -50,11 +50,16 @@ export const Store = signalStore(
                 { injector: store._injector }
             ),
             putUiComponent: (name: string, data: Record<string, string>, css: ICssOverrideItem[]) => {
-                updateState(store, '[UiComponentStore] Put UiComponent', putUiComponent(name, data, css));
-                electronWriteUiComponent();
-                store._styleGuidStore().createPreset();
+                // updateState(store, '[UiComponentStore] Put UiComponent', putUiComponent(name, data, css));
+                // electronWriteUiComponent();
+                // store._styleGuidStore().createPreset();
             },
-            applyPreset,
+            applyPreset: (name: string, data: Record<string, string>, css: ICssOverrideItem[]) => {
+                updateState(store, '[UiComponentStore] Put UiComponent', putUiComponent(name, data, css));
+                // electronWriteUiComponent();
+                store._styleGuidStore().applyPreset();
+            },
+            electronWriteUiComponent,
         }
     }),
 	withComputed(store => {

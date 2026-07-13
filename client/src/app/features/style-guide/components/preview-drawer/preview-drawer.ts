@@ -1,7 +1,6 @@
 import { Component, Type, computed, effect, inject, resource, signal, viewChild, ViewContainerRef } from '@angular/core';
-// import { NgComponentOutlet } from '@angular/common';
 import { SharedModule } from '@shared-module';
-import { RUNTIME_TEMPLATE_IMPORTS } from '@shared/runtime-template-imports';
+import { RUNTIME_TEMPLATE_IMPORTS } from './runtime-template-imports';
 import { Store } from '@style-guide-store';
 
 /** Контекст рантайм-шаблона из .drawer.json: данные + обработчики. */
@@ -29,15 +28,6 @@ export class PreviewDrawer {
     readonly isAvailable = computed(() => this.store.vmDrawer().isAvailable);
     readonly isBookmarked = computed(() => this.store.vmDrawer().isBookmarked);
     readonly defaultStyleClass = 'flex flex-column gap-3 px-2';
-    // /** Карта демо грузится отдельным чанком, чтобы не тянуть все примеры в стартовый бандл. */
-    // private readonly _demos = resource({
-    //     loader: () => import('./demos/drawer-demos').then(({ DRAWER_DEMOS }) => DRAWER_DEMOS),
-    // });
-    // readonly drawer = computed(() => {
-    //     const demos = this._demos.value();
-    //     return demos ? demos[this.active()] ?? demos['empty'] : null;
-    // });
-    // D:\projects\aux-tcn-copper\public\drawers/inputnumber.drawer
     readonly drawer = resource({
         params: () => this.active() || undefined, // undefined → загрузка пропускается (разделы без drawer'а)
         loader: async ({ params }) => {
